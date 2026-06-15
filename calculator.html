@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <title>Pakket Calculator — Selectly</title>
+  <meta name="description" content="Bouw zelf je Selectly pakket: kies modules, zie direct de prijs. Vrijblijvend. Stuur door of plan een gesprek." />
+
+  <link rel="canonical" href="https://selectly.be/calculator.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+        colors: {
+          ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
+          accent: { 500:'#7c3aed', 400:'#a78bfa', 300:'#c4b5fd' },
+          blue: { 500:'#2563eb', 400:'#60a5fa' }
+        }
+      }}
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background:#fafafa; }
+    .glow { box-shadow: 0 0 60px -10px rgba(124,58,237,.35); }
+  </style>
+</head>
+<body class="text-ink-900">
+
+<!-- nav -->
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold">S</div>
+      <span class="text-xl font-bold tracking-tight">Selectly</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/#wat-we-doen" class="hidden sm:inline text-ink-700 hover:text-ink-900">Diensten</a>
+      <a href="/#case" class="hidden sm:inline text-ink-700 hover:text-ink-900">Cases</a>
+      <a href="/#prijzen" class="hidden sm:inline text-ink-700 hover:text-ink-900">Pakketten</a>
+      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+    </div>
+  </div>
+</nav>
+
+<main x-data="calc()" x-init="recompute()" class="max-w-6xl mx-auto px-5 py-12 sm:py-16">
+
+  <header class="mb-10">
+    <p class="text-sm font-semibold text-accent-500 uppercase tracking-wider mb-2">Pakket calculator</p>
+    <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-3">Bouw je eigen pakket</h1>
+    <p class="text-lg text-ink-700 max-w-2xl">Vink aan wat je nodig hebt, zie direct wat je per maand betaalt. Geen verkoper, geen verborgen kosten. Stuur het door of plan een gesprek.</p>
+  </header>
+
+  <div class="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
+
+    <!-- left: modules -->
+    <section class="space-y-6">
+
+      <!-- foundation -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-lg font-bold">Fundament <span class="text-accent-500">·</span> verplicht</h2>
+            <p class="text-sm text-ink-700">CRM setup + email + intake + dashboard. Zonder dit werkt niets.</p>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-ink-700">vanaf</div>
+            <div class="font-bold text-lg">€950<span class="text-sm font-normal text-ink-700">/mnd</span></div>
+          </div>
+        </div>
+        <ul class="text-sm space-y-1 text-ink-700 mt-3">
+          <li>✓ GoHighLevel sub-account, NL-talig opgezet</li>
+          <li>✓ Custom fields + pipelines voor jouw branche</li>
+          <li>✓ Webform / iframe op je site</li>
+          <li>✓ Email domain auth (SPF/DKIM) + 1 sender</li>
+          <li>✓ Live dashboard voor zaakvoerder</li>
+        </ul>
+      </div>
+
+      <!-- module list -->
+      <div class="space-y-3">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-ink-700">Optionele modules</h2>
+
+        <template x-for="m in modules" :key="m.id">
+          <label class="block bg-white rounded-xl border border-slate-200 p-5 cursor-pointer hover:border-accent-400 transition" :class="m.selected ? 'border-accent-500 ring-2 ring-accent-300/30' : ''">
+            <div class="flex items-start gap-4">
+              <input type="checkbox" x-model="m.selected" @change="recompute()" class="mt-1 w-5 h-5 accent-accent-500" />
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between gap-2">
+                  <h3 class="font-bold text-ink-900" x-text="m.name"></h3>
+                  <div class="text-right whitespace-nowrap">
+                    <span class="font-semibold" x-text="'+€'+m.price.toLocaleString('nl-BE')+'/mnd'"></span>
+                  </div>
+                </div>
+                <p class="text-sm text-ink-700 mt-1" x-text="m.desc"></p>
+                <div class="mt-2 text-xs text-ink-700/80" x-show="m.fitfor">
+                  <span class="text-accent-500 font-semibold">Past bij:</span> <span x-text="m.fitfor"></span>
+                </div>
+              </div>
+            </div>
+          </label>
+        </template>
+      </div>
+
+      <!-- volume -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <h2 class="font-bold mb-3">Volume bracket</h2>
+        <p class="text-sm text-ink-700 mb-4">Aantal leads per maand bepaalt de hosting + verzend-volume. Kies de bracket die past.</p>
+        <div class="grid grid-cols-3 gap-3">
+          <template x-for="v in volumes" :key="v.id">
+            <button @click="setVolume(v.id)" type="button"
+                    :class="volume === v.id ? 'bg-ink-900 text-white border-ink-900' : 'bg-white text-ink-900 border-slate-200 hover:border-ink-700'"
+                    class="border rounded-lg py-3 text-sm font-medium transition">
+              <div x-text="v.label"></div>
+              <div class="text-xs mt-1 opacity-70" x-text="'+€'+v.add+'/mnd'"></div>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- timeline -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6">
+        <h2 class="font-bold mb-3">Setup timeline</h2>
+        <div class="flex gap-3">
+          <button @click="setupSpeed='normaal';recompute()" type="button"
+                  :class="setupSpeed==='normaal' ? 'bg-ink-900 text-white border-ink-900' : 'bg-white border-slate-200 hover:border-ink-700'"
+                  class="flex-1 border rounded-lg py-3 px-4 text-left transition">
+            <div class="font-semibold text-sm">4 weken — normaal</div>
+            <div class="text-xs opacity-70 mt-1">Geen extra setup fee</div>
+          </button>
+          <button @click="setupSpeed='snel';recompute()" type="button"
+                  :class="setupSpeed==='snel' ? 'bg-ink-900 text-white border-ink-900' : 'bg-white border-slate-200 hover:border-ink-700'"
+                  class="flex-1 border rounded-lg py-3 px-4 text-left transition">
+            <div class="font-semibold text-sm">2 weken — snel</div>
+            <div class="text-xs opacity-70 mt-1">+€1.500 eenmalig</div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- right: sticky summary -->
+    <aside class="lg:sticky lg:top-24">
+      <div class="bg-gradient-to-br from-ink-900 to-ink-800 text-white rounded-2xl p-7 glow">
+        <div class="text-sm uppercase tracking-wider text-accent-300 font-semibold mb-2">Jouw pakket</div>
+        <div class="text-5xl font-bold tracking-tight" x-text="'€'+total.toLocaleString('nl-BE')"></div>
+        <div class="text-sm text-slate-300 mt-1">per maand · BTW excl · maandelijks opzegbaar</div>
+
+        <div class="mt-2 text-sm text-slate-300" x-show="setupSpeed==='snel'">
+          + €1.500 eenmalige snel-fee
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-white/15">
+          <div class="text-xs uppercase tracking-wider text-slate-400 mb-3">Wat zit erin</div>
+          <ul class="space-y-2 text-sm">
+            <li class="flex gap-2">
+              <span class="text-accent-300">✓</span>
+              <span>Fundament (CRM + intake + dashboard)</span>
+            </li>
+            <template x-for="m in modules.filter(x => x.selected)" :key="m.id">
+              <li class="flex gap-2">
+                <span class="text-accent-300">✓</span>
+                <span x-text="m.name"></span>
+              </li>
+            </template>
+            <li class="flex gap-2">
+              <span class="text-accent-300">✓</span>
+              <span x-text="'Volume tot ' + currentVolumeLabel()"></span>
+            </li>
+          </ul>
+        </div>
+
+        <a :href="'/#contact?pakket='+encodeURIComponent(summary())"
+           class="mt-7 block text-center bg-white text-ink-900 font-semibold py-3 rounded-lg hover:bg-slate-100">
+          Vraag dit pakket aan
+        </a>
+        <button @click="exportSummary()" type="button"
+                class="mt-2 w-full text-center text-sm text-slate-300 hover:text-white py-2">
+          Of stuur me dit per email →
+        </button>
+
+        <p class="text-xs text-slate-400 mt-5 leading-relaxed">
+          Indicatieve prijs. Definitieve scope leggen we samen vast in een 30-min strategie gesprek.
+        </p>
+      </div>
+
+      <!-- comparison hint -->
+      <div class="mt-6 bg-white border border-slate-200 rounded-xl p-5 text-sm text-ink-700">
+        <div class="font-semibold text-ink-900 mb-1">Komt het hoger uit dan verwacht?</div>
+        Een DIY setup met losse tools (Make.com + Mailchimp + Calendly + Twilio + GHL) komt vaak op €600-1200/mnd zonder setup of onderhoud. Wij doen alles inbegrepen.
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- FAQ section -->
+  <section class="mt-20 grid md:grid-cols-2 gap-6">
+    <div class="bg-white border border-slate-200 rounded-xl p-6">
+      <h3 class="font-bold mb-2">Kan ik later modules toevoegen?</h3>
+      <p class="text-sm text-ink-700">Ja, op elk moment. Je krijgt een addendum bij je contract en de extra module is meestal binnen 2 weken live.</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-xl p-6">
+      <h3 class="font-bold mb-2">Wat als ik wil stoppen?</h3>
+      <p class="text-sm text-ink-700">Maandelijks opzegbaar. Je houdt GHL toegang met al je data en betaalt enkel hun licentie verder als je dat wil.</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-xl p-6">
+      <h3 class="font-bold mb-2">Zit GoHighLevel licentie inbegrepen?</h3>
+      <p class="text-sm text-ink-700">Ja. Geen aparte facturen voor GHL, Twilio of email-tooling. Eén factuur, één tegenpartij.</p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-xl p-6">
+      <h3 class="font-bold mb-2">Wat als mijn volume groeit?</h3>
+      <p class="text-sm text-ink-700">Tot 20% over de bracket geen extra kost. Bij structurele groei kijken we samen naar de volgende bracket — meestal pay-backt dat zichzelf.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-ink-950 text-slate-400 mt-24 py-12">
+  <div class="max-w-6xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">S</div>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Navigatie</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/#prijzen" class="hover:text-white">Pakketten</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Legal</div>
+      <ul class="space-y-1">
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li>BTW BE1037.580.195</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+function calc() {
+  return {
+    base: 950,
+    setupSpeed: 'normaal',
+    volume: 'm',
+    volumes: [
+      { id: 's', label: '<50 leads/mnd',  add: 0,   max: 50  },
+      { id: 'm', label: '50-200 leads',   add: 350, max: 200 },
+      { id: 'l', label: '200-500 leads',  add: 800, max: 500 }
+    ],
+    modules: [
+      { id:'chatbot', name:'AI chatbot lead-kwalificatie', price:400, selected:true,
+        desc:'WhatsApp/web chatbot vraagt 3-5 kwalificatievragen en schrijft direct naar CRM.',
+        fitfor:'installateurs, dienstenbedrijven, advocaten' },
+      { id:'offerte', name:'Auto-offerte generator', price:500, selected:true,
+        desc:'PDF offertes automatisch op basis van CRM data. Belgische BTW logica. Jouw branding.',
+        fitfor:'installateurs, schilders, renovatie' },
+      { id:'whatsapp', name:'WhatsApp Business via Twilio', price:200, selected:false,
+        desc:'Officieel WhatsApp kanaal met templates. Inbox in GHL, conversaties geschiedenis bewaard.',
+        fitfor:'iedereen die met B2C werkt' },
+      { id:'voicebot', name:'AI voicebot (telefonie)', price:600, selected:false,
+        desc:'Inkomende oproepen worden door AI getrieerd (uren, FAQ, afspraak boeken).',
+        fitfor:'bedrijven met >20 telefoontjes/dag' },
+      { id:'opvolging', name:'Geavanceerde opvolging + nurturing', price:300, selected:false,
+        desc:'Multi-step sequenties: cold lead reactivatie, no-show preventie, post-sale upsell.',
+        fitfor:'bedrijven met lange sales cycles' },
+      { id:'facturatie', name:'Facturatie integratie (Yuki/Octopus/Teamleader)', price:250, selected:false,
+        desc:'Offerte → factuur in jouw boekhoudtool zonder dubbel werk.',
+        fitfor:'bedrijven met bestaande boekhouding' },
+      { id:'multivest', name:'Multi-vestiging support', price:400, selected:false,
+        desc:'Workflows per vestiging, locatie-routing van leads, aparte rapportering.',
+        fitfor:'bedrijven met 2+ locaties' },
+      { id:'NLuitbreiding', name:'Nederland uitbreiding (BE+NL)', price:350, selected:false,
+        desc:'Dubbele BTW logica, NL telefoonnummers, NL templates, regio-routing.',
+        fitfor:'bedrijven met BE+NL klanten' }
+    ],
+    total: 0,
+
+    setVolume(id) { this.volume = id; this.recompute(); },
+    currentVolumeLabel() { return this.volumes.find(v => v.id === this.volume).label; },
+
+    recompute() {
+      const moduleSum = this.modules.filter(m => m.selected).reduce((s, m) => s + m.price, 0);
+      const volAdd = this.volumes.find(v => v.id === this.volume).add;
+      this.total = this.base + moduleSum + volAdd;
+    },
+
+    summary() {
+      const mods = this.modules.filter(m => m.selected).map(m => m.name).join(', ');
+      return `Pakket: €${this.total}/mnd (Fundament + ${mods || 'geen extra modules'} + ${this.currentVolumeLabel()})`;
+    },
+
+    exportSummary() {
+      const lines = [
+        'Mijn Selectly pakket — indicatie',
+        '',
+        `Fundament: €${this.base}/mnd`,
+        ...this.modules.filter(m => m.selected).map(m => `+ ${m.name}: €${m.price}/mnd`),
+        `+ Volume bracket: ${this.currentVolumeLabel()} (€${this.volumes.find(v => v.id === this.volume).add}/mnd)`,
+        '',
+        `Totaal: €${this.total}/mnd`,
+        this.setupSpeed === 'snel' ? '+ €1.500 eenmalig (snel-setup 2 weken)' : '',
+        '',
+        'Plan een gesprek: https://selectly.be/#contact'
+      ].filter(Boolean).join('\n');
+      const subject = encodeURIComponent('Mijn Selectly pakket');
+      const body = encodeURIComponent(lines);
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    }
+  };
+}
+</script>
+</body>
+</html>

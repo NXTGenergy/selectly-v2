@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI chatbot voor je website: 5 use cases die werken (en 3 die je beter niet probeert) — Selectly</title>
+<meta name="description" content="5 use cases waar een AI chatbot écht werkt voor Belgische KMO's — en 3 valkuilen die je beter vermijdt. Voor zaakvoerders van dienstenbedrijven.">
+<meta property="og:title" content="AI chatbot voor je website: 5 use cases die werken (en 3 die je beter niet probeert)">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://selectly.be/blog/ai-chatbot-voor-website.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    colors: {
+      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
+      accent: { 500:'#7c3aed', 400:'#a78bfa' }
+    }
+  } } };
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  article li { margin: 0.3rem 0; line-height: 1.7; }
+  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
+  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
+  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
+  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
+  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
+  article strong { color:#0f172a; }
+</style>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+      <span class="text-xl font-bold tracking-tight">Selectly</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
+      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
+      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
+      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
+  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <article>
+<h1>AI chatbot voor je website: 5 use cases die werken (en 3 die je beter niet probeert)</h1>
+<p><strong>Leestijd:</strong> 6 min
+<strong>Voor:</strong> zaakvoerders van dienstenbedrijven die overwegen een AI chatbot toe te voegen aan hun website of WhatsApp.</p>
+<hr />
+<h2>Waarom dit artikel anders is</h2>
+<p>De meeste "AI chatbot" artikels zijn pitchstukken van vendors. Dit is geschreven vanuit het perspectief van iemand die er meerdere heeft gebouwd voor Belgische KMO's, inclusief de momenten waarop het mislukte. Geen "AI transformeert je business". Wel: wat werkt, wat niet, en waarom.</p>
+<h2>De 5 use cases die echt werken</h2>
+<h3>1. Lead intake + kwalificatie (de evergreen winner)</h3>
+<p><strong>Scenario:</strong> prospect landt op je website, vult formulier in met naam + telefoon. Binnen 30 sec krijgt hij een WhatsApp van je "AI assistent" die 3-5 vervolgvragen stelt om de aanvraag te kwalificeren.</p>
+<p><strong>Wat het doet:</strong>
+- Vraagt naar bouwjaar woning, type project, budget range, gewenste timing
+- Schrijft de antwoorden terug naar je CRM in custom fields
+- Triggert auto-offerte als alle data compleet is, of zet prospect in "needs human" lijst als niet</p>
+<p><strong>Waarom het werkt:</strong> mensen antwoorden GRAAG op WhatsApp. Email of bellen is een drempel. Chat voelt vrijblijvend.</p>
+<p><strong>Resultaat bij NXTG Energy (solar installateur, Brugge):</strong> 90% van leads beantwoord binnen 1 uur i.p.v. 6-12u. Conversie van form fill naar offerte ging van 35% naar 62%.</p>
+<h3>2. Veelgestelde vragen op je website (24/7 bereikbaarheid)</h3>
+<p><strong>Scenario:</strong> prospect op productpagina heeft 1 vraag voor hij verder gaat. "Doen jullie ook installaties in Roeselare?" / "Hoe lang duurt de levertijd?"</p>
+<p><strong>Wat het doet:</strong>
+- Chat widget rechtsonder, antwoordt direct op standaardvragen
+- Bij echte intent (prijsvraag, offerte) → boekt direct demo of vraagt contact
+- Logt elke vraag → input voor productpagina verbetering</p>
+<p><strong>Waarom het werkt:</strong> mensen die om middernacht surfen converteren niet als ze pas morgenvroeg antwoord krijgen.</p>
+<h3>3. Afspraak boeken zonder calendar pingpong</h3>
+<p><strong>Scenario:</strong> prospect wil afspraak. AI vraagt 3 dingen (datum range, voorkeur ochtend/middag, type afspraak) en stuurt direct kalender link met juiste duur en juiste persoon.</p>
+<p><strong>Wat het doet:</strong>
+- Cuts uit de "ik kan dinsdag of donderdag, jij?" email-ping-pong
+- Stuurt automatisch confirmation + reminder 24u vooraf
+- Detecteert no-show risico en triggert preventieve nudge</p>
+<h3>4. Status updates van lopende projecten</h3>
+<p><strong>Scenario:</strong> je hebt klanten met installaties of orders in progress. Ze willen weten waar ze staan, maar je sales team is daar de hele dag mee bezig om dat te beantwoorden.</p>
+<p><strong>Wat het doet:</strong>
+- Klant stuurt "waar staat mijn dossier?" via WhatsApp
+- AI checkt CRM status, antwoordt: "Materiaal besteld 12 mei, installatie gepland 28 mei. Bart belt je 1 dag vooraf."
+- Bij escalatie → overdracht naar mens met volledige context</p>
+<h3>5. Reactivatie van oude leads</h3>
+<p><strong>Scenario:</strong> je hebt 800 oude leads in je CRM die ooit interesse toonden maar nooit converteerden. Manueel opbellen = niemand doet dat.</p>
+<p><strong>Wat het doet:</strong>
+- AI scheidt segment (op basis van laatste interactie, sector, deal value)
+- Stuurt persoonlijke heropening via WhatsApp: "Hé Jan, je vroeg in oktober naar zonnepanelen. Premies voor 2026 zijn nu bekend. Wil je een update?"
+- Vouwt response in CRM pipeline</p>
+<p><strong>Resultaat bij echte test:</strong> 8-15% reactivatie rate op leads ouder dan 6 maanden. Soms meer als de timing toevallig samenvalt met externe trigger (premiewijziging, prijsstijging).</p>
+<hr />
+<h2>De 3 use cases die je beter NIET probeert</h2>
+<h3>❌ "AI sales rep die complete deals sluit"</h3>
+<p>Klinkt sexy in een LinkedIn post, werkt niet in praktijk. Mensen die €5k+ kopen willen menselijk contact. Gebruik AI om sneller bij dat menselijk contact te komen, niet om het te vermijden.</p>
+<h3>❌ Klantenservice voor complexe technische problemen</h3>
+<p>Als je een ingewikkelde technische installatie hebt waar 20% van de tickets diepe expertise vraagt, dan zal AI 80% goed beantwoorden en 20% catastrofaal verkeerd. Een verkeerd antwoord aan een gefrustreerde klant kost je meer dan 80% goed bespaart.</p>
+<h3>❌ Algemene chatbot zonder duidelijke job</h3>
+<p>"We willen iets met AI" → niet doen. Definieer eerst exact welke vraag of pain de bot oplost. Een chatbot zonder duidelijke job wordt niet gebruikt of frustreert.</p>
+<hr />
+<h2>Wat heb je nodig om dit op te zetten?</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Wat</th>
+<th>Kostprijs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM</td>
+<td>Claude (Anthropic) of GPT (OpenAI)</td>
+<td>€0.50-3 per 100 conversaties</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>GoHighLevel, HubSpot, of bestaande</td>
+<td>varieert</td>
+</tr>
+<tr>
+<td>Messaging</td>
+<td>WhatsApp Business via Twilio</td>
+<td>€25/mnd basis + €0.005-0.05 per bericht</td>
+</tr>
+<tr>
+<td>Webhook orchestratie</td>
+<td>Make.com, n8n, of custom Python</td>
+<td>€20-100/mnd</td>
+</tr>
+<tr>
+<td>Setup tijd (DIY)</td>
+<td>40-80 uur voor eerste werkend systeem</td>
+<td>jouw tijd</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Met Selectly pakket</strong> (Growth €1950/mnd): alle bovenstaande inbegrepen + bouw + monitoring + maandelijkse optimalisatie.</p>
+<hr />
+<h2>Hoe begin je morgen?</h2>
+<ol>
+<li><strong>Kies ÉÉN use case</strong> uit de 5 hierboven die het meest pijn doet vandaag</li>
+<li><strong>Meet je huidige cijfer</strong> (bv. % leads beantwoord binnen 1u, of % no-shows)</li>
+<li><strong>Bouw of laat bouwen</strong> met die specifieke metric als doel</li>
+<li><strong>Geen big-bang launch</strong> — test eerst op 10% van je traffic / leads</li>
+<li><strong>Pas na 30 dagen meting</strong> beslis je of het werkt of niet</li>
+</ol>
+<p>Geen AI tool is "set and forget". Reken op 30-90 minuten per maand monitoring + bijsturen.</p>
+<hr />
+<p><strong>Wil je weten welke use case bij jou werkt?</strong> Plan een gratis 30 min gesprek via selectly.be — we lopen samen door je huidige flow en je krijgt een concreet voorstel of een eerlijk "niet voor jullie nu".</p>
+  </article>
+
+  <div class="mt-16 pt-10 border-t border-slate-200">
+    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+  </div>
+
+  <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
+    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
+    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
+    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+  </div>
+</main>
+
+<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+  <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Navigatie</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Legal</div>
+      <ul class="space-y-1">
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li>BTW BE1037.580.195</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

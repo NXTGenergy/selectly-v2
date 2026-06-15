@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTW-automaten in de bouw: zo stop je met gokken tussen 6% en 21% — Selectly</title>
+<meta name="description" content="Een verkeerd BTW-tarief kost je gemiddeld 15% marge op één factuur. In de renovatiesector is dat geen uitzondering — het is een patroon. Aannemer A factureert 21% op een…">
+<meta property="og:title" content="BTW-automaten in de bouw: zo stop je met gokken tussen 6% en 21%">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://selectly.be/blog/btw-6-21-renovatie-automatisering.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    colors: {
+      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
+      accent: { 500:'#7c3aed', 400:'#a78bfa' }
+    }
+  } } };
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  article li { margin: 0.3rem 0; line-height: 1.7; }
+  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
+  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
+  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
+  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
+  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
+  article strong { color:#0f172a; }
+</style>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+      <span class="text-xl font-bold tracking-tight">Selectly</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
+      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
+      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
+      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
+  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <article>
+<h1>BTW-automaten in de bouw: zo stop je met gokken tussen 6% en 21%</h1>
+<p>Een verkeerd BTW-tarief kost je gemiddeld 15% marge op één factuur. In de renovatiesector is dat geen uitzondering — het is een patroon. Aannemer A factureert 21% op een badkamerrenovatie van een woning ouder dan 10 jaar. Aannemer B factureert 6% op nieuwbouw. Beiden fout. Beiden betalen de prijs.</p>
+<p>De Belgische BTW-wetgeving rond renovatie is complex, maar de beslislogica is dat niet. Het is een reeks harde regels met harde grenzen. Precies het soort probleem dat je kunt automatiseren.</p>
+<hr />
+<h2>Waarom dit probleem groter is dan je denkt</h2>
+<p>Zet 10 mensen van hetzelfde aannemersbedrijf aan een tafel. Stel dezelfde casus. Je krijgt 4 verschillende antwoorden over het juiste BTW-tarief.</p>
+<p>Dat is geen overdrijving. Het is wat we horen van bouwaannemers die bij ons aankloppen.</p>
+<p>De kern van het probleem:</p>
+<ul>
+<li><strong>Bouwjaar van de woning</strong> moet bewezen worden, niet enkel ingevuld</li>
+<li><strong>Bestemming van het gebouw</strong> (privéwoning, vakantiewoning, handelszaak) telt mee</li>
+<li><strong>Type werk</strong> bepaalt of 6% überhaupt van toepassing is</li>
+<li><strong>Attest van de eigenaar</strong> is verplicht en heeft rechtsgevolg</li>
+<li><strong>Materialen vs arbeid</strong> worden soms anders behandeld</li>
+</ul>
+<p>Elke variabele interageert met de andere. Dat levert tientallen combinaties op. En in de praktijk beslist een medewerker dit in 90 seconden, tussen twee telefoongesprekken in.</p>
+<hr />
+<h2>De beslislogica: wat de wet eigenlijk zegt</h2>
+<h3>De basisregel</h3>
+<p>6% geldt voor <strong>renovatie van privéwoningen ouder dan 10 jaar</strong>, op voorwaarde dat:</p>
+<ol>
+<li>De woning hoofdzakelijk als privéwoning wordt gebruikt</li>
+<li>Het werk gefactureerd wordt aan de eindgebruiker (of via een aannemer die dat aantoont)</li>
+<li>De eigenaar een <strong>renovatieattest</strong> ondertekent</li>
+</ol>
+<p>21% geldt voor alles wat daar niet onder valt.</p>
+<h3>De uitzonderingen die iedereen vergeet</h3>
+<p><strong>Nieuwbouw is altijd 21%.</strong> Geen discussie. Maar wat is nieuwbouw?</p>
+<ul>
+<li>Gebouwen jonger dan 10 jaar op moment van eerste ingebruikname</li>
+<li>Herbouw na sloop van meer dan 60% van de buitenmuren</li>
+<li>Aanhorigheden bij nieuwbouw (garage, carport, tuinmuur) volgen het tarief van de hoofdwoning als ze tegelijk worden opgeleverd</li>
+</ul>
+<p><strong>Gemengd gebruik complicerende factor:</strong></p>
+<p>Als meer dan 10% van de oppervlakte commercieel wordt gebruikt, vervalt het 6%-tarief voor het gehele pand. Niet voor dat deel. Het gehele pand.</p>
+<p><strong>Materialen:</strong></p>
+<p>Materialen die zelfstandig kunnen worden hergebruikt (sanitair, keukens, parketvloeren) vallen in theorie onder 21%, ook als de plaatsing aan 6% gaat. In de praktijk hanteert FOD Financiën een tolerantie: als de materiaalprijs niet meer dan 50% van de totale factuurprijs bedraagt, mag je het geheel aan 6% factureren.</p>
+<p>50% is een harde grens. Geen interpretatieruimte.</p>
+<hr />
+<h2>Wat dit kost als je het handmatig doet</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Fout gemaakt</th>
+<th>Financieel gevolg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6% gefactureerd, 21% verschuldigd</td>
+<td>Aannemer betaalt verschil bij</td>
+<td>15% marge weg per factuur</td>
+</tr>
+<tr>
+<td>21% gefactureerd, 6% correct</td>
+<td>Klant te veel betaald, concurrentie verloren</td>
+<td>Reputatieschade + correctienota</td>
+</tr>
+<tr>
+<td>Attest ontbreekt bij controle</td>
+<td>Btw-administratie heft bij aanslag</td>
+<td>Boetes + achterstallige BTW</td>
+</tr>
+<tr>
+<td>Materiaalgrens overschreden, 6% gefactureerd</td>
+<td>Controle → herberekening volledige factuur</td>
+<td>Gemiddeld €1.200 per dossier</td>
+</tr>
+</tbody>
+</table>
+<p>Dat zijn geen worst-case cijfers. Dat zijn de standaard gevolgen bij een BTW-audit in de bouwsector.</p>
+<hr />
+<h2>Hoe automatisering dit oplost</h2>
+<p>De beslislogica is een beslisboom. Geen AI-magie. Gewoon: als X dan Y, anders Z.</p>
+<p>Het probleem is niet dat mensen die logica niet kennen. Het probleem is dat ze hem <strong>niet consistent toepassen</strong> onder tijdsdruk, met incomplete informatie.</p>
+<p>Een geautomatiseerd systeem doet drie dingen die een mens vergeet:</p>
+<h3>1. Verplicht de juiste input op het juiste moment</h3>
+<p>Geen bouwjaar ingevuld? Factuur gaat niet door. Attest niet geüpload? Klant krijgt automatisch een herinneringsmail.</p>
+<p>Het systeem vraagt de informatie op het moment dat ze beschikbaar is — bij de offertefase — niet drie weken later als de factuur al verstuurd is.</p>
+<h3>2. Berekent het tarief op basis van regels, niet op basis van geheugen</h3>
+<p>De beslislogica zit in de tool, niet in het hoofd van één medewerker die er misschien volgende maand niet meer is.</p>
+<p>Concreet voorbeeld van een automatiseringsflow:</p>
+<pre><code>Bouwjaar &lt; (huidig jaar - 10)?
+  → JA: privéwoning?
+      → JA: materiaalkosten &lt; 50% van totaal?
+          → JA: 6% op volledige factuur
+          → NEE: split factuur of 21% op materialen
+      → NEE: 21%
+  → NEE: 21% (nieuwbouw)
+</code></pre>
+<p>Dat is geen ingewikkelde logica. Het is gewoon logica die consequent uitgevoerd wordt.</p>
+<h3>3. Genereert het attest automatisch</h3>
+<p>Het renovatieattest dat de eigenaar moet ondertekenen, wordt automatisch opgemaakt vanuit de projectdata. Naam, adres, kadastergegevens, type werken — allemaal al ingevuld. De klant krijgt een link, tekent digitaal, en het document wordt opgeslagen in het dossier.</p>
+<p>Geen losse PDF's in een mailbox. Geen "we zijn het vergeten".</p>
+<hr />
+<h2>Praktijkgeval: NXTG Energy, Brugge</h2>
+<p>NXTG Energy installeert zonnepanelen, warmtepompen en laadpalen bij particulieren en bedrijven in de regio Brugge. Precies het type bedrijf waar het BTW-vraagstuk elke week speelt: residentieel vs. commercieel, nieuwe gebouwen vs. renovatie, installatie vs. materialen.</p>
+<p>Voor de samenwerking met Selectly:</p>
+<ul>
+<li>Offertes werden handmatig opgemaakt: gemiddeld <strong>8 uur per offerte</strong></li>
+<li>BTW-tarief werd per medewerker ingeschat, niet systematisch bepaald</li>
+<li>Attesten werden sporadisch opgevraagd</li>
+<li><strong>80 leads per maand</strong> bleven liggen of wachtten te lang</li>
+</ul>
+<p>Na implementatie:</p>
+<ul>
+<li>Offertetijd gedaald naar <strong>47 minuten</strong></li>
+<li><strong>90% van de leads</strong> krijgt binnen 1 uur een reactie</li>
+<li>BTW-tarief wordt bepaald door de beslisboom in het systeem, niet door de medewerker</li>
+<li>Attesten worden automatisch gegenereerd en digitaal ondertekend</li>
+</ul>
+<p>Het resultaat is niet alleen snelheid. Het is ook consistentie. Elke factuur volgt dezelfde logica. Elke audit kan je dossier per dossier verdedigen.</p>
+<hr />
+<h2>Wat NIET te doen</h2>
+<p>Dit is waar het bij de meeste bedrijven fout gaat.</p>
+<h3>Niet doen: een Excel-tabel met tarieven bijhouden</h3>
+<p>Excel heeft geen beslislogica. Excel past geen grenscontroles toe. Excel herinnert niemand aan een ontbrekend attest. Een tabel geeft de illusie van structuur, maar de beslissing ligt nog steeds bij de persoon die de cel invult.</p>
+<h3>Niet doen: vertrouwen op de kennis van één persoon</h3>
+<p>"Onze boekhouder weet dat." Prima. En als die boekhouder ziek is, met vakantie is, of opzegt? Dan weet niemand het meer. Kennis in een hoofd is geen systeem.</p>
+<h3>Niet doen: wachten op een BTW-controle om te corrigeren</h3>
+<p>De Btw-administratie kijkt terug tot 3 jaar. Als je nu systematisch het verkeerde tarief hanteert, zit je mogelijk aan tientallen gecorrigeerde facturen en bijhorende boetes. Corrigeren na een controle is duurder dan automatiseren voor de controle.</p>
+<h3>Niet doen: de materiaalgrens negeren</h3>
+<p>50% is geen richtlijn. Het is een grens die de FOD Financiën actief controleert in de bouwsector. Als je structureel facturen opstelt waarbij materialen meer dan de helft uitmaken maar je toch 6% aanrekent, ben je kwetsbaar.</p>
+<h3>Niet doen: één tarief hanteren voor alle projecten "voor de veiligheid"</h3>
+<p>Sommige aannemers factureren altijd 21% om discussies te vermijden. Dat is duur. Je bent dan systematisch 15% duurder voor klanten die recht hebben op 6%. Je verliest opdrachten die je met het correcte tarief zou winnen.</p>
+<hr />
+<h2>Welke systemen kunnen dit dragen?</h2>
+<p>Je hoeft geen nieuw softwarepakket te kopen. De beslislogica kan worden ingebouwd in:</p>
+<ul>
+<li><strong>Je offertesoftware</strong> (Teamleader, CRM-systemen, maatwerkoplossingen)</li>
+<li><strong>Je boekhoudkoppeling</strong> (Exact Online, Yuki, Billit)</li>
+<li><strong>Een standalone intake-flow</strong> die de juiste vragen stelt en de output doorstuurt naar je bestaande tools</li>
+</ul>
+<p>De keuze hangt af van waar het probleem zit in je proces. Soms is het de offertefase. Soms de facturatie. Soms het attestbeheer. Vaak alle drie, maar niet in dezelfde mate.</p>
+<p>Een analyse van je huidige flow duurt een halve dag. De implementatie duurt gemiddeld 3 tot 6 weken, afhankelijk van wat je al hebt.</p>
+<hr />
+<h2>De checklist: dit moet je systeem kunnen</h2>
+<p>Voordat je iets bouwt of koopt, controleer of het volgende geborgd is:</p>
+<ul>
+<li>[ ] Bouwjaar wordt ingevuld en gevalideerd bij de offerte</li>
+<li>[ ] Bestemming van het gebouw wordt systematisch gevraagd</li>
+<li>[ ] Materiaalkosten worden berekend als percentage van het totaal</li>
+<li>[ ] Bij &gt;50% materialen: systeem geeft een waarschuwing of splitst automatisch</li>
+<li>[ ] Renovatieattest wordt automatisch opgemaakt bij 6%-dossiers</li>
+<li>[ ] Attest wordt digitaal ondertekend en opgeslagen per project</li>
+<li>[ ] Alle tariefkeuzes zijn traceerbaar per dossier</li>
+</ul>
+<p>Als je vandaag geen antwoord kunt geven op de vraag "waarom is dit project aan 6% gefactureerd?", dan heb je een probleem dat je beter nu oplost dan bij een controle.</p>
+<hr />
+<h2>Klaar om dit te regelen?</h2>
+<p>De beslisboom bestaat al. De regels zijn duidelijk. Het enige wat ontbreekt, is een systeem dat ze consequent uitvoert.</p>
+<p>Bij Selectly bouwen we dat systeem op maat van jouw bedrijf — gekoppeld aan je bestaande tools, zonder dat je van nul moet beginnen.</p>
+<p>Plan een gratis strategiegesprek van 30 minuten via <a href="https://selectly.be/#contact">selectly.be/#contact</a>. We kijken samen naar je huidige offerteflow, je facturatieproces en waar de BTW-beslissing vandaag gemaakt wordt.</p>
+<p>Daarna weet je precies wat er moet veranderen — en hoeveel dat kost.</p>
+  </article>
+
+  <div class="mt-16 pt-10 border-t border-slate-200">
+    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+  </div>
+
+  <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
+    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
+    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
+    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+  </div>
+</main>
+
+<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+  <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Navigatie</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Legal</div>
+      <ul class="space-y-1">
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li>BTW BE1037.580.195</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

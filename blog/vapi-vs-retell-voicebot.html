@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vapi vs Retell: welke voicebot past bij jouw bedrijf? — Selectly</title>
+<meta name="description" content="Elke gemiste oproep kost geld. Uit onderzoek van HubSpot blijkt dat 78% van de klanten koopt bij het bedrijf dat als eerste reageert. Toch staat bij de meeste KMO's de…">
+<meta property="og:title" content="Vapi vs Retell: welke voicebot past bij jouw bedrijf?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://selectly.be/blog/vapi-vs-retell-voicebot.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    colors: {
+      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
+      accent: { 500:'#7c3aed', 400:'#a78bfa' }
+    }
+  } } };
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  article li { margin: 0.3rem 0; line-height: 1.7; }
+  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
+  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
+  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
+  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
+  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
+  article strong { color:#0f172a; }
+</style>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+      <span class="text-xl font-bold tracking-tight">Selectly</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
+      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
+      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
+      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
+  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <article>
+<h1>Vapi vs Retell: welke voicebot past bij jouw bedrijf?</h1>
+<p>Elke gemiste oproep kost geld. Uit onderzoek van HubSpot blijkt dat 78% van de klanten koopt bij het bedrijf dat als eerste reageert. Toch staat bij de meeste KMO's de telefoon onbeantwoord buiten de kantooruren. Twee platformen veranderen dat: Vapi en Retell. Maar welke kies je?</p>
+<p>Dit artikel legt het verschil uit. Zonder blabla, zonder technisch geneuzel.</p>
+<hr />
+<h2>Wat zijn Vapi en Retell?</h2>
+<p>Beide platformen laten je AI-agents bouwen die telefonisch praten met klanten. Ze nemen de telefoon op, stellen vragen, geven antwoorden en sturen data door naar je CRM of agenda.</p>
+<p>Ze doen dat in real-time. Niet met een chatbot. Niet met een keuzemenu. Met een stem die reageert op wat de beller zegt.</p>
+<p>Het verschil zit in hoe ze dat doen, voor wie ze gebouwd zijn en wat ze kosten.</p>
+<hr />
+<h2>Vapi: gebouwd voor ontwikkelaars</h2>
+<p>Vapi is in de eerste plaats een developer-platform. De kracht ervan ligt in flexibiliteit.</p>
+<p><strong>Wat je krijgt:</strong></p>
+<ul>
+<li>Volledige controle over de call-flow via JSON-configuraties</li>
+<li>Ondersteuning voor meerdere LLM-providers (OpenAI, Anthropic, Groq, eigen modellen)</li>
+<li>Eigen speech-to-text en text-to-speech keuze per use case</li>
+<li>Webhooks naar elk systeem dat een API heeft</li>
+<li>Uitgebreide logs en debuggingtools</li>
+</ul>
+<p><strong>Wie dit kiest:</strong></p>
+<ul>
+<li>Bedrijven met een interne ontwikkelaar</li>
+<li>Bureaus die eigen producten bouwen op de infrastructuur</li>
+<li>Use cases met complexe logica, meerdere talen of hoge call volumes</li>
+</ul>
+<p><strong>Nadeel:</strong> Je bouwt alles zelf. Er is geen visuele interface die je door de setup leidt. Voor een zaakvoerder die zelf zijn voicebot wil opzetten, is de leercurve steil.</p>
+<p><strong>Prijsmodel:</strong> Vapi rekent per minuut. Gemiddeld 0,05 tot 0,15 dollar per minuut, afhankelijk van de modellen die je kiest. Daarboven betaal je voor het onderliggende LLM- en stemgebruik. Wie hoog volume draait, onderhandelt een custom contract.</p>
+<hr />
+<h2>Retell: gebouwd voor snelheid</h2>
+<p>Retell kiest een andere aanpak. Het platform legt de nadruk op eenvoud en snelheid van deployment.</p>
+<p><strong>Wat je krijgt:</strong></p>
+<ul>
+<li>Visuele workflow-builder met drag-and-drop</li>
+<li>Ingebouwde templates voor veelvoorkomende use cases (receptie, afspraken, FAQ)</li>
+<li>Lagere technische drempel om te starten</li>
+<li>Geïntegreerde analyses en call recordings</li>
+<li>Ondersteuning voor meerdere stemmen en talen</li>
+</ul>
+<p><strong>Wie dit kiest:</strong></p>
+<ul>
+<li>KMO's die snel willen starten zonder ontwikkelaar</li>
+<li>Teams die zelf beheer willen doen na initiële setup</li>
+<li>Use cases met een relatief vaste, voorspelbare call-flow</li>
+</ul>
+<p><strong>Nadeel:</strong> Minder flexibel bij complexe integraties. Wie maatwerk nodig heeft buiten de templates, botst sneller op beperkingen. De LLM-keuze is ook beperkter dan bij Vapi.</p>
+<p><strong>Prijsmodel:</strong> Retell werkt met een abonnement plus gebruik. Instap rond 99 dollar per maand, daarboven per-minuut kosten. Voor lage volumes goedkoper dan Vapi. Voor hoge volumes wordt het snel duurder.</p>
+<hr />
+<h2>Directe vergelijking</h2>
+<table>
+<thead>
+<tr>
+<th>Criterium</th>
+<th>Vapi</th>
+<th>Retell</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technische drempel</td>
+<td>Hoog</td>
+<td>Laag</td>
+</tr>
+<tr>
+<td>Flexibiliteit</td>
+<td>Zeer hoog</td>
+<td>Gemiddeld</td>
+</tr>
+<tr>
+<td>Snelheid van opzetten</td>
+<td>Traag (zonder dev)</td>
+<td>Snel</td>
+</tr>
+<tr>
+<td>LLM-keuze</td>
+<td>Breed</td>
+<td>Beperkt</td>
+</tr>
+<tr>
+<td>Prijs bij laag volume</td>
+<td>Variabel</td>
+<td>Voorspelbaar</td>
+</tr>
+<tr>
+<td>Prijs bij hoog volume</td>
+<td>Voordelig</td>
+<td>Duur</td>
+</tr>
+<tr>
+<td>Visuele editor</td>
+<td>Nee</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td>CRM-integraties</td>
+<td>Via API</td>
+<td>Ingebouwd + API</td>
+</tr>
+<tr>
+<td>Debuggingtools</td>
+<td>Uitstekend</td>
+<td>Basis</td>
+</tr>
+<tr>
+<td>Geschikt voor KMO zonder dev</td>
+<td>Nee</td>
+<td>Ja</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Wat betekent dit in de praktijk?</h2>
+<p>Neem NXTG Energy in Brugge. Dit bedrijf in energieoplossingen kreeg maandelijks meer dan 200 inkomende oproepen. Veel ervan waren kwalificatievragen: heeft de klant een geschikt dak, welk vermogen, wat is zijn huidig verbruik?</p>
+<p>Vóór de automatisering kostte elke lead-kwalificatie gemiddeld 25 minuten menselijke tijd. De offerte zelf nam 8 uur in beslag.</p>
+<p>Na de implementatie van een voicebot op Vapi-infrastructuur:</p>
+<ul>
+<li><strong>80 leads per maand</strong> worden volledig automatisch gekwalificeerd</li>
+<li><strong>90% van alle inkomende oproepen</strong> krijgt een antwoord binnen 1 minuut, ook 's nachts en in het weekend</li>
+<li>De offertetijd daalde van <strong>8 uur naar 47 minuten</strong></li>
+</ul>
+<p>Waarom Vapi en niet Retell in dit geval? De integratie met hun CRM en offertesoftware vroeg om maatwerk. De call-flow bevatte conditionele logica op basis van postcode, daktype en energieverbruik. Dat soort vertakking bouw je in Vapi met precisie. In Retell had je snel tegen de grenzen van de templates gebotst.</p>
+<p>Maar een tandartspraktijk in Gent die afspraken wil automatiseren? Een Retell-template voor afsprakenbeheer is daar in twee dagen operationeel. Geen ontwikkelaar nodig.</p>
+<hr />
+<h2>Hoe kies je?</h2>
+<p>Drie vragen die de beslissing bepalen.</p>
+<p><strong>1. Heb je een technische partner?</strong></p>
+<p>Ja: Vapi geeft je meer mogelijkheden voor minder geld op schaal.
+Nee: Retell laat je sneller starten en zelf beheren.</p>
+<p><strong>2. Hoe complex is je call-flow?</strong></p>
+<p>Eenvoudig (afspraken, FAQ, doorverbinden): Retell volstaat.
+Complex (meerdere stappen, conditionele logica, externe data opvragen): Vapi.</p>
+<p><strong>3. Hoeveel calls verwacht je per maand?</strong></p>
+<p>Onder de 500 minuten: Retell is voorspelbaar geprijsd.
+Boven de 2000 minuten: Vapi wordt goedkoper, zeker met volume-contracten.</p>
+<hr />
+<h2>Wat NIET te doen</h2>
+<p>Dit zijn de fouten die Selectly ziet bij bedrijven die zelf beginnen.</p>
+<p><strong>Retell kiezen omdat het goedkoper lijkt</strong></p>
+<p>De instapprijs van Retell is lager. Maar wie een jaar later complexe integraties nodig heeft, moet migreren. Dat kost meer tijd en geld dan het juiste platform van bij het begin kiezen.</p>
+<p><strong>Vapi kopen zonder technisch plan</strong></p>
+<p>Vapi zonder een duidelijke architectuur is een dure sandbox. Het platform is krachtig, maar geeft je ook alle vrijheid om inefficiënte call-flows te bouwen die niemand begrijpt.</p>
+<p><strong>Een voicebot inzetten als chatbot</strong></p>
+<p>Een voicebot is geen FAQ-pagina met een stem. Wie een lijst van 50 vragen en antwoorden in een voicebot propt, maakt een slechte beller-ervaring. Bellers haken af. De kwalificatiedata is waardeloos.</p>
+<p><strong>De stem onderschatten</strong></p>
+<p>De keuze van stem, spreeksnelheid en stiltes bepaalt of een beller ophangt of blijft. Beide platformen bieden ElevenLabs-stemmen. Neem de tijd om dat te testen met echte klanten voor je live gaat.</p>
+<p><strong>Live gaan zonder fallback</strong></p>
+<p>Elke voicebot moet een escalatie-pad hebben. Als de agent de intentie niet begrijpt, moet er een mens bereikbaar zijn. Of toch minstens een duidelijke voicemail. Bellers die in een lus zitten, klagen. En terecht.</p>
+<p><strong>De GDPR-check overslaan</strong></p>
+<p>Beide platformen verwerken stemdata. In België geldt GDPR. Controleer waar de audio-opnames worden opgeslagen, wie toegang heeft en of je bellers informeert dat ze met een geautomatiseerd systeem praten.</p>
+<hr />
+<h2>De echte keuze is niet het platform</h2>
+<p>Vapi versus Retell is niet de moeilijkste beslissing. De moeilijkste beslissing is: welke calls ga je automatiseren, met welke logica, en hoe integreer je dat in je bestaande processen?</p>
+<p>Een voicebot die slecht ontworpen is, beschadigt je relatie met klanten. Een voicebot die goed ontworpen is, werkt 24/7 en kwalificeert leads terwijl je slaapt.</p>
+<p>Het platform is de motor. De strategie is de bestuurder.</p>
+<hr />
+<h2>Welke cijfers kun je verwachten?</h2>
+<p>Concrete benchmarks uit projecten van Selectly:</p>
+<ul>
+<li><strong>Eerste reactietijd:</strong> van gemiddeld 4 uur naar onder de 2 minuten</li>
+<li><strong>Kwalificatietijd per lead:</strong> van 20-30 minuten naar 4-8 minuten</li>
+<li><strong>Aandeel oproepen buiten kantooruren dat een antwoord krijgt:</strong> van 0% naar 100%</li>
+<li><strong>No-show bij afspraken:</strong> daalt gemiddeld 35% door geautomatiseerde bevestiging en herinnering</li>
+</ul>
+<p>Deze cijfers zijn geen garanties. Ze hangen af van volume, sector en hoe goed de agent gebouwd is.</p>
+<hr />
+<h2>Hoe Selectly dit aanpakt</h2>
+<p>Selectly kiest het platform op basis van het project. Niet op basis van voorkeur.</p>
+<p>Voor eenvoudige use cases bij KMO's zonder technisch team: Retell, snel gedeployed, gemakkelijk te beheren.</p>
+<p>Voor complexe integraties, hoge volumes of maatwerk: Vapi, gebouwd op een architectuur die meeschaalt.</p>
+<p>In beide gevallen:</p>
+<ol>
+<li>Sessie van 30 minuten om de use case en de call-flow te begrijpen</li>
+<li>Technische audit van de bestaande tools (CRM, agenda, offertesoftware)</li>
+<li>Prototype binnen 5 werkdagen</li>
+<li>Test met echte calls voor livegang</li>
+<li>Monitoring en optimalisatie na livegang</li>
+</ol>
+<p>Geen contract van een jaar voor je weet of het werkt.</p>
+<hr />
+<h2>Klaar om te starten?</h2>
+<p>Je weet nu het verschil tussen Vapi en Retell. Je weet welke vragen de keuze bepalen. Je weet wat de valkuilen zijn.</p>
+<p>De volgende stap is uitzoeken of een voicebot past bij jouw specifieke situatie. Dat duurt 30 minuten. Geen verplichtingen.</p>
+<p>Boek een gratis strategiegesprek via <a href="https://selectly.be/#contact">selectly.be/#contact</a>.</p>
+  </article>
+
+  <div class="mt-16 pt-10 border-t border-slate-200">
+    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+  </div>
+
+  <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
+    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
+    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
+    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+  </div>
+</main>
+
+<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+  <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Navigatie</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Legal</div>
+      <ul class="space-y-1">
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li>BTW BE1037.580.195</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

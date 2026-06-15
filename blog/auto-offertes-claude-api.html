@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-offertes met de Claude API: wat is echt mogelijk? — Selectly</title>
+<meta name="description" content="Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en je verliest al snel één fulltime werkweek aan een…">
+<meta property="og:title" content="Auto-offertes met de Claude API: wat is echt mogelijk?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://selectly.be/blog/auto-offertes-claude-api.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    colors: {
+      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
+      accent: { 500:'#7c3aed', 400:'#a78bfa' }
+    }
+  } } };
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  article li { margin: 0.3rem 0; line-height: 1.7; }
+  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
+  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
+  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
+  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
+  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
+  article strong { color:#0f172a; }
+</style>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+      <span class="text-xl font-bold tracking-tight">Selectly</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
+      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
+      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
+      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
+  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <article>
+<h1>Auto-offertes met de Claude API: wat is echt mogelijk?</h1>
+<p>Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en je verliest al snel één fulltime werkweek aan een document dat de klant in 30 seconden doorscant.</p>
+<p>Dat kan anders. NXTG Energy in Brugge maakte de sprong: van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.</p>
+<p>Dit artikel legt uit hoe dat werkt, wat het kost, en waar je voorzichtig mee moet zijn.</p>
+<hr />
+<h2>Wat is de Claude API eigenlijk?</h2>
+<p>Claude is een taalmodel van Anthropic. De API is de technische brug waarmee je Claude insluit in je eigen tools, je eigen workflow, je eigen data.</p>
+<p>Geen chatvenster op een website. Geen losse tool die je nog handmatig moet bedienen. Je bouwt het in.</p>
+<p>Concreet betekent dat:
+- Je stuurt gestructureerde input naar het model (klantgegevens, productopties, prijsregels)
+- Het model genereert een volledig opgemaakte offerte
+- Die offerte belandt automatisch in je CRM, je e-mailflow, of je PDF-generator</p>
+<p>Dat is het basisprincipe. Wat je ermee doet, hangt af van hoe je het bouwt.</p>
+<hr />
+<h2>Waarom werkt dit voor offertes?</h2>
+<p>Een offerte heeft een vaste structuur. Dat is precies het soort taak waar een taalmodel goed in is.</p>
+<p>Een standaard B2B-offerte bevat:
+- Een aanhef met klantcontext
+- Een probleemomschrijving of aanleiding
+- Een technische of commerciële oplossing
+- Prijsdetail per lijn
+- Voorwaarden, leveringstermijnen, geldigheid
+- Een afsluitend stuk dat aanstuurt op een handtekening</p>
+<p>Al die onderdelen zijn regelmatig. Ze volgen patronen. Een menselijke medewerker doet hetzelfde elke keer opnieuw, met kleine aanpassingen per klant.</p>
+<p>De Claude API neemt de repetitieve kern over. De medewerker controleert, verfijnt, en stuurt.</p>
+<hr />
+<h2>Hoe bouw je zo'n systeem?</h2>
+<h3>Stap 1: Definieer je input</h3>
+<p>Het systeem heeft gegevens nodig. Die haal je uit:
+- Je CRM (naam, sector, eerdere aankopen, segmentatie)
+- Je intake-formulier of salesgesprek
+- Je productcatalogus of prijslijst
+- Eventuele meetrapporten, behoefteanalyses, of technische specs</p>
+<p>Hoe beter de input, hoe beter de output. Dit is geen magie. Het is structuur.</p>
+<h3>Stap 2: Schrijf een sterk system prompt</h3>
+<p>Hier zit de kern van de kwaliteit. De system prompt vertelt Claude wie het is, wat het toonpatroon is, welke informatie altijd in de offerte moet staan, en wat nooit mag ontbreken.</p>
+<p>Voorbeeldfragment uit een echte implementatie:</p>
+<pre><code>Je bent een offerte-assistent voor een installatiebedrijf in de energiesector.
+Je schrijft in formeel maar direct Nederlands.
+Je gebruikt altijd de bedrijfsnaam van de klant in de aanhef.
+Je vermeldt altijd de geldigheidsduur van 30 dagen.
+Je prijst nooit af zonder expliciete instructie in de input.
+</code></pre>
+<p>Eenvoudig. Maar zonder dit stuk gaat elke offerte in een andere richting.</p>
+<h3>Stap 3: Stel je output-formaat vast</h3>
+<p>Claude kan produceren in platte tekst, markdown, of gestructureerde JSON. Voor offertes is JSON vaak de slimste keuze: je haalt de blokken eruit, formatteert ze in je eigen template, en genereert een PDF via een tool als Puppeteer of Pandoc.</p>
+<p>Zo houdt je volledige controle over de opmaak. Het logo, het lettertype, de kleur: dat bepaal jij. Claude levert de inhoud.</p>
+<h3>Stap 4: Koppel aan je bestaande tools</h3>
+<p>Een auto-offerte die je nog handmatig moet kopiëren naar een Word-document is geen automatisering. Het is een extra stap.</p>
+<p>Zinvolle koppelingen zijn:
+- <strong>CRM-integratie</strong> (HubSpot, Salesforce, Teamleader): offerte wordt automatisch aangemaakt bij een bepaalde fase in de pipeline
+- <strong>E-mailflow</strong>: offerte wordt verstuurd via je vaste e-mailadres met persoonlijke aanhef
+- <strong>Handtekeningtools</strong> (DocuSign, GetAccept): de klant ondertekent digitaal
+- <strong>Facturatiepakket</strong>: goedgekeurde offerte wordt automatisch bon voor de boekhouder</p>
+<hr />
+<h2>Wat deed NXTG Energy concreet?</h2>
+<p>NXTG Energy installeert laadpalen en zonnepanelen voor bedrijven in de regio Brugge. Ze hadden een goed salesteam, maar het offerteproces was een bottleneck.</p>
+<p>Elke offerte vroeg:
+1. Een intake-gesprek verwerken
+2. Technische berekeningen invoeren
+3. Een tekstdocument schrijven met uitleg
+4. Opmaak aanpassen naar huisstijl
+5. Controleren, goedkeuren, versturen</p>
+<p>Dat was 8 uur werk. Per offerte.</p>
+<p>Na implementatie van de Claude API-koppeling:
+- Intake-formulier wordt ingevuld na het gesprek (15 minuten)
+- Systeem haalt productdata op uit de catalogus
+- Claude genereert de offertekst
+- Template vult zich automatisch in
+- Medewerker controleert en past aan waar nodig (20-30 minuten)
+- Offerte is klaar: 47 minuten totaal</p>
+<p>Het resultaat was ook commercieel zichtbaar. Ze gingen van 40 naar 80 leads per maand omdat de salesmedewerkers eindelijk tijd hadden om méér gesprekken te voeren. En 90% van de nieuwe leads kreeg een eerste reactie binnen 1 uur.</p>
+<p>Dat laatste getal is niet toevallig. Snelheid converteert. Een lead die binnen een uur contact krijgt, koopt drie keer vaker dan een lead die twee dagen wacht.</p>
+<hr />
+<h2>Vergelijking: manueel vs. geautomatiseerd</h2>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Manueel</th>
+<th>Met Claude API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tijd per offerte</td>
+<td>4 tot 8 uur</td>
+<td>45 tot 90 minuten</td>
+</tr>
+<tr>
+<td>Capaciteit per week</td>
+<td>5 tot 10 offertes</td>
+<td>25 tot 40 offertes</td>
+</tr>
+<tr>
+<td>Consistentie in toon</td>
+<td>Afhankelijk van medewerker</td>
+<td>Vast kader</td>
+</tr>
+<tr>
+<td>Reactietijd na lead</td>
+<td>1 tot 3 dagen</td>
+<td>Onder 1 uur haalbaar</td>
+</tr>
+<tr>
+<td>Schaalbaarheid</td>
+<td>Nieuwe aanwerving nodig</td>
+<td>Schaling zonder extra kost</td>
+</tr>
+<tr>
+<td>Foutgevoeligheid</td>
+<td>Hoog bij herhaalde taken</td>
+<td>Laag bij goede input</td>
+</tr>
+</tbody>
+</table>
+<p>De medewerker verdwijnt niet. Die schuift op: van uitvoerder naar controleur en afwerker.</p>
+<hr />
+<h2>Wat kost het?</h2>
+<p>De Claude API werkt met tokengebaseerde pricing. Een token is ruwweg een woord of woorddeel.</p>
+<p>Een uitgebreide offerte van 800 woorden kost je ongeveer 0,01 tot 0,04 euro aan API-kosten. Dat is de prijs van een kleine slok koffie.</p>
+<p>De echte kost zit in de bouw. Een goede integratie vraagt:
+- Analyse van je huidige offerteproces (1 tot 2 dagen)
+- Bouwen van de koppeling en prompt-engineering (3 tot 8 dagen afhankelijk van complexiteit)
+- Testen en bijsturen (1 tot 2 dagen)
+- Documentatie en overdracht (1 dag)</p>
+<p>Reken op een eenmalige investering. Daarna zijn de variabele kosten verwaarloosbaar.</p>
+<p>De terugverdientijd? Als je 10 offertes per week maakt en elke offerte 4 uur vrijmaakt, heb je na twee weken de investering terugverdiend in capaciteit. Wat je met die capaciteit doet, dat is de echte winst.</p>
+<hr />
+<h2>Wat NIET te doen</h2>
+<p>Dit is waar het fout loopt bij bedrijven die het zelf proberen.</p>
+<h3>Geen onderscheid maken tussen content en opmaak</h3>
+<p>Claude genereert tekst. De opmaak is jouw verantwoordelijkheid. Als je Claude vraagt om een "mooie PDF te maken", krijg je teleurstelling. Bouw je template los van het generatieproces.</p>
+<h3>De prompt één keer schrijven en nooit meer aanraken</h3>
+<p>Een system prompt is geen set-and-forget configuratie. Na twee weken gebruik merk je patronen: zinnen die altijd fout zijn, informatie die Claude verzint als ze ontbreekt, formuleringen die je klanten niet begrijpen.</p>
+<p>Plan na elke tien offertes een reviewmoment. Pas de prompt aan. Het systeem wordt beter naarmate je het bijstuurt.</p>
+<h3>Alles automatisch versturen zonder controle</h3>
+<p>Verleidelijk. Gevaarlijk.</p>
+<p>Claude hallucineert soms. Niet vaak. Maar een offerte met een foute prijs of een verkeerde projectomschrijving is duurder dan de uren die je hebt bespaard.</p>
+<p>Bouw altijd een menselijke controle in, al is het vijf minuten. Maak de stap zo klein dat hij altijd gebeurt.</p>
+<h3>Starten met het meest complexe offerteproduct</h3>
+<p>Begin met het eenvoudigste product in je catalogus. Bewijs dat het werkt. Breid dan uit.</p>
+<p>Wie meteen het volledige gamma wil automatiseren, bouwt een systeem dat nergens goed werkt.</p>
+<h3>Klantdata onbeveiligd doorsturen</h3>
+<p>Je stuurt klantgegevens naar een externe API. Dat vraagt aandacht voor GDPR. Zorg dat je data processor overeenkomst op orde is, dat je geen overbodige persoonsgegevens meestuurt, en dat je logging bijhoudt van wat er verwerkt wordt.</p>
+<hr />
+<h2>Voor welke sectoren werkt dit het best?</h2>
+<p>De Claude API voor offertes werkt het best wanneer:</p>
+<ol>
+<li><strong>Je offertes een vaste structuur hebben</strong> maar per klant worden aangepast</li>
+<li><strong>Je een productcatalogus of prijslijst</strong> hebt die je kunt digitaliseren</li>
+<li><strong>Je meer dan 5 offertes per week</strong> maakt (onder dat volume is de ROI te klein)</li>
+<li><strong>Je een CRM of intake-tool</strong> gebruikt waar data al gestructureerd inzit</li>
+</ol>
+<p>Sectoren waar we het meeste impact zien:
+- Installatiebedrijven (elektriciteit, HVAC, sanitair)
+- IT-dienstverleners en consultants
+- Bouw en renovatie
+- Bedrijven in de logistiek en transport
+- Marketing- en communicatiebureaus</p>
+<hr />
+<h2>Wat je vandaag al kunt doen</h2>
+<p>Je hoeft niet meteen een volledig systeem te bouwen. Begin hier:</p>
+<ol>
+<li><strong>Analyseer je laatste 10 offertes.</strong> Wat is altijd hetzelfde? Wat varieert per klant? Schrijf dat op.</li>
+<li><strong>Tijdmeting.</strong> Hoeveel uur besteed je aan één offerte? Vermenigvuldig dat met je maandvolume. Dat getal is je startpunt voor de businesscase.</li>
+<li><strong>Breng je productdata in kaart.</strong> Staat je catalogus ergens in een spreadsheet of PDF? Dat is je grondstof.</li>
+<li><strong>Identificeer één offertevariant</strong> die je als eerste wilt automatiseren.</li>
+</ol>
+<p>Met die vier stappen heb je genoeg om een concreet gesprek te voeren over wat het voor jou kan betekenen.</p>
+<hr />
+<h2>Klaar om het te bekijken?</h2>
+<p>NXTG Energy is geen uitzondering. Het is een blauwdruk.</p>
+<p>Als je weet hoeveel uren je verliest aan offertes die altijd op hetzelfde neerkomen, dan weet je ook dat er iets te winnen is.</p>
+<p>Boek een gratis strategiegesprek van 30 minuten. Geen verkooppraatje. Geen vrijblijvende presentatie. We kijken naar jouw offerteproces, jouw data, jouw tools. En we vertellen je eerlijk of automatisering zinvol is, en zo ja, hoe snel je het terugverdient.</p>
+<p><strong><a href="https://selectly.be/#contact">Boek je gratis gesprek via selectly.be/#contact</a></strong></p>
+  </article>
+
+  <div class="mt-16 pt-10 border-t border-slate-200">
+    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+  </div>
+
+  <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
+    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
+    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
+    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+  </div>
+</main>
+
+<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+  <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Navigatie</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Legal</div>
+      <ul class="space-y-1">
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li>BTW BE1037.580.195</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

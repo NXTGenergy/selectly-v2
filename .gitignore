@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Secrets
+.env
+.env.*
+*.key
+
+# Netlify local
+.netlify/
+
+# Backups
+*.bak-*

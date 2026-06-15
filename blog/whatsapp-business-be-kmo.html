@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Business voor Belgische KMO's: setup en valkuilen — Selectly</title>
+<meta name="description" content="3 miljard mensen gebruiken WhatsApp dagelijks. In België opent 78% van alle WhatsApp-berichten binnen 3 minuten. Vergelijk dat met e-mail: gemiddeld 26% open rate, en…">
+<meta property="og:title" content="WhatsApp Business voor Belgische KMO's: setup en valkuilen">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://selectly.be/blog/whatsapp-business-be-kmo.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+    colors: {
+      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
+      accent: { 500:'#7c3aed', 400:'#a78bfa' }
+    }
+  } } };
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  article li { margin: 0.3rem 0; line-height: 1.7; }
+  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
+  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
+  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
+  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
+  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
+  article strong { color:#0f172a; }
+</style>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+      <span class="text-xl font-bold tracking-tight">Selectly</span>
+    </a>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
+      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
+      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
+      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
+  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <article>
+<h1>WhatsApp Business voor Belgische KMO's: setup en valkuilen</h1>
+<p>3 miljard mensen gebruiken WhatsApp dagelijks. In België opent 78% van alle WhatsApp-berichten binnen 3 minuten. Vergelijk dat met e-mail: gemiddeld 26% open rate, en dan pas na uren of dagen. Toch laat de meerderheid van de Belgische KMO's dit kanaal links liggen — of ze gebruiken het verkeerd.</p>
+<p>Dit artikel gaat over de praktische setup van WhatsApp Business, de automatisering die er bovenop mogelijk is, en de valkuilen die je geld en klanten kosten.</p>
+<hr />
+<h2>Waarom WhatsApp Business niet hetzelfde is als WhatsApp</h2>
+<p>De gratis WhatsApp Business-app is gemaakt voor eenmanszaken en kleine teams. Je kunt snel antwoorden instellen, een bedrijfsprofiel aanmaken en catalogussen tonen. Tot zover goed.</p>
+<p>Maar zodra je meer dan één medewerker hebt, of meer dan 50 gesprekken per dag verwerkt, loopt het systeem vast. Eén toestel, één nummer, geen centrale historiek, geen rapportage. Dat is geen digitale klantenservice — dat is een WhatsApp op naam van de zaakvoerder die af en toe antwoordt als hij tussen twee afspraken door op zijn gsm kijkt.</p>
+<p>De <strong>WhatsApp Business Platform</strong> (vroeger API) is een ander verhaal. Dat is de versie die je via gecertificeerde providers zoals 360dialog, WATI of Twilio koppelt aan een CRM of automations tool. Meerdere gebruikers, geautomatiseerde flows, broadcasting naar gesegmenteerde lijsten, integratie met je eigen systemen. Dat is de versie die interessant wordt voor een KMO met serieuze ambities.</p>
+<hr />
+<h2>De drie lagen van een WhatsApp Business setup</h2>
+<h3>Laag 1: Het bedrijfsprofiel</h3>
+<p>Dit is het minste wat je in orde brengt. Geen extra kosten, geen technische kennis nodig.</p>
+<ul>
+<li>Bedrijfsnaam en sector correct ingesteld</li>
+<li>Profielfoto met hoog contrast (geen vaag logo)</li>
+<li>Omschrijving van maximum 256 tekens — maak het concreet, geen slogans</li>
+<li>Openingsuren ingesteld zodat klanten weten wanneer ze een antwoord verwachten</li>
+<li>Website en adres gekoppeld</li>
+</ul>
+<p>Dit kost je 20 minuten. Doe het vandaag nog als het er nog niet op staat.</p>
+<h3>Laag 2: Automatische berichten</h3>
+<p>De Business-app heeft drie basisautomatiseringen:</p>
+<ol>
+<li><strong>Welkomstbericht</strong>: wordt gestuurd wanneer iemand voor het eerst contact opneemt</li>
+<li><strong>Afwezigheidsbericht</strong>: buiten openingsuren of wanneer je niet beschikbaar bent</li>
+<li><strong>Snelle antwoorden</strong>: korte codes waarmee je vaste teksten snel verstuurt</li>
+</ol>
+<p>Stel al drie in. Maar weet: deze automatiseringen zijn basic. Ze sturen altijd hetzelfde bericht, ongeacht context. Voor een bakkerij of lokale kapsalon volstaat dit. Voor een B2B-bedrijf dat offertes behandelt of leads opvolgt, niet.</p>
+<h3>Laag 3: WhatsApp Business Platform met automatisering</h3>
+<p>Hier begint de echte return. Je koppelt je WhatsApp-nummer aan een platform, en van daaruit bouw je flows.</p>
+<p>Wat je kunt automatiseren:
+- Binnenkomend bericht classificeren (vraag, offerte, klacht, info)
+- Onmiddellijk doorsturen naar de juiste medewerker of wachtrij
+- Kwalificatievragen stellen via een gestructureerde flow
+- Leads opslaan in je CRM (HubSpot, Pipedrive, Teamleader...)
+- Herinneringsberichten sturen voor afspraken of openstaande offertes
+- Follow-up na offerte na X dagen zonder reactie</p>
+<hr />
+<h2>Hoe NXTG Energy het aanpakt</h2>
+<p>NXTG Energy is een installateur van zonnepanelen en warmtepompen in Brugge. Vroeger verliep het eerste klantcontact via een contactformulier op de website en een telefoonnummer. Reactietijd: gemiddeld 4 tot 8 uur. Leads die 's avonds binnenkwamen, wachtten tot de volgende ochtend.</p>
+<p>Na de implementatie van een WhatsApp-automationflow ziet het er zo uit:</p>
+<p>Een potentiële klant stuurt een bericht. Binnen 90 seconden krijgt hij een geautomatiseerde reeks vragen: type woning, dakoriëntatie, huidige energiefactuur, postcode, en of hij voorkeur heeft voor een telefonisch of fysiek gesprek. De antwoorden worden ingelezen in hun CRM. Een medewerker ziet 's ochtends een ingevulde leadkaart, geen leeg conversatiescherm.</p>
+<p>Resultaat:
+- 80 gekwalificeerde leads per maand via WhatsApp
+- 90% van alle inkomende berichten krijgt een eerste reactie binnen 1 uur — ook buiten kantooruren
+- Offerte-opmaaktijd daalde van 8 uur naar 47 minuten door de vooraf ingevulde gegevens</p>
+<p>Het kanaal zelf is niet de sleutel. De structuur erachter is dat.</p>
+<hr />
+<h2>Vergelijking: WhatsApp Business App vs. Platform</h2>
+<table>
+<thead>
+<tr>
+<th>Kenmerk</th>
+<th>Business App</th>
+<th>Business Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prijs</td>
+<td>Gratis</td>
+<td>Vanaf ±€50-100/mnd via provider</td>
+</tr>
+<tr>
+<td>Aantal gebruikers</td>
+<td>1 toestel</td>
+<td>Onbeperkt</td>
+</tr>
+<tr>
+<td>Automatisering</td>
+<td>Basis (3 types)</td>
+<td>Volledige flows mogelijk</td>
+</tr>
+<tr>
+<td>CRM-integratie</td>
+<td>Niet mogelijk</td>
+<td>Ja</td>
+</tr>
+<tr>
+<td>Broadcasting</td>
+<td>Max 256 contacten</td>
+<td>Gesegmenteerde lijsten</td>
+</tr>
+<tr>
+<td>Rapportage</td>
+<td>Geen</td>
+<td>Uitgebreid</td>
+</tr>
+<tr>
+<td>Goedkeuring nodig?</td>
+<td>Nee</td>
+<td>Ja, via Meta</td>
+</tr>
+<tr>
+<td>Geschikt voor</td>
+<td>1-5 medewerkers, laag volume</td>
+<td>KMO's met groeiambities</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Stap-voor-stap: hoe je begint</h2>
+<h3>Stap 1: Kies je nummer bewust</h3>
+<p>Je koppelt WhatsApp aan een telefoonnummer. Dat nummer kan daarna niet meer op een privé-WhatsApp gebruikt worden. Kies een bedrijfsnummer, geen persoonlijk nummer.</p>
+<p>Heb je al een bedrijfsnummer dat mensen kennen? Gebruik dat dan. Herkenbaarheid telt.</p>
+<h3>Stap 2: Kies een provider (voor het Platform)</h3>
+<p>Vergelijk op drie punten:</p>
+<ul>
+<li><strong>Prijs per bericht</strong> (Meta rekent per conversatie, provider voegt marge toe)</li>
+<li><strong>Interface voor je team</strong> — hoe ziet het gedeeld inbox-scherm eruit?</li>
+<li><strong>Integraties</strong> — werkt het met jouw CRM?</li>
+</ul>
+<p>Bekende namen: WATI, 360dialog, MessageBird, Trengo, Twilio. Voor Belgische KMO's die ook Nederlands support willen: Trengo heeft een lokaal team.</p>
+<h3>Stap 3: Bouw je flow op papier voor je digitaliseert</h3>
+<p>Dit is de stap die mensen overslaan en dan later spijt van hebben. Teken eerst uit:</p>
+<ul>
+<li>Wat zijn de 5 meest gestelde vragen of verzoeken?</li>
+<li>Wat wil je weten van een lead voor je een medewerker inschakelt?</li>
+<li>Wat is de maximale reactietijd die je wilt garanderen?</li>
+<li>Wie volgt op als iemand 3 dagen niet reageert?</li>
+</ul>
+<p>Pas als dat helder is, begin je te bouwen.</p>
+<h3>Stap 4: Vraag goedkeuring voor berichtsjablonen</h3>
+<p>Voor proactieve berichten (berichten die jij initieert naar klanten) moet Meta elk sjabloon goedkeuren. Dat duurt 24 tot 72 uur. Reken dit in bij je planning. Vergeet je dit, kan je je campagne niet sturen op de geplande datum.</p>
+<hr />
+<h2>Wat NIET te doen</h2>
+<p>Dit gedeelte is minstens even belangrijk als de setup.</p>
+<h3>Geen spam sturen</h3>
+<p>WhatsApp is geen nieuwsbriefkanaal. Klanten die zich niet expliciet hebben aangemeld voor berichten, mag je niet benaderen. Meta blokkeert nummers die spamgedrag vertonen. En terecht: mensen hebben WhatsApp voor persoonlijk contact. Dat vertrouwen moet je bewaken.</p>
+<p>Stelregel: stuur alleen proactieve berichten aan mensen die je actief de toestemming hebben gegeven. Documenteer die toestemming.</p>
+<h3>Geen persoonlijk nummer gebruiken voor zakelijk verkeer</h3>
+<p>Als de zaakvoerder 's nachts ook privéberichten ontvangt op hetzelfde nummer, is dat niet vol te houden. En als diezelfde zaakvoerder ooit vertrekt of ziek valt, is de klantenhistoriek weg.</p>
+<h3>Niet reageren via WhatsApp en dan drie weken niets meer doen</h3>
+<p>WhatsApp wekt een verwachting van snelheid. Als je er op zit, moet je er op zijn. Stel je afwezigheidsbericht in als je niet beschikbaar bent. Stel een maximale reactietijd in en communiceer die ook.</p>
+<h3>De Business App gebruiken als je eigenlijk het Platform nodig hebt</h3>
+<p>De app is een valse start voor wie meer dan een handvol gesprekken per week verwerkt. Je bouwt gewoontes en processen op rond een tool die je later volledig moet vervangen. Begin met de juiste versie.</p>
+<h3>Automatisering inzetten zonder menselijke hand-off</h3>
+<p>Een geautomatiseerde flow die een lead kwalificeert is nuttig. Een geautomatiseerde flow die een gefrustreerde klant in cirkels stuurt zonder ooit een mens te bereiken, kost je die klant. Bouw altijd een escape in: "Wil je liever met iemand spreken? Typ MENS of bel ons op..."</p>
+<hr />
+<h2>Wat kost WhatsApp Business Platform echt?</h2>
+<p>Belgische KMO's schrikken soms van de kosten. Laat me het concreet maken.</p>
+<p>Meta rekent per <strong>conversatievenster van 24 uur</strong>, niet per bericht. Er zijn vier types:</p>
+<ul>
+<li><strong>Marketing</strong> (door jou geïnitieerd, promotioneel): duurste</li>
+<li><strong>Utility</strong> (transactioneel, bevestigingen, herinneringen): goedkoper</li>
+<li><strong>Authenticatie</strong> (OTP-codes): goedkoopst</li>
+<li><strong>Service</strong> (klant neemt contact op): gratis voor de eerste 1.000/maand</li>
+</ul>
+<p>Voor een KMO die primair reageert op inkomende vragen en leads, zijn de Meta-kosten in de eerste fase dus minimaal. De providerkosten (platform, ondersteuning) variëren tussen €50 en €200 per maand afhankelijk van volume en functies.</p>
+<p>Ter vergelijking: één gemiste lead in de installatiesector is al snel €500 tot €5.000 waard. De rekening klopt snel.</p>
+<hr />
+<h2>Drie KMO-types die direct kunnen starten</h2>
+<p><strong>Installatiebedrijven en aannemers</strong>: offerteaanvragen kwalificeren, werfplanning bevestigen, klanten updaten over leveringstermijnen.</p>
+<p><strong>Medische en paramedische praktijken</strong>: afsprakenbeheer, herinneringen, opvolgberichten na consultatie. Let wel op GDPR — gezondheidsdata heeft extra bescherming nodig.</p>
+<p><strong>Retail en e-commerce</strong>: orderbevestigingen, leveringsupdates, retourverzoeken afhandelen. Klanten willen dit via WhatsApp, niet via een ticketsysteem.</p>
+<hr />
+<h2>De vraag die je jezelf moet stellen</h2>
+<p>Niet "moet ik op WhatsApp zitten?" maar "hoe snel reageer ik vandaag op een nieuwe lead of klantenvraag — en wat kost mij elke minuut vertraging?"</p>
+<p>Als het antwoord op die tweede vraag meer is dan je comfortabel vindt, dan is WhatsApp Business met automatisering geen luxe. Dan is het een correctie.</p>
+<p>NXTG Energy wachtte niet op het perfecte moment. Ze bouwden een werkende flow in drie weken. De 80 leads per maand die er nu doorstromen, kwamen eerder niet of te laat bij de juiste persoon terecht.</p>
+<hr />
+<h2>Klaar om dit te bouwen?</h2>
+<p>Bij Selectly zetten we WhatsApp Business flows op voor Belgische KMO's — van de technische integratie tot de conversatieflows en CRM-koppelingen. Geen generiek advies, maar een setup die past bij hoe jouw bedrijf werkt.</p>
+<p>Boek een gratis strategiegesprek van 30 minuten via <a href="https://selectly.be/#contact">selectly.be/#contact</a>. We kijken samen naar je huidige klantcontact, waar de vertraging zit, en wat een realistische eerste stap is.</p>
+  </article>
+
+  <div class="mt-16 pt-10 border-t border-slate-200">
+    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+  </div>
+
+  <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
+    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
+    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
+    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+  </div>
+</main>
+
+<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+  <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Navigatie</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Legal</div>
+      <ul class="space-y-1">
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li>BTW BE1037.580.195</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

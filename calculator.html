@@ -32,7 +32,23 @@
     body { font-family: 'Inter', system-ui, sans-serif; background:#fafafa; }
     .glow { box-shadow: 0 0 60px -10px rgba(124,58,237,.35); }
   </style>
-</head>
+  <!-- META PIXEL — geïnjecteerd door pixel_install.py -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '852925924180054');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=852925924180054&ev=PageView&noscript=1" alt=""
+/></noscript>
+<!-- /META PIXEL -->
+  </head>
 <body class="text-ink-900">
 
 <!-- nav -->
@@ -323,5 +339,21 @@ function calc() {
   };
 }
 </script>
+  <!-- META LEAD TRACKER — geïnjecteerd door pixel_install.py -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('form').forEach(function(form) {
+      if (form.dataset.fbPixelTracked) return;
+      form.dataset.fbPixelTracked = '1';
+      form.addEventListener('submit', function() {
+        if (window.fbq) {
+          var formName = form.getAttribute('name') || form.id || 'unknown';
+          fbq('track', 'Lead', { form_name: formName });
+        }
+      });
+    });
+  });
+</script>
+<!-- /META LEAD TRACKER -->
 </body>
 </html>

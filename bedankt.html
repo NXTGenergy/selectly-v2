@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="canonical" href="https://selectly.be/bedankt.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedankt — Selectly</title>
+  <meta name="description" content="Bedankt voor je aanvraag. We bellen binnen 24u terug." />
+  <meta name="robots" content="noindex,follow" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eef3ff', 100: '#dde7ff', 400: '#6a93ff', 500: '#5b8cff', 600: '#3a6cf2' },
+            ink:   { 500: '#475569', 700: '#1c2238', 900: '#0a0e1a' },
+            mint:  { 100: '#d8f8e8', 300: '#7ee5b5', 400: '#5ed99e', 500: '#34D399', 700: '#0a8a5e' },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .check-pulse { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  </style>
+  <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
+<script>
+  function loadMetaPixel() {
+    if (window._metaPixelLoaded) return;
+    window._metaPixelLoaded = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '852925924180054');
+    fbq('track', 'PageView');
+  }
+  try {
+    if (localStorage.getItem('selectly_consent') === 'accepted') {
+      loadMetaPixel();
+    } else {
+      window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
+    }
+  } catch (e) { /* localStorage geblokkeerd → geen tracking */ }
+</script>
+<!-- /META PIXEL -->
+<script src="/consent.js" defer></script>
+</head>
+<body class="bg-gradient-to-b from-white to-brand-50 min-h-screen flex flex-col">
+
+  <!-- ─────── NAV (minimaal) ─────── -->
+  <nav class="bg-white/80 backdrop-blur-xl border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-4">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="#5b8cff"/>
+          <path d="M11 16l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-lg text-ink-900">Selectly</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ─────── HERO ─────── -->
+  <main class="flex-1 flex items-center justify-center px-6 py-16">
+    <div class="max-w-2xl mx-auto text-center">
+
+      <!-- Success icon -->
+      <div class="check-pulse w-20 h-20 mx-auto mb-8 rounded-full bg-mint-100 flex items-center justify-center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0a8a5e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12l5 5L20 7"/>
+        </svg>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-ink-900 mb-4 tracking-tight">
+        Bedankt! Je aanvraag is binnen.
+      </h1>
+
+      <p class="text-lg text-ink-500 mb-10 leading-relaxed">
+        Bart belt je <strong class="text-ink-900">binnen 24 werkuren</strong> terug.
+        Geen verkooppraat — we kijken samen of Selectly bij jouw zaak past.
+      </p>
+
+      <!-- Wat te verwachten -->
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 mb-10 text-left">
+        <h2 class="font-bold text-ink-900 mb-5 flex items-center gap-2">
+          <svg width="20" height="20" fill="none" stroke="#5b8cff" stroke-width="2"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2" stroke-linecap="round"/></svg>
+          Wat gebeurt er nu?
+        </h2>
+        <ol class="space-y-4 text-ink-500">
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">1</span>
+            <div><strong class="text-ink-900">Vandaag of morgen:</strong> Bart bekijkt je aanvraag en jouw bedrijf kort.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">2</span>
+            <div><strong class="text-ink-900">Binnen 24u:</strong> hij belt of mailt voor een korte 20-min demo (geen verkooppraat, gewoon kijken of het past).</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">3</span>
+            <div><strong class="text-ink-900">In de demo:</strong> NXTG case live + jouw cijfers doorgerekend. Daarna beslis je rustig.</div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+        <a href="https://wa.me/32492617085?text=Hallo%20Bart%2C%20ik%20heb%20net%20het%20demoformulier%20ingevuld." target="_blank" rel="noopener" class="px-6 py-3 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-xl transition inline-flex items-center justify-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.488"/></svg>
+          Stuur me direct een WhatsApp
+        </a>
+        <a href="/case-nxtg.html" class="px-6 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition inline-flex items-center justify-center">
+          Lees ondertussen de NXTG case →
+        </a>
+      </div>
+
+      <p class="text-sm text-ink-500/80">
+        Geen bevestigingsmail ontvangen binnen 5 min? Check je spam, of mail
+        <a href="mailto:info@selectly.be" class="text-brand-500 hover:text-brand-600 underline">info@selectly.be</a>.
+      </p>
+
+    </div>
+  </main>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer class="bg-white border-t border-gray-100 py-6">
+    <div class="max-w-5xl mx-auto px-6 text-center text-sm text-ink-500">
+      <a href="/" class="hover:text-ink-900 transition">Terug naar selectly.be</a>
+      <span class="mx-2">·</span>
+      <a href="/privacy.html" class="hover:text-ink-900 transition">Privacy</a>
+      <span class="mx-2">·</span>
+      <a href="/voorwaarden.html" class="hover:text-ink-900 transition">Voorwaarden</a>
+    </div>
+  </footer>
+
+</body>
+</html>

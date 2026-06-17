@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Selectly Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+            brand: { 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+            mint: { 100: '#d8f8e8', 500: '#34D399', 700: '#0a8a5e' },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #5b8cff 0%, #34D399 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(58, 108, 242, 0.35) 0%, transparent 65%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-ink-900 text-white min-h-screen flex flex-col antialiased">
+
+  <!-- glow background -->
+  <div class="glow" style="top:-200px; right:-200px;"></div>
+  <div class="glow" style="bottom:-200px; left:-200px; background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 65%);"></div>
+
+  <!-- header -->
+  <header class="relative z-10 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);">
+          <svg width="20" height="20" viewBox="0 0 80 80" fill="none"><path d="M18 52 L36 32 L54 52 M28 42 L44 42" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="font-bold text-lg leading-none">Selectly</div>
+          <div class="text-xs text-white/50 mt-0.5">Portal</div>
+        </div>
+      </a>
+      <a href="/" class="text-sm text-white/60 hover:text-white transition">
+        ← Terug naar selectly.be
+      </a>
+    </div>
+  </header>
+
+  <!-- main -->
+  <main class="relative z-10 flex-1 flex items-center justify-center px-6 py-16">
+    <div class="max-w-2xl w-full">
+
+      <div class="text-center mb-10">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-mint-500 animate-pulse"></span>
+          <span class="text-white/70">Klant-portaal · live data</span>
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+          Welkom in jouw <span class="gradient-text">Selectly Portal</span>
+        </h1>
+        <p class="text-white/65 text-lg leading-relaxed max-w-lg mx-auto">
+          Eén scherm voor je leads, offertes, pipeline, ROI en agent-activiteit.
+          Live data, geen Excel-gepruts.
+        </p>
+      </div>
+
+      <!-- Login form -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-8 shadow-2xl">
+        <form onsubmit="event.preventDefault(); document.getElementById('demo-info').classList.remove('hidden');" class="space-y-5">
+          <div>
+            <label class="block text-sm font-medium text-white/70 mb-2">E-mail</label>
+            <input type="email" required placeholder="jij@bedrijf.be" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20 transition placeholder:text-white/30 text-white" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-white/70 mb-2">Wachtwoord</label>
+            <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20 transition placeholder:text-white/30 text-white" />
+          </div>
+          <button type="submit" class="w-full py-3.5 bg-white text-ink-900 font-semibold rounded-lg hover:bg-mint-100 transition">
+            Inloggen
+          </button>
+          <div class="flex justify-between text-xs text-white/50">
+            <a href="#" class="hover:text-white/80 transition">Wachtwoord vergeten?</a>
+            <span>SSO via Google/Microsoft binnenkort</span>
+          </div>
+        </form>
+
+        <!-- Demo info shown after submit -->
+        <div id="demo-info" class="hidden mt-6 pt-6 border-t border-white/10">
+          <div class="flex gap-3 p-4 bg-brand-400/10 border border-brand-400/20 rounded-lg">
+            <svg width="20" height="20" fill="none" stroke="#5b8cff" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0 mt-0.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            <div class="text-sm">
+              <strong class="text-white">Demo-omgeving</strong>
+              <p class="text-white/70 mt-1">Echte klant-portals worden per zaak ingericht na onboarding. Wil je nu een live demo zien?</p>
+              <a href="/portal/nxtg.html" class="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-mint-500 text-ink-900 font-semibold rounded-lg hover:bg-mint-100 transition text-sm">
+                → Bekijk NXTG Energy's dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="mt-8 grid sm:grid-cols-2 gap-4 text-sm">
+        <a href="/portal/nxtg.html" class="flex items-center gap-3 px-5 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition group">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xs" style="background: linear-gradient(135deg, #f59e0b, #d97706);">N</div>
+          <div class="flex-1">
+            <div class="font-semibold">NXTG Energy</div>
+            <div class="text-xs text-white/50">Demo-dashboard</div>
+          </div>
+          <span class="text-white/30 group-hover:text-white/70 transition">→</span>
+        </a>
+        <a href="https://selectly.be/#contact" class="flex items-center gap-3 px-5 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition group">
+          <div class="w-10 h-10 rounded-lg bg-mint-500/20 flex items-center justify-center">
+            <svg width="20" height="20" fill="none" stroke="#34D399" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold">Nieuwe klant?</div>
+            <div class="text-xs text-white/50">Plan een demo</div>
+          </div>
+          <span class="text-white/30 group-hover:text-white/70 transition">→</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer class="relative z-10 border-t border-white/10 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white/40">
+      <div>© 2026 NXTG Solutions BV · Selectly · Brugge</div>
+      <div class="flex gap-4">
+        <a href="/privacy.html" class="hover:text-white/70 transition">Privacy</a>
+        <a href="/voorwaarden.html" class="hover:text-white/70 transition">Voorwaarden</a>
+        <a href="mailto:info@selectly.be" class="hover:text-white/70 transition">info@selectly.be</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Leads — Selectly Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+        brand: { 50: '#eff4ff', 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+        mint: { 100: '#d8f8e8', 500: '#34D399', 700: '#0a8a5e' },
+        sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+        rose: { 400: '#fb7185', 500: '#f43f5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  </style>
+</head>
+<body class="bg-slate-50 text-ink-900 antialiased">
+
+  <!-- ─────── HEADER ─────── -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sun-400 to-sun-600 flex items-center justify-center text-white font-bold text-sm">N</div>
+            <div>
+              <div class="font-bold text-sm leading-tight">NXTG Energy</div>
+              <div class="text-xs text-ink-400 leading-tight">Brugge · sinds 2024</div>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-mint-100 text-mint-700">
+            <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-mint-500"></span>
+            Live data
+          </span>
+        </div>
+        <nav class="hidden md:flex items-center gap-1 text-sm">
+          <a href="nxtg.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Overzicht</a>
+          <a href="leads.html" class="px-3 py-1.5 rounded-md bg-ink-900 text-white font-semibold">Leads</a>
+          <a href="offertes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Offertes</a>
+          <a href="campagnes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Campagnes</a>
+          <a href="instellingen.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Instellingen</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-brand-500 text-white text-xs font-bold flex items-center justify-center">SD</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─────── HERO ─────── -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight">Leads</h1>
+        <p class="text-ink-500 text-sm mt-0.5">82 deze maand · 23 deze week · 6 vandaag</p>
+      </div>
+      <div class="flex gap-2">
+        <button class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition">Exporteer CSV</button>
+        <button class="px-3 py-2 text-sm bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition">+ Handmatige lead</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── FILTERS ─────── -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap gap-2 text-sm">
+      <button class="px-3 py-1.5 rounded-full bg-ink-900 text-white font-semibold">Alle (82)</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">🔥 Hot (5)</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">Nieuw (12)</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">Wacht op offerte (8)</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">Offerte verstuurd (24)</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">Geen reactie >7d (11)</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">Bron: Bobex</button>
+      <button class="px-3 py-1.5 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition">Bron: Joeri</button>
+      <div class="ml-auto flex items-center gap-2">
+        <input type="search" placeholder="Zoek naam, postcode..." class="px-3 py-1.5 border border-slate-200 rounded-lg text-sm" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── LEAD TABLE ─────── -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 border-b border-slate-200 text-ink-500">
+            <tr>
+              <th class="text-left px-4 py-3 font-semibold">Naam / Bedrijf</th>
+              <th class="text-left px-4 py-3 font-semibold">Bron</th>
+              <th class="text-left px-4 py-3 font-semibold">Project</th>
+              <th class="text-right px-4 py-3 font-semibold">€ pijplijn</th>
+              <th class="text-left px-4 py-3 font-semibold">Status</th>
+              <th class="text-left px-4 py-3 font-semibold">Score</th>
+              <th class="text-left px-4 py-3 font-semibold">Sinds</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Tom Vandenbussche</div>
+                <div class="text-xs text-ink-500">Vandenbussche BVBA · Brugge</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-brand-50 text-brand-600">Bobex</span></td>
+              <td class="px-4 py-3 text-ink-700">Zonnepanelen 8.4 kWp</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€12.480</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs font-semibold text-mint-700"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>Getekend</span></td>
+              <td class="px-4 py-3"><span class="text-xs">🔥 96%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">vandaag 10:14</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Decroix NV</div>
+                <div class="text-xs text-ink-500">Bouwbedrijf · Knokke</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-mint-100 text-mint-700">Joeri</span></td>
+              <td class="px-4 py-3 text-ink-700">Airco + warmtepomp</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€18.200</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600"><span class="w-1.5 h-1.5 rounded-full bg-brand-500 pulse-dot"></span>Aan het lezen NU</span></td>
+              <td class="px-4 py-3"><span class="text-xs">🔥 89%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">vandaag 09:32</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Janssens Renovaties</div>
+                <div class="text-xs text-ink-500">Renovatie · Brugge</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-brand-50 text-brand-600">Bobex</span></td>
+              <td class="px-4 py-3 text-ink-700">Isolatie zolder</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€7.840</td>
+              <td class="px-4 py-3"><span class="text-xs font-semibold text-sun-600">Geopend, geen actie</span></td>
+              <td class="px-4 py-3"><span class="text-xs text-ink-500">76%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">gisteren</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Mertens Frank</div>
+                <div class="text-xs text-ink-500">Mertens Dakwerken · Damme</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-sun-400/20 text-sun-600">Eigen site</span></td>
+              <td class="px-4 py-3 text-ink-700">Dakgoten + isolatieplaten</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€4.620</td>
+              <td class="px-4 py-3"><span class="text-xs font-semibold text-ink-500">Verzonden</span></td>
+              <td class="px-4 py-3"><span class="text-xs text-ink-500">68%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">vandaag 09:15</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Cools Renovaties</div>
+                <div class="text-xs text-ink-500">Vlissegem</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-rose-500/15 text-rose-500">Referrals</span></td>
+              <td class="px-4 py-3 text-ink-700">Heronderhandeling zonnepark</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€9.120</td>
+              <td class="px-4 py-3"><span class="text-xs font-semibold text-rose-500">Aanpassing aangevraagd</span></td>
+              <td class="px-4 py-3"><span class="text-xs text-ink-500">82%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">2d geleden</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Vandeweghe BVBA</div>
+                <div class="text-xs text-ink-500">HVAC · Roeselare</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-mint-100 text-mint-700">Joeri</span></td>
+              <td class="px-4 py-3 text-ink-700">Warmtepomp lucht-water</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€8.940</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs font-semibold text-mint-700"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>Getekend</span></td>
+              <td class="px-4 py-3"><span class="text-xs">🔥 94%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">vandaag 08:42</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Goossens Renovaties</div>
+                <div class="text-xs text-ink-500">Ostende</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-brand-50 text-brand-600">Bobex</span></td>
+              <td class="px-4 py-3 text-ink-700">Combinatie iso + zonnepanelen</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€21.350</td>
+              <td class="px-4 py-3"><span class="text-xs font-semibold text-ink-500">In opvolging</span></td>
+              <td class="px-4 py-3"><span class="text-xs">🔥 91%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">3d geleden</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Geens Steve</div>
+                <div class="text-xs text-ink-500">Particulier · Brugge</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-sun-400/20 text-sun-600">Eigen site</span></td>
+              <td class="px-4 py-3 text-ink-700">Batterij-koppeling vraag</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€6.200</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-500">⚠ Escalatie naar Steffie</span></td>
+              <td class="px-4 py-3"><span class="text-xs text-ink-500">62%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">51 min geleden</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">Vandenberghe Tania</div>
+                <div class="text-xs text-ink-500">Particulier · Knokke</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600">Voicebot (nacht)</span></td>
+              <td class="px-4 py-3 text-ink-700">Warmtepomp · €3.200 deal</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€3.200</td>
+              <td class="px-4 py-3"><span class="text-xs font-semibold text-ink-500">Afspraak 19/06</span></td>
+              <td class="px-4 py-3"><span class="text-xs">71%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">vannacht 23:47</td>
+            </tr>
+
+            <tr class="hover:bg-slate-50 cursor-pointer">
+              <td class="px-4 py-3">
+                <div class="font-semibold text-ink-900">De Wilde Jonas</div>
+                <div class="text-xs text-ink-500">Particulier · Brugge</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-600">Chatbot (nacht)</span></td>
+              <td class="px-4 py-3 text-ink-700">Zonnepanelen 4 kWp</td>
+              <td class="px-4 py-3 text-right font-semibold tabular-nums">€5.800</td>
+              <td class="px-4 py-3"><span class="text-xs font-semibold text-ink-500">Offerte gepland</span></td>
+              <td class="px-4 py-3"><span class="text-xs">64%</span></td>
+              <td class="px-4 py-3 text-xs text-ink-500">vannacht 02:18</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-ink-500">
+        <span>10 van 82 leads</span>
+        <div class="flex gap-1">
+          <button class="px-2.5 py-1 rounded hover:bg-slate-100 transition">←</button>
+          <button class="px-2.5 py-1 rounded bg-ink-900 text-white">1</button>
+          <button class="px-2.5 py-1 rounded hover:bg-slate-100 transition">2</button>
+          <button class="px-2.5 py-1 rounded hover:bg-slate-100 transition">3</button>
+          <button class="px-2.5 py-1 rounded hover:bg-slate-100 transition">...</button>
+          <button class="px-2.5 py-1 rounded hover:bg-slate-100 transition">9</button>
+          <button class="px-2.5 py-1 rounded hover:bg-slate-100 transition">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="bg-white border-t border-slate-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:justify-between gap-3 text-xs text-ink-400">
+      <div>Gebouwd door <a href="/" class="text-brand-500 hover:text-brand-600 font-semibold">Selectly</a></div>
+      <div>Demo-omgeving · representatieve cijfers</div>
+    </div>
+  </footer>
+
+  <!-- Auth: Netlify Identity widget + guard -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/portal/auth-guard.js"></script>
+</body>
+</html>

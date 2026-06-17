@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Campagnes — Selectly Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+        brand: { 50: '#eff4ff', 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+        mint: { 100: '#d8f8e8', 500: '#34D399', 700: '#0a8a5e' },
+        sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+        rose: { 400: '#fb7185', 500: '#f43f5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  </style>
+</head>
+<body class="bg-slate-50 text-ink-900 antialiased">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sun-400 to-sun-600 flex items-center justify-center text-white font-bold text-sm">N</div>
+            <div>
+              <div class="font-bold text-sm leading-tight">NXTG Energy</div>
+              <div class="text-xs text-ink-400 leading-tight">Brugge · sinds 2024</div>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-mint-100 text-mint-700">
+            <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-mint-500"></span>Live data
+          </span>
+        </div>
+        <nav class="hidden md:flex items-center gap-1 text-sm">
+          <a href="nxtg.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Overzicht</a>
+          <a href="leads.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Leads</a>
+          <a href="offertes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Offertes</a>
+          <a href="campagnes.html" class="px-3 py-1.5 rounded-md bg-ink-900 text-white font-semibold">Campagnes</a>
+          <a href="instellingen.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Instellingen</a>
+        </nav>
+        <div class="w-8 h-8 rounded-full bg-brand-500 text-white text-xs font-bold flex items-center justify-center">SD</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight">Campagnes</h1>
+        <p class="text-ink-500 text-sm mt-0.5">Meta Ads · €18/dag · 5 varianten · 12 dagen live</p>
+      </div>
+      <div class="flex gap-2">
+        <select class="px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg">
+          <option>Meta Ads</option>
+          <option>Google Ads</option>
+          <option>LinkedIn</option>
+        </select>
+        <button class="px-3 py-2 text-sm bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition">+ Nieuwe campagne</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI strip -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider">Spend (12d)</div>
+        <div class="text-3xl font-bold mt-1 tabular-nums">€216</div>
+        <div class="text-xs text-ink-400 mt-1">€18/dag · gemiddeld</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider">Impressions</div>
+        <div class="text-3xl font-bold mt-1 tabular-nums">42K</div>
+        <div class="text-xs text-mint-700 mt-1 font-semibold">↑ CTR 2.1%</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider">Leads</div>
+        <div class="text-3xl font-bold mt-1 tabular-nums">14</div>
+        <div class="text-xs text-ink-400 mt-1">€15.40 CPL</div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider">Pijplijn binnen</div>
+        <div class="text-3xl font-bold text-mint-700 mt-1 tabular-nums">€42K</div>
+        <div class="text-xs text-mint-700 mt-1 font-semibold">194× ROAS</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AD VARIANTS -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <h2 class="text-lg font-bold mb-3">Ad-varianten · A/B test</h2>
+    <div class="space-y-3">
+
+      <div class="bg-white rounded-xl border border-mint-300 p-5 shadow-sm">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-bold text-mint-700">★ WINNAAR</span>
+              <h3 class="font-bold">Variant 1 — Pijn-eerst (installateurs algemeen)</h3>
+            </div>
+            <p class="text-sm text-ink-500 italic">"Verlies je leads omdat je op het werk staat?"</p>
+          </div>
+          <button class="text-xs font-semibold text-brand-500 hover:text-brand-600">Pauze →</button>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-3 border-t border-slate-100 text-sm">
+          <div><span class="text-xs text-ink-400 block">CTR</span><strong class="tabular-nums">2.8%</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPC</span><strong class="tabular-nums">€0.42</strong></div>
+          <div><span class="text-xs text-ink-400 block">Leads</span><strong class="tabular-nums">6</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPL</span><strong class="tabular-nums text-mint-700">€11.20</strong></div>
+          <div><span class="text-xs text-ink-400 block">Conversie</span><strong class="tabular-nums">3.4%</strong></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex-1">
+            <h3 class="font-bold">Variant 2 — Cijfer-eerst (case study)</h3>
+            <p class="text-sm text-ink-500 italic">"8u → 47 min per offerte. Geen extra personeel."</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-3 border-t border-slate-100 text-sm">
+          <div><span class="text-xs text-ink-400 block">CTR</span><strong class="tabular-nums">2.2%</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPC</span><strong class="tabular-nums">€0.51</strong></div>
+          <div><span class="text-xs text-ink-400 block">Leads</span><strong class="tabular-nums">4</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPL</span><strong class="tabular-nums">€16.80</strong></div>
+          <div><span class="text-xs text-ink-400 block">Conversie</span><strong class="tabular-nums">2.8%</strong></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm opacity-70">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-bold text-rose-500">⚠ STOP</span>
+              <h3 class="font-bold">Variant 3 — Anti-DIY (Make/Zapier)</h3>
+            </div>
+            <p class="text-sm text-ink-500 italic">"Make.com werkt — tot het 's nachts breekt."</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-3 border-t border-slate-100 text-sm">
+          <div><span class="text-xs text-ink-400 block">CTR</span><strong class="tabular-nums text-rose-500">0.6%</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPC</span><strong class="tabular-nums">€1.20</strong></div>
+          <div><span class="text-xs text-ink-400 block">Leads</span><strong class="tabular-nums">1</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPL</span><strong class="tabular-nums text-rose-500">€72</strong></div>
+          <div><span class="text-xs text-ink-400 block">Conversie</span><strong class="tabular-nums">0.8%</strong></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex-1">
+            <h3 class="font-bold">Variant 4 — Sector (dakwerkers)</h3>
+            <p class="text-sm text-ink-500 italic">"Dakwerkers missen 80% van hun calls."</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-3 border-t border-slate-100 text-sm">
+          <div><span class="text-xs text-ink-400 block">CTR</span><strong class="tabular-nums">2.4%</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPC</span><strong class="tabular-nums">€0.48</strong></div>
+          <div><span class="text-xs text-ink-400 block">Leads</span><strong class="tabular-nums">2</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPL</span><strong class="tabular-nums">€19.30</strong></div>
+          <div><span class="text-xs text-ink-400 block">Conversie</span><strong class="tabular-nums">2.1%</strong></div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex-1">
+            <h3 class="font-bold">Variant 5 — Outcome / zaakvoerder-pijn</h3>
+            <p class="text-sm text-ink-500 italic">"Je had moeten verkopen. Je zat in offertes."</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-3 border-t border-slate-100 text-sm">
+          <div><span class="text-xs text-ink-400 block">CTR</span><strong class="tabular-nums">1.9%</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPC</span><strong class="tabular-nums">€0.62</strong></div>
+          <div><span class="text-xs text-ink-400 block">Leads</span><strong class="tabular-nums">1</strong></div>
+          <div><span class="text-xs text-ink-400 block">CPL</span><strong class="tabular-nums">€42</strong></div>
+          <div><span class="text-xs text-ink-400 block">Conversie</span><strong class="tabular-nums">1.5%</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- AI INSIGHT -->
+    <div class="mt-6 bg-gradient-to-br from-brand-50 to-mint-100/40 border border-brand-200 rounded-xl p-5">
+      <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-lg bg-brand-500 flex items-center justify-center flex-shrink-0">
+          <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="text-xs font-semibold text-brand-700 uppercase tracking-wider mb-1">AI Insight</div>
+          <p class="text-sm text-ink-900 leading-relaxed">
+            <strong>Schaal V1 op naar €30/dag</strong> (CPL €11.20 = jouw beste). <strong>Pauze V3</strong> — €72 CPL is 4× duurder dan target.
+            <strong>V2 + V4 + V5</strong>: keep running maar laag budget (€3/dag). Verwacht: 9 extra leads/week voor €120 extra spend.
+          </p>
+          <div class="flex gap-2 mt-3">
+            <button class="px-3 py-1.5 bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold rounded-lg transition">Pas budgetten aan</button>
+            <button class="px-3 py-1.5 bg-white border border-slate-200 text-ink-700 text-xs font-semibold rounded-lg transition">Genereer V6 op basis van V1</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-white border-t border-slate-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-ink-400">
+      Gebouwd door <a href="/" class="text-brand-500 hover:text-brand-600 font-semibold">Selectly</a> · Demo-omgeving
+    </div>
+  </footer>
+
+  <!-- Auth: Netlify Identity widget + guard -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/portal/auth-guard.js"></script>
+</body>
+</html>

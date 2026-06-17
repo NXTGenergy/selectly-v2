@@ -60,11 +60,11 @@
         </div>
 
         <nav class="hidden md:flex items-center gap-1 text-sm">
-          <button class="px-3 py-1.5 rounded-md bg-ink-900 text-white font-semibold">Overzicht</button>
-          <button class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Leads</button>
-          <button class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Offertes</button>
-          <button class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Campagnes</button>
-          <button class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Instellingen</button>
+          <a href="nxtg.html" class="px-3 py-1.5 rounded-md bg-ink-900 text-white font-semibold">Overzicht</a>
+          <a href="leads.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Leads</a>
+          <a href="offertes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Offertes</a>
+          <a href="campagnes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Campagnes</a>
+          <a href="instellingen.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Instellingen</a>
         </nav>
 
         <div class="flex items-center gap-3">
@@ -1058,5 +1058,8 @@
     }, 60000);
   </script>
 
+  <!-- Auth: Netlify Identity widget + guard -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/portal/auth-guard.js"></script>
 </body>
 </html>

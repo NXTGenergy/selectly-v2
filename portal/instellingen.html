@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Instellingen — Selectly Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+        brand: { 50: '#eff4ff', 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+        mint: { 100: '#d8f8e8', 500: '#34D399', 700: '#0a8a5e' },
+        sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+        rose: { 400: '#fb7185', 500: '#f43f5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .toggle { position: relative; display: inline-block; width: 36px; height: 20px; }
+    .toggle input { display: none; }
+    .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #cbd5e1; border-radius: 100px; transition: 0.2s; }
+    .toggle-slider::before { content: ''; position: absolute; height: 14px; width: 14px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.2s; }
+    .toggle input:checked + .toggle-slider { background: #34D399; }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(16px); }
+  </style>
+</head>
+<body class="bg-slate-50 text-ink-900 antialiased">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sun-400 to-sun-600 flex items-center justify-center text-white font-bold text-sm">N</div>
+            <div>
+              <div class="font-bold text-sm leading-tight">NXTG Energy</div>
+              <div class="text-xs text-ink-400 leading-tight">Brugge · sinds 2024</div>
+            </div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-mint-100 text-mint-700">
+            <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-mint-500"></span>Live data
+          </span>
+        </div>
+        <nav class="hidden md:flex items-center gap-1 text-sm">
+          <a href="nxtg.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Overzicht</a>
+          <a href="leads.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Leads</a>
+          <a href="offertes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Offertes</a>
+          <a href="campagnes.html" class="px-3 py-1.5 rounded-md text-ink-500 hover:bg-slate-100 transition">Campagnes</a>
+          <a href="instellingen.html" class="px-3 py-1.5 rounded-md bg-ink-900 text-white font-semibold">Instellingen</a>
+        </nav>
+        <div class="w-8 h-8 rounded-full bg-brand-500 text-white text-xs font-bold flex items-center justify-center">SD</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <h1 class="text-2xl font-bold tracking-tight">Instellingen</h1>
+      <p class="text-ink-500 text-sm mt-0.5">Beheer agents, integraties, notificaties en team-toegang.</p>
+    </div>
+  </section>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- AGENTS -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-bold text-ink-900">Selectly agents</h2>
+          <p class="text-xs text-ink-500 mt-0.5">Zet specifieke automation aan of uit</p>
+        </div>
+      </div>
+      <div class="divide-y divide-slate-100">
+
+        <div class="flex items-center justify-between py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center">
+              <svg width="18" height="18" fill="none" stroke="#3a6cf2" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-5l-5 5v-5Z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">AI Chatbot</div>
+              <div class="text-xs text-ink-500">Website + WhatsApp 24/7</div>
+            </div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+
+        <div class="flex items-center justify-between py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-mint-100 flex items-center justify-center">
+              <svg width="18" height="18" fill="none" stroke="#10b981" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11 11 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498A1 1 0 0 1 21 15.72V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5Z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">AI Voicebot</div>
+              <div class="text-xs text-ink-500">+32 50 70 14 21 · Vlaamse stem</div>
+            </div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+
+        <div class="flex items-center justify-between py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-sun-400/20 flex items-center justify-center">
+              <svg width="18" height="18" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Auto-offerte generator</div>
+              <div class="text-xs text-ink-500">PDF met digitale handtekening · gem. 47 min</div>
+            </div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+
+        <div class="flex items-center justify-between py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-brand-50 flex items-center justify-center">
+              <svg width="18" height="18" fill="none" stroke="#3a6cf2" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">WhatsApp/SMS opvolging</div>
+              <div class="text-xs text-ink-500">Drip-flows · no-show preventie</div>
+            </div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+
+        <div class="flex items-center justify-between py-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-rose-500/15 flex items-center justify-center">
+              <svg width="18" height="18" fill="none" stroke="#f43f5e" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Outbound calling (Enterprise)</div>
+              <div class="text-xs text-ink-500">Upgrade naar Enterprise om te activeren</div>
+            </div>
+          </div>
+          <label class="toggle"><input type="checkbox" disabled><span class="toggle-slider opacity-40"></span></label>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- INTEGRATIONS -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-bold text-ink-900">Integraties</h2>
+          <p class="text-xs text-ink-500 mt-0.5">Tools die met Selectly verbonden zijn</p>
+        </div>
+        <button class="text-xs text-brand-500 hover:text-brand-600 font-semibold">+ Integratie toevoegen</button>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-3">
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-blue-500 flex items-center justify-center text-white font-bold text-sm">G</div>
+            <div>
+              <div class="font-semibold text-sm">GoHighLevel CRM</div>
+              <div class="text-xs text-mint-700">Verbonden · 2 min geleden gesync</div>
+            </div>
+          </div>
+          <span class="text-mint-700 text-lg">✓</span>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center text-white font-bold text-sm">B</div>
+            <div>
+              <div class="font-semibold text-sm">Billit</div>
+              <div class="text-xs text-mint-700">Verbonden · facturatie sync</div>
+            </div>
+          </div>
+          <span class="text-mint-700 text-lg">✓</span>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-[#25D366] flex items-center justify-center text-white text-sm">💬</div>
+            <div>
+              <div class="font-semibold text-sm">WhatsApp Business</div>
+              <div class="text-xs text-mint-700">Verbonden · Twilio</div>
+            </div>
+          </div>
+          <span class="text-mint-700 text-lg">✓</span>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">M</div>
+            <div>
+              <div class="font-semibold text-sm">Meta Ads</div>
+              <div class="text-xs text-mint-700">Verbonden · Pixel 8529...</div>
+            </div>
+          </div>
+          <span class="text-mint-700 text-lg">✓</span>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-center justify-between opacity-60">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-300 flex items-center justify-center text-white font-bold text-sm">T</div>
+            <div>
+              <div class="font-semibold text-sm">Teamleader</div>
+              <div class="text-xs text-ink-500">Niet verbonden</div>
+            </div>
+          </div>
+          <button class="text-xs font-semibold text-brand-500">Verbinden</button>
+        </div>
+
+        <div class="p-4 border border-slate-200 rounded-lg flex items-center justify-between opacity-60">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-slate-300 flex items-center justify-center text-white font-bold text-sm">G</div>
+            <div>
+              <div class="font-semibold text-sm">Google Calendar</div>
+              <div class="text-xs text-ink-500">Niet verbonden</div>
+            </div>
+          </div>
+          <button class="text-xs font-semibold text-brand-500">Verbinden</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <h2 class="font-bold text-ink-900 mb-1">Notificaties</h2>
+      <p class="text-xs text-ink-500 mb-4">Wanneer wil je een ping krijgen?</p>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div class="flex-1">
+            <div class="font-semibold text-sm">Nieuwe lead binnen</div>
+            <div class="text-xs text-ink-500">Voor alle nieuwe form-submissions of voicebot-calls</div>
+          </div>
+          <div class="flex gap-2 text-xs">
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> Email</label>
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> WhatsApp</label>
+            <label class="flex items-center gap-1"><input type="checkbox" /> SMS</label>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div class="flex-1">
+            <div class="font-semibold text-sm">Offerte ondertekend</div>
+            <div class="text-xs text-ink-500">Bij elke digitale handtekening</div>
+          </div>
+          <div class="flex gap-2 text-xs">
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> Email</label>
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> WhatsApp</label>
+            <label class="flex items-center gap-1"><input type="checkbox" /> SMS</label>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div class="flex-1">
+            <div class="font-semibold text-sm">Escalatie naar mens</div>
+            <div class="text-xs text-ink-500">Wanneer AI je hulp nodig heeft</div>
+          </div>
+          <div class="flex gap-2 text-xs">
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> Email</label>
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> WhatsApp</label>
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> SMS</label>
+          </div>
+        </div>
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div class="flex-1">
+            <div class="font-semibold text-sm">Wekelijks rapport</div>
+            <div class="text-xs text-ink-500">Elke maandag 8u — KPIs van vorige week</div>
+          </div>
+          <div class="flex gap-2 text-xs">
+            <label class="flex items-center gap-1"><input type="checkbox" checked /> Email</label>
+            <label class="flex items-center gap-1"><input type="checkbox" /> WhatsApp</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-bold text-ink-900">Team-toegang</h2>
+          <p class="text-xs text-ink-500 mt-0.5">Wie kan dit portal zien en bewerken</p>
+        </div>
+        <button class="text-xs font-semibold text-brand-500 hover:text-brand-600">+ Lid uitnodigen</button>
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-center justify-between p-3 border border-slate-200 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-brand-500 text-white text-xs font-bold flex items-center justify-center">SD</div>
+            <div>
+              <div class="font-semibold text-sm">Steffie De Clercq</div>
+              <div class="text-xs text-ink-500">steffie@nxtgenergy.be · zaakvoerder</div>
+            </div>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-mint-100 text-mint-700 font-semibold">Admin</span>
+        </div>
+        <div class="flex items-center justify-between p-3 border border-slate-200 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-sun-500 text-white text-xs font-bold flex items-center justify-center">JM</div>
+            <div>
+              <div class="font-semibold text-sm">Joost Maes</div>
+              <div class="text-xs text-ink-500">joost@nxtgenergy.be · verkoop</div>
+            </div>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-brand-100 text-brand-600 font-semibold">Member</span>
+        </div>
+        <div class="flex items-center justify-between p-3 border border-slate-200 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-ink-500 text-white text-xs font-bold flex items-center justify-center">BV</div>
+            <div>
+              <div class="font-semibold text-sm">Bart Van Poucke <span class="text-xs text-ink-400 font-normal">(Selectly)</span></div>
+              <div class="text-xs text-ink-500">info@selectly.be · provider</div>
+            </div>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-slate-200 text-ink-700 font-semibold">Provider</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BILLING -->
+    <div class="bg-gradient-to-br from-ink-900 to-ink-800 text-white rounded-xl p-6 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-bold">Selectly abonnement</h2>
+          <p class="text-xs text-white/60 mt-0.5">Pakket + betaling</p>
+        </div>
+        <span class="text-xs px-2.5 py-1 rounded-full bg-mint-500 text-ink-900 font-bold">GROWTH</span>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <div class="text-xs text-white/60">Maandelijks</div>
+          <div class="text-3xl font-bold mt-1 tabular-nums">€1.950</div>
+          <div class="text-xs text-white/50 mt-1">Volgende afrekening: 1 juli 2026</div>
+        </div>
+        <div>
+          <div class="text-xs text-white/60">Setup-kost (eenmalig)</div>
+          <div class="text-3xl font-bold mt-1 tabular-nums">€2.500</div>
+          <div class="text-xs text-white/50 mt-1">Betaald op 18 mei 2026</div>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-t border-white/15 flex flex-wrap gap-2">
+        <button class="text-xs px-3 py-1.5 bg-white text-ink-900 rounded-lg font-semibold hover:bg-mint-100 transition">Upgrade naar Enterprise</button>
+        <button class="text-xs px-3 py-1.5 border border-white/20 text-white rounded-lg hover:bg-white/5 transition">Facturen bekijken</button>
+        <button class="text-xs px-3 py-1.5 text-white/60 hover:text-white/90 transition">Maandelijks opzegbaar</button>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-ink-400">
+      Gebouwd door <a href="/" class="text-brand-500 hover:text-brand-600 font-semibold">Selectly</a> · Demo-omgeving
+    </div>
+  </footer>
+
+  <!-- Auth: Netlify Identity widget + guard -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/portal/auth-guard.js"></script>
+</body>
+</html>

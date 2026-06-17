@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Selectly Onboarding — Nieuwe klant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+        colors: {
+          ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+          brand: { 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+          mint: { 100: '#d8f8e8', 500: '#34D399', 700: '#0a8a5e' },
+        },
+      }},
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .step-indicator { transition: all 0.3s ease; }
+    .step-pane { display: none; }
+    .step-pane.active { display: block; animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    input:focus, select:focus, textarea:focus { outline: none; }
+  </style>
+</head>
+<body class="bg-slate-50 text-ink-900 min-h-screen antialiased">
+
+  <!-- ─────── HEADER ─────── -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);">
+          <svg width="18" height="18" viewBox="0 0 80 80" fill="none"><path d="M18 52 L36 32 L54 52 M28 42 L44 42" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="font-bold text-sm leading-none">Selectly</div>
+          <div class="text-xs text-ink-400 mt-0.5">Onboarding wizard</div>
+        </div>
+      </a>
+      <span class="text-xs text-ink-400">Intern · niet voor klanten</span>
+    </div>
+  </header>
+
+  <!-- ─────── PROGRESS BAR ─────── -->
+  <div class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-5">
+      <div class="flex items-center justify-between mb-2 text-xs font-semibold text-ink-400 uppercase tracking-wider">
+        <span id="stepLabel">Stap 1 van 6 — Bedrijf</span>
+        <span id="stepPercent">17%</span>
+      </div>
+      <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-brand-500 to-mint-500 transition-all duration-500" style="width: 17%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────── WIZARD ─────── -->
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+    <form id="wizard">
+
+      <!-- ─────── STAP 1: BEDRIJF ─────── -->
+      <div class="step-pane active" data-step="1">
+        <h1 class="text-3xl font-bold mb-2">Welkom — laten we beginnen.</h1>
+        <p class="text-ink-500 mb-8">Eerst de basics over jullie zaak.</p>
+
+        <div class="space-y-5">
+          <div>
+            <label class="block text-sm font-semibold mb-2">Bedrijfsnaam *</label>
+            <input type="text" name="company" required placeholder="bv. Mertens Dakwerken BVBA" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">URL-slug (portal pad) *</label>
+              <div class="flex items-center">
+                <span class="px-3 py-3 bg-slate-100 border border-r-0 border-slate-200 rounded-l-lg text-sm text-ink-500">selectly.be/portal/</span>
+                <input type="text" name="slug" required pattern="[a-z0-9-]+" placeholder="mertens" class="flex-1 px-4 py-3 border border-slate-200 rounded-r-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+              </div>
+              <p class="text-xs text-ink-400 mt-1">Enkel kleine letters, cijfers, koppeltekens. Auto-gegenereerd uit bedrijfsnaam.</p>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Sector *</label>
+              <select name="sector" required class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition bg-white">
+                <option value="">Kies sector...</option>
+                <option>Dakwerken</option>
+                <option>Zonnepanelen</option>
+                <option>HVAC / airco / warmtepompen</option>
+                <option>Isolatie</option>
+                <option>Elektro</option>
+                <option>Sanitair</option>
+                <option>Algemene bouw</option>
+                <option>Andere installateur</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Locatie</label>
+              <input type="text" name="location" placeholder="bv. Brugge" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Sinds (jaar)</label>
+              <input type="number" name="since" placeholder="bv. 2018" min="1950" max="2026" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────── STAP 2: CONTACT ─────── -->
+      <div class="step-pane" data-step="2">
+        <h1 class="text-3xl font-bold mb-2">Wie is onze hoofdcontact?</h1>
+        <p class="text-ink-500 mb-8">Voor login, communicatie en escalaties.</p>
+
+        <div class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Voornaam *</label>
+              <input type="text" name="contact_first_name" required placeholder="Frank" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Achternaam *</label>
+              <input type="text" name="contact_last_name" required placeholder="Mertens" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">E-mail (= login) *</label>
+              <input type="email" name="contact_email" required placeholder="frank@mertens.be" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Telefoon</label>
+              <input type="tel" name="contact_phone" placeholder="+32 472 ..." class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Rol</label>
+            <select name="contact_role" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition bg-white">
+              <option>Zaakvoerder</option>
+              <option>Sales / commercieel</option>
+              <option>Office manager</option>
+              <option>Marketing</option>
+              <option>IT / technisch</option>
+              <option>Andere</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────── STAP 3: VOLUME ─────── -->
+      <div class="step-pane" data-step="3">
+        <h1 class="text-3xl font-bold mb-2">Hoeveel leads krijgen jullie nu?</h1>
+        <p class="text-ink-500 mb-8">Schattingen zijn ok. Dit bepaalt jullie startcijfers in het portal.</p>
+
+        <div class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Leads per maand (gemiddeld)</label>
+              <input type="number" name="kpi_leads" placeholder="bv. 60" min="0" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Huidige conversie %</label>
+              <input type="number" name="kpi_conversion" placeholder="bv. 35" min="0" max="100" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+              <p class="text-xs text-ink-400 mt-1">Lead → ondertekend</p>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Gemiddelde deal-waarde €</label>
+              <input type="number" name="avg_deal" placeholder="bv. 8000" min="0" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Uren admin / wk (huidig)</label>
+              <input type="number" name="admin_hours" placeholder="bv. 18" min="0" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:border-brand-400 focus:ring-2 focus:ring-brand-100 transition" />
+              <p class="text-xs text-ink-400 mt-1">Offertes maken, opvolgen, mailen</p>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Belangrijkste lead-bronnen (multi-select)</label>
+            <div class="grid sm:grid-cols-3 gap-2 mt-1">
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="source" value="Bobex" class="rounded text-brand-500" />
+                <span class="text-sm">Bobex</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="source" value="Solvari" class="rounded text-brand-500" />
+                <span class="text-sm">Solvari</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="source" value="Eigen site" class="rounded text-brand-500" />
+                <span class="text-sm">Eigen site</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="source" value="Meta ads" class="rounded text-brand-500" />
+                <span class="text-sm">Meta ads</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="source" value="Google ads" class="rounded text-brand-500" />
+                <span class="text-sm">Google ads</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="source" value="Referrals" class="rounded text-brand-500" />
+                <span class="text-sm">Referrals</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────── STAP 4: PAKKET ─────── -->
+      <div class="step-pane" data-step="4">
+        <h1 class="text-3xl font-bold mb-2">Welk Selectly pakket?</h1>
+        <p class="text-ink-500 mb-8">Bepaalt welke agents actief worden en welke modules in hun portal.</p>
+
+        <div class="space-y-3">
+          <label class="flex gap-4 p-5 border-2 border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+            <input type="radio" name="package" value="Starter" class="mt-1.5" />
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-lg">Starter</span>
+                <span class="font-bold text-lg tabular-nums">€950<span class="text-sm text-ink-400">/mnd</span></span>
+              </div>
+              <p class="text-sm text-ink-500 mt-1">AI chatbot · GHL CRM · auto-offertes · live in 2 wkn · maandelijks opzegbaar</p>
+            </div>
+          </label>
+
+          <label class="flex gap-4 p-5 border-2 border-brand-500 bg-brand-100/30 rounded-xl cursor-pointer transition relative">
+            <span class="absolute -top-2.5 right-5 px-2.5 py-0.5 bg-brand-500 text-white text-xs font-bold rounded-full">MEESTE KLANTEN</span>
+            <input type="radio" name="package" value="Growth" class="mt-1.5" checked />
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-lg">Growth</span>
+                <span class="font-bold text-lg tabular-nums">€1.950<span class="text-sm text-ink-400">/mnd</span></span>
+              </div>
+              <p class="text-sm text-ink-500 mt-1">Alles in Starter + WhatsApp/SMS opvolging + drip-campagnes + no-show preventie + live portal</p>
+            </div>
+          </label>
+
+          <label class="flex gap-4 p-5 border-2 border-slate-200 rounded-xl hover:bg-slate-50 cursor-pointer transition">
+            <input type="radio" name="package" value="Enterprise" class="mt-1.5" />
+            <div class="flex-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-lg">Enterprise</span>
+                <span class="font-bold text-lg tabular-nums">€3.500<span class="text-sm text-ink-400">/mnd</span></span>
+              </div>
+              <p class="text-sm text-ink-500 mt-1">Alles in Growth + AI voicebot 24/7 + outbound calling + custom integraties + dedicated AM</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ─────── STAP 5: INTEGRATIES ─────── -->
+      <div class="step-pane" data-step="5">
+        <h1 class="text-3xl font-bold mb-2">Welke tools gebruiken jullie nu?</h1>
+        <p class="text-ink-500 mb-8">We integreren met wat jullie al draaien — niet alles vervangen.</p>
+
+        <div class="space-y-5">
+          <div>
+            <label class="block text-sm font-semibold mb-3">Boekhouding / facturatie</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="boekhouding" value="Billit" class="text-brand-500" />
+                <span class="text-sm">Billit</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="boekhouding" value="Teamleader" class="text-brand-500" />
+                <span class="text-sm">Teamleader</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="boekhouding" value="Yuki" class="text-brand-500" />
+                <span class="text-sm">Yuki</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="boekhouding" value="Andere" class="text-brand-500" />
+                <span class="text-sm">Andere / geen</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-3">CRM (huidig)</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="crm" value="Geen" class="text-brand-500" checked />
+                <span class="text-sm">Geen</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="crm" value="Excel" class="text-brand-500" />
+                <span class="text-sm">Excel</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="crm" value="HubSpot" class="text-brand-500" />
+                <span class="text-sm">HubSpot</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="radio" name="crm" value="Andere" class="text-brand-500" />
+                <span class="text-sm">Andere</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-3">Communicatie-tools (multi-select)</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="comms" value="WhatsApp Business" class="rounded text-brand-500" />
+                <span class="text-sm">WhatsApp Business</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="comms" value="SMS" class="rounded text-brand-500" />
+                <span class="text-sm">SMS</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="comms" value="Outlook" class="rounded text-brand-500" />
+                <span class="text-sm">Outlook</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="comms" value="Gmail" class="rounded text-brand-500" />
+                <span class="text-sm">Gmail</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="comms" value="Google Cal" class="rounded text-brand-500" />
+                <span class="text-sm">Google Cal</span>
+              </label>
+              <label class="flex items-center gap-2 px-3 py-2.5 border border-slate-200 rounded-lg hover:bg-slate-50 cursor-pointer">
+                <input type="checkbox" name="comms" value="Outlook Cal" class="rounded text-brand-500" />
+                <span class="text-sm">Outlook Cal</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─────── STAP 6: SAMENVATTING + GENEREREN ─────── -->
+      <div class="step-pane" data-step="6">
+        <h1 class="text-3xl font-bold mb-2">Klaar om te genereren?</h1>
+        <p class="text-ink-500 mb-8">Check de samenvatting en klik 'Genereer onboarding kit'.</p>
+
+        <div id="summary" class="bg-white border border-slate-200 rounded-xl p-6 space-y-4 text-sm"></div>
+
+        <div class="mt-6 bg-mint-100/40 border border-mint-300/40 rounded-xl p-5">
+          <h3 class="font-bold text-mint-700 mb-2 flex items-center gap-2">
+            <svg width="20" height="20" fill="none" stroke="#0a8a5e" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Wat ga je krijgen
+          </h3>
+          <ul class="space-y-2 text-sm text-ink-700">
+            <li class="flex gap-2"><span class="text-mint-700">•</span> JSON-config bestand voor <code class="text-xs bg-white px-1.5 py-0.5 rounded">clients/<span data-bind="slug">{slug}</span>.json</code></li>
+            <li class="flex gap-2"><span class="text-mint-700">•</span> Klant-portal live op <code class="text-xs bg-white px-1.5 py-0.5 rounded">selectly.be/portal/<span data-bind="slug">{slug}</span>.html</code></li>
+            <li class="flex gap-2"><span class="text-mint-700">•</span> Welkomst-PDF met logingegevens + 'wat verwachten' uitleg</li>
+            <li class="flex gap-2"><span class="text-mint-700">•</span> Exact commando om uit te voeren in terminal (1 regel)</li>
+            <li class="flex gap-2"><span class="text-mint-700">•</span> Setup-checklist (GHL, agents activeren, login uitnodigen)</li>
+          </ul>
+        </div>
+
+        <button type="button" id="generateBtn" class="mt-6 w-full px-6 py-4 bg-ink-900 text-white font-bold rounded-xl hover:bg-ink-700 transition flex items-center justify-center gap-2">
+          <span>Genereer onboarding kit</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </div>
+
+      <!-- ─────── DONE: DOWNLOAD ─────── -->
+      <div class="step-pane" data-step="7">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-mint-100 flex items-center justify-center">
+            <svg width="32" height="32" fill="none" stroke="#0a8a5e" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h1 class="text-3xl font-bold mb-2">Onboarding kit klaar 🎉</h1>
+          <p class="text-ink-500">Download de bestanden en voer het commando uit.</p>
+        </div>
+
+        <!-- Downloads -->
+        <div class="space-y-3 mb-8">
+          <a id="downloadJson" download class="flex items-center gap-3 p-4 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition cursor-pointer">
+            <div class="w-10 h-10 rounded-lg bg-brand-100 flex items-center justify-center">
+              <svg width="20" height="20" fill="none" stroke="#3a6cf2" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z"/></svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold text-ink-900"><span data-bind="slug">{slug}</span>.json</div>
+              <div class="text-xs text-ink-500">Sla op in <code class="bg-slate-100 px-1.5 py-0.5 rounded text-xs">selectly-agents/clients/</code></div>
+            </div>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </a>
+
+          <a id="downloadWelcome" download class="flex items-center gap-3 p-4 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition cursor-pointer">
+            <div class="w-10 h-10 rounded-lg bg-mint-100 flex items-center justify-center">
+              <svg width="20" height="20" fill="none" stroke="#10b981" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z"/></svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-semibold text-ink-900">welkom-<span data-bind="slug">{slug}</span>.md</div>
+              <div class="text-xs text-ink-500">Welkomstmail voor de klant (markdown)</div>
+            </div>
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </a>
+        </div>
+
+        <!-- Terminal command -->
+        <div class="bg-ink-900 text-white rounded-xl p-5 mb-6">
+          <div class="text-xs text-mint-300 font-semibold uppercase tracking-wider mb-2">Stap 1: portal genereren</div>
+          <div class="bg-black/30 rounded-lg p-3 font-mono text-sm overflow-x-auto">
+            <span class="text-mint-300">cd</span> ~/selectly-agents <span class="text-mint-300">&amp;&amp;</span> <span class="text-mint-300">python3</span> generate_client_portal.py <span class="text-sun-300">--config</span> clients/<span data-bind="slug">{slug}</span>.json
+          </div>
+          <button onclick="copyCmd()" class="text-xs text-mint-300 hover:text-white transition mt-2 inline-flex items-center gap-1">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 3H4a2 2 0 0 0-2 2v12M8 7h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/></svg>
+            Kopieer commando
+          </button>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 mb-6">
+          <div class="font-semibold mb-3">Stap 2: setup-checklist</div>
+          <ul class="space-y-2 text-sm text-ink-700">
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> Portal commando uitgevoerd (boven)</li>
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> Commit + push selectly-v2 → live binnen 1 min</li>
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> Nodig klant uit via Netlify Identity (selectly.be/portal/login)</li>
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> GHL sub-account opzetten (kopieer NXTG template)</li>
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> Multi-tenant clone uitvoeren: <code class="text-xs bg-slate-100 px-1 rounded">python3 multi_tenant_clone.py --new-client "{company}" --sector ...</code></li>
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> Welkomst-mail naar klant (download boven)</li>
+            <li class="flex gap-2"><input type="checkbox" class="mt-0.5" /> Kickoff-call inplannen via Cal.com</li>
+          </ul>
+        </div>
+
+        <button type="button" onclick="resetWizard()" class="w-full px-4 py-3 text-sm border border-slate-200 text-ink-700 rounded-lg hover:bg-slate-50 transition">
+          ↺ Nieuwe klant onboarden
+        </button>
+      </div>
+
+      <!-- ─────── NAV BUTTONS ─────── -->
+      <div id="navButtons" class="mt-10 flex items-center justify-between gap-3">
+        <button type="button" id="prevBtn" class="px-5 py-3 text-sm font-semibold text-ink-700 hover:bg-slate-100 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed">
+          ← Terug
+        </button>
+        <button type="button" id="nextBtn" class="px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-lg transition flex items-center gap-2">
+          Volgende
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </div>
+
+    </form>
+  </main>
+
+  <script>
+    const totalSteps = 6;
+    let currentStep = 1;
+    let formData = {};
+
+    function slugify(s) {
+      return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 32);
+    }
+
+    function showStep(n) {
+      document.querySelectorAll('.step-pane').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.step-pane[data-step="${n}"]`)?.classList.add('active');
+      const labels = ['', 'Bedrijf', 'Contact', 'Volume', 'Pakket', 'Integraties', 'Genereren', 'Klaar'];
+      document.getElementById('stepLabel').textContent = n <= totalSteps ? `Stap ${n} van ${totalSteps} — ${labels[n]}` : 'Klaar';
+      const pct = Math.round((n / totalSteps) * 100);
+      document.getElementById('stepPercent').textContent = `${Math.min(100, pct)}%`;
+      document.getElementById('progressBar').style.width = `${Math.min(100, pct)}%`;
+      document.getElementById('prevBtn').disabled = n === 1 || n === 7;
+      document.getElementById('navButtons').style.display = n === 7 ? 'none' : 'flex';
+      if (n === 6) {
+        document.getElementById('nextBtn').style.display = 'none';
+        renderSummary();
+      } else {
+        document.getElementById('nextBtn').style.display = 'flex';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function collectFormData() {
+      const form = document.getElementById('wizard');
+      const fd = new FormData(form);
+      const data = {};
+      for (const [k, v] of fd.entries()) {
+        if (data[k]) {
+          if (!Array.isArray(data[k])) data[k] = [data[k]];
+          data[k].push(v);
+        } else {
+          data[k] = v;
+        }
+      }
+      return data;
+    }
+
+    function validateStep(n) {
+      const pane = document.querySelector(`.step-pane[data-step="${n}"]`);
+      const requireds = pane.querySelectorAll('[required]');
+      for (const el of requireds) {
+        if (!el.value.trim()) {
+          el.focus();
+          el.style.borderColor = '#f43f5e';
+          return false;
+        }
+        el.style.borderColor = '';
+      }
+      return true;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (!validateStep(currentStep)) return;
+      formData = { ...formData, ...collectFormData() };
+      currentStep++;
+      showStep(currentStep);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      currentStep--;
+      showStep(currentStep);
+    });
+
+    // Auto-slugify from company name
+    document.querySelector('[name="company"]').addEventListener('blur', e => {
+      const slugInput = document.querySelector('[name="slug"]');
+      if (!slugInput.value && e.target.value) slugInput.value = slugify(e.target.value);
+    });
+
+    function renderSummary() {
+      const d = formData;
+      const html = `
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider mb-1">Bedrijf</div>
+            <div class="font-semibold">${d.company || '–'}</div>
+            <div class="text-xs text-ink-500">${d.sector || '–'} · ${d.location || '–'}</div>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider mb-1">Contact</div>
+            <div class="font-semibold">${d.contact_first_name || ''} ${d.contact_last_name || ''}</div>
+            <div class="text-xs text-ink-500">${d.contact_email || '–'} · ${d.contact_role || '–'}</div>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider mb-1">Volume</div>
+            <div class="font-semibold">${d.kpi_leads || '–'} leads/mnd · ${d.kpi_conversion || '–'}% conversie</div>
+            <div class="text-xs text-ink-500">Avg deal: €${d.avg_deal || '–'} · ${d.admin_hours || '–'}u/wk admin</div>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider mb-1">Pakket</div>
+            <div class="font-semibold">Selectly ${d.package || 'Growth'}</div>
+            <div class="text-xs text-ink-500">${d.boekhouding || 'geen'} · ${d.crm || 'geen'} CRM</div>
+          </div>
+        </div>
+        <div class="pt-3 border-t border-slate-100">
+          <div class="text-xs font-semibold text-ink-400 uppercase tracking-wider mb-1">Portal-URL</div>
+          <div class="font-mono text-xs">selectly.be/portal/${d.slug || '...'}.html</div>
+        </div>
+      `;
+      document.getElementById('summary').innerHTML = html;
+      document.querySelectorAll('[data-bind="slug"]').forEach(el => el.textContent = d.slug || 'klant');
+    }
+
+    document.getElementById('generateBtn').addEventListener('click', () => {
+      formData = { ...formData, ...collectFormData() };
+      const d = formData;
+
+      // Build JSON config compatible with generate_client_portal.py
+      const config = {
+        slug: d.slug,
+        company: d.company,
+        location: d.location || 'België',
+        sector: d.sector,
+        since: d.since || '2024',
+        contact_first_name: d.contact_first_name,
+        contact_last_name: d.contact_last_name,
+        contact_email: d.contact_email,
+        contact_phone: d.contact_phone || '',
+        contact_role: d.contact_role || '',
+        avatar_initials: ((d.contact_first_name || '?')[0] + (d.contact_last_name || '?')[0]).toUpperCase(),
+        package: d.package || 'Growth',
+        is_real_client: true,
+        kpis: {
+          leads: d.kpi_leads || '60',
+          conversion: (d.kpi_conversion ? d.kpi_conversion + '%' : '35%'),
+          offers: Math.round((parseInt(d.kpi_leads || 60) * parseInt(d.kpi_conversion || 35) / 100)).toString(),
+          revenue: '€' + Math.round((parseInt(d.kpi_leads || 60) * parseInt(d.kpi_conversion || 35) / 100) * parseInt(d.avg_deal || 8000) / 1000).toString() + 'K',
+        },
+        roi: {
+          time_saved: `${parseInt(d.admin_hours || 18) * 4} u/mnd`,
+          time_value: '€' + (parseInt(d.admin_hours || 18) * 4 * 50).toLocaleString('nl-BE'),
+          selectly_cost: d.package === 'Starter' ? '€950' : d.package === 'Enterprise' ? '€3.500' : '€1.950',
+        },
+        integrations: {
+          boekhouding: d.boekhouding || null,
+          crm: d.crm || 'Geen',
+          comms: Array.isArray(d.comms) ? d.comms : (d.comms ? [d.comms] : []),
+        },
+        sources: Array.isArray(d.source) ? d.source : (d.source ? [d.source] : []),
+        feed: [
+          { type: 'lead', title: 'Klant onboarding gestart', subtitle: 'Selectly', meta: 'vandaag · agents in setup' }
+        ],
+        _generated: new Date().toISOString(),
+      };
+
+      // Build welcome markdown
+      const welcome = `# Welkom bij Selectly, ${d.contact_first_name}!
+
+Goed dat we starten. Hier wat je de komende 4 weken kunt verwachten.
+
+## Jouw klantportaal
+
+🔗 **selectly.be/portal/${d.slug}.html**
+👤 Login: \`${d.contact_email}\`
+
+Een uitnodigingsmail komt binnen 24u — daarmee zet je je wachtwoord.
+
+## Wat we voor ${d.company} bouwen
+
+Op basis van jullie input:
+- **${d.kpi_leads || '~60'} leads/maand** vandaag → automatisch ingenomen en gekwalificeerd door AI
+- Conversie **${d.kpi_conversion || '35'}%** → richten op **>60%** binnen 90 dagen
+- **${d.admin_hours || '~18'} uur/week admin** → automatisch afgehandeld door agents
+- Pakket: **Selectly ${d.package || 'Growth'}** — alles in beeld op je portal
+
+## De 4-weken tijdlijn
+
+**Week 1:** kennismaking, GHL CRM setup, integratie-audit (${d.boekhouding || 'boekhouding'}, ${d.crm || 'CRM'})
+**Week 2:** AI chatbot live + WhatsApp/SMS templates
+**Week 3:** auto-offertes met jullie branding + digitale handtekening
+**Week 4:** drip-flows, no-show preventie, livegang dashboard
+
+## Volgende stap
+
+Kickoff-call: ik plan deze week. Je krijgt 2 voorstellen.
+
+Bij vragen tussendoor:
+📧 info@selectly.be
+💬 WhatsApp +32 492 61 70 85
+
+Tot snel,
+Bart van Selectly
+`;
+
+      // Trigger downloads
+      const jsonBlob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+      const mdBlob = new Blob([welcome], { type: 'text/markdown' });
+      document.getElementById('downloadJson').href = URL.createObjectURL(jsonBlob);
+      document.getElementById('downloadJson').download = `${d.slug}.json`;
+      document.getElementById('downloadWelcome').href = URL.createObjectURL(mdBlob);
+      document.getElementById('downloadWelcome').download = `welkom-${d.slug}.md`;
+
+      // Update slug bindings
+      document.querySelectorAll('[data-bind="slug"]').forEach(el => el.textContent = d.slug);
+
+      currentStep = 7;
+      showStep(7);
+    });
+
+    function copyCmd() {
+      const d = formData;
+      const cmd = `cd ~/selectly-agents && python3 generate_client_portal.py --config clients/${d.slug}.json`;
+      navigator.clipboard.writeText(cmd);
+      alert('Commando gekopieerd!');
+    }
+
+    function resetWizard() {
+      document.getElementById('wizard').reset();
+      formData = {};
+      currentStep = 1;
+      showStep(1);
+    }
+
+    showStep(1);
+  </script>
+
+</body>
+</html>

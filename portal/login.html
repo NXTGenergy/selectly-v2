@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Inloggen — Selectly Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+        brand: { 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+        mint: { 100: '#d8f8e8', 500: '#34D399', 700: '#0a8a5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #5b8cff 0%, #34D399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; pointer-events: none; }
+  </style>
+</head>
+<body class="bg-ink-900 text-white min-h-screen flex flex-col antialiased">
+
+  <div class="glow" style="top:-200px; right:-200px; background: radial-gradient(circle, rgba(58, 108, 242, 0.35) 0%, transparent 65%);"></div>
+  <div class="glow" style="bottom:-200px; left:-200px; background: radial-gradient(circle, rgba(52, 211, 153, 0.2) 0%, transparent 65%);"></div>
+
+  <!-- Header -->
+  <header class="relative z-10 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);">
+          <svg width="20" height="20" viewBox="0 0 80 80" fill="none"><path d="M18 52 L36 32 L54 52 M28 42 L44 42" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="font-bold text-lg leading-none">Selectly</div>
+          <div class="text-xs text-white/50 mt-0.5">Portal login</div>
+        </div>
+      </a>
+      <a href="/" class="text-sm text-white/60 hover:text-white transition">← selectly.be</a>
+    </div>
+  </header>
+
+  <main class="relative z-10 flex-1 flex items-center justify-center px-6 py-12">
+    <div class="max-w-md w-full">
+
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold tracking-tight mb-3">
+          Welkom in jouw <span class="gradient-text">Selectly Portal</span>
+        </h1>
+        <p class="text-white/65 leading-relaxed">
+          Log in om je dashboard, leads, offertes en agent-status te bekijken.
+        </p>
+      </div>
+
+      <!-- Login card -->
+      <div class="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-8 shadow-2xl">
+
+        <!-- Login button (opens Netlify Identity modal) -->
+        <button id="loginBtn" type="button" class="w-full py-3.5 bg-white text-ink-900 font-semibold rounded-lg hover:bg-mint-100 transition flex items-center justify-center gap-2 mb-3">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5m0 0-5-5m5 5H3"/></svg>
+          Inloggen met e-mail
+        </button>
+
+        <p class="text-xs text-center text-white/40">
+          Login is op invitatie. Heb je geen account? Vraag Bart een uitnodiging via
+          <a href="mailto:info@selectly.be" class="underline hover:text-white/70">info@selectly.be</a>
+        </p>
+
+      </div>
+
+      <!-- Demo access info -->
+      <div class="mt-6 p-4 bg-brand-400/10 border border-brand-400/20 rounded-xl text-sm">
+        <div class="flex gap-3">
+          <svg width="20" height="20" fill="none" stroke="#5b8cff" stroke-width="2" viewBox="0 0 24 24" class="flex-shrink-0 mt-0.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <div>
+            <strong class="text-white">Prospect-demo zonder login</strong>
+            <p class="text-white/60 mt-1 text-xs leading-relaxed">
+              Tijdens sales-calls kan Steffie het portal direct tonen — geen account nodig.
+              Voeg <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">?demo=1</code> toe aan de URL,
+              bv: <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">/portal/nxtg.html?demo=1</code>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status indicator -->
+      <div id="loggedInState" class="hidden mt-6 p-4 bg-mint-500/10 border border-mint-500/30 rounded-xl text-sm text-center">
+        Ingelogd als <strong id="userEmail"></strong> ·
+        <a href="nxtg.html" class="underline text-mint-300 hover:text-white">naar portal →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="relative z-10 border-t border-white/10 py-6">
+    <div class="max-w-6xl mx-auto px-6 text-xs text-white/40 text-center">
+      © 2026 NXTG Solutions BV · Selectly · <a href="/privacy.html" class="hover:text-white/70 underline">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+    // Wait for Netlify Identity widget to load
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (user) showLoggedIn(user);
+      });
+      window.netlifyIdentity.on("login", user => {
+        showLoggedIn(user);
+        setTimeout(() => { window.location.href = "nxtg.html"; }, 800);
+      });
+      window.netlifyIdentity.on("logout", () => {
+        document.getElementById("loggedInState").classList.add("hidden");
+      });
+    }
+
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.open("login");
+      } else {
+        alert("Login systeem nog niet actief. Vraag Bart om Netlify Identity te activeren.");
+      }
+    });
+
+    function showLoggedIn(user) {
+      document.getElementById("userEmail").textContent = user.email;
+      document.getElementById("loggedInState").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>

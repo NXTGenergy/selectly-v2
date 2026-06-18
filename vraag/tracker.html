@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>OfferteScout ROI Tracker (intern)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#0f172a', 700: '#334155', 500: '#64748b' },
+        green: { 100: '#dcfce7', 500: '#22c55e', 700: '#15803d' },
+        rose: { 500: '#f43f5e', 700: '#be123c' },
+        sun: { 500: '#f59e0b' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    input[type="number"] { -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-white text-ink-900 antialiased min-h-screen">
+
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-ink-900 text-white flex items-center justify-center text-sm font-bold">$</div>
+        <div>
+          <div class="font-bold text-base leading-none">OfferteScout — ROI Tracker</div>
+          <div class="text-xs text-ink-500 mt-0.5">Intern · bewaart in browser (localStorage)</div>
+        </div>
+      </div>
+      <button onclick="resetData()" class="text-xs text-rose-500 hover:text-rose-700">Reset alles</button>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+    <!-- INPUTS -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-6">
+      <h2 class="font-bold text-ink-900 mb-4 flex items-center gap-2">
+        📊 Vul deze week in
+      </h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Ad spend per sector -->
+        <div class="bg-slate-50 rounded-lg p-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-ink-500 mb-3">Ad-spend deze week (€)</h3>
+          <div class="space-y-2">
+            <label class="flex items-center justify-between text-sm">
+              <span>☀️ Zonnepanelen</span>
+              <input type="number" id="spend_zonnepanelen" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🔋 Thuisbatterij</span>
+              <input type="number" id="spend_thuisbatterij" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🔥 Warmtepomp</span>
+              <input type="number" id="spend_warmtepomp" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>❄️ Airco</span>
+              <input type="number" id="spend_airco" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🏠 Dakwerken</span>
+              <input type="number" id="spend_dakwerken" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Leads ontvangen -->
+        <div class="bg-slate-50 rounded-lg p-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-ink-500 mb-3">Leads ontvangen</h3>
+          <div class="space-y-2">
+            <label class="flex items-center justify-between text-sm">
+              <span>☀️ Zonnepanelen</span>
+              <input type="number" id="leads_zonnepanelen" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🔋 Thuisbatterij</span>
+              <input type="number" id="leads_thuisbatterij" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🔥 Warmtepomp</span>
+              <input type="number" id="leads_warmtepomp" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>❄️ Airco</span>
+              <input type="number" id="leads_airco" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🏠 Dakwerken</span>
+              <input type="number" id="leads_dakwerken" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Matches gefactureerd -->
+        <div class="bg-slate-50 rounded-lg p-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-ink-500 mb-3">Matches gefactureerd</h3>
+          <div class="space-y-2">
+            <label class="flex items-center justify-between text-sm">
+              <span>☀️ × €35</span>
+              <input type="number" id="match_zonnepanelen" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🔋 × €40</span>
+              <input type="number" id="match_thuisbatterij" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🔥 × €60</span>
+              <input type="number" id="match_warmtepomp" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>❄️ × €30</span>
+              <input type="number" id="match_airco" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+            <label class="flex items-center justify-between text-sm">
+              <span>🏠 × €45</span>
+              <input type="number" id="match_dakwerken" min="0" value="0" class="w-20 px-2 py-1 border border-slate-200 rounded text-right" />
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="text-xs text-ink-500 uppercase tracking-wider">Totaal ad-spend</div>
+        <div id="totalSpend" class="text-2xl font-bold text-rose-500 mt-1 tabular-nums">€0</div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="text-xs text-ink-500 uppercase tracking-wider">Leads</div>
+        <div id="totalLeads" class="text-2xl font-bold text-ink-900 mt-1 tabular-nums">0</div>
+        <div id="cplGlobal" class="text-xs text-ink-500 mt-0.5">CPL gem: —</div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="text-xs text-ink-500 uppercase tracking-wider">Match-omzet</div>
+        <div id="totalRevenue" class="text-2xl font-bold text-green-700 mt-1 tabular-nums">€0</div>
+        <div id="matchRate" class="text-xs text-ink-500 mt-0.5">Match: —</div>
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <div class="text-xs text-ink-500 uppercase tracking-wider">Marge</div>
+        <div id="totalMargin" class="text-2xl font-bold mt-1 tabular-nums">€0</div>
+        <div id="marginPct" class="text-xs text-ink-500 mt-0.5">ROAS: —</div>
+      </div>
+    </section>
+
+    <!-- PER SECTOR BREAKDOWN -->
+    <section class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200 bg-slate-50">
+        <h2 class="font-bold text-ink-900">Per sector — wat werkt?</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-50 text-ink-500 text-xs uppercase tracking-wider">
+            <tr>
+              <th class="text-left px-4 py-3 font-semibold">Sector</th>
+              <th class="text-right px-4 py-3 font-semibold">Spend</th>
+              <th class="text-right px-4 py-3 font-semibold">Leads</th>
+              <th class="text-right px-4 py-3 font-semibold">CPL</th>
+              <th class="text-right px-4 py-3 font-semibold">Matches</th>
+              <th class="text-right px-4 py-3 font-semibold">Omzet</th>
+              <th class="text-right px-4 py-3 font-semibold">Marge</th>
+              <th class="text-right px-4 py-3 font-semibold">ROAS</th>
+            </tr>
+          </thead>
+          <tbody id="sectorBreakdown" class="divide-y divide-slate-100"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-ink-500 mt-8">
+    Data wordt enkel lokaal opgeslagen in deze browser (localStorage). Niet gedeeld of geüpload.
+  </footer>
+
+  <script>
+    const SECTORS = ['zonnepanelen', 'thuisbatterij', 'warmtepomp', 'airco', 'dakwerken'];
+    const LABELS = { zonnepanelen: '☀️ Zonnepanelen', thuisbatterij: '🔋 Thuisbatterij', warmtepomp: '🔥 Warmtepomp', airco: '❄️ Airco', dakwerken: '🏠 Dakwerken' };
+    const FEES = { zonnepanelen: 35, thuisbatterij: 40, warmtepomp: 60, airco: 30, dakwerken: 45 };
+    const STORAGE_KEY = 'offertescout_roi_tracker';
+
+    function saveData() {
+      const data = {};
+      document.querySelectorAll('input[type="number"]').forEach(el => {
+        data[el.id] = el.value;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function loadData() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+        Object.entries(data).forEach(([k, v]) => {
+          const el = document.getElementById(k);
+          if (el) el.value = v;
+        });
+      } catch (e) {}
+    }
+
+    function n(id) { return parseFloat(document.getElementById(id)?.value || 0); }
+    function fmt(v) { return '€' + Math.round(v).toLocaleString('nl-BE'); }
+
+    function recalc() {
+      let totalSpend = 0, totalLeads = 0, totalRevenue = 0, totalMatches = 0;
+      const breakdown = SECTORS.map(s => {
+        const spend = n('spend_' + s);
+        const leads = n('leads_' + s);
+        const matches = n('match_' + s);
+        const revenue = matches * FEES[s];
+        const margin = revenue - spend;
+        const cpl = leads > 0 ? spend / leads : 0;
+        const roas = spend > 0 ? revenue / spend : 0;
+        totalSpend += spend; totalLeads += leads; totalRevenue += revenue; totalMatches += matches;
+        return { sector: s, spend, leads, matches, revenue, margin, cpl, roas };
+      });
+
+      document.getElementById('totalSpend').textContent = fmt(totalSpend);
+      document.getElementById('totalLeads').textContent = totalLeads;
+      document.getElementById('totalRevenue').textContent = fmt(totalRevenue);
+      const totalMargin = totalRevenue - totalSpend;
+      const marginEl = document.getElementById('totalMargin');
+      marginEl.textContent = fmt(totalMargin);
+      marginEl.className = 'text-2xl font-bold mt-1 tabular-nums ' + (totalMargin >= 0 ? 'text-green-700' : 'text-rose-500');
+
+      document.getElementById('cplGlobal').textContent = 'CPL gem: ' + (totalLeads > 0 ? fmt(totalSpend / totalLeads) : '—');
+      document.getElementById('matchRate').textContent = 'Match: ' + (totalLeads > 0 ? Math.round(totalMatches / totalLeads * 100) + '%' : '—');
+      document.getElementById('marginPct').textContent = 'ROAS: ' + (totalSpend > 0 ? (totalRevenue / totalSpend).toFixed(2) + '×' : '—');
+
+      const tbody = document.getElementById('sectorBreakdown');
+      tbody.innerHTML = breakdown.map(b => `
+        <tr class="hover:bg-slate-50">
+          <td class="px-4 py-3 font-semibold">${LABELS[b.sector]}</td>
+          <td class="px-4 py-3 text-right text-rose-500 tabular-nums">${fmt(b.spend)}</td>
+          <td class="px-4 py-3 text-right tabular-nums">${b.leads}</td>
+          <td class="px-4 py-3 text-right tabular-nums ${b.cpl > 30 ? 'text-rose-500' : 'text-ink-700'}">${b.cpl > 0 ? fmt(b.cpl) : '—'}</td>
+          <td class="px-4 py-3 text-right tabular-nums">${b.matches}</td>
+          <td class="px-4 py-3 text-right text-green-700 tabular-nums">${fmt(b.revenue)}</td>
+          <td class="px-4 py-3 text-right tabular-nums font-semibold ${b.margin >= 0 ? 'text-green-700' : 'text-rose-500'}">${fmt(b.margin)}</td>
+          <td class="px-4 py-3 text-right tabular-nums">${b.roas > 0 ? b.roas.toFixed(2) + '×' : '—'}</td>
+        </tr>
+      `).join('');
+    }
+
+    function resetData() {
+      if (confirm('Reset alle data?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        document.querySelectorAll('input[type="number"]').forEach(el => el.value = '0');
+        recalc();
+      }
+    }
+
+    document.querySelectorAll('input[type="number"]').forEach(el => {
+      el.addEventListener('input', () => { saveData(); recalc(); });
+    });
+
+    loadData();
+    recalc();
+  </script>
+
+</body>
+</html>

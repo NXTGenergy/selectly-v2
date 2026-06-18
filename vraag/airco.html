@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Airco offerte op maat | Multi-split + plaatsing | OfferteScout</title>
+  <meta name="description" content="Vraag in 2 minuten een airco-offerte op maat. Mono-split, multi-split of mobiel. F-gassen registratie inbegrepen. Eén match, geen 5 firma's." />
+  <meta property="og:title" content="Airco offerte — mono of multi-split" />
+  <meta property="og:description" content="Eén Belgische installateur belt jou. F-gassen registratie inbegrepen." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#0f172a', 700: '#334155', 500: '#64748b' },
+        sky: { 50: '#f0f9ff', 100: '#e0f2fe', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' },
+        green: { 100: '#dcfce7', 500: '#22c55e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .step-pane { display: none; }
+    .step-pane.active { display: block; animation: slideIn 0.25s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .check-card { transition: all 0.15s ease; }
+    .check-card:has(input:checked) { border-color: #0ea5e9; background: #f0f9ff; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15); }
+    input[type="radio"], input[type="checkbox"] { accent-color: #0ea5e9; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-sky-50 via-white to-white text-ink-900 antialiased min-h-screen">
+
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/vraag/" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white text-lg">❄</div>
+        <div>
+          <div class="font-bold text-base leading-none">OfferteScout</div>
+          <div class="text-xs text-ink-500 mt-0.5">Belgische installateurs</div>
+        </div>
+      </a>
+      <div class="hidden sm:flex items-center gap-2 text-xs text-ink-500">
+        <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Gratis</span>
+        <span>·</span><span>2 minuten</span><span>·</span><span>F-gassen inbegrepen</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-semibold mb-4">
+        ❄ Mono-split tot multi-split — alle merken
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3 max-w-xl mx-auto">
+        Krijg <span class="text-sky-600">één airco-installateur</span><br class="hidden sm:inline">
+        die het juiste systeem voorstelt.
+      </h1>
+      <p class="text-ink-500 text-base sm:text-lg max-w-lg mx-auto">
+        Geen 5 firma's die elk een ander merk pushen. <strong class="text-ink-900">Eén match</strong>,
+        eerlijk advies, F-gassen registratie inbegrepen.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 text-xs text-ink-500">
+      <span>✓ 100% gratis</span>
+      <span>✓ Daikin / Mitsubishi / Panasonic / LG</span>
+      <span>✓ F-gassen registratie</span>
+      <span>✓ Onderhoudscontract optioneel</span>
+    </div>
+
+    <form id="quoteForm" class="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+
+      <div class="bg-slate-50 px-6 py-3 border-b border-slate-200">
+        <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
+          <span id="stepLabel" class="text-ink-700">Stap 1 van 5 — Waar koel je?</span>
+          <span id="stepPercent" class="text-sky-600 tabular-nums">20%</span>
+        </div>
+        <div class="h-1 bg-slate-200 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-sky-400 to-sky-600 transition-all" style="width: 20%"></div>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8">
+
+        <!-- STAP 1: Aantal kamers -->
+        <div class="step-pane active" data-step="1">
+          <h2 class="text-xl font-bold mb-2">Hoeveel ruimtes wil je koelen?</h2>
+          <p class="text-ink-500 text-sm mb-6">Bepaalt mono-split (1 ruimte) vs multi-split (meerdere).</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="aantal_ruimtes" value="1" required class="sr-only" />
+                <span class="text-2xl">🏠</span>
+                <div><div class="font-semibold text-sm">Eén ruimte (mono-split)</div>
+                <div class="text-xs text-ink-500">Bv. slaapkamer, woonkamer, kantoor</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="aantal_ruimtes" value="2-3" required class="sr-only" />
+                <span class="text-2xl">🏘️</span>
+                <div><div class="font-semibold text-sm">2-3 ruimtes (multi-split)</div>
+                <div class="text-xs text-ink-500">Eén buitenunit, meerdere binnenunits</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="aantal_ruimtes" value="4+" required class="sr-only" />
+                <span class="text-2xl">🏢</span>
+                <div><div class="font-semibold text-sm">4+ ruimtes</div>
+                <div class="text-xs text-ink-500">Hele woning of kantoorpand</div></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 2: Functie -->
+        <div class="step-pane" data-step="2">
+          <h2 class="text-xl font-bold mb-2">Alleen koelen of ook verwarmen?</h2>
+          <p class="text-ink-500 text-sm mb-6">Moderne airco's zijn warmtepompen — kan goedkoper verwarmen dan gas.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="functie" value="Alleen koelen" required class="sr-only mt-1" />
+              <span class="text-2xl">❄️</span>
+              <div>
+                <div class="font-semibold text-sm">Alleen koelen ('s zomers)</div>
+                <div class="text-xs text-ink-500 mt-0.5">Goedkoper investering. Verwarming blijft bij huidig systeem.</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="functie" value="Koelen + verwarmen" required class="sr-only mt-1" />
+              <span class="text-2xl">🔥❄️</span>
+              <div>
+                <div class="font-semibold text-sm">Koelen + verwarmen (omkeerbaar)</div>
+                <div class="text-xs text-ink-500 mt-0.5">Combi-functie. Kan tussenseizoen verwarmen voor minder gasverbruik.</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="functie" value="Weet niet" required class="sr-only mt-1" />
+              <span class="text-2xl">🤔</span>
+              <div>
+                <div class="font-semibold text-sm">Weet niet — laat installateur adviseren</div>
+                <div class="text-xs text-ink-500 mt-0.5">Op basis van jouw situatie + budget.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 3: Voorkeurmerk -->
+        <div class="step-pane" data-step="3">
+          <h2 class="text-xl font-bold mb-2">Voorkeur in merk?</h2>
+          <p class="text-ink-500 text-sm mb-6">Geen voorkeur = installateur kiest beste prijs/kwaliteit voor jouw situatie.</p>
+          <div class="grid sm:grid-cols-3 gap-2">
+            <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+              <input type="radio" name="merk" value="Daikin" class="sr-only" required />Daikin
+            </label>
+            <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+              <input type="radio" name="merk" value="Mitsubishi" class="sr-only" required />Mitsubishi
+            </label>
+            <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+              <input type="radio" name="merk" value="Panasonic" class="sr-only" required />Panasonic
+            </label>
+            <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+              <input type="radio" name="merk" value="LG" class="sr-only" required />LG / Samsung
+            </label>
+            <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+              <input type="radio" name="merk" value="Toshiba" class="sr-only" required />Toshiba
+            </label>
+            <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+              <input type="radio" name="merk" value="Geen voorkeur" class="sr-only" required />Geen voorkeur
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 4: Timing -->
+        <div class="step-pane" data-step="4">
+          <h2 class="text-xl font-bold mb-2">Wanneer wil je dit doen?</h2>
+          <p class="text-ink-500 text-sm mb-6">💡 Tip: airco-plaatsing in voorjaar = sneller geplaatst dan in juni-juli piek.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="timing" value="ASAP" required class="sr-only" />
+                <span class="text-xl">🔥</span>
+                <div><div class="font-semibold text-sm">Zo snel mogelijk</div>
+                <div class="text-xs text-ink-500">Binnen 4-6 weken</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="timing" value="1-3mnd" required class="sr-only" />
+                <span class="text-xl">📅</span>
+                <div><div class="font-semibold text-sm">Binnen 1-3 maanden</div>
+                <div class="text-xs text-ink-500">Voor de zomerpiek</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="timing" value="3-6mnd" required class="sr-only" />
+                <span class="text-xl">🤔</span>
+                <div><div class="font-semibold text-sm">Oriënterend — eerst prijsindicatie</div>
+                <div class="text-xs text-ink-500">Vergelijken</div></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 5: Contact -->
+        <div class="step-pane" data-step="5">
+          <h2 class="text-xl font-bold mb-2">Bijna klaar — contact</h2>
+          <p class="text-ink-500 text-sm mb-6"><strong class="text-ink-900">Eén installateur belt jou.</strong> Geen vijf firma's.</p>
+
+          <form name="offertescout-airco" method="POST" action="/vraag/bedankt.html" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
+            <input type="hidden" name="form-name" value="offertescout-airco" />
+            <input type="hidden" name="sector" value="airco" />
+            <p class="hidden"><label>Don't fill: <input name="bot-field" /></label></p>
+            <input type="hidden" id="all-data" name="all-data" />
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Naam *</label>
+                <input type="text" name="naam" required placeholder="Jan Janssens" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Telefoon *</label>
+                <input type="tel" name="telefoon" required placeholder="+32 472 ..." class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">E-mail *</label>
+              <input type="email" name="email" required placeholder="jan@example.be" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">Postcode *</label>
+              <input type="text" name="postcode" required pattern="[0-9]{4}" maxlength="4" placeholder="8000" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+            </div>
+            <div class="bg-sky-50 border border-sky-200 rounded-lg p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" required class="mt-1" />
+                <span class="text-xs text-ink-700 leading-relaxed">
+                  Ja, jullie mogen mijn gegevens delen met <strong>één gematchte installateur</strong>
+                  die binnen 24u contact mag opnemen.
+                </span>
+              </label>
+            </div>
+            <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <span>Krijg mijn airco-offerte</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </button>
+            <p class="text-xs text-ink-500 text-center">Geen creditcard · Gratis · Geen verplichting</p>
+          </form>
+        </div>
+
+        <div id="navButtons" class="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-slate-100">
+          <button type="button" id="prevBtn" class="px-5 py-2.5 text-sm font-semibold text-ink-700 hover:bg-slate-100 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed">← Terug</button>
+          <button type="button" id="nextBtn" class="px-6 py-2.5 bg-ink-900 hover:bg-ink-700 text-white text-sm font-semibold rounded-lg transition flex items-center gap-2">
+            Volgende
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-ink-500 mt-8">
+    OfferteScout · onderdeel van NXTG Solutions BV ·
+    <a href="/privacy.html" class="hover:text-ink-900 underline">Privacy</a> ·
+    <a href="/voorwaarden.html" class="hover:text-ink-900 underline">Voorwaarden</a>
+  </footer>
+
+  <script>
+    const totalSteps = 5;
+    let currentStep = 1;
+    let formData = {};
+    function showStep(n) {
+      document.querySelectorAll('.step-pane').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.step-pane[data-step="${n}"]`)?.classList.add('active');
+      const labels = ['', 'Waar koel je?', 'Functie', 'Merk', 'Timing', 'Contact'];
+      document.getElementById('stepLabel').textContent = `Stap ${n} van ${totalSteps} — ${labels[n]}`;
+      const pct = Math.round((n / totalSteps) * 100);
+      document.getElementById('stepPercent').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('prevBtn').disabled = n === 1;
+      document.getElementById('nextBtn').style.display = n === totalSteps ? 'none' : 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function validateStep(n) {
+      const pane = document.querySelector(`.step-pane[data-step="${n}"]`);
+      const groups = new Set();
+      pane.querySelectorAll('[required]').forEach(el => {
+        if (el.type === 'radio') groups.add(el.name);
+        else if (!el.value.trim()) { el.focus(); el.style.borderColor = '#f43f5e'; throw 'invalid'; }
+      });
+      for (const name of groups) {
+        if (!pane.querySelector(`[name="${name}"]:checked`)) { alert('Maak een keuze'); return false; }
+      }
+      return true;
+    }
+    function collect() {
+      const data = {};
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.type === 'checkbox' && el.checked) data[el.name] = data[el.name] ? data[el.name] + ', ' + el.value : el.value;
+        else if (el.type === 'radio' && el.checked) data[el.name] = el.value;
+        else if (el.value && el.type !== 'radio' && el.type !== 'checkbox') data[el.name] = el.value;
+      });
+      return data;
+    }
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      try { if (!validateStep(currentStep)) return; } catch(e) { return; }
+      formData = { ...formData, ...collect() };
+      currentStep++; showStep(currentStep);
+      if (currentStep === totalSteps) document.getElementById('all-data').value = JSON.stringify(formData);
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => { currentStep--; showStep(currentStep); });
+    showStep(1);
+  </script>
+</body>
+</html>

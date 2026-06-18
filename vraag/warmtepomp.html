@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Warmtepomp offerte | Premie tot €4.000 | OfferteScout</title>
+  <meta name="description" content="Vraag in 2 minuten een warmtepomp-offerte op maat. Mijn VerbouwPremie automatisch verrekend (tot €4.000). Lucht-water of lucht-lucht. Eén match." />
+  <meta property="og:title" content="Warmtepomp offerte — premie tot €4.000" />
+  <meta property="og:description" content="Eén Belgische installateur. Mijn VerbouwPremie automatisch berekend." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#0f172a', 700: '#334155', 500: '#64748b' },
+        red: { 50: '#fef2f2', 100: '#fee2e2', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c' },
+        green: { 100: '#dcfce7', 500: '#22c55e', 700: '#15803d' },
+        rose: { 500: '#f43f5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .step-pane { display: none; }
+    .step-pane.active { display: block; animation: slideIn 0.25s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .check-card { transition: all 0.15s ease; }
+    .check-card:has(input:checked) { border-color: #dc2626; background: #fef2f2; box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12); }
+    input[type="radio"] { accent-color: #dc2626; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-red-50 via-white to-white text-ink-900 antialiased min-h-screen">
+
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/vraag/" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-red-400 to-red-700 flex items-center justify-center text-white text-lg">🔥</div>
+        <div>
+          <div class="font-bold text-base leading-none">OfferteScout</div>
+          <div class="text-xs text-ink-500 mt-0.5">Belgische installateurs</div>
+        </div>
+      </a>
+      <div class="hidden sm:flex items-center gap-2 text-xs text-ink-500">
+        <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Gratis</span>
+        <span>·</span><span>Premie tot €4.000</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+    <div class="bg-gradient-to-r from-red-100 to-green-100 border border-red-500/20 rounded-xl px-4 py-3 mb-6 flex items-center gap-3 text-sm">
+      <span class="text-lg">💰</span>
+      <div>
+        <strong class="text-ink-900">Mijn VerbouwPremie verhoogd in 2026:</strong>
+        <span class="text-ink-700">tot €4.000 voor warmtepomp lucht-water bij inkomens &lt; €52.000. Automatisch verrekend in offerte.</span>
+      </div>
+    </div>
+
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-semibold mb-4">
+        🔥 Lucht-water of lucht-lucht — premie automatisch berekend
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3 max-w-xl mx-auto">
+        Krijg <span class="text-red-600">één warmtepomp-installateur</span><br class="hidden sm:inline">
+        die jouw situatie kent.
+      </h1>
+      <p class="text-ink-500 text-base sm:text-lg max-w-lg mx-auto">
+        Stookolie of gas vervangen? Of gewoon goedkoper verwarmen? <strong class="text-ink-900">Eén match</strong>,
+        premie verrekend, eerlijk advies.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 text-xs text-ink-500">
+      <span>✓ Premie tot €4.000</span>
+      <span>✓ EPC-bonus inbegrepen</span>
+      <span>✓ Erkende installateurs</span>
+      <span>✓ Eén match, niet 5</span>
+    </div>
+
+    <form id="quoteForm" class="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+
+      <div class="bg-slate-50 px-6 py-3 border-b border-slate-200">
+        <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
+          <span id="stepLabel" class="text-ink-700">Stap 1 van 5 — Wat verwarm je nu?</span>
+          <span id="stepPercent" class="text-red-600 tabular-nums">20%</span>
+        </div>
+        <div class="h-1 bg-slate-200 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-red-400 to-red-600 transition-all" style="width: 20%"></div>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8">
+
+        <!-- STAP 1: Huidige verwarming -->
+        <div class="step-pane active" data-step="1">
+          <h2 class="text-xl font-bold mb-2">Hoe verwarm je nu?</h2>
+          <p class="text-ink-500 text-sm mb-6">Bepaalt potentiële besparing + premie-toepassing.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="huidig" value="Stookolie" required class="sr-only" />
+                <span class="text-2xl">🛢️</span>
+                <div><div class="font-semibold text-sm">Stookolie (mazout)</div>
+                <div class="text-xs text-green-700 font-semibold">→ Hoogste besparing + premie-prioriteit</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="huidig" value="Gas (oud)" required class="sr-only" />
+                <span class="text-2xl">🔥</span>
+                <div><div class="font-semibold text-sm">Gas (ketel &gt; 10 jaar)</div>
+                <div class="text-xs text-green-700">→ Premie + zekere ROI</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="huidig" value="Gas (recent)" required class="sr-only" />
+                <span class="text-2xl">🔥</span>
+                <div><div class="font-semibold text-sm">Gas (ketel &lt; 10 jaar)</div>
+                <div class="text-xs text-ink-500">→ Hybride opstelling mogelijk</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="huidig" value="Elektriciteit" required class="sr-only" />
+                <span class="text-2xl">⚡</span>
+                <div><div class="font-semibold text-sm">Elektrische verwarming</div>
+                <div class="text-xs text-green-700">→ Tot 75% energiebesparing</div></div>
+              </div>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="huidig" value="Nieuwbouw" required class="sr-only" />
+                <span class="text-2xl">🏗️</span>
+                <div><div class="font-semibold text-sm">Nieuwbouw zonder ketel</div>
+                <div class="text-xs text-ink-500">→ Directe installatie als hoofdverwarming</div></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 2: Type warmtepomp -->
+        <div class="step-pane" data-step="2">
+          <h2 class="text-xl font-bold mb-2">Welke warmtepomp?</h2>
+          <p class="text-ink-500 text-sm mb-6">Niet zeker? Installateur adviseert op basis van woning + isolatie.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="type_wp" value="Lucht-water" required class="sr-only mt-1" />
+              <span class="text-2xl">💧</span>
+              <div>
+                <div class="font-semibold text-sm">Lucht-water (vol systeem)</div>
+                <div class="text-xs text-ink-500 mt-0.5">Vervangt ketel volledig. Verwarmt water voor radiatoren + vloerverwarming + douche.</div>
+                <div class="text-xs text-green-700 font-semibold mt-1">Hoogste premie tot €4.000</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="type_wp" value="Lucht-lucht" required class="sr-only mt-1" />
+              <span class="text-2xl">❄️</span>
+              <div>
+                <div class="font-semibold text-sm">Lucht-lucht (split-airco met verwarming)</div>
+                <div class="text-xs text-ink-500 mt-0.5">Goedkoper, ook koeling 's zomers. Werkt naast ketel voor sanitair water.</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="type_wp" value="Hybride" required class="sr-only mt-1" />
+              <span class="text-2xl">🔀</span>
+              <div>
+                <div class="font-semibold text-sm">Hybride (WP + ketel combinatie)</div>
+                <div class="text-xs text-ink-500 mt-0.5">WP voor mild weer, ketel bij vorst. Investering tussen beide in.</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="type_wp" value="Weet niet" required class="sr-only mt-1" />
+              <span class="text-2xl">🤔</span>
+              <div>
+                <div class="font-semibold text-sm">Weet niet — installateur adviseert</div>
+                <div class="text-xs text-ink-500 mt-0.5">Op basis van woning, isolatie en budget.</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 3: Isolatie + bouwjaar -->
+        <div class="step-pane" data-step="3">
+          <h2 class="text-xl font-bold mb-2">Hoe geïsoleerd is je woning?</h2>
+          <p class="text-ink-500 text-sm mb-6">Bepaalt benodigde WP-capaciteit. Slechte isolatie + WP = hoge stroomrekening.</p>
+          <div class="space-y-3 mb-5">
+            <label class="check-card flex items-start gap-3 p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+              <input type="radio" name="isolatie" value="Goed" required class="sr-only mt-1" />
+              <span>✅</span>
+              <div>
+                <div class="font-semibold text-sm">Goed geïsoleerd</div>
+                <div class="text-xs text-ink-500">Dak + muren + ramen — EPC A of B</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+              <input type="radio" name="isolatie" value="Gemiddeld" required class="sr-only mt-1" />
+              <span>🟡</span>
+              <div>
+                <div class="font-semibold text-sm">Gemiddeld</div>
+                <div class="text-xs text-ink-500">Dakisolatie OK, muren minder — EPC C-D</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+              <input type="radio" name="isolatie" value="Slecht" required class="sr-only mt-1" />
+              <span>⚠️</span>
+              <div>
+                <div class="font-semibold text-sm">Slecht geïsoleerd</div>
+                <div class="text-xs text-ink-500">EPC E-F — installateur raadt mogelijk eerst isolatie aan</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+              <input type="radio" name="isolatie" value="Weet niet" required class="sr-only mt-1" />
+              <span>🤷</span>
+              <div>
+                <div class="font-semibold text-sm">Weet niet — geen EPC bij de hand</div>
+                <div class="text-xs text-ink-500">Installateur beoordeelt</div>
+              </div>
+            </label>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Bouwjaar woning</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+                <input type="radio" name="bouwjaar" value="<10jr" class="sr-only" required />&lt; 10 jaar (21% BTW)
+              </label>
+              <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+                <input type="radio" name="bouwjaar" value=">10jr" class="sr-only" required />&gt; 10 jaar (6% BTW)
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAP 4: Timing + inkomen -->
+        <div class="step-pane" data-step="4">
+          <h2 class="text-xl font-bold mb-2">Bijna klaar — timing + premie-bracket</h2>
+          <p class="text-ink-500 text-sm mb-6">Inkomen bepaalt premie-bedrag. Geen probleem indien je liever niet zegt — installateur berekent.</p>
+
+          <div class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Wanneer wil je vervangen?</label>
+              <div class="space-y-2">
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="ASAP" required class="sr-only" />
+                    <span>🔥</span>
+                    <div class="font-semibold text-sm">Zo snel mogelijk</div>
+                  </div>
+                  <span class="text-xs text-ink-500">4-8 weken</span>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="3-6mnd" required class="sr-only" />
+                    <span>📅</span>
+                    <div class="font-semibold text-sm">Binnen 3-6 maanden</div>
+                  </div>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="6-12mnd" required class="sr-only" />
+                    <span>🤔</span>
+                    <div class="font-semibold text-sm">6-12 maanden, prijs-vergelijken</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold mb-2">Inkomensbracket (gezin)</label>
+              <div class="space-y-2">
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="inkomen" value="<52K" required class="sr-only" />
+                    <span class="text-sm font-semibold">Minder dan €52.000/jaar</span>
+                  </div>
+                  <span class="text-xs text-green-700 font-semibold">Premie tot €4.000</span>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="inkomen" value="52K-110K" required class="sr-only" />
+                    <span class="text-sm font-semibold">€52.000 - €110.000/jaar</span>
+                  </div>
+                  <span class="text-xs text-ink-500">Premie tot €2.000</span>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="inkomen" value=">110K" required class="sr-only" />
+                    <span class="text-sm font-semibold">Meer dan €110.000/jaar</span>
+                  </div>
+                  <span class="text-xs text-ink-500">Basisaftrek</span>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="inkomen" value="Liever niet" required class="sr-only" />
+                    <span class="text-sm font-semibold">Liever niet zeggen</span>
+                  </div>
+                  <span class="text-xs text-ink-500">Installateur berekent</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAP 5: Contact -->
+        <div class="step-pane" data-step="5">
+          <h2 class="text-xl font-bold mb-2">Bijna klaar — contact</h2>
+          <p class="text-ink-500 text-sm mb-6"><strong class="text-ink-900">Eén warmtepomp-specialist belt jou.</strong> Geen vijf.</p>
+
+          <form name="offertescout-warmtepomp" method="POST" action="/vraag/bedankt.html" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
+            <input type="hidden" name="form-name" value="offertescout-warmtepomp" />
+            <input type="hidden" name="sector" value="warmtepomp" />
+            <p class="hidden"><label>Don't fill: <input name="bot-field" /></label></p>
+            <input type="hidden" id="all-data" name="all-data" />
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Naam *</label>
+                <input type="text" name="naam" required placeholder="Jan Janssens" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Telefoon *</label>
+                <input type="tel" name="telefoon" required placeholder="+32 472 ..." class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">E-mail *</label>
+              <input type="email" name="email" required placeholder="jan@example.be" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">Postcode *</label>
+              <input type="text" name="postcode" required pattern="[0-9]{4}" maxlength="4" placeholder="8000" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition" />
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" required class="mt-1" />
+                <span class="text-xs text-ink-700 leading-relaxed">
+                  Ja, jullie mogen mijn gegevens delen met <strong>één gematchte warmtepomp-installateur</strong>
+                  die binnen 24u contact mag opnemen.
+                </span>
+              </label>
+            </div>
+            <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <span>Krijg mijn warmtepomp-offerte</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </button>
+            <p class="text-xs text-ink-500 text-center">Geen creditcard · Gratis · Geen verplichting</p>
+          </form>
+        </div>
+
+        <div id="navButtons" class="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-slate-100">
+          <button type="button" id="prevBtn" class="px-5 py-2.5 text-sm font-semibold text-ink-700 hover:bg-slate-100 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed">← Terug</button>
+          <button type="button" id="nextBtn" class="px-6 py-2.5 bg-ink-900 hover:bg-ink-700 text-white text-sm font-semibold rounded-lg transition flex items-center gap-2">
+            Volgende
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-ink-500 mt-8">
+    OfferteScout · onderdeel van NXTG Solutions BV ·
+    <a href="/privacy.html" class="hover:text-ink-900 underline">Privacy</a> ·
+    <a href="/voorwaarden.html" class="hover:text-ink-900 underline">Voorwaarden</a>
+  </footer>
+
+  <script>
+    const totalSteps = 5;
+    let currentStep = 1;
+    let formData = {};
+    function showStep(n) {
+      document.querySelectorAll('.step-pane').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.step-pane[data-step="${n}"]`)?.classList.add('active');
+      const labels = ['', 'Wat verwarm je nu?', 'Type warmtepomp', 'Isolatie', 'Timing + premie', 'Contact'];
+      document.getElementById('stepLabel').textContent = `Stap ${n} van ${totalSteps} — ${labels[n]}`;
+      const pct = Math.round((n / totalSteps) * 100);
+      document.getElementById('stepPercent').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('prevBtn').disabled = n === 1;
+      document.getElementById('nextBtn').style.display = n === totalSteps ? 'none' : 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function validateStep(n) {
+      const pane = document.querySelector(`.step-pane[data-step="${n}"]`);
+      const groups = new Set();
+      pane.querySelectorAll('[required]').forEach(el => {
+        if (el.type === 'radio') groups.add(el.name);
+        else if (!el.value.trim()) { el.focus(); el.style.borderColor = '#f43f5e'; throw 'invalid'; }
+      });
+      for (const name of groups) {
+        if (!pane.querySelector(`[name="${name}"]:checked`)) { alert('Maak een keuze'); return false; }
+      }
+      return true;
+    }
+    function collect() {
+      const data = {};
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.type === 'checkbox' && el.checked) data[el.name] = data[el.name] ? data[el.name] + ', ' + el.value : el.value;
+        else if (el.type === 'radio' && el.checked) data[el.name] = el.value;
+        else if (el.value && el.type !== 'radio' && el.type !== 'checkbox') data[el.name] = el.value;
+      });
+      return data;
+    }
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      try { if (!validateStep(currentStep)) return; } catch(e) { return; }
+      formData = { ...formData, ...collect() };
+      currentStep++; showStep(currentStep);
+      if (currentStep === totalSteps) document.getElementById('all-data').value = JSON.stringify(formData);
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => { currentStep--; showStep(currentStep); });
+    showStep(1);
+  </script>
+</body>
+</html>

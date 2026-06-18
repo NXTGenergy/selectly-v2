@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Gratis dakwerken offerte | Lekkage tot renovatie | OfferteScout</title>
+  <meta name="description" content="Lekkage, nieuwe dakbedekking of goten? Vraag in 2 minuten offerte op maat. BTW 6% bij woning > 10 jaar automatisch verrekend. Eén match, geen 5 firma's." />
+  <meta property="og:title" content="Dakwerken offerte op maat — geen 5 telefoons" />
+  <meta property="og:description" content="Lekkage tot renovatie. Eén match. BTW automatisch verrekend." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        ink: { 900: '#0f172a', 700: '#334155', 500: '#64748b' },
+        slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+        orange: { 50: '#fff7ed', 100: '#ffedd5', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
+        green: { 100: '#dcfce7', 500: '#22c55e', 700: '#15803d' },
+        rose: { 500: '#f43f5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .step-pane { display: none; }
+    .step-pane.active { display: block; animation: slideIn 0.25s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .progress-bar { transition: width 0.4s ease; }
+    .check-card { transition: all 0.15s ease; }
+    .check-card:has(input:checked) { border-color: #f97316; background: #fff7ed; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15); }
+    input[type="radio"], input[type="checkbox"] { accent-color: #f97316; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-orange-50 via-white to-white text-ink-900 antialiased min-h-screen">
+
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/vraag/" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-lg">🏠</div>
+        <div>
+          <div class="font-bold text-base leading-none">OfferteScout</div>
+          <div class="text-xs text-ink-500 mt-0.5">Belgische installateurs</div>
+        </div>
+      </a>
+      <div class="hidden sm:flex items-center gap-2 text-xs text-ink-500">
+        <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Gratis</span>
+        <span>·</span><span>2 minuten</span><span>·</span><span>Eén match</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-semibold mb-4">
+        🏠 BTW 6% bij woning ouder dan 10 jaar — automatisch toegepast
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3 max-w-xl mx-auto">
+        Krijg <span class="text-orange-600">één dakwerker</span> die nu tijd heeft.<br class="hidden sm:inline">
+        Niet vijf telefoons.
+      </h1>
+      <p class="text-ink-500 text-base sm:text-lg max-w-lg mx-auto">
+        Lekkage, dakbedekking, goten of renovatie — we matchen jou aan
+        <strong class="text-ink-900">één Belgische dakwerker</strong> uit jouw regio.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 text-xs text-ink-500">
+      <span>✓ 100% gratis</span>
+      <span>✓ BTW automatisch verrekend</span>
+      <span>✓ Belgische vakmensen</span>
+      <span>✓ Lekkage? Urgent gemeld</span>
+    </div>
+
+    <form id="quoteForm" class="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+
+      <div class="bg-slate-50 px-6 py-3 border-b border-slate-200">
+        <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
+          <span id="stepLabel" class="text-ink-700">Stap 1 van 5 — Type werk</span>
+          <span id="stepPercent" class="text-orange-600 tabular-nums">20%</span>
+        </div>
+        <div class="h-1 bg-slate-200 rounded-full overflow-hidden">
+          <div id="progressBar" class="progress-bar h-full bg-gradient-to-r from-orange-400 to-orange-600" style="width: 20%"></div>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8">
+
+        <!-- STAP 1: Type werk -->
+        <div class="step-pane active" data-step="1">
+          <h2 class="text-xl font-bold mb-2">Wat heb je nodig?</h2>
+          <p class="text-ink-500 text-sm mb-6">Meerdere mogelijk — kies wat past.</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="check-card flex items-center gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="checkbox" name="werk" value="Lekkage" class="sr-only" />
+              <span class="text-2xl">💧</span>
+              <div>
+                <div class="font-semibold text-sm">Lekkage / dringende herstel</div>
+                <div class="text-xs text-rose-500 font-semibold">🚨 Urgent</div>
+              </div>
+            </label>
+            <label class="check-card flex items-center gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="checkbox" name="werk" value="Nieuwe dakbedekking" class="sr-only" />
+              <span class="text-2xl">🏠</span>
+              <div>
+                <div class="font-semibold text-sm">Nieuwe dakbedekking</div>
+                <div class="text-xs text-ink-500">Volledige renovatie</div>
+              </div>
+            </label>
+            <label class="check-card flex items-center gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="checkbox" name="werk" value="Goten + afvoer" class="sr-only" />
+              <span class="text-2xl">🌧️</span>
+              <div>
+                <div class="font-semibold text-sm">Goten + afvoer</div>
+                <div class="text-xs text-ink-500">Nieuw of vernieuwing</div>
+              </div>
+            </label>
+            <label class="check-card flex items-center gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="checkbox" name="werk" value="Isolatie" class="sr-only" />
+              <span class="text-2xl">🧱</span>
+              <div>
+                <div class="font-semibold text-sm">Dakisolatie</div>
+                <div class="text-xs text-ink-500">Premie nog mogelijk</div>
+              </div>
+            </label>
+            <label class="check-card flex items-center gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="checkbox" name="werk" value="Velux / dakraam" class="sr-only" />
+              <span class="text-2xl">☀️</span>
+              <div>
+                <div class="font-semibold text-sm">Velux / dakraam</div>
+                <div class="text-xs text-ink-500">Plaatsing of vervanging</div>
+              </div>
+            </label>
+            <label class="check-card flex items-center gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="checkbox" name="werk" value="Onderhoud" class="sr-only" />
+              <span class="text-2xl">🔧</span>
+              <div>
+                <div class="font-semibold text-sm">Algemeen onderhoud</div>
+                <div class="text-xs text-ink-500">Reiniging, controle, kleine herstel</div>
+              </div>
+            </label>
+          </div>
+          <input type="hidden" id="werk-required-marker" data-step-required="werk" />
+        </div>
+
+        <!-- STAP 2: Type dak -->
+        <div class="step-pane" data-step="2">
+          <h2 class="text-xl font-bold mb-2">Type dak?</h2>
+          <p class="text-ink-500 text-sm mb-6">Bepaalt benodigde materialen + techniek.</p>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <label class="check-card flex flex-col items-center text-center p-5 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="dak_type" value="Hellend" required class="sr-only" />
+              <span class="text-3xl mb-2">🏠</span>
+              <div class="font-semibold text-sm">Hellend dak</div>
+              <div class="text-xs text-ink-500 mt-1">Met pannen of leien</div>
+            </label>
+            <label class="check-card flex flex-col items-center text-center p-5 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="dak_type" value="Plat" required class="sr-only" />
+              <span class="text-3xl mb-2">▭</span>
+              <div class="font-semibold text-sm">Plat dak</div>
+              <div class="text-xs text-ink-500 mt-1">Bitumen, EPDM, etc.</div>
+            </label>
+            <label class="check-card flex flex-col items-center text-center p-5 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="dak_type" value="Mansard" required class="sr-only" />
+              <span class="text-3xl mb-2">🏘️</span>
+              <div class="font-semibold text-sm">Mansard / combinatie</div>
+              <div class="text-xs text-ink-500 mt-1">Meerdere stijlen</div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 3: Oppervlakte -->
+        <div class="step-pane" data-step="3">
+          <h2 class="text-xl font-bold mb-2">Geschat dakoppervlak?</h2>
+          <p class="text-ink-500 text-sm mb-6">Schattingen zijn ok. Onbekend? Kies "weet niet" — installateur meet ter plaatse.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="oppervlak" value="<50m²" required class="sr-only" />
+              <div class="font-semibold text-sm">Klein (&lt; 50 m²)</div>
+              <span class="text-xs text-ink-500">Bv. garage, bijgebouw</span>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="oppervlak" value="50-100m²" required class="sr-only" />
+              <div class="font-semibold text-sm">Gemiddeld (50-100 m²)</div>
+              <span class="text-xs text-ink-500">Rij- of halfopen woning</span>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="oppervlak" value="100-200m²" required class="sr-only" />
+              <div class="font-semibold text-sm">Groot (100-200 m²)</div>
+              <span class="text-xs text-ink-500">Vrijstaande woning</span>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="oppervlak" value=">200m²" required class="sr-only" />
+              <div class="font-semibold text-sm">&gt; 200 m²</div>
+              <span class="text-xs text-ink-500">Villa, hangar, bedrijfspand</span>
+            </label>
+            <label class="check-card flex items-center justify-between p-4 border-2 border-slate-200 rounded-xl cursor-pointer">
+              <input type="radio" name="oppervlak" value="Weet niet" required class="sr-only" />
+              <div class="font-semibold text-sm">Weet niet</div>
+              <span class="text-xs text-ink-500">Installateur meet</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 4: Timing + bouwjaar -->
+        <div class="step-pane" data-step="4">
+          <h2 class="text-xl font-bold mb-2">Timing + bouwjaar woning</h2>
+          <p class="text-ink-500 text-sm mb-6">Bouwjaar bepaalt BTW-tarief (6% bij &gt; 10 jaar voor renovatie).</p>
+
+          <div class="space-y-5">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Wanneer wil je dit doen?</label>
+              <div class="space-y-2">
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="Urgent" required class="sr-only" />
+                    <span>🔥</span>
+                    <div class="font-semibold text-sm">Urgent / binnen 2 weken</div>
+                  </div>
+                  <span class="text-xs text-rose-500 font-semibold">→ snelle match</span>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="1-3mnd" required class="sr-only" />
+                    <span>📅</span>
+                    <div class="font-semibold text-sm">Binnen 1-3 maanden</div>
+                  </div>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="3-6mnd" required class="sr-only" />
+                    <span>📋</span>
+                    <div class="font-semibold text-sm">Binnen 3-6 maanden</div>
+                  </div>
+                </label>
+                <label class="check-card flex items-center justify-between p-3 border-2 border-slate-200 rounded-lg cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="radio" name="timing" value="Orienterend" required class="sr-only" />
+                    <span>🤔</span>
+                    <div class="font-semibold text-sm">Oriënterend — prijsindicatie eerst</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold mb-2">Bouwjaar woning</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+                  <input type="radio" name="bouwjaar" value="<10jr" class="sr-only" required />&lt; 10 jaar (21% BTW)
+                </label>
+                <label class="check-card flex items-center justify-center p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm font-semibold">
+                  <input type="radio" name="bouwjaar" value=">10jr" class="sr-only" required />&gt; 10 jaar (6% BTW)
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAP 5: Contact -->
+        <div class="step-pane" data-step="5">
+          <h2 class="text-xl font-bold mb-2">Bijna klaar — contact</h2>
+          <p class="text-ink-500 text-sm mb-6"><strong class="text-ink-900">Eén dakwerker belt jou.</strong> Geen vijf telefoons.</p>
+
+          <form name="offertescout-dakwerken" method="POST" action="/vraag/bedankt.html" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
+            <input type="hidden" name="form-name" value="offertescout-dakwerken" />
+            <input type="hidden" name="sector" value="dakwerken" />
+            <p class="hidden"><label>Don't fill: <input name="bot-field" /></label></p>
+            <input type="hidden" id="all-data" name="all-data" />
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Naam *</label>
+                <input type="text" name="naam" required placeholder="Jan Janssens" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Telefoon *</label>
+                <input type="tel" name="telefoon" required placeholder="+32 472 ..." class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">E-mail *</label>
+              <input type="email" name="email" required placeholder="jan@example.be" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">Postcode *</label>
+              <input type="text" name="postcode" required pattern="[0-9]{4}" maxlength="4" placeholder="8000" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition" />
+            </div>
+            <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" required class="mt-1" />
+                <span class="text-xs text-ink-700 leading-relaxed">
+                  Ja, jullie mogen mijn gegevens delen met <strong>één gematchte dakwerker</strong>
+                  die binnen 24u contact mag opnemen.
+                </span>
+              </label>
+            </div>
+            <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <span>Krijg mijn dakwerker</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </button>
+            <p class="text-xs text-ink-500 text-center">Geen creditcard · Gratis · Geen verplichting</p>
+          </form>
+        </div>
+
+        <div id="navButtons" class="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-slate-100">
+          <button type="button" id="prevBtn" class="px-5 py-2.5 text-sm font-semibold text-ink-700 hover:bg-slate-100 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed">← Terug</button>
+          <button type="button" id="nextBtn" class="px-6 py-2.5 bg-ink-900 hover:bg-ink-700 text-white text-sm font-semibold rounded-lg transition flex items-center gap-2">
+            Volgende
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-ink-500 mt-8">
+    OfferteScout · onderdeel van NXTG Solutions BV ·
+    <a href="/privacy.html" class="hover:text-ink-900 underline">Privacy</a> ·
+    <a href="/voorwaarden.html" class="hover:text-ink-900 underline">Voorwaarden</a>
+  </footer>
+
+  <script>
+    const totalSteps = 5;
+    let currentStep = 1;
+    let formData = {};
+    function showStep(n) {
+      document.querySelectorAll('.step-pane').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.step-pane[data-step="${n}"]`)?.classList.add('active');
+      const labels = ['', 'Type werk', 'Type dak', 'Oppervlakte', 'Timing', 'Contact'];
+      document.getElementById('stepLabel').textContent = `Stap ${n} van ${totalSteps} — ${labels[n]}`;
+      const pct = Math.round((n / totalSteps) * 100);
+      document.getElementById('stepPercent').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('prevBtn').disabled = n === 1;
+      document.getElementById('nextBtn').style.display = n === totalSteps ? 'none' : 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function validateStep(n) {
+      const pane = document.querySelector(`.step-pane[data-step="${n}"]`);
+      // Stap 1 = at least 1 checkbox
+      if (n === 1) {
+        if (!pane.querySelector('input[name="werk"]:checked')) { alert('Kies minstens één type werk'); return false; }
+        return true;
+      }
+      const groups = new Set();
+      pane.querySelectorAll('[required]').forEach(el => {
+        if (el.type === 'radio') groups.add(el.name);
+        else if (!el.value.trim()) { el.focus(); el.style.borderColor = '#f43f5e'; throw 'invalid'; }
+      });
+      for (const name of groups) {
+        if (!pane.querySelector(`[name="${name}"]:checked`)) { alert('Maak een keuze'); return false; }
+      }
+      return true;
+    }
+    function collect() {
+      const data = {};
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.type === 'checkbox' && el.checked) data[el.name] = data[el.name] ? data[el.name] + ', ' + el.value : el.value;
+        else if (el.type === 'radio' && el.checked) data[el.name] = el.value;
+        else if (el.value && el.type !== 'radio' && el.type !== 'checkbox') data[el.name] = el.value;
+      });
+      return data;
+    }
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      try { if (!validateStep(currentStep)) return; } catch(e) { return; }
+      formData = { ...formData, ...collect() };
+      currentStep++; showStep(currentStep);
+      if (currentStep === totalSteps) document.getElementById('all-data').value = JSON.stringify(formData);
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => { currentStep--; showStep(currentStep); });
+    showStep(1);
+  </script>
+</body>
+</html>

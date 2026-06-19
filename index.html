@@ -322,29 +322,135 @@
     </div>
   </section>
 
-  <!-- ─────── STAT BAR ─────── -->
-  <section class="bg-white border-b border-gray-100 py-12">
+  <!-- ─────── TRUST STRIP ─────── -->
+  <section class="bg-white border-b border-gray-100 py-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-xs font-semibold text-ink-500 uppercase tracking-wider text-center mb-6">Live in productie bij</div>
+      <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        <a href="https://nxtgenergy.be" target="_blank" rel="noopener" class="flex items-center gap-2 text-ink-900 hover:opacity-70 transition">
+          <div class="w-8 h-8 rounded-md bg-[#25494a] flex items-center justify-center">
+            <span class="text-[#99f36c] font-mono font-bold text-xs">N</span>
+          </div>
+          <span class="font-bold text-base">NXTG Energy</span>
+        </a>
+        <div class="hidden sm:block w-px h-6 bg-gray-200"></div>
+        <div class="flex items-center gap-2 text-ink-500">
+          <div class="w-8 h-8 rounded-md bg-ink-900 flex items-center justify-center">
+            <span class="text-white font-mono font-bold text-xs">M</span>
+          </div>
+          <span class="font-semibold text-base">Mertens Dakwerken</span>
+          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">pilot</span>
+        </div>
+        <div class="hidden sm:block w-px h-6 bg-gray-200"></div>
+        <div class="flex items-center gap-2 text-ink-500">
+          <div class="w-8 h-8 rounded-md bg-brand-500 flex items-center justify-center">
+            <span class="text-white font-mono font-bold text-xs">F</span>
+          </div>
+          <span class="font-semibold text-base">Favorcool</span>
+          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">pilot</span>
+        </div>
+        <div class="hidden sm:block w-px h-6 bg-gray-200"></div>
+        <div class="text-sm text-ink-500 italic">+ 3 installateurs in gesprek</div>
+      </div>
+      <p class="text-xs text-center text-ink-500 mt-5">We laten alleen <strong>echte</strong> namen staan. Zo zie je dat we groeien — niet hoe we klanten verzonnen voor de homepage.</p>
+    </div>
+  </section>
+
+  <!-- ─────── STAT BAR (animated counters) ─────── -->
+  <section class="bg-white border-b border-gray-100 py-14" id="stat-bar" data-counters>
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div>
-          <div class="text-4xl font-bold text-ink-900">62%</div>
-          <div class="text-sm text-ink-500 mt-1">Conversie na 4 wkn <span class="block text-xs text-ink-500/70">— NXTG case (was 35%)</span></div>
+          <div class="text-4xl lg:text-5xl font-bold text-ink-900">
+            <span class="counter" data-from="35" data-to="62" data-suffix="%">35%</span>
+          </div>
+          <div class="text-sm text-ink-500 mt-2">Conversie na 4 wkn <span class="block text-xs text-ink-500/70">NXTG case (35% → 62%)</span></div>
         </div>
         <div>
-          <div class="text-4xl font-bold text-ink-900">&lt;1 min</div>
-          <div class="text-sm text-ink-500 mt-1">Eerste respons op elke lead</div>
+          <div class="text-4xl lg:text-5xl font-bold text-ink-900">
+            <span class="counter" data-from="240" data-to="1" data-suffix=" min" data-prefix="&lt;">&lt;1 min</span>
+          </div>
+          <div class="text-sm text-ink-500 mt-2">Eerste respons op elke lead <span class="block text-xs text-ink-500/70">was 4u gem.</span></div>
         </div>
         <div>
-          <div class="text-4xl font-bold text-ink-900">2-8 wkn</div>
-          <div class="text-sm text-ink-500 mt-1">Setup tot live <span class="block text-xs text-ink-500/70">— afhankelijk van pakket</span></div>
+          <div class="text-4xl lg:text-5xl font-bold text-ink-900">
+            <span class="counter" data-from="180" data-to="22" data-suffix=" dgn">22 dgn</span>
+          </div>
+          <div class="text-sm text-ink-500 mt-2">Setup tot live <span class="block text-xs text-ink-500/70">gem. NXTG-implementatie</span></div>
         </div>
         <div>
-          <div class="text-4xl font-bold text-ink-900">24/7</div>
-          <div class="text-sm text-ink-500 mt-1">Bereikbaar, ook 's nachts</div>
+          <div class="text-4xl lg:text-5xl font-bold text-ink-900">
+            <span class="counter" data-from="0" data-to="24" data-suffix="/7">24/7</span>
+          </div>
+          <div class="text-sm text-ink-500 mt-2">Bereikbaar, ook 's nachts <span class="block text-xs text-ink-500/70">AI slaapt niet</span></div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ─────── TESTIMONIAL ─────── -->
+  <section class="bg-gray-50 py-16 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="bg-white rounded-3xl border border-gray-200 p-8 lg:p-12 shadow-sm">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="text-5xl text-brand-500 font-serif leading-none">"</div>
+        </div>
+        <blockquote class="text-xl lg:text-2xl text-ink-900 leading-relaxed font-medium mb-7">
+          Onze conversie ging van 35% naar 62% in vier weken. Niet door harder werken — door altijd bereikbaar te zijn. Ik installeer panelen, de AI praat met klanten. Eerste deal die ze sloot, betaalde het systeem al terug.
+        </blockquote>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#25494a] to-[#99f36c] flex items-center justify-center text-white font-bold text-sm">BV</div>
+          <div>
+            <div class="font-bold text-ink-900">Bart Van Poucke</div>
+            <div class="text-sm text-ink-500">Founder NXTG Energy · Selectly's eerste klant (en eigenaar)</div>
+          </div>
+          <a href="/case-nxtg.html" class="ml-auto hidden sm:inline-block text-sm font-semibold text-brand-500 hover:underline">Lees volledige case →</a>
+        </div>
+      </div>
+      <p class="text-center text-xs text-ink-500 mt-6">Eerlijke disclosure: Bart bouwde Selectly voor zijn eigen installateurs-bedrijf NXTG. Dat is ook waarom we precies weten wat er nodig is.</p>
+    </div>
+  </section>
+
+  <!-- Animated counter script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const counters = document.querySelectorAll('.counter');
+      if (!counters.length || !('IntersectionObserver' in window)) return;
+
+      const animate = (el) => {
+        const from = parseFloat(el.dataset.from || 0);
+        const to = parseFloat(el.dataset.to || 0);
+        const suffix = el.dataset.suffix || '';
+        const prefix = el.dataset.prefix || '';
+        const duration = 1400;
+        const start = performance.now();
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+        function step(now) {
+          const elapsed = now - start;
+          const t = Math.min(elapsed / duration, 1);
+          const value = from + (to - from) * easeOut(t);
+          el.innerHTML = prefix + Math.round(value).toLocaleString('nl-BE') + suffix;
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            if (!el.dataset.animated) {
+              el.dataset.animated = '1';
+              animate(el);
+            }
+          }
+        });
+      }, { threshold: 0.4 });
+
+      counters.forEach(c => observer.observe(c));
+    });
+  </script>
 
   <!-- ─────── PROBLEM ─────── -->
   <section class="py-24 bg-gray-50">

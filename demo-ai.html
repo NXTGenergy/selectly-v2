@@ -131,23 +131,23 @@
   <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
   <div class="glow-orb w-[400px] h-[400px] bg-mint-400 bottom-0 -left-40"></div>
 
-  <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-16 pb-12 lg:pt-20 lg:pb-16 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6">
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-10 pb-8 lg:pt-12 lg:pb-10 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-4">
       <span class="w-2 h-2 rounded-full bg-mint-400 animate-pulse"></span>
       <span class="text-white/80">Live · geen demo-call · geen e-mailadres</span>
     </div>
 
-    <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
+    <h1 class="text-3xl lg:text-5xl font-bold tracking-tight leading-[1.05] mb-3">
       Praat <span class="gradient-text">nu</span> met Selectly AI.
     </h1>
-    <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-      Kies een scenario en zie hoe de AI een lead kwalificeert. Dezelfde technologie als wat jouw klanten zouden ervaren.
+    <p class="text-base lg:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+      Kies een scenario en zie hoe de AI een lead kwalificeert.
     </p>
   </div>
 </section>
 
 <!-- DEMO -->
-<main x-data="demoAI()" class="max-w-6xl mx-auto px-6 lg:px-8 -mt-8 mb-16">
+<main x-data="demoAI()" class="max-w-6xl mx-auto px-6 lg:px-8 -mt-6 mb-16">
   <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6">
 
     <!-- LEFT: scenario picker -->
@@ -202,7 +202,7 @@
         </div>
 
         <!-- Chat thread -->
-        <div class="bg-gray-50 p-6 min-h-[420px] max-h-[520px] overflow-y-auto" id="thread">
+        <div class="bg-gray-50 p-5 overflow-y-auto" id="thread" style="height: clamp(340px, 52vh, 520px);">
           <template x-for="(m, i) in shown" :key="i">
             <div class="msg mb-4 flex" :class="m.from === 'user' ? 'justify-end' : 'justify-start'">
               <div :class="m.from === 'user'
@@ -421,6 +421,11 @@ function demoAI() {
       this.started = true;
       this.shown = [];
       this.done = false;
+      // Scroll chat-venster in view voor wie nog niet gescrolled is
+      this.$nextTick(() => {
+        const el = document.getElementById('thread');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
       const thread = this.currentScenario.thread;
       const now = () => {
         const d = new Date();

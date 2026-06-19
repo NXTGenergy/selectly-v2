@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070a14" />
+
+  <title>ROI-calculator — Selectly</title>
+  <meta name="description" content="Vul je huidige cijfers in en zie binnen 30 seconden hoeveel Selectly je netto oplevert per maand. Geen verkoop-praatje, gewoon cijfers." />
+
+  <meta property="og:title" content="Selectly ROI-calculator — wat krijg ik terug?" />
+  <meta property="og:description" content="2 min invullen. Live berekening van extra omzet, tijdsbesparing en terugverdientijd. Voor installateurs, dakwerkers, HVAC." />
+  <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="canonical" href="https://selectly.be/roi.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
+          brand: { 50:'#eff4ff', 100:'#dbe5ff', 300:'#8eb0ff', 400:'#5b8cff', 500:'#3a6cf2', 600:'#2451d8' },
+          mint: { 400:'#34e4a8', 500:'#10c98c', 600:'#0aa775' },
+        },
+        boxShadow: {
+          'glow': '0 0 40px -10px rgba(91, 140, 255, 0.5)',
+          'glow-mint': '0 0 60px -10px rgba(52, 228, 168, 0.4)',
+        },
+      } }
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+    .gradient-text {
+      background: linear-gradient(135deg, #5b8cff 0%, #a78bfa 50%, #34e4a8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(91, 140, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91, 140, 255, 0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; pointer-events: none; }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #5b8cff, #3a6cf2);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(91, 140, 255, 0.4);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #5b8cff, #3a6cf2);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(91, 140, 255, 0.4);
+    }
+    .number-flash { animation: flash 0.4s ease-out; }
+    @keyframes flash {
+      0% { transform: scale(1.05); color: #34e4a8; }
+      100% { transform: scale(1); }
+    }
+  </style>
+
+  <!-- META PIXEL -->
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return;
+      window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '852925924180054');
+      fbq('track', 'PageView');
+    }
+    try {
+      if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel();
+      else window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
+    } catch (e) {}
+  </script>
+  <script src="/consent.js" defer></script>
+</head>
+
+<body class="bg-white text-ink-900 font-sans antialiased">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2.5">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32">
+                <stop offset="0%" stop-color="#5b8cff"/>
+                <stop offset="100%" stop-color="#3a6cf2"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="text-xl font-bold tracking-tight">Selectly</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+          <a href="/#wat-we-doen" class="hover:text-ink-900">Wat we doen</a>
+          <a href="/#prijzen" class="hover:text-ink-900">Prijzen</a>
+          <a href="/calculator.html" class="hover:text-ink-900">Pakket-calculator</a>
+          <a href="/roi.html" class="text-ink-900 font-semibold">ROI-calculator</a>
+        </div>
+        <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition">
+          Plan demo →
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative bg-ink-900 text-white overflow-hidden">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
+    <div class="glow-orb w-[400px] h-[400px] bg-mint-400 bottom-0 -left-40"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-mint-400"></span>
+          <span class="text-white/80">2 minuten · geen e-mailadres nodig</span>
+        </div>
+
+        <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
+          Wat krijg ik <span class="gradient-text">terug</span><br>als ik Selectly draai?
+        </h1>
+
+        <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+          Vul je huidige cijfers in. Zie live wat je extra wint per maand,
+          hoeveel tijd vrijkomt en hoe snel het zichzelf terugverdient.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <main x-data="roiCalc()" x-init="compute()" class="max-w-6xl mx-auto px-6 lg:px-8 -mt-12 mb-24">
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-8">
+
+      <!-- LEFT: inputs -->
+      <section class="bg-white rounded-3xl border border-gray-100 shadow-xl p-8 lg:p-10">
+        <div class="mb-8">
+          <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2">Jouw huidige situatie</p>
+          <h2 class="text-2xl font-bold tracking-tight">Schuif de cijfers naar jouw realiteit</h2>
+        </div>
+
+        <!-- Sector -->
+        <div class="mb-7">
+          <label class="text-sm font-semibold text-ink-900 mb-3 block">Jouw sector</label>
+          <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+            <template x-for="s in sectors" :key="s.id">
+              <button @click="setSector(s.id)" type="button"
+                      :class="sector === s.id ? 'bg-ink-900 text-white border-ink-900' : 'bg-white text-ink-700 border-gray-200 hover:border-ink-900'"
+                      class="border rounded-lg py-2.5 px-2 text-xs font-semibold transition">
+                <span x-text="s.label"></span>
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <!-- Leads -->
+        <div class="mb-7">
+          <div class="flex items-baseline justify-between mb-2">
+            <label class="text-sm font-semibold text-ink-900">Leads per maand</label>
+            <span class="font-mono font-bold text-lg text-brand-500" x-text="leads"></span>
+          </div>
+          <input type="range" min="10" max="500" step="5" x-model.number="leads" @input="compute()" />
+          <div class="flex justify-between text-xs text-ink-500 mt-1">
+            <span>10</span><span>500</span>
+          </div>
+          <p class="text-xs text-ink-500 mt-1">Aanvragen via web, telefoon, doorverwijzing — al wat binnenkomt.</p>
+        </div>
+
+        <!-- Conversion -->
+        <div class="mb-7">
+          <div class="flex items-baseline justify-between mb-2">
+            <label class="text-sm font-semibold text-ink-900">Huidige conversie</label>
+            <span class="font-mono font-bold text-lg text-brand-500"><span x-text="conv"></span>%</span>
+          </div>
+          <input type="range" min="5" max="60" step="1" x-model.number="conv" @input="compute()" />
+          <div class="flex justify-between text-xs text-ink-500 mt-1">
+            <span>5%</span><span>60%</span>
+          </div>
+          <p class="text-xs text-ink-500 mt-1">% leads dat uiteindelijk klant wordt. Sector-gemiddelde: 25-35%.</p>
+        </div>
+
+        <!-- Avg deal -->
+        <div class="mb-7">
+          <div class="flex items-baseline justify-between mb-2">
+            <label class="text-sm font-semibold text-ink-900">Gemiddelde dealwaarde</label>
+            <span class="font-mono font-bold text-lg text-brand-500">€<span x-text="dealAvg.toLocaleString('nl-BE')"></span></span>
+          </div>
+          <input type="range" :min="dealRange[0]" :max="dealRange[1]" :step="dealStep" x-model.number="dealAvg" @input="compute()" />
+          <div class="flex justify-between text-xs text-ink-500 mt-1">
+            <span>€<span x-text="dealRange[0].toLocaleString('nl-BE')"></span></span>
+            <span>€<span x-text="dealRange[1].toLocaleString('nl-BE')"></span></span>
+          </div>
+        </div>
+
+        <!-- Time per quote -->
+        <div class="mb-7">
+          <div class="flex items-baseline justify-between mb-2">
+            <label class="text-sm font-semibold text-ink-900">Uren per offerte (incl. opvolging)</label>
+            <span class="font-mono font-bold text-lg text-brand-500"><span x-text="hoursPerQuote"></span>u</span>
+          </div>
+          <input type="range" min="0.5" max="6" step="0.5" x-model.number="hoursPerQuote" @input="compute()" />
+          <div class="flex justify-between text-xs text-ink-500 mt-1">
+            <span>0.5u</span><span>6u</span>
+          </div>
+          <p class="text-xs text-ink-500 mt-1">Van eerste contact tot opvolg-mail/bel. Reken realistisch.</p>
+        </div>
+
+        <!-- Hourly rate -->
+        <div class="mb-2">
+          <div class="flex items-baseline justify-between mb-2">
+            <label class="text-sm font-semibold text-ink-900">Uurtarief eigen tijd</label>
+            <span class="font-mono font-bold text-lg text-brand-500">€<span x-text="hourlyRate"></span>/u</span>
+          </div>
+          <input type="range" min="30" max="120" step="5" x-model.number="hourlyRate" @input="compute()" />
+          <div class="flex justify-between text-xs text-ink-500 mt-1">
+            <span>€30</span><span>€120</span>
+          </div>
+          <p class="text-xs text-ink-500 mt-1">Wat zou je eigen uur kosten als je het zou doorrekenen?</p>
+        </div>
+      </section>
+
+      <!-- RIGHT: outcome -->
+      <aside class="lg:sticky lg:top-24 self-start">
+        <div class="bg-gradient-to-br from-ink-900 to-ink-700 rounded-3xl p-8 lg:p-10 text-white shadow-glow-mint border border-white/5">
+          <p class="text-xs font-semibold text-mint-400 uppercase tracking-wider mb-2">Met Selectly</p>
+          <h2 class="text-2xl font-bold tracking-tight mb-6">Wat je per maand wint</h2>
+
+          <!-- Hero number: netto winst -->
+          <div class="mb-7 pb-7 border-b border-white/10">
+            <div class="text-xs text-white/60 uppercase tracking-wider mb-1">Netto extra winst per maand</div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl lg:text-6xl font-bold gradient-text" x-text="'€' + nettoExtra.toLocaleString('nl-BE')" :class="flash ? 'number-flash' : ''"></span>
+            </div>
+            <div class="text-sm text-mint-400/90 font-semibold mt-1">
+              Dat is <span x-text="multiplier"></span>× je Selectly-investering
+            </div>
+          </div>
+
+          <!-- Breakdown -->
+          <div class="space-y-4 mb-7">
+            <div class="flex items-baseline justify-between">
+              <span class="text-sm text-white/70">Extra omzet (door snellere reactie)</span>
+              <span class="font-bold text-white" x-text="'+€' + extraRevenue.toLocaleString('nl-BE')"></span>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <span class="text-sm text-white/70">Tijdsbesparing (geld-equivalent)</span>
+              <span class="font-bold text-white" x-text="'+€' + timeSaved.toLocaleString('nl-BE')"></span>
+            </div>
+            <div class="flex items-baseline justify-between pb-3 border-b border-white/10">
+              <span class="text-sm text-white/70">Uren vrij per maand</span>
+              <span class="font-bold text-white" x-text="hoursSaved + ' u'"></span>
+            </div>
+            <div class="flex items-baseline justify-between">
+              <span class="text-sm text-white/70">Selectly-kost (aanbevolen tier)</span>
+              <span class="font-mono font-semibold text-white/90" x-text="'−€' + recommendedTier.price + ' (' + recommendedTier.name + ')'"></span>
+            </div>
+          </div>
+
+          <!-- Payback -->
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-7">
+            <div class="text-xs text-white/60 uppercase tracking-wider mb-1">Terugverdientijd</div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-3xl font-bold text-mint-400" x-text="paybackText"></span>
+            </div>
+            <p class="text-xs text-white/60 mt-2" x-text="paybackNote"></p>
+          </div>
+
+          <!-- CTA -->
+          <a :href="ctaLink"
+             class="block text-center bg-white text-ink-900 font-bold py-4 rounded-xl hover:bg-brand-100 transition shadow-glow text-base">
+            Plan demo met deze cijfers →
+          </a>
+          <a :href="whatsappLink" target="_blank" rel="noopener"
+             class="block text-center mt-3 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold py-3 rounded-xl transition text-sm">
+            Of stuur via WhatsApp
+          </a>
+
+          <p class="text-xs text-white/40 mt-5 text-center leading-relaxed">
+            Berekening = indicatie op basis van Selectly-klant-data.<br>
+            NXTG case: 35% → 62% conversie in 4 weken.
+          </p>
+        </div>
+
+        <!-- Methodology -->
+        <details class="mt-5 bg-white border border-gray-100 rounded-2xl p-5 text-sm">
+          <summary class="font-semibold text-ink-900 cursor-pointer">Hoe berekenen we dit?</summary>
+          <ul class="mt-3 space-y-2 text-ink-500 text-xs">
+            <li>• <strong class="text-ink-900">Extra conversie</strong>: gemiddeld +35% relatieve uplift door respons binnen 1 min (Harvard Business Review + onze NXTG-data).</li>
+            <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van offerte-werk automatiseerbaar (intake + offerte + opvolging).</li>
+            <li>• <strong class="text-ink-900">Tier-aanbeveling</strong>: gebaseerd op lead-volume + sector — geen overkill, geen onderkill.</li>
+            <li>• Geen win-loss garantie — dit is een schatting voor besluitvorming, geen offerte.</li>
+          </ul>
+        </details>
+      </aside>
+    </div>
+
+    <!-- Trust section onderaan -->
+    <section class="mt-20 grid md:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
+        <div class="text-3xl font-bold text-ink-900 mb-1">+27 pp</div>
+        <div class="text-sm text-ink-500">conversie-stijging bij NXTG Energy in 4 weken (35% → 62%)</div>
+      </div>
+      <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
+        <div class="text-3xl font-bold text-ink-900 mb-1">&lt;1 min</div>
+        <div class="text-sm text-ink-500">eerste respons op elke lead — 3× hogere closing-rate</div>
+      </div>
+      <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
+        <div class="text-3xl font-bold text-ink-900 mb-1">Maandelijks</div>
+        <div class="text-sm text-ink-500">opzegbaar. Je houdt je data + CRM. Geen lange contracten.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-900 text-white/50 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-8 text-sm">
+      <div>
+        <div class="flex items-center gap-2.5 mb-3">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#fg)"/>
+            <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+            <defs><linearGradient id="fg" x1="0" y1="0" x2="32" y2="32">
+              <stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/>
+            </linearGradient></defs>
+          </svg>
+          <span class="font-bold text-white">Selectly</span>
+        </div>
+        <p>AI automation voor BE installateurs. Live binnen 4 weken.</p>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-2">Tools</div>
+        <ul class="space-y-1">
+          <li><a href="/" class="hover:text-white">Home</a></li>
+          <li><a href="/calculator.html" class="hover:text-white">Pakket-calculator</a></li>
+          <li><a href="/roi.html" class="hover:text-white">ROI-calculator</a></li>
+          <li><a href="/case-nxtg.html" class="hover:text-white">NXTG case-study</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-2">Contact</div>
+        <ul class="space-y-1">
+          <li><a href="/#contact" class="hover:text-white">Plan demo</a></li>
+          <li><a href="https://wa.me/32492617085" class="hover:text-white" target="_blank" rel="noopener">WhatsApp +32 492 61 70 85</a></li>
+          <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  function roiCalc() {
+    return {
+      // Inputs
+      sector: 'pv',
+      leads: 80,
+      conv: 28,
+      dealAvg: 8500,
+      hoursPerQuote: 2.5,
+      hourlyRate: 65,
+      flash: false,
+
+      // Sectors with realistic deal ranges
+      sectors: [
+        { id:'pv',     label:'Zonnepanelen',  dealRange:[3000, 18000], dealStep:250, default:8500 },
+        { id:'wp',     label:'Warmtepomp',    dealRange:[8000, 30000], dealStep:500, default:14000 },
+        { id:'batt',   label:'Batterij',      dealRange:[4000, 15000], dealStep:250, default:7500 },
+        { id:'airco',  label:'Airco/HVAC',    dealRange:[2500, 15000], dealStep:250, default:5500 },
+        { id:'dak',    label:'Dakwerken',     dealRange:[2000, 25000], dealStep:500, default:7000 },
+      ],
+
+      // Outputs
+      extraRevenue: 0,
+      timeSaved: 0,
+      hoursSaved: 0,
+      nettoExtra: 0,
+      multiplier: '0',
+      paybackText: '',
+      paybackNote: '',
+      ctaLink: '#',
+      whatsappLink: '',
+      recommendedTier: { name: 'Growth', price: 1950 },
+
+      get currentSector() { return this.sectors.find(s => s.id === this.sector); },
+      get dealRange() { return this.currentSector.dealRange; },
+      get dealStep() { return this.currentSector.dealStep; },
+
+      setSector(id) {
+        this.sector = id;
+        this.dealAvg = this.currentSector.default;
+        this.compute();
+      },
+
+      compute() {
+        // Uplift: relatieve verbetering van conversie met Selectly (35% relatief, capped at +25pp)
+        const upliftPct = Math.min(0.35, (60 - this.conv) / 100); // capped
+        const newConv = this.conv + (this.conv * 0.35);
+        const closedConv = Math.min(newConv, 65); // realistisch plafond
+
+        const currentRevenue = this.leads * (this.conv / 100) * this.dealAvg;
+        const newRevenue = this.leads * (closedConv / 100) * this.dealAvg;
+        this.extraRevenue = Math.round(newRevenue - currentRevenue);
+
+        // Tijdsbesparing: 70% van offerte-werk wordt geautomatiseerd
+        const totalQuoteHours = this.leads * this.hoursPerQuote;
+        const automatedHours = totalQuoteHours * 0.70;
+        this.hoursSaved = Math.round(automatedHours);
+        this.timeSaved = Math.round(automatedHours * this.hourlyRate);
+
+        // Tier aanbeveling op basis van lead-volume
+        if (this.leads < 30) {
+          this.recommendedTier = { name: 'Starter', price: 950 };
+        } else if (this.leads < 150) {
+          this.recommendedTier = { name: 'Growth', price: 1950 };
+        } else {
+          this.recommendedTier = { name: 'Enterprise', price: 3500 };
+        }
+
+        // Netto extra: extra omzet × marge (35% sector-gemiddelde) + tijdsbesparing − Selectly-kost
+        const grossMargin = 0.35;
+        const extraProfit = this.extraRevenue * grossMargin;
+        this.nettoExtra = Math.round(extraProfit + this.timeSaved - this.recommendedTier.price);
+
+        // Multiplier
+        this.multiplier = (this.nettoExtra / this.recommendedTier.price).toFixed(1).replace('.', ',');
+
+        // Payback
+        const totalMonthlyGain = extraProfit + this.timeSaved;
+        if (totalMonthlyGain > this.recommendedTier.price) {
+          const days = Math.ceil(30 * this.recommendedTier.price / totalMonthlyGain);
+          this.paybackText = days <= 7 ? days + ' dagen' : days + ' dagen';
+          this.paybackNote = totalMonthlyGain > this.recommendedTier.price * 4
+            ? 'Vanaf maand 1 al ruim positief.'
+            : 'Vanaf de eerste maand winstgevend.';
+        } else {
+          this.paybackText = '> 1 maand';
+          this.paybackNote = 'Wat conservatieve invulling. Probeer realistischere cijfers.';
+        }
+
+        // CTA link met cijfers
+        const summary = `ROI-berekening: ${this.leads} leads/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} netto/mnd. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
+        this.ctaLink = '/#contact?roi=' + encodeURIComponent(summary);
+        this.whatsappLink = 'https://wa.me/32492617085?text=' + encodeURIComponent('Bart, ik deed de ROI-calculator. ' + summary + ' Kan jij een demo plannen?');
+
+        // Flash animation
+        this.flash = true;
+        setTimeout(() => this.flash = false, 400);
+
+        // Meta Pixel custom event
+        if (window.fbq) {
+          window.fbq('trackCustom', 'ROICalculator_Computed', {
+            sector: this.sector,
+            leads: this.leads,
+            conv: this.conv,
+            netto: this.nettoExtra
+          });
+        }
+      }
+    };
+  }
+  </script>
+
+  <!-- META LEAD TRACKER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('form').forEach(function(form) {
+        if (form.dataset.fbPixelTracked) return;
+        form.dataset.fbPixelTracked = '1';
+        form.addEventListener('submit', function() {
+          if (window.fbq) {
+            var formName = form.getAttribute('name') || form.id || 'unknown';
+            fbq('track', 'Lead', { form_name: formName });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

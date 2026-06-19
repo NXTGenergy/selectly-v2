@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070a14" />
+
+  <title>Selectly vs concurrenten — eerlijke vergelijking</title>
+  <meta name="description" content="Selectly vs Bobex, Solvari, Teamleader, Salesflare en DIY-stack. Wat je krijgt, wat het kost, wanneer welke optie wint. Zonder verkooppraat." />
+
+  <meta property="og:title" content="Selectly vs concurrenten" />
+  <meta property="og:description" content="Eerlijke vergelijking: wat je krijgt, wat het kost. Zonder reclame-blabla." />
+  <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
+
+  <link rel="canonical" href="https://selectly.be/vergelijken.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+      colors: {
+        ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
+        brand: { 100:'#dbe5ff', 400:'#5b8cff', 500:'#3a6cf2', 600:'#2451d8' },
+        mint: { 400:'#34e4a8', 500:'#10c98c' },
+      }
+    } } };
+  </script>
+
+  <style>
+    body { font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing: antialiased; }
+    .gradient-text {
+      background: linear-gradient(135deg,#5b8cff 0%,#a78bfa 50%,#34e4a8 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(91,140,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,140,255,.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:.4; pointer-events:none; }
+    .check-yes { color:#10c98c; }
+    .check-no  { color:#cbd5e1; }
+    .check-partial { color:#f59e0b; }
+
+    /* sticky table header */
+    .compare-table { border-collapse: separate; border-spacing: 0; }
+    .compare-table thead th {
+      position: sticky; top: 64px; z-index: 10;
+      background: white;
+      border-bottom: 2px solid #0f172a;
+      box-shadow: 0 4px 12px -8px rgba(0,0,0,.15);
+    }
+    .compare-table .selectly-col {
+      background: linear-gradient(to bottom, rgba(91,140,255,.04), white);
+      border-left: 3px solid #3a6cf2;
+      border-right: 3px solid #3a6cf2;
+    }
+    .compare-table thead .selectly-col {
+      background: linear-gradient(135deg,#070a14,#1c2238);
+      color: white;
+      border-top: 3px solid #3a6cf2;
+    }
+    .compare-table tbody tr:nth-child(even) { background: #f8fafc; }
+    .compare-table tbody tr:nth-child(even) .selectly-col { background: linear-gradient(to bottom, rgba(91,140,255,.06), #f8fafc); }
+  </style>
+
+  <!-- META PIXEL -->
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return;
+      window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','852925924180054'); fbq('track','PageView');
+    }
+    try { if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel();
+      else window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true }); } catch(e) {}
+  </script>
+  <script src="/consent.js" defer></script>
+</head>
+
+<body class="bg-white text-ink-900">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#g)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="text-xl font-bold">Selectly</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+        <a href="/demo-ai.html" class="hover:text-ink-900">Live demo</a>
+        <a href="/roi.html" class="hover:text-ink-900">ROI-calc</a>
+        <a href="/vergelijken.html" class="text-ink-900 font-semibold">Vergelijken</a>
+        <a href="/#prijzen" class="hover:text-ink-900">Prijzen</a>
+      </div>
+      <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan call →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative bg-ink-900 text-white overflow-hidden">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6">
+      <span class="text-white/80">Eerlijke vergelijking · we noemen ook waar concurrenten beter zijn</span>
+    </div>
+    <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
+      Selectly vs <span class="gradient-text">de rest</span>.
+    </h1>
+    <p class="text-lg lg:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+      Bobex, Solvari, Teamleader, Salesflare, een nieuwe medewerker, of DIY met losse tools. Wat krijg je, wat kost het, en wanneer is welke keuze de juiste.
+    </p>
+  </div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+
+  <!-- TL;DR cards -->
+  <section class="grid md:grid-cols-3 gap-5 mb-16">
+    <div class="bg-gradient-to-br from-mint-400/10 to-brand-500/10 border-2 border-mint-400/40 rounded-2xl p-6">
+      <div class="text-xs font-semibold text-mint-500 uppercase tracking-wider mb-2">Kies Selectly als…</div>
+      <p class="text-ink-900 text-sm leading-relaxed">je je <strong>eigen</strong> bedrijf wil schalen (niet leads kopen uit een gedeelde pool). Je hebt &gt;30 leads/mnd en wil dat ze allemaal binnen 1 min een professioneel antwoord krijgen.</p>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-2">Kies Bobex/Solvari als…</div>
+      <p class="text-ink-700 text-sm leading-relaxed">je <strong>geen eigen marketing</strong> doet en wel extra leads wil tegen €X/stuk. Je vindt het OK dat 3-5 concurrenten dezelfde lead krijgen. Geen vaste maandkost.</p>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-2">Kies DIY als…</div>
+      <p class="text-ink-700 text-sm leading-relaxed">je <strong>tech-savvy</strong> bent en plezier hebt in zelf knutselen met Make.com, Mailchimp, Calendly. Comfort: €600-1200/mnd zonder setup of garantie.</p>
+    </div>
+  </section>
+
+  <!-- BIG TABLE -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold tracking-tight mb-2">Feature-vergelijking</h2>
+    <p class="text-ink-500 mb-6">Cijfers zijn gemiddelden, niet "best case". Laatste update: 2026-06-19.</p>
+
+    <div class="overflow-x-auto bg-white border border-gray-200 rounded-2xl shadow-sm">
+      <table class="compare-table w-full min-w-[900px] text-sm">
+        <thead>
+          <tr class="text-left">
+            <th class="px-5 py-4 font-semibold w-[260px]">Feature</th>
+            <th class="selectly-col px-5 py-4 font-bold text-center">
+              <div class="text-base">Selectly</div>
+              <div class="text-xs font-normal opacity-80 mt-0.5">vanaf €950/mnd</div>
+            </th>
+            <th class="px-5 py-4 font-semibold text-center">
+              <div>Bobex / Solvari</div>
+              <div class="text-xs font-normal text-ink-500 mt-0.5">€30-80/lead</div>
+            </th>
+            <th class="px-5 py-4 font-semibold text-center">
+              <div>Teamleader</div>
+              <div class="text-xs font-normal text-ink-500 mt-0.5">€69-179/user/mnd</div>
+            </th>
+            <th class="px-5 py-4 font-semibold text-center">
+              <div>DIY-stack</div>
+              <div class="text-xs font-normal text-ink-500 mt-0.5">€600-1200/mnd</div>
+            </th>
+            <th class="px-5 py-4 font-semibold text-center">
+              <div>Nieuwe medewerker</div>
+              <div class="text-xs font-normal text-ink-500 mt-0.5">€4.000+/mnd</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Lead intake -->
+          <tr>
+            <td class="px-5 py-4 font-semibold">Lead-respons &lt;1 min</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">24/7 AI</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">via hen, niet jou</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">zelf bouwen</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span><div class="text-xs text-ink-500 mt-1">slaapt, eet, ziek</div></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Lead exclusiviteit</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">100% jouw lead</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span><div class="text-xs text-ink-500 mt-1">3-5 installateurs</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">AI-offerte (automatisch)</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">jouw branding</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">template, niet AI</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">DocSpring/Pandadoc</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Multi-step opvolging</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">mail + WA + SMS</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">mail-only</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">zelf bouwen</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">mens-discipline</div></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Vlaamse sectorkennis</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">premies, BTW, jargon</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">generiek BE</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span><div class="text-xs text-ink-500 mt-1">zelf trainen</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Live dashboard met cijfers</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">in hun portal</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span><div class="text-xs text-ink-500 mt-1">losse tools</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">CRM-koppeling boekhouding</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">Yuki, Octopus, Teamleader</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">extra tool nodig</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">WhatsApp + telefoon-integratie</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">via Twilio (Growth+)</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">extra €€</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Setup-tijd tot live</td>
+            <td class="selectly-col px-5 py-4 text-center font-mono font-semibold text-mint-500">2-8 wkn</td>
+            <td class="px-5 py-4 text-center font-mono">1-3 dagen</td>
+            <td class="px-5 py-4 text-center font-mono">3-6 wkn</td>
+            <td class="px-5 py-4 text-center font-mono">3-12 mnd</td>
+            <td class="px-5 py-4 text-center font-mono">3-6 mnd (incl. werving)</td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Maandelijks opzegbaar</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">pay-per-lead</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-partial text-xl">≈</span><div class="text-xs text-ink-500 mt-1">jaar-contract</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span><div class="text-xs text-ink-500 mt-1">opzegtermijn</div></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Lokale BE-support (NL)</td>
+            <td class="selectly-col px-5 py-4 text-center"><span class="check-yes text-xl">✓</span><div class="text-xs text-ink-500 mt-1">Bart direct</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+            <td class="px-5 py-4 text-center"><span class="check-no text-xl">✗</span><div class="text-xs text-ink-500 mt-1">EN-only</div></td>
+            <td class="px-5 py-4 text-center"><span class="check-yes text-xl">✓</span></td>
+          </tr>
+
+          <tr>
+            <td class="px-5 py-4 font-semibold">Maandelijkse kost (incl. alles)</td>
+            <td class="selectly-col px-5 py-4 text-center"><div class="font-mono font-bold text-brand-500">€950-3.500</div><div class="text-xs text-ink-500 mt-1">geen verborgen</div></td>
+            <td class="px-5 py-4 text-center"><div class="font-mono">€450-1.600</div><div class="text-xs text-ink-500 mt-1">~30 leads × €40</div></td>
+            <td class="px-5 py-4 text-center"><div class="font-mono">€207-537</div><div class="text-xs text-ink-500 mt-1">+ implement. €2-5K</div></td>
+            <td class="px-5 py-4 text-center"><div class="font-mono">€600-1.200</div><div class="text-xs text-ink-500 mt-1">+ €5-15K bouwtijd</div></td>
+            <td class="px-5 py-4 text-center"><div class="font-mono">€4.000+</div><div class="text-xs text-ink-500 mt-1">+ werving + opl.</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 flex gap-6 flex-wrap text-sm">
+      <div class="flex items-center gap-2"><span class="check-yes text-xl">✓</span> <span class="text-ink-700">Volledig aanwezig</span></div>
+      <div class="flex items-center gap-2"><span class="check-partial text-xl">≈</span> <span class="text-ink-700">Gedeeltelijk / met work-around</span></div>
+      <div class="flex items-center gap-2"><span class="check-no text-xl">✗</span> <span class="text-ink-700">Niet beschikbaar</span></div>
+    </div>
+  </section>
+
+  <!-- HONEST: where competitors win -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold tracking-tight mb-2">Waar Selectly <em>niet</em> wint</h2>
+    <p class="text-ink-500 mb-8">Eerlijkheid bouwt vertrouwen. Hier de scenario's waar je beter elders kiest.</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Je doet 0 marketing</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">Geen website, geen ads, geen netwerk. Dan heeft Selectly geen leads om te automatiseren. <strong class="text-ink-900">Beter: Bobex/Solvari</strong> tot je eigen funnel staat.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Je hebt &lt;30 leads/maand</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">Bij &lt;30 leads betaal je €950 om misschien 1-2 extra deals te halen. <strong class="text-ink-900">Beter: zelf opvolgen</strong> en bel ons terug zodra je consistent boven 30 zit.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Je wil enterprise-CRM met 50+ users</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">Selectly bouwt op GoHighLevel — top voor 1-10 users. Voor 50+ users met multi-departement-rapportering: <strong class="text-ink-900">Salesforce of Microsoft Dynamics</strong>.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Je wil het zelf doen + leren</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">Sommige zaakvoerders willen begrijpen hoe alles werkt. Dan is een <strong class="text-ink-900">DIY-stack (Make.com + GHL solo)</strong> goedkoper. Maar reken op 50-100u eigen tijd.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Je hebt strikt budget &lt;€500/mnd</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">Selectly start bij €950/mnd. Bij echt krap budget: <strong class="text-ink-900">Teamleader Focus + Pipedrive</strong> en zelf doen tot je marge stijgt.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Je werkt enkel B2B-key-accounts</h3>
+        <p class="text-sm text-ink-700 leading-relaxed">Bij &lt;10 deals/jaar van €100K+ is automation overkill. <strong class="text-ink-900">Beter: HubSpot Sales Hub</strong> met persoonlijke opvolging.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TCO over 12 months -->
+  <section class="mb-16 bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-3xl p-8 lg:p-12">
+    <h2 class="text-3xl font-bold tracking-tight mb-2">Totale kost over 12 maanden</h2>
+    <p class="text-white/70 mb-8 max-w-2xl">Voor een installateur met 80 leads/mnd, €8.500 gem deal, doel: 40% extra omzet binnen het jaar.</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <div class="text-xs text-mint-400 font-semibold uppercase tracking-wider mb-2">Selectly (Growth)</div>
+        <div class="text-3xl font-bold gradient-text mb-1">€23.400</div>
+        <div class="text-xs text-white/60 mb-3">€1.950 × 12</div>
+        <div class="text-xs text-white/70 leading-relaxed">Setup, hosting, AI, support — alles inbegrepen. Geen verrassingen.</div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-wider mb-2">Bobex (zelfde volume)</div>
+        <div class="text-3xl font-bold text-white mb-1">€19.200</div>
+        <div class="text-xs text-white/60 mb-3">~40 leads × €40 × 12</div>
+        <div class="text-xs text-white/70 leading-relaxed">Goedkoper op papier — maar lead-exclusief is uit. 3-5 concurrenten bellen ook.</div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-wider mb-2">DIY-stack</div>
+        <div class="text-3xl font-bold text-white mb-1">€18.500</div>
+        <div class="text-xs text-white/60 mb-3">€800 × 12 + €9K bouwtijd</div>
+        <div class="text-xs text-white/70 leading-relaxed">€9K = 100u × €90 eigen tijd. Plus blijvende onderhouds-overhead.</div>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <div class="text-xs text-white/60 font-semibold uppercase tracking-wider mb-2">Nieuwe medewerker</div>
+        <div class="text-3xl font-bold text-white mb-1">€54.000+</div>
+        <div class="text-xs text-white/60 mb-3">€3.500 bruto + sociale + werving</div>
+        <div class="text-xs text-white/70 leading-relaxed">Volledig bedrag voor 1 persoon. En die slaapt, eet, vakantie, ziek.</div>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-white/10">
+      <p class="text-sm text-white/70 mb-4">→ <strong class="text-white">Pure prijs is niet het verhaal.</strong> De vraag is: hoeveel <em>extra deals</em> levert elke optie? Onze cijfers bij vergelijkbare installateurs:</p>
+      <div class="grid md:grid-cols-4 gap-4 text-center">
+        <div>
+          <div class="text-2xl font-bold gradient-text">+27pp</div>
+          <div class="text-xs text-white/60 mt-1">Selectly: NXTG case</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-white">+5-12pp</div>
+          <div class="text-xs text-white/60 mt-1">Bobex (extra leads)</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-white">+8-15pp</div>
+          <div class="text-xs text-white/60 mt-1">DIY (mits afgewerkt)</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-white">+10-20pp</div>
+          <div class="text-xs text-white/60 mt-1">Nieuwe medewerker</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mid CTA -->
+  <section class="mb-16 grid md:grid-cols-2 gap-5">
+    <a href="/roi.html" class="bg-white border-2 border-brand-500/20 hover:border-brand-500 rounded-3xl p-7 transition group">
+      <div class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2">Stap 1</div>
+      <h3 class="text-2xl font-bold mb-2">Reken je eigen ROI uit →</h3>
+      <p class="text-ink-500 text-sm">2 min. Vul je cijfers in. Zie wat Selectly netto oplevert in jouw situatie.</p>
+    </a>
+    <a href="/demo-ai.html" class="bg-gradient-to-br from-ink-900 to-ink-700 text-white border-2 border-ink-900 rounded-3xl p-7 transition group">
+      <div class="text-xs font-semibold text-mint-400 uppercase tracking-wider mb-2">Stap 2</div>
+      <h3 class="text-2xl font-bold mb-2">Praat live met de AI →</h3>
+      <p class="text-white/70 text-sm">Zie wat klanten ervaren. Zonder demo-call, zonder e-mail-adres.</p>
+    </a>
+  </section>
+
+  <!-- Sources / methodology -->
+  <section class="border-t border-gray-200 pt-10">
+    <details class="text-sm text-ink-500">
+      <summary class="font-semibold text-ink-900 cursor-pointer mb-3">Methodologie & bronnen</summary>
+      <ul class="space-y-2 pl-4">
+        <li>• <strong>Bobex/Solvari prijzen</strong>: publieke pricing-pagina's, gemiddeld leadbedrag €30-80 afhankelijk van sector (2026).</li>
+        <li>• <strong>Teamleader Focus</strong>: officiële pricing-pagina, €69 Sirius / €107 Mercury / €179 Orbit per user/mnd (NL/BE, 2026).</li>
+        <li>• <strong>DIY-stack schatting</strong>: GHL ($297/mnd resold) + Make.com ($29) + Calendly ($16) + Twilio (~€100) + onderhoudstijd.</li>
+        <li>• <strong>Nieuwe medewerker</strong>: bruto €3.500 (sector-gemiddelde verkoop-medewerker BE) + 35% sociale lasten + €5K werving/opleiding eerste jaar.</li>
+        <li>• <strong>Selectly NXTG-case</strong>: interne data, 35% → 62% sales conversion in week 1-4 (april 2026).</li>
+        <li>• Cijfers zijn indicatief. Vraag <a href="/#contact" class="text-brand-500 underline">een gesprek</a> voor jouw specifieke situatie.</li>
+      </ul>
+    </details>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-ink-900 text-white/50 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-2.5 mb-3">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#fg)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="fg" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor BE installateurs.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Verken</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/demo-ai.html" class="hover:text-white">Live demo</a></li>
+        <li><a href="/roi.html" class="hover:text-white">ROI-calculator</a></li>
+        <li><a href="/case-nxtg.html" class="hover:text-white">NXTG case</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Contact</div>
+      <ul class="space-y-1">
+        <li><a href="/#contact" class="hover:text-white">Plan demo</a></li>
+        <li><a href="https://wa.me/32492617085" target="_blank" rel="noopener" class="hover:text-white">+32 492 61 70 85</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

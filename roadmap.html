@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070a14" />
+  <title>Roadmap — Selectly</title>
+  <meta name="description" content="Wat we deze maand shippen, wat in de pijplijn zit, wat we bewust niet bouwen. Updates wekelijks." />
+  <link rel="canonical" href="https://selectly.be/roadmap.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans:['Inter','system-ui','sans-serif'], mono:['JetBrains Mono','monospace'] },
+      colors: {
+        ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 500:'#293150' },
+        brand: { 400:'#5b8cff', 500:'#3a6cf2' },
+        mint: { 400:'#34e4a8', 500:'#10c98c' },
+        amber: { 500:'#f59e0b' },
+      }
+    } } };
+  </script>
+  <style>
+    body { font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+    .gradient-text { background:linear-gradient(135deg,#5b8cff,#a78bfa,#34e4a8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .grid-bg { background-image: linear-gradient(rgba(91,140,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(91,140,255,.08) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%); }
+    .glow-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:.4; pointer-events:none; }
+    .badge { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+  </style>
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return; window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','852925924180054'); fbq('track','PageView');
+    }
+    try { if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel(); else window.addEventListener('selectly-consent-given', loadMetaPixel, { once:true }); } catch(e){}
+  </script>
+  <script src="/consent.js" defer></script>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2.5">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="url(#g)"/>
+        <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+      </svg>
+      <span class="text-xl font-bold">Selectly</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+      <a href="/demo-ai.html" class="hover:text-ink-900">Live demo</a>
+      <a href="/roi.html" class="hover:text-ink-900">ROI-calc</a>
+      <a href="/vergelijken.html" class="hover:text-ink-900">Vergelijken</a>
+      <a href="/roadmap.html" class="text-ink-900 font-semibold">Roadmap</a>
+    </div>
+    <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan call →</a>
+  </div>
+</nav>
+
+<section class="relative bg-ink-900 text-white overflow-hidden">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
+
+  <div class="relative max-w-4xl mx-auto px-6 lg:px-8 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6">
+      <span class="w-2 h-2 rounded-full bg-mint-400 animate-pulse"></span>
+      <span class="text-white/80">Wekelijks bijgewerkt · laatste update: 19 juni 2026</span>
+    </div>
+    <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
+      Wat we <span class="gradient-text">bouwen</span>.
+    </h1>
+    <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+      Geen geheime backlog. Geen "binnenkort". Concrete data, concrete features, concrete tijdslots.
+    </p>
+  </div>
+</section>
+
+<main class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+
+  <!-- Cadans -->
+  <section class="grid md:grid-cols-3 gap-5 mb-16">
+    <div class="bg-white border border-gray-200 rounded-2xl p-5">
+      <div class="text-3xl font-bold gradient-text">3-7</div>
+      <div class="text-sm text-ink-500 mt-1">releases per maand</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-5">
+      <div class="text-3xl font-bold gradient-text">&lt;48u</div>
+      <div class="text-sm text-ink-500 mt-1">van klant-suggestie tot ship (als kleine fix)</div>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-5">
+      <div class="text-3xl font-bold gradient-text">100%</div>
+      <div class="text-sm text-ink-500 mt-1">first-tested op NXTG (eigen lab)</div>
+    </div>
+  </section>
+
+  <!-- IN PROGRESS -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="badge bg-amber-500/15 text-amber-500"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Nu in productie</span>
+      <h2 class="text-2xl font-bold">In progress</h2>
+    </div>
+    <div class="space-y-3">
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-ink-500 mt-1 whitespace-nowrap">Q3 2026</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-ink-900">AI Voicebot — inkomende oproepen</h3>
+          <p class="text-sm text-ink-500 mt-1">AI neemt op binnen 2 belsignalen, triëert (uren / FAQ / afspraak boeken), escaleert naar mens bij nood. Eerst ElevenLabs voor stem, daarna eigen training.</p>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-ink-500 mt-1 whitespace-nowrap">Q3 2026</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-ink-900">Klant-portal cross-flow (OfferteScout ↔ Selectly)</h3>
+          <p class="text-sm text-ink-500 mt-1">Lead-buyer tier-klanten zien OfferteScout-leads direct in Selectly Growth-portal als ze beide hebben. Eén feed ipv twee tools.</p>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-ink-500 mt-1 whitespace-nowrap">Juli 2026</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-ink-900">Stripe/Mollie self-service tier-upgrade</h3>
+          <p class="text-sm text-ink-500 mt-1">Klant kan vanuit portal direct Starter → Growth → Enterprise switchen. Geen mail-ping-pong meer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT UP -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="badge bg-brand-500/15 text-brand-500"><span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> Volgende</span>
+      <h2 class="text-2xl font-bold">Q4 2026</h2>
+    </div>
+    <div class="space-y-3">
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-ink-500 mt-1 whitespace-nowrap">Q4 2026</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-ink-900">Franstalige versie (FR-BE markt)</h3>
+          <p class="text-sm text-ink-500 mt-1">Volledige UI + AI-prompts in het Frans. Voor Wallonië en Brussel-Frans.</p>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-ink-500 mt-1 whitespace-nowrap">Q4 2026</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-ink-900">Real-time monteur-tracking voor klant</h3>
+          <p class="text-sm text-ink-500 mt-1">"Jonas is onderweg · arriveert om 14:23". GPS-positie van technieker zichtbaar voor eindklant (à la Uber).</p>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-ink-500 mt-1 whitespace-nowrap">Q4 2026</div>
+        <div class="flex-1">
+          <h3 class="font-bold text-ink-900">Customer self-service portal</h3>
+          <p class="text-sm text-ink-500 mt-1">Eindklant logt in, ziet alle offertes/facturen/foto's van werkbezoeken op één plek. Tier 2+ feature.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2027 -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="badge bg-gray-200 text-ink-500"><span class="w-1.5 h-1.5 rounded-full bg-ink-500"></span> 2027</span>
+      <h2 class="text-2xl font-bold">Verkenningsfase</h2>
+    </div>
+    <p class="text-sm text-ink-500 mb-4">Geen vaste datum. Hangt af van klant-feedback Q3/Q4.</p>
+    <div class="grid sm:grid-cols-2 gap-3">
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <h3 class="font-semibold text-ink-900 text-sm">NL-uitbreiding (BE+NL stack)</h3>
+        <p class="text-xs text-ink-500 mt-1">BTW-logica, NL telefoonnummers, region-routing.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <h3 class="font-semibold text-ink-900 text-sm">Multi-vestiging-support</h3>
+        <p class="text-xs text-ink-500 mt-1">Voor klanten met 2+ locaties, aparte rapportering.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <h3 class="font-semibold text-ink-900 text-sm">AI-foto-analyse offerte</h3>
+        <p class="text-xs text-ink-500 mt-1">Klant stuurt foto van dak → AI schat oppervlakte + kost.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <h3 class="font-semibold text-ink-900 text-sm">Reseller-portal (Joeri-stijl)</h3>
+        <p class="text-xs text-ink-500 mt-1">Live commissie-tracking + pipeline voor partners.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHIPPED -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="badge bg-mint-500/15 text-mint-500"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span> Recent gelanceerd</span>
+      <h2 class="text-2xl font-bold">Changelog</h2>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl divide-y divide-gray-100">
+      <div class="p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-mint-500 mt-1 whitespace-nowrap">2026-06-19</div>
+        <div class="flex-1">
+          <h3 class="font-semibold text-ink-900 text-sm">Live AI-demo + ROI-calculator + vergelijking + over-pagina + security-pagina</h3>
+          <p class="text-xs text-ink-500 mt-1">5 nieuwe public-facing pages in 1 sprint. Bezoekers kunnen nu zelf testen voor demo-call.</p>
+        </div>
+      </div>
+      <div class="p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-mint-500 mt-1 whitespace-nowrap">2026-06-18</div>
+        <div class="flex-1">
+          <h3 class="font-semibold text-ink-900 text-sm">Super-Admin command center</h3>
+          <p class="text-xs text-ink-500 mt-1">Intern dashboard: MRR-chart, klanten-tabel met tier-badges, OfferteScout pipeline, sector donut.</p>
+        </div>
+      </div>
+      <div class="p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-mint-500 mt-1 whitespace-nowrap">2026-06-17</div>
+        <div class="flex-1">
+          <h3 class="font-semibold text-ink-900 text-sm">Tier-aware portal generator</h3>
+          <p class="text-xs text-ink-500 mt-1">Eén template per tier (Lead-buyer / Starter / Growth / Enterprise) met locked-cards voor upsell.</p>
+        </div>
+      </div>
+      <div class="p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-mint-500 mt-1 whitespace-nowrap">2026-06-16</div>
+        <div class="flex-1">
+          <h3 class="font-semibold text-ink-900 text-sm">Telegram bot interactief</h3>
+          <p class="text-xs text-ink-500 mt-1">/vandaag, /marge, /klanten — live data van CLI op telefoon.</p>
+        </div>
+      </div>
+      <div class="p-5 flex items-start gap-4">
+        <div class="font-mono text-xs text-mint-500 mt-1 whitespace-nowrap">2026-06-08</div>
+        <div class="flex-1">
+          <h3 class="font-semibold text-ink-900 text-sm">Selectly platform live op selectly.be</h3>
+          <p class="text-xs text-ink-500 mt-1">3 SaaS tiers + Tier 0 lead-buyer. Pakket-calculator, NXTG case-study, GDPR-consent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEWUST NIET -->
+  <section class="mb-12 bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-3xl p-8 lg:p-10">
+    <h2 class="text-2xl font-bold tracking-tight mb-3">Wat we bewust <span class="gradient-text">niet</span> bouwen</h2>
+    <p class="text-white/70 mb-7">Focus = wat niet shippen.</p>
+    <ul class="space-y-3 text-white/85 text-sm">
+      <li class="flex gap-3"><span class="text-white/40">×</span><strong>Mobile-app voor installateurs</strong> — WhatsApp + web volstaat. Eigen app = 6 mnd werk voor 0 meerwaarde.</li>
+      <li class="flex gap-3"><span class="text-white/40">×</span><strong>White-label voor andere agencies</strong> — wij verkopen aan installateurs, niet aan agencies.</li>
+      <li class="flex gap-3"><span class="text-white/40">×</span><strong>Enterprise multi-departement features</strong> — Salesforce-territorium. Wij blijven KMO-niche.</li>
+      <li class="flex gap-3"><span class="text-white/40">×</span><strong>Eigen LLM-training</strong> — Claude Sonnet voldoet. Eigen model = miljoenen investering, geen meerwaarde voor de klant.</li>
+      <li class="flex gap-3"><span class="text-white/40">×</span><strong>Crypto-betalingen</strong> — nee.</li>
+    </ul>
+  </section>
+
+  <!-- Feedback -->
+  <section class="text-center">
+    <h2 class="text-2xl font-bold tracking-tight mb-2">Een idee dat hier niet staat?</h2>
+    <p class="text-ink-500 mb-6">Stuur het door. Goeie ideeën shippen we vaak binnen de week.</p>
+    <a href="mailto:bart@selectly.be?subject=Feature%20suggestie" class="inline-block px-7 py-4 bg-ink-900 text-white font-bold rounded-xl hover:bg-ink-700">Mail je idee →</a>
+  </section>
+
+</main>
+
+<footer class="bg-ink-900 text-white/50 py-12 mt-16">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-2.5 mb-3">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#fg)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="fg" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>BV NXTG Solutions · Roeselare</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Verken</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/demo-ai.html" class="hover:text-white">Live demo</a></li>
+        <li><a href="/vergelijken.html" class="hover:text-white">Vergelijken</a></li>
+        <li><a href="/over.html" class="hover:text-white">Over</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Vertrouwen</div>
+      <ul class="space-y-1">
+        <li><a href="/security.html" class="hover:text-white">Security &amp; GDPR</a></li>
+        <li><a href="/status.html" class="hover:text-white">Status</a></li>
+        <li><a href="/roadmap.html" class="hover:text-white">Roadmap</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

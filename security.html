@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070a14" />
+  <title>Security &amp; GDPR — Selectly</title>
+  <meta name="description" content="Hoe Selectly omgaat met klantdata: hosting in EU, encryptie at-rest en in-transit, GDPR-compliant, data-export op verzoek, geen LLM-training op klant-data." />
+  <meta property="og:title" content="Security &amp; GDPR · Selectly" />
+  <link rel="canonical" href="https://selectly.be/security.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+      colors: {
+        ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
+        brand: { 400:'#5b8cff', 500:'#3a6cf2', 600:'#2451d8' },
+        mint: { 400:'#34e4a8', 500:'#10c98c' },
+        amber: { 500:'#f59e0b' },
+      }
+    } } };
+  </script>
+  <style>
+    body { font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+    .gradient-text { background:linear-gradient(135deg,#5b8cff,#a78bfa,#34e4a8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .grid-bg {
+      background-image: linear-gradient(rgba(91,140,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(91,140,255,.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:.4; pointer-events:none; }
+    .dataflow-arrow { font-family:'JetBrains Mono', monospace; color:#5b8cff; font-size: 1.5em; }
+  </style>
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return; window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','852925924180054'); fbq('track','PageView');
+    }
+    try { if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel(); else window.addEventListener('selectly-consent-given', loadMetaPixel, { once:true }); } catch(e){}
+  </script>
+  <script src="/consent.js" defer></script>
+</head>
+<body class="bg-white text-ink-900">
+
+<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#g)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="text-xl font-bold">Selectly</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+        <a href="/demo-ai.html" class="hover:text-ink-900">Live demo</a>
+        <a href="/roi.html" class="hover:text-ink-900">ROI-calc</a>
+        <a href="/vergelijken.html" class="hover:text-ink-900">Vergelijken</a>
+        <a href="/security.html" class="text-ink-900 font-semibold">Security</a>
+      </div>
+      <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan call →</a>
+    </div>
+  </div>
+</nav>
+
+<section class="relative bg-ink-900 text-white overflow-hidden">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
+
+  <div class="relative max-w-4xl mx-auto px-6 lg:px-8 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-mint-400/30 bg-mint-400/5 text-sm font-medium mb-6">
+      <span class="w-2 h-2 rounded-full bg-mint-400"></span>
+      <span class="text-mint-400">GDPR-compliant · EU-hosting · geen LLM-training op klant-data</span>
+    </div>
+    <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
+      Security &amp; <span class="gradient-text">privacy</span>.
+    </h1>
+    <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+      Geen vage marketing-claims. Hier wat we doen, waar je data leeft, en wat je rechten zijn — zwart op wit.
+    </p>
+  </div>
+</section>
+
+<main class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+
+  <!-- TL;DR -->
+  <section class="mb-16 grid md:grid-cols-3 gap-5">
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-xl mb-3">🇪🇺</div>
+      <h3 class="font-bold text-ink-900 mb-1">EU-only hosting</h3>
+      <p class="text-sm text-ink-500">Alle klant-data in EU-datacenters (Amsterdam, Ierland). Geen transfer naar VS.</p>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-xl mb-3">🔒</div>
+      <h3 class="font-bold text-ink-900 mb-1">Versleuteld in &amp; at rest</h3>
+      <p class="text-sm text-ink-500">TLS 1.3 in transit. AES-256 at rest. Geen klant-data in plaintext logs.</p>
+    </div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <div class="text-xl mb-3">🚫</div>
+      <h3 class="font-bold text-ink-900 mb-1">Geen LLM-training</h3>
+      <p class="text-sm text-ink-500">Anthropic Claude API. Klant-conversaties worden <strong>niet</strong> gebruikt om hun modellen te trainen.</p>
+    </div>
+  </section>
+
+  <!-- Dataflow diagram -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold tracking-tight mb-3">Waar leeft jouw data?</h2>
+    <p class="text-ink-500 mb-8">Volledige flow van lead-binnenkomen tot factuur — met locatie per stap.</p>
+
+    <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-3xl p-8 lg:p-10">
+      <div class="space-y-6 font-mono text-sm">
+
+        <div class="flex items-start gap-4">
+          <div class="bg-brand-500 text-white rounded-lg px-3 py-2 font-bold text-xs">1. LEAD</div>
+          <div class="flex-1">
+            <div class="font-semibold text-ink-900 mb-1">Klant vult formulier in of chat op jouw site</div>
+            <div class="text-xs text-ink-500">Locatie: jouw website (Netlify EU) · Cookies: GDPR-consent gated · Bewaard: form-submission op Netlify (EU-server)</div>
+          </div>
+        </div>
+
+        <div class="text-center dataflow-arrow">↓</div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-brand-500 text-white rounded-lg px-3 py-2 font-bold text-xs">2. CRM</div>
+          <div class="flex-1">
+            <div class="font-semibold text-ink-900 mb-1">Lead-data naar GoHighLevel</div>
+            <div class="text-xs text-ink-500">Locatie: GHL EU-tier (Ierland) · Toegang: enkel jij en Bart · Wachtwoord-rotatie: kwartaal · 2FA verplicht voor admin-rollen</div>
+          </div>
+        </div>
+
+        <div class="text-center dataflow-arrow">↓</div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-brand-500 text-white rounded-lg px-3 py-2 font-bold text-xs">3. AI</div>
+          <div class="flex-1">
+            <div class="font-semibold text-ink-900 mb-1">Anthropic Claude verwerkt de conversatie</div>
+            <div class="text-xs text-ink-500">Locatie: Anthropic EU-endpoint · Bewaard bij Anthropic: max 30 dagen voor abuse-monitoring · <strong class="text-ink-900">Niet gebruikt voor model-training</strong> (zero-data-retention via business-tier)</div>
+          </div>
+        </div>
+
+        <div class="text-center dataflow-arrow">↓</div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-brand-500 text-white rounded-lg px-3 py-2 font-bold text-xs">4. KANAAL</div>
+          <div class="flex-1">
+            <div class="font-semibold text-ink-900 mb-1">Antwoord via WhatsApp / e-mail / SMS</div>
+            <div class="text-xs text-ink-500">WhatsApp: officieel Business API via Twilio EU · Mail: jouw domein met DKIM/SPF · SMS: Twilio EU-nummer</div>
+          </div>
+        </div>
+
+        <div class="text-center dataflow-arrow">↓</div>
+
+        <div class="flex items-start gap-4">
+          <div class="bg-mint-500 text-white rounded-lg px-3 py-2 font-bold text-xs">5. OFFERTE</div>
+          <div class="flex-1">
+            <div class="font-semibold text-ink-900 mb-1">PDF-offerte met jouw branding</div>
+            <div class="text-xs text-ink-500">Generatie: server-side · Hosting: Netlify EU · Boekhouding-koppeling: Yuki/Octopus/Teamleader BE</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance & rights -->
+  <section class="mb-16 grid md:grid-cols-2 gap-6">
+    <div class="bg-white border border-gray-200 rounded-2xl p-7">
+      <h2 class="text-xl font-bold mb-4">Compliance-checklist</h2>
+      <ul class="space-y-3 text-sm text-ink-700">
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>GDPR-conform</strong> · cookie-consent gated, recht op inzage/wissing binnen 30 dagen</div></li>
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>Verwerkersovereenkomst</strong> · standaard meegeleverd bij elke klant — bij ondertekening</div></li>
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>EU-hosting</strong> · Netlify (Ierland), GHL (Ierland), Anthropic (EU-endpoint)</div></li>
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>2FA</strong> · verplicht voor alle admin-accounts</div></li>
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>Geen LLM-training</strong> · Anthropic business-tier garandeert zero-data-retention</div></li>
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>Encryptie at-rest</strong> · AES-256 op alle databases</div></li>
+        <li class="flex gap-3"><span class="text-mint-500 font-bold">✓</span><div><strong>TLS 1.3</strong> · alle traffic over HTTPS</div></li>
+        <li class="flex gap-3"><span class="text-amber-500 font-bold">⊙</span><div><strong>SOC 2 Type II</strong> · niet zelf, wel onze leveranciers (Netlify, Anthropic, Twilio)</div></li>
+        <li class="flex gap-3"><span class="text-amber-500 font-bold">⊙</span><div><strong>ISO 27001</strong> · geen eigen certificering — overkill voor solo-founder. Leveranciers wel.</div></li>
+      </ul>
+    </div>
+
+    <div class="bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-2xl p-7">
+      <h2 class="text-xl font-bold mb-4">Jouw rechten als klant</h2>
+      <ul class="space-y-3 text-sm text-white/85">
+        <li class="flex gap-3"><span class="text-mint-400 font-bold">→</span><div><strong>Data-export</strong> · op vraag binnen 5 werkdagen, JSON of CSV</div></li>
+        <li class="flex gap-3"><span class="text-mint-400 font-bold">→</span><div><strong>Wissing</strong> · binnen 30 dagen na opzeg, of sneller op verzoek</div></li>
+        <li class="flex gap-3"><span class="text-mint-400 font-bold">→</span><div><strong>Inzage</strong> · live dashboard van wat we over jouw klanten bewaren</div></li>
+        <li class="flex gap-3"><span class="text-mint-400 font-bold">→</span><div><strong>Audit-log</strong> · wie wat wanneer aanpaste — alleen voor admin-acties</div></li>
+        <li class="flex gap-3"><span class="text-mint-400 font-bold">→</span><div><strong>Eigen GHL-licentie behouden</strong> · bij stop houd je de data + tool</div></li>
+        <li class="flex gap-3"><span class="text-mint-400 font-bold">→</span><div><strong>Direct lijn met Bart</strong> · geen ticket-systeem voor security-vragen</div></li>
+      </ul>
+      <a href="mailto:bart@selectly.be?subject=Security%20vraag" class="mt-6 block bg-white text-ink-900 font-semibold py-3 rounded-xl text-center text-sm hover:bg-gray-100">Stel een specifieke vraag →</a>
+    </div>
+  </section>
+
+  <!-- Incidents -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold tracking-tight mb-3">Incident-historiek</h2>
+    <p class="text-ink-500 mb-6">Wij zijn transparant. Hier alle security-relevante incidenten — ook de kleine.</p>
+
+    <div class="bg-white border border-gray-200 rounded-2xl divide-y divide-gray-200">
+      <div class="p-5 flex items-center gap-4">
+        <div class="text-2xl">🟢</div>
+        <div class="flex-1">
+          <div class="font-semibold text-ink-900">Geen incidenten</div>
+          <div class="text-xs text-ink-500 mt-0.5">Sinds platform-launch (juni 2026). We updaten deze pagina bij elk incident binnen 24u.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xs text-ink-500 mt-4">→ Live status: <a href="/status.html" class="text-brand-500 hover:underline">selectly.be/status</a></p>
+  </section>
+
+  <!-- Sub-processors -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold tracking-tight mb-3">Sub-processors</h2>
+    <p class="text-ink-500 mb-6">Wie wij gebruiken om de dienst te leveren. Bij wijziging krijg je 30 dagen vooraf bericht.</p>
+
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-50 border-b border-gray-200">
+          <tr>
+            <th class="text-left px-5 py-3 font-semibold">Partij</th>
+            <th class="text-left px-5 py-3 font-semibold">Functie</th>
+            <th class="text-left px-5 py-3 font-semibold">Locatie</th>
+            <th class="text-left px-5 py-3 font-semibold">Compliance</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-5 py-3 font-semibold">Netlify</td>
+            <td class="px-5 py-3 text-ink-700">Hosting · forms</td>
+            <td class="px-5 py-3 font-mono text-ink-500">EU (Ierland)</td>
+            <td class="px-5 py-3 text-xs"><span class="bg-gray-100 px-2 py-0.5 rounded">SOC 2</span> <span class="bg-gray-100 px-2 py-0.5 rounded">GDPR</span></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-3 font-semibold">GoHighLevel</td>
+            <td class="px-5 py-3 text-ink-700">CRM · automation</td>
+            <td class="px-5 py-3 font-mono text-ink-500">EU-tier (Ierland)</td>
+            <td class="px-5 py-3 text-xs"><span class="bg-gray-100 px-2 py-0.5 rounded">SOC 2</span> <span class="bg-gray-100 px-2 py-0.5 rounded">GDPR</span></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-3 font-semibold">Anthropic</td>
+            <td class="px-5 py-3 text-ink-700">LLM (Claude API)</td>
+            <td class="px-5 py-3 font-mono text-ink-500">EU-endpoint</td>
+            <td class="px-5 py-3 text-xs"><span class="bg-gray-100 px-2 py-0.5 rounded">SOC 2</span> <span class="bg-gray-100 px-2 py-0.5 rounded">ISO 27001</span> <span class="bg-gray-100 px-2 py-0.5 rounded">Zero-retention</span></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-3 font-semibold">Twilio</td>
+            <td class="px-5 py-3 text-ink-700">WhatsApp · SMS · voice</td>
+            <td class="px-5 py-3 font-mono text-ink-500">EU (Dublin)</td>
+            <td class="px-5 py-3 text-xs"><span class="bg-gray-100 px-2 py-0.5 rounded">SOC 2</span> <span class="bg-gray-100 px-2 py-0.5 rounded">GDPR</span></td>
+          </tr>
+          <tr>
+            <td class="px-5 py-3 font-semibold">Mollie</td>
+            <td class="px-5 py-3 text-ink-700">Payments (Tier 2+)</td>
+            <td class="px-5 py-3 font-mono text-ink-500">NL (Amsterdam)</td>
+            <td class="px-5 py-3 text-xs"><span class="bg-gray-100 px-2 py-0.5 rounded">PCI DSS</span> <span class="bg-gray-100 px-2 py-0.5 rounded">PSD2</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Verantwoordelijk -->
+  <section class="bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-3xl p-8 lg:p-10">
+    <h2 class="text-2xl font-bold tracking-tight mb-2">Verantwoordelijke</h2>
+    <p class="text-white/70 mb-5">Geen DPO-afdeling. Direct lijn met de founder.</p>
+
+    <div class="grid sm:grid-cols-2 gap-5 text-sm">
+      <div>
+        <div class="text-xs text-mint-400 font-semibold uppercase tracking-wider mb-1">DPO / Privacy-contact</div>
+        <div class="font-bold text-white">Bart Van Poucke</div>
+        <div class="text-white/70 mt-1">bart@selectly.be</div>
+        <div class="text-white/70">+32 492 61 70 85</div>
+      </div>
+      <div>
+        <div class="text-xs text-mint-400 font-semibold uppercase tracking-wider mb-1">Juridisch</div>
+        <div class="font-bold text-white">BV NXTG Solutions</div>
+        <div class="text-white/70 mt-1">BTW BE1037.580.195</div>
+        <div class="text-white/70">Zetel: Roeselare, België</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-ink-900 text-white/50 py-12 mt-16 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-2.5 mb-3">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#fg)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="fg" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>BV NXTG Solutions · Roeselare</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Verken</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/demo-ai.html" class="hover:text-white">Live demo</a></li>
+        <li><a href="/vergelijken.html" class="hover:text-white">Vergelijken</a></li>
+        <li><a href="/over.html" class="hover:text-white">Over Selectly</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Vertrouwen</div>
+      <ul class="space-y-1">
+        <li><a href="/security.html" class="hover:text-white">Security &amp; GDPR</a></li>
+        <li><a href="/status.html" class="hover:text-white">Status</a></li>
+        <li><a href="/roadmap.html" class="hover:text-white">Roadmap</a></li>
+        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

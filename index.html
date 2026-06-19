@@ -229,10 +229,13 @@
           <a href="#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
           <a href="#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
           <a href="#case" class="hover:text-ink-900 transition">Case study</a>
-          <a href="#prijzen" class="hover:text-ink-900 transition">Prijzen</a>
+          <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>
+            Live demo
+          </a>
           <a href="/roi.html" class="hover:text-ink-900 transition">ROI-calc</a>
-          <a href="/calculator.html" class="hover:text-ink-900 transition">Pakket</a>
-          <a href="#faq" class="hover:text-ink-900 transition">FAQ</a>
+          <a href="/vergelijken.html" class="hover:text-ink-900 transition">Vergelijken</a>
+          <a href="#prijzen" class="hover:text-ink-900 transition">Prijzen</a>
         </div>
 
         <div class="hidden md:flex items-center gap-3">
@@ -248,13 +251,15 @@
 
       <!-- Mobile menu -->
       <div x-show="open" x-transition class="md:hidden py-4 border-t border-gray-100 space-y-1">
+        <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live AI-demo</a>
+        <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
+        <a href="/vergelijken.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Vergelijken</a>
         <a href="#wat-we-doen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
-        <a href="#hoe" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Werkwijze</a>
         <a href="#case" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Case study</a>
         <a href="#prijzen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Prijzen</a>
-        <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
-        <a href="/calculator.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakket-calculator</a>
-        <a href="#faq" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">FAQ</a>
+        <a href="/over.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Over Selectly</a>
+        <a href="/security.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Security &amp; GDPR</a>
+        <a href="/roadmap.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Roadmap</a>
         <a href="#contact" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan een demo →</a>
       </div>
     </div>

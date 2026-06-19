@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070a14" />
+
+  <title>Praat met Selectly AI — live demo</title>
+  <meta name="description" content="Ervaar in 2 minuten hoe Selectly AI leads kwalificeert. Geen demo-call nodig, geen e-mailadres. Kies een scenario en zie de AI live antwoorden." />
+
+  <meta property="og:title" content="Selectly AI · live demo (2 min)" />
+  <meta property="og:description" content="Kies een scenario, zie de AI direct antwoorden. Dezelfde technologie die jij krijgt." />
+  <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
+
+  <link rel="canonical" href="https://selectly.be/demo-ai.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+        colors: {
+          ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
+          brand: { 100:'#dbe5ff', 300:'#8eb0ff', 400:'#5b8cff', 500:'#3a6cf2', 600:'#2451d8' },
+          mint: { 400:'#34e4a8', 500:'#10c98c' },
+        },
+        boxShadow: {
+          'glow': '0 0 40px -10px rgba(91,140,255,.5)',
+          'glow-mint': '0 0 50px -10px rgba(52,228,168,.4)',
+        }
+      } }
+    };
+  </script>
+
+  <style>
+    body { font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing: antialiased; }
+    .gradient-text {
+      background: linear-gradient(135deg,#5b8cff 0%,#a78bfa 50%,#34e4a8 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(91,140,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,140,255,.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:.4; pointer-events:none; }
+
+    /* Chat messages */
+    .msg { opacity:0; transform: translateY(8px); animation: msgIn .35s ease-out forwards; }
+    @keyframes msgIn { to { opacity:1; transform: translateY(0); } }
+
+    .typing-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #94a3b8;
+      border-radius: 50%;
+      margin: 0 1.5px;
+      animation: typingBounce 1.1s ease-in-out infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: .15s; }
+    .typing-dot:nth-child(3) { animation-delay: .30s; }
+    @keyframes typingBounce {
+      0%, 100% { opacity: .3; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    .scenario-card { transition: all .2s ease; cursor:pointer; }
+    .scenario-card:hover { transform: translateY(-2px); }
+    .scenario-card.active { border-color:#5b8cff; background:linear-gradient(135deg,#070a14 0%,#1c2238 100%); }
+  </style>
+
+  <!-- META PIXEL -->
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return;
+      window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','852925924180054'); fbq('track','PageView');
+    }
+    try {
+      if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel();
+      else window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
+    } catch(e) {}
+  </script>
+  <script src="/consent.js" defer></script>
+</head>
+
+<body class="bg-white text-ink-900">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#g)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="text-xl font-bold">Selectly</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+        <a href="/#wat-we-doen" class="hover:text-ink-900">Wat we doen</a>
+        <a href="/#prijzen" class="hover:text-ink-900">Prijzen</a>
+        <a href="/roi.html" class="hover:text-ink-900">ROI-calc</a>
+        <a href="/demo-ai.html" class="text-ink-900 font-semibold">Live demo</a>
+      </div>
+      <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan call →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative bg-ink-900 text-white overflow-hidden">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
+  <div class="glow-orb w-[400px] h-[400px] bg-mint-400 bottom-0 -left-40"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-16 pb-12 lg:pt-20 lg:pb-16 text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6">
+      <span class="w-2 h-2 rounded-full bg-mint-400 animate-pulse"></span>
+      <span class="text-white/80">Live · geen demo-call · geen e-mailadres</span>
+    </div>
+
+    <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
+      Praat <span class="gradient-text">nu</span> met Selectly AI.
+    </h1>
+    <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+      Kies een scenario en zie hoe de AI een lead kwalificeert. Dezelfde technologie als wat jouw klanten zouden ervaren.
+    </p>
+  </div>
+</section>
+
+<!-- DEMO -->
+<main x-data="demoAI()" class="max-w-6xl mx-auto px-6 lg:px-8 -mt-8 mb-16">
+  <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6">
+
+    <!-- LEFT: scenario picker -->
+    <aside>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-xl p-6 sticky top-24">
+        <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-3">Kies een scenario</p>
+        <div class="space-y-2">
+          <template x-for="(s, i) in scenarios" :key="s.id">
+            <div @click="loadScenario(i)"
+                 class="scenario-card border-2 rounded-xl p-4 text-left"
+                 :class="active === i ? 'active text-white border-brand-500' : 'border-gray-100 hover:border-brand-300'">
+              <div class="flex items-center gap-3">
+                <div class="text-2xl" x-text="s.emoji"></div>
+                <div class="flex-1">
+                  <div class="font-semibold text-sm" x-text="s.label"></div>
+                  <div class="text-xs mt-0.5" :class="active === i ? 'text-white/70' : 'text-ink-500'" x-text="s.sublabel"></div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-gray-100">
+          <p class="text-xs text-ink-500 mb-3 leading-relaxed">
+            <strong class="text-ink-900">Wat je hier ziet</strong> is exact wat jouw klanten ervaren via WhatsApp, je website-chat of na een formulier-aanvraag.
+          </p>
+          <a href="/#contact" class="block text-center bg-ink-900 text-white text-sm font-semibold py-3 rounded-xl hover:bg-ink-700">
+            Plan demo voor jouw bedrijf
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: chat window -->
+    <section>
+      <div class="bg-white rounded-3xl border border-gray-100 shadow-2xl overflow-hidden">
+        <!-- Window header -->
+        <div class="bg-gradient-to-r from-ink-900 to-ink-700 text-white px-5 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-400 to-mint-400 flex items-center justify-center font-bold text-sm">AI</div>
+            <div>
+              <div class="font-semibold text-sm" x-text="currentScenario.botName"></div>
+              <div class="text-xs text-mint-400 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>
+                Online — antwoordt &lt;1 sec
+              </div>
+            </div>
+          </div>
+          <button @click="restart()" class="text-xs text-white/60 hover:text-white px-3 py-1.5 rounded-lg border border-white/10">
+            ↻ Herstart
+          </button>
+        </div>
+
+        <!-- Chat thread -->
+        <div class="bg-gray-50 p-6 min-h-[420px] max-h-[520px] overflow-y-auto" id="thread">
+          <template x-for="(m, i) in shown" :key="i">
+            <div class="msg mb-4 flex" :class="m.from === 'user' ? 'justify-end' : 'justify-start'">
+              <div :class="m.from === 'user'
+                ? 'bg-brand-500 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%]'
+                : 'bg-white border border-gray-200 text-ink-900 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%] shadow-sm'">
+                <div class="text-sm leading-relaxed whitespace-pre-line" x-html="m.text"></div>
+                <div class="text-xs mt-1.5" :class="m.from === 'user' ? 'text-white/60' : 'text-ink-500'" x-text="m.time"></div>
+              </div>
+            </div>
+          </template>
+
+          <!-- Typing indicator -->
+          <div x-show="typing" class="flex justify-start mb-4">
+            <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+          </div>
+
+          <!-- Auto-end summary -->
+          <div x-show="done" class="msg mt-6 bg-gradient-to-br from-mint-400/10 to-brand-500/10 border border-mint-400/30 rounded-2xl p-5">
+            <div class="flex items-start gap-3">
+              <div class="text-2xl">✓</div>
+              <div>
+                <div class="font-semibold text-ink-900 mb-1">Lead gekwalificeerd · doorgestuurd naar CRM</div>
+                <div class="text-sm text-ink-500 mb-3" x-html="leadSummary"></div>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="text-xs bg-mint-400 text-white px-2.5 py-1 rounded-full font-semibold">Hot lead</span>
+                  <span class="text-xs bg-white border border-gray-200 px-2.5 py-1 rounded-full text-ink-700" x-text="'Score: ' + leadScore + '/100'"></span>
+                  <span class="text-xs bg-white border border-gray-200 px-2.5 py-1 rounded-full text-ink-700">→ Bart krijgt Telegram-ping</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-white border-t border-gray-100 p-4 flex items-center gap-3">
+          <div class="flex-1 text-xs text-ink-500">
+            <span class="font-semibold text-ink-900">Demo-modus</span> — scripted op echte klant-gesprekken bij NXTG. Productie-AI gebruikt Claude Sonnet voor open vragen.
+          </div>
+          <button x-show="!started" @click="play()" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl text-sm shadow-glow">
+            ▶ Start demo
+          </button>
+          <button x-show="started && !done" @click="skipToEnd()" class="text-ink-500 hover:text-ink-900 font-medium px-4 py-2.5 text-sm">
+            Skip →
+          </button>
+        </div>
+      </div>
+
+      <!-- Trust strip onder chat -->
+      <div class="mt-6 grid grid-cols-3 gap-3">
+        <div class="bg-white border border-gray-100 rounded-xl p-4 text-center">
+          <div class="text-2xl font-bold gradient-text">&lt;1 sec</div>
+          <div class="text-xs text-ink-500 mt-1">Antwoordtijd</div>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-xl p-4 text-center">
+          <div class="text-2xl font-bold gradient-text">24/7</div>
+          <div class="text-xs text-ink-500 mt-1">Beschikbaar</div>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-xl p-4 text-center">
+          <div class="text-2xl font-bold gradient-text">5 talen</div>
+          <div class="text-xs text-ink-500 mt-1">NL · FR · EN · DE · ES</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA bar -->
+  <section class="mt-12 bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-3xl p-8 lg:p-12 text-center shadow-glow-mint border border-white/5">
+    <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-3">
+      Dit voor <span class="gradient-text">jouw</span> klanten?
+    </h2>
+    <p class="text-white/70 max-w-2xl mx-auto mb-7 text-lg">
+      We bouwen exact deze flow voor jouw sector, met jouw branding, jouw premie-info, jouw kwalificatie-vragen. Live in 4 weken.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/#contact" class="px-7 py-4 bg-white text-ink-900 font-bold rounded-xl hover:bg-brand-100 shadow-glow">Plan demo van 20 minuten</a>
+      <a href="/roi.html" class="px-7 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5">Of bereken eerst je ROI →</a>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-ink-900 text-white/50 py-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-2.5 mb-3">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="url(#fg2)"/>
+          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <defs><linearGradient id="fg2" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="font-bold text-white">Selectly</span>
+      </div>
+      <p>AI automation voor BE installateurs.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Verken</div>
+      <ul class="space-y-1">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        <li><a href="/roi.html" class="hover:text-white">ROI-calculator</a></li>
+        <li><a href="/calculator.html" class="hover:text-white">Pakket-calculator</a></li>
+        <li><a href="/case-nxtg.html" class="hover:text-white">NXTG case</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-2">Contact</div>
+      <ul class="space-y-1">
+        <li><a href="/#contact" class="hover:text-white">Plan demo</a></li>
+        <li><a href="https://wa.me/32492617085" target="_blank" rel="noopener" class="hover:text-white">+32 492 61 70 85</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+function demoAI() {
+  return {
+    active: 0,
+    started: false,
+    typing: false,
+    done: false,
+    shown: [],
+    leadSummary: '',
+    leadScore: 0,
+    scenarios: [
+      {
+        id: 'solar',
+        emoji: '☀️',
+        label: 'Zonnepanelen-aanvraag',
+        sublabel: 'Klant wil offerte op rijwoning',
+        botName: 'NXTG Energy · AI-assistent',
+        leadSummary: 'Wim De Smedt · Knokke-Heist · 8300 · rijwoning 35m² zuid-dak · budget €10-15K · timing dit kwartaal · BTW-particulier',
+        leadScore: 87,
+        thread: [
+          { from:'user', text:'Hallo, ik wil graag een offerte voor zonnepanelen op mijn dak.', delay: 0 },
+          { from:'bot', text:'Dag! Welkom bij NXTG Energy. Ik help je graag verder — kost maar 2 minuten.\n\nWaar staat de woning waar de panelen op moeten?', delay: 1200 },
+          { from:'user', text:'In Knokke-Heist, postcode 8300', delay: 2000 },
+          { from:'bot', text:'Top — daar werken we vaak. Even kort: gaat het om een <strong>rijwoning, halfopen of vrijstaand</strong>?', delay: 1300 },
+          { from:'user', text:'Rijwoning', delay: 1600 },
+          { from:'bot', text:'En een schatting van het dakoppervlak waar panelen op kunnen, en richting?', delay: 1100 },
+          { from:'user', text:'Ongeveer 35 m² ik denk, op het zuiden', delay: 2200 },
+          { from:'bot', text:'Mooi, dat is een ideale combinatie. Met 35m² zuid komen we typisch rond <strong>14-18 panelen (5,5-7 kWp)</strong> uit.\n\nLaatste vraag: hoe snel zou je dit willen realiseren? Dit kwartaal, binnen halfjaar, of nog open?', delay: 1500 },
+          { from:'user', text:'Liefst dit kwartaal als het kan', delay: 1800 },
+          { from:'bot', text:'Perfect. Ik stuur Bart van NXTG direct je dossier door — hij contacteert je vandaag nog (vóór 18u) voor een datum voor plaatsbezoek.\n\n<strong>Wil je intussen al een indicatie van de prijs?</strong> Ik kan je een PDF mailen op basis van de gegevens die je net deelde.', delay: 1500 },
+          { from:'user', text:'Ja graag — wim.desmedt@email.be', delay: 1900 },
+          { from:'bot', text:'Verstuurd ✓ Binnen 2 minuten in je inbox.\n\nDank je Wim, Bart belt je vandaag terug. Tot dan!', delay: 1200 }
+        ]
+      },
+      {
+        id: 'hvac',
+        emoji: '🌡️',
+        label: 'HVAC-storing',
+        sublabel: 'Bestaande klant, urgent',
+        botName: 'Favorcool · 24/7 service-bot',
+        leadSummary: 'Frank Devos · Brugge · meldt geen warmte sinds 14u · ketel-merk Vaillant · contract Premium · ticket-prio HOOG',
+        leadScore: 95,
+        thread: [
+          { from:'user', text:'Goeiemiddag, mijn verwarming doet het niet meer sinds 2u', delay: 0 },
+          { from:'bot', text:'Vervelend! Ik help direct. Eerst even: ben je bestaande klant bij Favorcool? Zo ja, je naam of postcode?', delay: 1300 },
+          { from:'user', text:'Ja, Frank Devos in Brugge', delay: 1700 },
+          { from:'bot', text:'Frank — ik zie je dossier. Je hebt het <strong>Premium service-contract</strong>, dus je krijgt voorrang.\n\nWelk merk ketel staat er bij jou? (staat meestal op het label vooraan)', delay: 1400 },
+          { from:'user', text:'Vaillant', delay: 1300 },
+          { from:'bot', text:'Goed. Twee snelle vragen voor de monteur:\n\n1. Zie je een <strong>foutcode of knipperlicht</strong> op het scherm?\n2. Is de <strong>waterdruk</strong> op de meter normaal (groene zone)?', delay: 1500 },
+          { from:'user', text:'F22 op het scherm en de druk is laag', delay: 2400 },
+          { from:'bot', text:'F22 = waterdruk te laag. Dat kan je vaak zelf oplossen via de bijvulkraan — wil je dat ik je een korte video stuur (2 min)?\n\nIntussen heb ik een <strong>monteur ingeboekt</strong> voor backup: vandaag tussen 17u-19u. Bevestigd?', delay: 1700 },
+          { from:'user', text:'Ja graag bevestigen en stuur de video', delay: 1800 },
+          { from:'bot', text:'Geboekt ✓ — Jonas komt vandaag tussen 17u-19u.\nVideo: link verstuurd via SMS.\n\nProbeer eerst zelf, lukt het niet → monteur lost het op. Geen extra kost (Premium-contract).\n\nNog vragen Frank?', delay: 1500 }
+        ]
+      },
+      {
+        id: 'dak',
+        emoji: '🏠',
+        label: 'Dakwerken-offerte',
+        sublabel: 'Cold lead via Facebook ad',
+        botName: 'Mertens Dakwerken · AI-assistent',
+        leadSummary: 'Jolien Vermeulen · Damme · 8340 · pannendak hellend 90m² · waterinfiltratie · timing zo snel mogelijk · budget open',
+        leadScore: 78,
+        thread: [
+          { from:'user', text:'Ik zag jullie advertentie. Mijn dak lekt sinds vorige week.', delay: 0 },
+          { from:'bot', text:'Vervelend, dat begrijp ik. Ik help je een afspraak voor opmeting in te plannen.\n\nWat is je <strong>postcode</strong>?', delay: 1300 },
+          { from:'user', text:'8340 Damme', delay: 1400 },
+          { from:'bot', text:'Damme — daar werken we vaak. Even snel:\n\n• <strong>Wat voor dak</strong>: pannen, leien, plat?\n• <strong>Schatting oppervlakte</strong> (bij benadering)?', delay: 1400 },
+          { from:'user', text:'Pannendak hellend, ongeveer 90 m²', delay: 2100 },
+          { from:'bot', text:'Goed. En zie je waar het lekt — op één plek of meerdere?', delay: 1100 },
+          { from:'user', text:'Bij een schoorsteen, één plek', delay: 1700 },
+          { from:'bot', text:'Vaak een loodslab-probleem dat. Meestal te repareren zonder volledig dak — goed nieuws.\n\nLaatste: hoe <strong>urgent</strong>? Vandaag, deze week, deze maand?', delay: 1500 },
+          { from:'user', text:'Liefst deze week als kan', delay: 1700 },
+          { from:'bot', text:'Begrepen. Ik plan een <strong>gratis opmeting</strong> in voor jou. Frank Mertens belt je vandaag om een dag-uur af te spreken.\n\nMag ik je <strong>nummer + naam</strong>?', delay: 1500 },
+          { from:'user', text:'Jolien Vermeulen, 0478 11 22 33', delay: 2100 },
+          { from:'bot', text:'Top Jolien ✓ Frank belt je tussen 14u en 17u. Bij geen contact: hij stuurt WhatsApp.\n\nTot snel!', delay: 1200 }
+        ]
+      }
+    ],
+
+    get currentScenario() { return this.scenarios[this.active]; },
+
+    loadScenario(i) {
+      this.active = i;
+      this.restart();
+    },
+
+    restart() {
+      this.shown = [];
+      this.typing = false;
+      this.done = false;
+      this.started = false;
+      this.leadSummary = '';
+      this.leadScore = 0;
+    },
+
+    async play() {
+      this.started = true;
+      this.shown = [];
+      this.done = false;
+      const thread = this.currentScenario.thread;
+      const now = () => {
+        const d = new Date();
+        return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+      };
+
+      for (let i = 0; i < thread.length; i++) {
+        const m = thread[i];
+        if (m.from === 'bot') {
+          this.typing = true;
+          await sleep(m.delay);
+          this.typing = false;
+        } else {
+          await sleep(m.delay);
+        }
+        this.shown.push({ ...m, time: now() });
+        await sleep(150);
+        this.scrollDown();
+      }
+
+      this.leadSummary = this.currentScenario.leadSummary;
+      this.leadScore = this.currentScenario.leadScore;
+      this.done = true;
+      this.scrollDown();
+
+      if (window.fbq) fbq('trackCustom', 'DemoAI_Completed', { scenario: this.currentScenario.id });
+    },
+
+    skipToEnd() {
+      const thread = this.currentScenario.thread;
+      const d = new Date();
+      const time = d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+      this.shown = thread.map(m => ({ ...m, time }));
+      this.typing = false;
+      this.leadSummary = this.currentScenario.leadSummary;
+      this.leadScore = this.currentScenario.leadScore;
+      this.done = true;
+      this.$nextTick(() => this.scrollDown());
+    },
+
+    scrollDown() {
+      this.$nextTick(() => {
+        const t = document.getElementById('thread');
+        if (t) t.scrollTop = t.scrollHeight;
+      });
+    },
+  };
+}
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+</body>
+</html>

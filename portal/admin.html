@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Selectly Command Center — admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+      colors: {
+        ink: { 950: '#03050a', 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
+        brand: { 50: '#eff4ff', 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
+        mint: { 100: '#d8f8e8', 300: '#7ee5b5', 500: '#34D399', 700: '#0a8a5e' },
+        sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+        rose: { 400: '#fb7185', 500: '#f43f5e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(to bottom, #03050a 0%, #070a14 100%); color: #fff; min-height: 100vh; }
+    .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); } 50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); } }
+    .glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.15; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); }
+    .stat-card { background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); border: 1px solid rgba(255,255,255,0.08); }
+    .grid-bg { background-image: linear-gradient(rgba(91, 140, 255, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(91, 140, 255, 0.08) 1px, transparent 1px); background-size: 50px 50px; }
+  </style>
+</head>
+<body class="antialiased relative overflow-x-hidden">
+
+  <!-- Background effects -->
+  <div class="absolute inset-0 grid-bg pointer-events-none opacity-50"></div>
+  <div class="glow-orb w-[600px] h-[600px]" style="top:-100px; right:-100px; background: radial-gradient(circle, #5b8cff, transparent 65%);"></div>
+  <div class="glow-orb w-[500px] h-[500px]" style="bottom:-100px; left:-100px; background: radial-gradient(circle, #34D399, transparent 65%);"></div>
+
+  <!-- HEADER -->
+  <header class="relative bg-ink-900/80 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-4">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-500 to-mint-500 flex items-center justify-center font-bold text-sm">B</div>
+          <div>
+            <div class="font-bold text-sm leading-tight">Selectly Command Center</div>
+            <div class="text-xs text-white/50 leading-tight mono">admin · Bart Van Poucke</div>
+          </div>
+          <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-mint-500/15 text-mint-300 border border-mint-500/20">
+            <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-mint-500"></span>Alles online
+          </span>
+        </div>
+        <nav class="hidden md:flex items-center gap-1 text-sm">
+          <a href="#" class="px-3 py-1.5 rounded-md bg-white text-ink-900 font-semibold">Overzicht</a>
+          <a href="#klanten" class="px-3 py-1.5 rounded-md text-white/60 hover:bg-white/5 transition">Klanten</a>
+          <a href="#offertescout" class="px-3 py-1.5 rounded-md text-white/60 hover:bg-white/5 transition">OfferteScout</a>
+          <a href="#systeem" class="px-3 py-1.5 rounded-md text-white/60 hover:bg-white/5 transition">Systeem</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button onclick="syncNow()" class="text-xs px-3 py-1.5 border border-white/15 rounded-lg hover:bg-white/5 transition mono">⟳ Sync</button>
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-mint-500 text-ink-900 text-xs font-bold flex items-center justify-center">B</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO STATS -->
+  <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold tracking-tight">Goeiemorgen 👋</h1>
+      <p class="text-white/60 text-sm mt-1">
+        <strong class="text-mint-300">3 nieuwe leads</strong> binnen sinds gisteren ·
+        <strong class="text-white">€11.640</strong> MRR vandaag ·
+        <strong class="text-sun-400">2 acties</strong> wachten op jou
+      </p>
+    </div>
+
+    <!-- HOOFD KPIs -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="stat-card rounded-xl p-5">
+        <div class="text-xs font-semibold text-white/50 uppercase tracking-wider">MRR (recurring)</div>
+        <div class="text-3xl font-bold mt-1 tabular-nums">€11.640</div>
+        <div class="text-xs text-mint-300 mt-1 font-semibold">↑ €1.950 deze maand</div>
+      </div>
+      <div class="stat-card rounded-xl p-5">
+        <div class="text-xs font-semibold text-white/50 uppercase tracking-wider">Lead-fees (mnd)</div>
+        <div class="text-3xl font-bold mt-1 tabular-nums">€3.420</div>
+        <div class="text-xs text-mint-300 mt-1 font-semibold">86 leads × €40 gem</div>
+      </div>
+      <div class="stat-card rounded-xl p-5">
+        <div class="text-xs font-semibold text-white/50 uppercase tracking-wider">Klanten (totaal)</div>
+        <div class="text-3xl font-bold mt-1 tabular-nums">14</div>
+        <div class="text-xs text-white/40 mt-1">5 Selectly · 9 lead-koper</div>
+      </div>
+      <div class="stat-card rounded-xl p-5">
+        <div class="text-xs font-semibold text-white/50 uppercase tracking-wider">Netto marge (mnd)</div>
+        <div class="text-3xl font-bold text-mint-300 mt-1 tabular-nums">€12.340</div>
+        <div class="text-xs text-white/40 mt-1">82% van bruto</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIER MIX + CHART -->
+  <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div class="grid lg:grid-cols-3 gap-4">
+
+      <!-- LEFT: Tier mix -->
+      <div class="lg:col-span-2 card rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="font-bold">MRR-evolutie laatste 6 weken</h3>
+            <p class="text-xs text-white/50 mt-0.5">Per tier · cumulatief</p>
+          </div>
+          <div class="flex gap-3 text-xs">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-500"></span>Growth</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-mint-500"></span>Starter</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sun-500"></span>Lead-fees</span>
+          </div>
+        </div>
+        <div style="height: 240px"><canvas id="mrrChart"></canvas></div>
+      </div>
+
+      <!-- RIGHT: Tier verdeling -->
+      <div class="card rounded-2xl p-6">
+        <h3 class="font-bold mb-4">Klant-mix nu</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span>🚀 Lead-koper FREE</span>
+              <span class="font-bold tabular-nums">9</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-slate-400" style="width:64%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span>⚡ Starter (€950)</span>
+              <span class="font-bold tabular-nums">2</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-mint-500" style="width:14%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span>🚀 Growth (€1.950)</span>
+              <span class="font-bold tabular-nums">2</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-brand-500" style="width:14%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span>🏆 Enterprise (€3.500)</span>
+              <span class="font-bold tabular-nums">1</span>
+            </div>
+            <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-sun-500" style="width:7%"></div></div>
+          </div>
+        </div>
+        <div class="mt-5 pt-5 border-t border-white/10 text-xs text-white/60">
+          🎯 Doel deze maand: <strong class="text-white">+1 Growth + 3 Lead-kopers</strong>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACTIES VEREIST -->
+  <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div class="card rounded-2xl p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-bold flex items-center gap-2">
+          <span class="text-sun-400 text-lg">⚠</span> Acties wachten op jou
+        </h3>
+        <span class="text-xs text-white/50">2 items</span>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
+          <span class="text-rose-400 text-lg flex-shrink-0">⏰</span>
+          <div class="flex-1">
+            <div class="font-semibold text-sm">B. Geens — lead 2u oud, nog niet gematcht</div>
+            <div class="text-xs text-white/60 mt-0.5">Zonnepanelen commercieel · €12K potentiële deal · postcode 8500</div>
+          </div>
+          <button class="text-xs px-3 py-1.5 bg-white text-ink-900 font-semibold rounded-lg hover:bg-mint-100 transition">Bekijk</button>
+        </div>
+        <div class="flex items-start gap-3 p-3 rounded-lg bg-sun-500/10 border border-sun-500/20">
+          <span class="text-sun-400 text-lg flex-shrink-0">💰</span>
+          <div class="flex-1">
+            <div class="font-semibold text-sm">€595 facturatie aan Solar Vandenbussche BVBA</div>
+            <div class="text-xs text-white/60 mt-0.5">17 lead-fees deze maand · vorige factuur betaald 12 dagen geleden</div>
+          </div>
+          <button class="text-xs px-3 py-1.5 border border-white/20 rounded-lg hover:bg-white/5 transition">Genereer factuur</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KLANTEN TABEL -->
+  <section id="klanten" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div class="card rounded-2xl overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-white/10">
+        <div>
+          <h3 class="font-bold">Klanten — alle tiers</h3>
+          <p class="text-xs text-white/50 mt-0.5">Beheer tier, status, capaciteit</p>
+        </div>
+        <div class="flex gap-2">
+          <button class="text-xs px-3 py-1.5 border border-white/15 rounded-lg hover:bg-white/5 transition">+ Nieuwe klant</button>
+          <button class="text-xs px-3 py-1.5 border border-white/15 rounded-lg hover:bg-white/5 transition">Export CSV</button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-white/5 text-white/50 text-xs uppercase tracking-wider">
+            <tr>
+              <th class="text-left px-4 py-3 font-semibold">Bedrijf / contact</th>
+              <th class="text-left px-4 py-3 font-semibold">Tier</th>
+              <th class="text-left px-4 py-3 font-semibold">Sectoren</th>
+              <th class="text-left px-4 py-3 font-semibold">Regio</th>
+              <th class="text-right px-4 py-3 font-semibold">MRR</th>
+              <th class="text-right px-4 py-3 font-semibold">Lead-fees</th>
+              <th class="text-left px-4 py-3 font-semibold">Status</th>
+              <th class="text-left px-4 py-3 font-semibold">Portal</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5">
+
+            <tr class="hover:bg-white/5">
+              <td class="px-4 py-3">
+                <div class="font-semibold">NXTG Energy</div>
+                <div class="text-xs text-white/50">Steffie De Clercq · Brugge</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 font-bold">Growth</span></td>
+              <td class="px-4 py-3 text-white/70 text-xs">Zonnepanelen, Batterij</td>
+              <td class="px-4 py-3 text-white/70 text-xs mono">8000-8999</td>
+              <td class="px-4 py-3 text-right tabular-nums font-semibold">€1.950</td>
+              <td class="px-4 py-3 text-right tabular-nums text-white/70">—</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs text-mint-300"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>Actief</span></td>
+              <td class="px-4 py-3"><a href="nxtg.html" class="text-brand-400 hover:text-brand-300 text-xs">/portal/nxtg</a></td>
+            </tr>
+
+            <tr class="hover:bg-white/5">
+              <td class="px-4 py-3">
+                <div class="font-semibold">Favorcool BVBA</div>
+                <div class="text-xs text-white/50">Eric Vermeulen · Damme</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 font-bold">Growth</span></td>
+              <td class="px-4 py-3 text-white/70 text-xs">HVAC, Warmtepomp</td>
+              <td class="px-4 py-3 text-white/70 text-xs mono">8000-8500</td>
+              <td class="px-4 py-3 text-right tabular-nums font-semibold">€1.950</td>
+              <td class="px-4 py-3 text-right tabular-nums text-white/70">—</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs text-mint-300"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>Trial</span></td>
+              <td class="px-4 py-3"><a href="favorcool.html" class="text-brand-400 hover:text-brand-300 text-xs">/portal/favorcool</a></td>
+            </tr>
+
+            <tr class="hover:bg-white/5">
+              <td class="px-4 py-3">
+                <div class="font-semibold">Mertens Dakwerken</div>
+                <div class="text-xs text-white/50">Frank Mertens · Damme</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-mint-500/20 text-mint-300 font-bold">Starter</span></td>
+              <td class="px-4 py-3 text-white/70 text-xs">Dakwerken</td>
+              <td class="px-4 py-3 text-white/70 text-xs mono">8300-8500</td>
+              <td class="px-4 py-3 text-right tabular-nums font-semibold">€950</td>
+              <td class="px-4 py-3 text-right tabular-nums text-white/70">—</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs text-mint-300"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>Actief</span></td>
+              <td class="px-4 py-3"><a href="#" class="text-brand-400 hover:text-brand-300 text-xs">/portal/mertens</a></td>
+            </tr>
+
+            <tr class="hover:bg-white/5">
+              <td class="px-4 py-3">
+                <div class="font-semibold">Solar Vandenbussche BVBA</div>
+                <div class="text-xs text-white/50">Tom Vandenbussche · Knokke</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-slate-600 text-white/80 font-bold">Lead-koper</span></td>
+              <td class="px-4 py-3 text-white/70 text-xs">Zonnepanelen, Batterij</td>
+              <td class="px-4 py-3 text-white/70 text-xs mono">8000-8999</td>
+              <td class="px-4 py-3 text-right tabular-nums text-white/40">€0</td>
+              <td class="px-4 py-3 text-right tabular-nums text-mint-300 font-semibold">€595</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs text-mint-300"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>17 leads/mnd</span></td>
+              <td class="px-4 py-3"><a href="installateur.html" class="text-brand-400 hover:text-brand-300 text-xs">/portal/installateur</a></td>
+            </tr>
+
+            <tr class="hover:bg-white/5">
+              <td class="px-4 py-3">
+                <div class="font-semibold">Cools Renovaties</div>
+                <div class="text-xs text-white/50">Dirk Cools · Vlissegem</div>
+              </td>
+              <td class="px-4 py-3"><span class="text-xs px-2 py-0.5 rounded-full bg-slate-600 text-white/80 font-bold">Lead-koper</span></td>
+              <td class="px-4 py-3 text-white/70 text-xs">Batterij, Warmtepomp</td>
+              <td class="px-4 py-3 text-white/70 text-xs mono">8400-8470</td>
+              <td class="px-4 py-3 text-right tabular-nums text-white/40">€0</td>
+              <td class="px-4 py-3 text-right tabular-nums text-mint-300 font-semibold">€320</td>
+              <td class="px-4 py-3"><span class="inline-flex items-center gap-1.5 text-xs text-mint-300"><span class="w-1.5 h-1.5 rounded-full bg-mint-500"></span>8 leads/mnd</span></td>
+              <td class="px-4 py-3"><a href="#" class="text-brand-400 hover:text-brand-300 text-xs">/portal/cools</a></td>
+            </tr>
+
+            <tr class="hover:bg-white/5">
+              <td class="px-4 py-3">
+                <div class="font-semibold">+ 9 andere lead-kopers</div>
+                <div class="text-xs text-white/50">Klik om alle te zien</div>
+              </td>
+              <td class="px-4 py-3 text-white/40 text-xs" colspan="6">Totaal lead-fees overige: €2.505/mnd</td>
+              <td class="px-4 py-3"><a href="#" class="text-brand-400 hover:text-brand-300 text-xs">Bekijk alle →</a></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="px-6 py-3 bg-white/[0.02] border-t border-white/10 flex items-center justify-between text-xs text-white/50">
+        <span>5 tonend van 14 totaal · MRR €5.800 + lead-fees €3.420 = €9.220 deze maand</span>
+        <a href="#" class="text-brand-400 hover:text-brand-300 font-semibold">Alle klanten →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERTESCOUT PIPELINE -->
+  <section id="offertescout" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div class="grid lg:grid-cols-2 gap-4">
+
+      <!-- Pipeline stats -->
+      <div class="card rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold">OfferteScout pipeline (laatste 7 dagen)</h3>
+          <span class="inline-flex items-center gap-1.5 text-xs text-mint-300">
+            <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-mint-500"></span>match-engine live
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-white/50">Nieuwe leads</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">23</div>
+            <div class="text-xs text-mint-300 mt-0.5">↑ 3 vandaag</div>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3">
+            <div class="text-xs text-white/50">Gematcht</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">21</div>
+            <div class="text-xs text-white/40 mt-0.5">91% match-rate</div>
+          </div>
+          <div class="bg-rose-500/10 rounded-lg p-3">
+            <div class="text-xs text-rose-300">No-match (manuele actie)</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">2</div>
+            <div class="text-xs text-white/40 mt-0.5">Postcode niet gedekt</div>
+          </div>
+          <div class="bg-mint-500/10 rounded-lg p-3">
+            <div class="text-xs text-mint-300">Conversie naar deal</div>
+            <div class="text-2xl font-bold mt-1 tabular-nums">31%</div>
+            <div class="text-xs text-white/40 mt-0.5">Sterke kwaliteit</div>
+          </div>
+        </div>
+
+        <div class="text-xs text-white/60 pt-3 border-t border-white/10">
+          💡 <strong>Insight:</strong> West-Vlaanderen heeft 4× zoveel leads als Limburg.
+          Tijd om Limburg-installateurs te onboarden of ads regionaal te knippen.
+        </div>
+      </div>
+
+      <!-- Sector breakdown -->
+      <div class="card rounded-2xl p-6">
+        <h3 class="font-bold mb-4">Leads per sector (deze maand)</h3>
+        <div style="height: 220px"><canvas id="sectorChart"></canvas></div>
+        <div class="mt-4 pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-xs">
+          <div>
+            <div class="text-white/40">Best converterend</div>
+            <div class="font-semibold text-mint-300">Warmtepomp 42%</div>
+          </div>
+          <div>
+            <div class="text-white/40">Hoogste lead-fee</div>
+            <div class="font-semibold">€60 (WP)</div>
+          </div>
+          <div>
+            <div class="text-white/40">Snelste match</div>
+            <div class="font-semibold">2 min (PV)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE ACTIVITY FEED -->
+  <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+    <div class="grid lg:grid-cols-2 gap-4">
+
+      <!-- Live activity multi-business -->
+      <div class="card rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold">Live activiteit · multi-business</h3>
+          <span class="inline-flex items-center gap-1.5 text-xs text-mint-300">
+            <span class="pulse-dot w-1.5 h-1.5 rounded-full bg-mint-500"></span>Live
+          </span>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-mint-500/20 flex items-center justify-center flex-shrink-0 text-mint-300 text-xs font-bold">✓</div>
+            <div class="flex-1 min-w-0">
+              <div><strong>NXTG Energy</strong> · Vandenbussche offerte ondertekend</div>
+              <div class="text-xs text-white/40 mt-0.5">€12.480 · zonnepanelen 8.4 kWp · 12 min geleden</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500/20 flex items-center justify-center flex-shrink-0 text-brand-300 text-xs">📩</div>
+            <div class="flex-1 min-w-0">
+              <div><strong>OfferteScout</strong> · Nieuwe batterij-lead gematcht aan Cools</div>
+              <div class="text-xs text-white/40 mt-0.5">€40 lead-fee · 18 min geleden</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-sun-500/20 flex items-center justify-center flex-shrink-0 text-sun-400 text-xs">📄</div>
+            <div class="flex-1 min-w-0">
+              <div><strong>Mertens Dakwerken</strong> · AI offerte gegenereerd voor Decroix</div>
+              <div class="text-xs text-white/40 mt-0.5">€4.620 · 31 min geleden</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-rose-500/20 flex items-center justify-center flex-shrink-0 text-rose-400 text-xs">⚠</div>
+            <div class="flex-1 min-w-0">
+              <div><strong>OfferteScout</strong> · No-match warning · Geens 8500</div>
+              <div class="text-xs text-white/40 mt-0.5">Geen actieve PV-installateur in regio · 2u geleden</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-brand-500/20 flex items-center justify-center flex-shrink-0 text-brand-300 text-xs">💬</div>
+            <div class="flex-1 min-w-0">
+              <div><strong>NXTG Energy</strong> · Janssens AI chatbot conversatie afgerond</div>
+              <div class="text-xs text-white/40 mt-0.5">Afspraak ingeboekt 24/06 · 3u geleden</div>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-7 h-7 rounded-full bg-mint-500/20 flex items-center justify-center flex-shrink-0 text-mint-300 text-xs">📞</div>
+            <div class="flex-1 min-w-0">
+              <div><strong>Favorcool BVBA</strong> · Voicebot kwalificeerde nieuwe lead</div>
+              <div class="text-xs text-white/40 mt-0.5">Warmtepomp Damme · 4u geleden</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SYSTEEM HEALTH -->
+      <div class="card rounded-2xl p-6" id="systeem">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold">Systeem · technical health</h3>
+          <span class="text-xs text-white/50 mono">selectly.be</span>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-center justify-between p-3 bg-white/[0.03] rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="text-mint-300">✓</span>
+              <div>
+                <div class="font-semibold">selectly.be</div>
+                <div class="text-xs text-white/40 mono">200 OK · 142ms · SSL 61d</div>
+              </div>
+            </div>
+            <span class="text-xs text-mint-300 font-semibold">Up</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-white/[0.03] rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="text-mint-300">✓</span>
+              <div>
+                <div class="font-semibold">Match-engine</div>
+                <div class="text-xs text-white/40 mono">Laatste run 2 min · 3 matches</div>
+              </div>
+            </div>
+            <span class="text-xs text-mint-300 font-semibold">Live</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-white/[0.03] rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="text-mint-300">✓</span>
+              <div>
+                <div class="font-semibold">Lead pinger</div>
+                <div class="text-xs text-white/40 mono">Telegram bot @Selectly_health_bot</div>
+              </div>
+            </div>
+            <span class="text-xs text-mint-300 font-semibold">Live</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-white/[0.03] rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="text-mint-300">✓</span>
+              <div>
+                <div class="font-semibold">iCloud sync</div>
+                <div class="text-xs text-white/40 mono">Laatste sync 18 min geleden</div>
+              </div>
+            </div>
+            <span class="text-xs text-mint-300 font-semibold">Live</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-white/[0.03] rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="text-mint-300">✓</span>
+              <div>
+                <div class="font-semibold">Netlify deploys</div>
+                <div class="text-xs text-white/40 mono">Laatste: f2cb656 · 32 min geleden</div>
+              </div>
+            </div>
+            <span class="text-xs text-mint-300 font-semibold">Ready</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-sun-500/10 rounded-lg border border-sun-500/20">
+            <div class="flex items-center gap-3">
+              <span class="text-sun-400">⚠</span>
+              <div>
+                <div class="font-semibold">info@selectly.be</div>
+                <div class="text-xs text-white/40 mono">Wacht op M365 activatie (kaart)</div>
+              </div>
+            </div>
+            <span class="text-xs text-sun-400 font-semibold">Pending</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK ACTIONS -->
+  <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <div class="card rounded-2xl p-6">
+      <h3 class="font-bold mb-4">Quick actions</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <a href="/onboarding/" class="p-4 bg-white/5 hover:bg-white/10 rounded-xl transition group">
+          <div class="text-2xl mb-2">➕</div>
+          <div class="font-semibold text-sm">Nieuwe klant onboarden</div>
+          <div class="text-xs text-white/50 mt-1">6-step wizard</div>
+        </a>
+        <a href="/vraag/tracker.html" class="p-4 bg-white/5 hover:bg-white/10 rounded-xl transition group">
+          <div class="text-2xl mb-2">📊</div>
+          <div class="font-semibold text-sm">OfferteScout ROI tracker</div>
+          <div class="text-xs text-white/50 mt-1">Ad-spend vs revenue</div>
+        </a>
+        <a href="#" onclick="exportInvoices()" class="p-4 bg-white/5 hover:bg-white/10 rounded-xl transition group">
+          <div class="text-2xl mb-2">📄</div>
+          <div class="font-semibold text-sm">Facturen genereren</div>
+          <div class="text-xs text-white/50 mt-1">Maandsabrekening</div>
+        </a>
+        <a href="#" onclick="syncNow()" class="p-4 bg-white/5 hover:bg-white/10 rounded-xl transition group">
+          <div class="text-2xl mb-2">⟳</div>
+          <div class="font-semibold text-sm">Sync naar iCloud</div>
+          <div class="text-xs text-white/50 mt-1">Force update nu</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative bg-ink-900/50 border-t border-white/10 py-6 text-center text-xs text-white/40">
+    Selectly Command Center · Bart only · gebouwd door NXTG Solutions BV
+  </footer>
+
+  <script>
+    Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
+    Chart.defaults.color = 'rgba(255,255,255,0.5)';
+    Chart.defaults.borderColor = 'rgba(255,255,255,0.05)';
+
+    // MRR chart
+    new Chart(document.getElementById('mrrChart'), {
+      type: 'line',
+      data: {
+        labels: ['Wk 21', 'Wk 22', 'Wk 23', 'Wk 24', 'Wk 25', 'Wk 26'],
+        datasets: [
+          { label: 'Growth', data: [1950, 1950, 1950, 3900, 3900, 3900], borderColor: '#3a6cf2', backgroundColor: 'rgba(58, 108, 242, 0.1)', tension: 0.35, fill: true, borderWidth: 2 },
+          { label: 'Starter', data: [0, 0, 0, 950, 950, 950], borderColor: '#34D399', backgroundColor: 'rgba(52, 211, 153, 0.1)', tension: 0.35, fill: true, borderWidth: 2 },
+          { label: 'Lead-fees', data: [0, 280, 590, 1240, 2180, 3420], borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.1)', tension: 0.35, fill: true, borderWidth: 2 },
+        ],
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { callback: v => '€' + v.toLocaleString() } }, x: { grid: { display: false } } } },
+    });
+
+    // Sector pie
+    new Chart(document.getElementById('sectorChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Zonnepanelen', 'Thuisbatterij', 'Warmtepomp', 'Airco', 'Dakwerken'],
+        datasets: [{ data: [38, 24, 18, 12, 8], backgroundColor: ['#f59e0b', '#34D399', '#ef4444', '#0ea5e9', '#fb923c'], borderWidth: 0, hoverOffset: 6 }],
+      },
+      options: { responsive: true, maintainAspectRatio: false, cutout: '68%', plugins: { legend: { position: 'right', labels: { boxWidth: 12, padding: 12 } } } },
+    });
+
+    function syncNow() {
+      alert('iCloud sync gestart — check /tmp/selectly-icloud-sync.log of /_LAATSTE_SYNC.txt');
+    }
+    function exportInvoices() {
+      alert('Facturen export — placeholder (Billit/Teamleader integratie volgt later)');
+    }
+  </script>
+
+  <!-- Auth -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/portal/auth-guard.js"></script>
+</body>
+</html>

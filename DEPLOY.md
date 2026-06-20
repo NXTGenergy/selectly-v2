@@ -128,8 +128,8 @@ Wanneer ik (Claude Code) de site aanpas:
 
 | Item | Prioriteit | Wie |
 |---|---|---|
-| Echte logo bestand (PNG/SVG) ipv mijn inline SVG | Medium | Bart/Steffie design beslissing |
-| Foto's van Bart + Steffie voor "Over ons" sectie | Medium | Eigen foto's |
+| Echte logo bestand (PNG/SVG) ipv mijn inline SVG | Medium | Selectly/Steffie design beslissing |
+| Foto's van het team + Steffie voor "Over ons" sectie | Medium | Eigen foto's |
 | Echte case study cijfers NXTG (zodra Phase 1 live is) | Hoog | Wachten op data |
 | Echte testimonials van verdere klanten | Hoog | Na 2-3 succesvolle implementaties |
 | Cookie banner (GDPR) | Medium | Ik kan toevoegen |

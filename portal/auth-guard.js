@@ -9,7 +9,7 @@
  *
  * Voorwaarden:
  *   - Netlify Identity widget moet geladen zijn op de page (zie include voor </body>)
- *   - Bart moet Identity activeren in Netlify dashboard:
+ *   - Selectly moet Identity activeren in Netlify dashboard:
  *       Project → Add-ons & integrations → Netlify Identity → Enable Identity
  *       Settings → Registration preferences → Invite only
  *       Settings → External providers (optioneel: Google/Microsoft SSO)

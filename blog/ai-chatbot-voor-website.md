@@ -50,7 +50,7 @@ De meeste "AI chatbot" artikels zijn pitchstukken van vendors. Dit is geschreven
 
 **Wat het doet:**
 - Klant stuurt "waar staat mijn dossier?" via WhatsApp
-- AI checkt CRM status, antwoordt: "Materiaal besteld 12 mei, installatie gepland 28 mei. Bart belt je 1 dag vooraf."
+- AI checkt CRM status, antwoordt: "Materiaal besteld 12 mei, installatie gepland 28 mei. het team belt je 1 dag vooraf."
 - Bij escalatie → overdracht naar mens met volledige context
 
 ### 5. Reactivatie van oude leads

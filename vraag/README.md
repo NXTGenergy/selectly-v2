@@ -1,6 +1,6 @@
 # OfferteScout — B2C lead-gen brand
 
-**Werknaam.** Bart kiest definitieve naam + domein later.
+**Werknaam.** Selectly kiest definitieve naam + domein later.
 
 Tijdelijk gehost op `/vraag/*` binnen Selectly's Netlify deploy.
 Migratiepad: nieuwe Netlify-site + eigen domein → kopieer /vraag/* naar root.
@@ -25,7 +25,7 @@ Doel: leads vangen via Meta/Instagram/Google ads, doorverkopen aan installateurs
 | `/vraag/zonnepanelen.html` | 5-step consumer funnel |
 | `/vraag/bedankt.html` | Bevestiging na form-submit + "geen match? we zoeken nieuwe" garantie |
 
-## Volgende stappen (Bart's keuzes)
+## Volgende stappen (het team's keuzes)
 
 ### 1. Brand-naam + domein
 Werknaam "OfferteScout" is in alle pages aanwezig. Voorbeelden:

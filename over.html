@@ -3,297 +3,474 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#070a14" />
-  <title>Over Selectly</title>
-  <meta name="description" content="Selectly bouwt automation voor installateurs — getest op ons eigen zustermerk NXTG Energy. Brand-first, klein team, BE-gehost. Geen agency-overhead." />
-  <meta property="og:title" content="Over Selectly" />
-  <meta property="og:description" content="Selectly + NXTG Energy onder BV NXTG Solutions. Wij bouwen, testen op onszelf, leveren wat werkt." />
+  <meta name="theme-color" content="#0a0e1a" />
+
+  <title>Over Selectly — eerst zelf bewezen, dan pas aangeboden</title>
+  <meta name="description" content="Selectly helpt Belgische installateurs hun bestaande aanvragen sneller om te zetten in klanten. Eerlijk over cijfers, geen lock-in." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Over Selectly — eerst zelf bewezen, dan pas aangeboden" />
+  <meta property="og:description" content="Selectly helpt Belgische installateurs hun bestaande aanvragen sneller om te zetten in klanten. Eerlijk over cijfers, geen lock-in." />
   <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://selectly.be/over.html" />
+  <meta property="og:locale" content="nl_BE" />
+
   <link rel="canonical" href="https://selectly.be/over.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
   <script>
-    tailwind.config = { theme: { extend: {
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
-      colors: {
-        ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
-        brand: { 400:'#5b8cff', 500:'#3a6cf2', 600:'#2451d8' },
-        mint: { 400:'#34e4a8', 500:'#10c98c' },
-      }
-    } } };
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
+            brand: { 50:'#eff4ff',100:'#dbe5ff',200:'#bdd0ff',300:'#8eb0ff',400:'#5b8cff',500:'#3a6cf2',600:'#2451d8',700:'#1d40b0',800:'#1c388c',900:'#1d3372' },
+            mint: { 400:'#34e4a8', 500:'#10c98c' },
+          },
+          boxShadow: {
+            'glow': '0 0 40px -10px rgba(91, 140, 255, 0.5)',
+            'soft': '0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.03)',
+          },
+        },
+      },
+    };
   </script>
+
   <style>
-    body { font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing: antialiased; }
-    .gradient-text { background: linear-gradient(135deg,#5b8cff,#a78bfa,#34e4a8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    html { scroll-behavior: smooth; }
+    body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #5b8cff 0%, #a78bfa 50%, #34e4a8 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
     .grid-bg {
-      background-image: linear-gradient(rgba(91,140,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(91,140,255,.08) 1px, transparent 1px);
+      background-image:
+        linear-gradient(rgba(91,140,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,140,255,0.05) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
     }
     .glow-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:.4; pointer-events:none; }
-    .timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: #3a6cf2; box-shadow: 0 0 0 4px rgba(91,140,255,.15); }
+    .link-underline { position:relative; display:inline-block; }
+    .link-underline::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:currentColor; transition:width .3s ease; }
+    .link-underline:hover::after { width:100%; }
+    .pulse-dot { width:8px; height:8px; background:#34e4a8; border-radius:50%; box-shadow:0 0 0 0 rgba(52,228,168,.6); animation:pulse-ring 2s infinite; }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(52,228,168,.6)} 70%{box-shadow:0 0 0 12px rgba(52,228,168,0)} 100%{box-shadow:0 0 0 0 rgba(52,228,168,0)} }
+    *:focus-visible { outline:2px solid #5b8cff; outline-offset:2px; border-radius:4px; }
+
+    /* Scroll-reveal */
+    .reveal-enabled .sl-reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+    .reveal-enabled .sl-reveal.is-visible { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger > * { opacity:0; transform:translateY(22px); transition:opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+    .reveal-enabled .sl-stagger.is-visible > * { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(1){transition-delay:.04s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(2){transition-delay:.10s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(3){transition-delay:.16s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(4){transition-delay:.22s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(5){transition-delay:.28s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(6){transition-delay:.34s}
+
+    .sl-lift { transition:transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s ease; }
+    .sl-lift:hover { transform:translateY(-4px); box-shadow:0 22px 48px -18px rgba(58,108,242,.35); }
+    .sl-glow { transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+    .sl-glow:hover { transform:translateY(-2px); box-shadow:0 14px 34px -10px rgba(91,140,255,.55); }
+
+    /* Hero beeld-achtergrond */
+    .sl-hero-img { position:absolute; inset:0; pointer-events:none;
+      background-image:url('assets/hero-network.jpg');
+      background-size:cover; background-position:center right; background-repeat:no-repeat; }
+    .sl-hero-imgveil { position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 78% 66% at 50% 42%, rgba(7,10,20,.62) 0%, rgba(7,10,20,.5) 46%, rgba(7,10,20,.28) 78%, transparent 100%),
+        linear-gradient(180deg, rgba(7,10,20,.7) 0%, rgba(7,10,20,.42) 26%, rgba(7,10,20,.42) 62%, rgba(7,10,20,.82) 100%),
+        linear-gradient(90deg, rgba(7,10,20,.55) 0%, rgba(7,10,20,.2) 42%, transparent 72%); }
+
+    /* Aurora */
+    .sl-aurora { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .sl-blob { position:absolute; border-radius:50%; filter:blur(72px); opacity:.18; mix-blend-mode:screen; will-change:transform; }
+    .sl-blob-1 { width:46vw; height:46vw; max-width:640px; max-height:640px; background:radial-gradient(circle at 32% 32%, #3a6cf2, transparent 66%); top:-14%; left:-8%; animation:slDrift1 26s ease-in-out infinite; }
+    .sl-blob-2 { width:42vw; height:42vw; max-width:560px; max-height:560px; background:radial-gradient(circle at 50% 50%, #7c3aed, transparent 68%); top:-8%; right:-10%; animation:slDrift2 32s ease-in-out infinite; }
+    .sl-blob-3 { width:40vw; height:40vw; max-width:520px; max-height:520px; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 70%); bottom:-20%; left:20%; opacity:.14; animation:slDrift3 30s ease-in-out infinite; }
+    @keyframes slDrift1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(8vw,6vh) scale(1.12)} 66%{transform:translate(-4vw,9vh) scale(.96)} }
+    @keyframes slDrift2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-7vw,7vh) scale(1.08)} 66%{transform:translate(3vw,-4vh) scale(1.15)} }
+    @keyframes slDrift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(6vw,-8vh) scale(1.1)} }
+    .sl-hero-veil { position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 92% 72% at 50% 38%, transparent 0%, rgba(7,10,20,.34) 68%, rgba(7,10,20,.72) 100%),
+        linear-gradient(180deg, rgba(7,10,20,.22) 0%, transparent 32%, rgba(7,10,20,.5) 100%); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .sl-blob { animation:none !important; }
+    }
   </style>
   <script>
-    function loadMetaPixel() {
-      if (window._metaPixelLoaded) return; window._metaPixelLoaded = true;
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','852925924180054'); fbq('track','PageView');
-    }
-    try { if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel(); else window.addEventListener('selectly-consent-given', loadMetaPixel, { once:true }); } catch(e){}
+    try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('reveal-enabled'); } } catch(e) {}
   </script>
-  <script src="/consent.js" defer></script>
+  <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
+<script>
+  function loadMetaPixel() {
+    if (window._metaPixelLoaded) return;
+    window._metaPixelLoaded = true;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '852925924180054');
+    fbq('track', 'PageView');
+  }
+  try {
+    if (localStorage.getItem('selectly_consent') === 'accepted') {
+      loadMetaPixel();
+    } else {
+      window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
+    }
+  } catch (e) {}
+</script>
+<!-- /META PIXEL -->
+<script src="/consent.js" defer></script>
 </head>
-<body class="bg-white text-ink-900">
 
-<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-2.5">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="8" fill="url(#g)"/>
-          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
-          <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
-        </svg>
-        <span class="text-xl font-bold">Selectly</span>
-      </a>
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
-        <a href="/demo-ai.html" class="hover:text-ink-900">Live demo</a>
-        <a href="/roi.html" class="hover:text-ink-900">ROI-calc</a>
-        <a href="/vergelijken.html" class="hover:text-ink-900">Vergelijken</a>
-        <a href="/over.html" class="text-ink-900 font-semibold">Over</a>
+<body class="bg-white text-ink-900 font-sans antialiased">
+
+  <!-- ─────── NAV ─────── -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" x-data="{ open: false }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2.5">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+          </svg>
+          <span class="text-xl font-bold tracking-tight">Selectly</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+          <a href="/#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
+          <a href="/#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
+          <a href="/case-nxtg.html" class="hover:text-ink-900 transition">Case study</a>
+          <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>
+            Live demo
+          </a>
+          <a href="/roi.html" class="hover:text-ink-900 transition">ROI-calc</a>
+          <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition shadow-soft">
+            Boek uw gratis demo →
+          </a>
+        </div>
+
+        <button @click="open = !open" class="md:hidden p-2" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+        </button>
       </div>
-      <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan call →</a>
+
+      <div x-show="open" x-transition class="md:hidden py-4 border-t border-gray-100 space-y-1">
+        <a href="/#wat-we-doen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
+        <a href="/#hoe" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Werkwijze</a>
+        <a href="/case-nxtg.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Case study</a>
+        <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live demo</a>
+        <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
+        <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakketten</a>
+        <a href="/over.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Over Selectly</a>
+        <a href="/#contact" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek uw gratis demo →</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- HERO -->
-<section class="relative bg-ink-900 text-white overflow-hidden">
-  <div class="absolute inset-0 grid-bg"></div>
-  <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
-  <div class="glow-orb w-[400px] h-[400px] bg-mint-400 bottom-0 -left-40"></div>
-
-  <div class="relative max-w-4xl mx-auto px-6 lg:px-8 pt-20 pb-16 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6">
-      <span class="text-white/80">BV NXTG Solutions · Roeselare · sinds 2026</span>
+  <!-- ─────── HERO ─────── -->
+  <section id="hero" class="relative bg-ink-900 text-white overflow-hidden">
+    <div class="sl-hero-img" aria-hidden="true"></div>
+    <div class="sl-aurora" aria-hidden="true">
+      <div class="sl-blob sl-blob-1"></div>
+      <div class="sl-blob sl-blob-2"></div>
+      <div class="sl-blob sl-blob-3"></div>
     </div>
-    <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5">
-      Wij bouwen <span class="gradient-text">wat we zelf nodig hadden</span>.
-    </h1>
-    <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-      Geen agency-overhead. Geen account-manager als tussenpersoon. Geen 14-stappen-funnel om je tot demo te dwingen. Gewoon Selectly en de tools die we bouwden toen ons eigen installateurs-bedrijf vastliep op admin.
-    </p>
-  </div>
-</section>
+    <div class="sl-hero-imgveil" aria-hidden="true"></div>
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="sl-hero-veil" aria-hidden="true"></div>
 
-<main class="max-w-4xl mx-auto px-6 lg:px-8 py-16">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-8">
+          <span class="pulse-dot"></span>
+          <span class="text-white/80">Over Selectly</span>
+        </div>
 
-  <!-- The story -->
-  <section class="prose max-w-none">
-    <h2 class="text-3xl font-bold tracking-tight mb-4">Hoe Selectly ontstond</h2>
+        <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-8">
+          We bouwen niets dat we niet<br><span class="gradient-text">eerst zelf gebruikt hebben.</span>
+        </h1>
 
-    <p class="text-lg text-ink-700 leading-relaxed mb-6">
-      Eind 2024 lanceerden we onder dezelfde holding <a href="https://nxtgenergy.be" class="text-brand-500 hover:underline">NXTG Energy</a> — een zonnepanelen-installateur in Roeselare. Geen software-droom. Een eerlijk installateurs-bedrijf.
-    </p>
+        <p class="text-lg lg:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-10">
+          Selectly helpt Belgische installateurs, dakwerkers en HVAC-bedrijven om hun bestaande aanvragen sneller om te zetten in klanten. Geen theorie: alles wat we aanbieden, draaide eerst in de praktijk.
+        </p>
 
-    <p class="text-ink-700 leading-relaxed mb-6">
-      Binnen drie maanden zaten we vast.<br>
-      Niet omdat het werk slecht was. Het werk was top. Klanten waren tevreden.
-    </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <a href="/#contact" class="sl-glow px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base">
+            Boek uw gratis demo
+          </a>
+          <a href="/case-nxtg.html" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base">
+            Bekijk de resultaten →
+          </a>
+        </div>
 
-    <p class="text-ink-700 leading-relaxed mb-6">
-      Het probleem zat <em>vóór</em> en <em>na</em> het werk:
-    </p>
-
-    <ul class="text-ink-700 space-y-2 mb-6 list-none pl-0">
-      <li class="flex gap-3"><span class="text-brand-500 font-bold">→</span> Leads kwamen 's avonds binnen, terugbellen pas de volgende dag. Tegen die tijd had de klant 2 andere offertes.</li>
-      <li class="flex gap-3"><span class="text-brand-500 font-bold">→</span> Elke offerte = 2-3 uur typen, opzoeken van premies, simuleren. Per stuk.</li>
-      <li class="flex gap-3"><span class="text-brand-500 font-bold">→</span> Geen automatische opvolging. Wie niet zelf belde, viel uit het systeem na 10 dagen.</li>
-      <li class="flex gap-3"><span class="text-brand-500 font-bold">→</span> Vrijdag-avond ging op aan factuur-controles in plaats van rust.</li>
-    </ul>
-
-    <p class="text-ink-700 leading-relaxed mb-6">
-      We dachten: ergens bestaat een tool die dit oplost. Wat we vonden was telkens hetzelfde: <strong class="text-ink-900">duizenden euro's setup-fees voor generieke CRM's die alles deden behalve het echte werk</strong>. Of Amerikaanse SaaS in slecht Nederlands. Of een lead-platform dat onze lead aan 4 concurrenten ook doorverkocht.
-    </p>
-
-    <p class="text-ink-700 leading-relaxed mb-6">
-      Niemand bouwde iets dat <strong class="text-ink-900">begreep dat een installateur op een dak staat als de klant belt</strong>.
-    </p>
-
-    <p class="text-ink-700 leading-relaxed mb-6">
-      Dus bouwden we het zelf. Voor onszelf. Op een stack die werkte (GoHighLevel + Claude + Twilio).
-    </p>
-
-    <p class="text-ink-700 leading-relaxed mb-6">
-      In 4 weken ging NXTG's conversie van <strong class="text-ink-900">35% naar 62%</strong>. Niet door harder werken. Door altijd-bereikbaar te zijn — terwijl de monteurs op het dak stonden.
-    </p>
-
-    <p class="text-ink-700 leading-relaxed mb-6">
-      Twee installateur-collega's vroegen: "Kunnen jullie dit ook voor ons opzetten?"
-    </p>
-
-    <p class="text-ink-700 leading-relaxed mb-6">
-      Dat werd Selectly.
-    </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm text-white/70">
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>Eerst intern bewezen</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>Maandelijks opzegbaar</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>Data blijft binnen de EU</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Timeline -->
-  <section class="mt-20">
-    <h2 class="text-3xl font-bold tracking-tight mb-10">Tijdlijn</h2>
-
-    <div class="space-y-8">
-      <div class="grid grid-cols-[24px_1fr] gap-6">
-        <div class="flex flex-col items-center">
-          <div class="timeline-dot"></div>
-          <div class="w-px flex-1 bg-gray-200 mt-2"></div>
-        </div>
-        <div class="pb-2">
-          <div class="text-xs font-mono text-brand-500 uppercase tracking-wider mb-1">Eind 2024</div>
-          <h3 class="font-bold text-ink-900 mb-1">NXTG Energy opgericht</h3>
-          <p class="text-sm text-ink-500">Onze installatie-arm gestart — zonnepanelen, batterijen, laadpalen. Roeselare als basis.</p>
-        </div>
+  <!-- ─────── WAAROM ─────── -->
+  <section class="bg-gray-50 py-20 lg:py-28 border-b border-gray-100">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 sl-reveal">
+      <div class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Waarom we dit doen</div>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">Goede vakmensen verliezen klanten. Niet door hun werk, wel door trage opvolging.</h2>
+      <div class="space-y-5 text-lg text-ink-500 leading-relaxed">
+        <p>We zagen het van dichtbij bij installatiebedrijven: de aanvragen kwamen binnen, maar tussen “aanvraag” en “antwoord” gingen uren voorbij. De vakman stond op de werf, de telefoon rinkelde, de offerte bleef liggen — en de klant koos ondertussen iemand die sneller reageerde.</p>
+        <p>Het frustrerende: die bedrijven hadden geen probleem met leads en geen probleem met kwaliteit. Ze hadden een probleem met tijd. Daar bouwden we Selectly voor.</p>
       </div>
+    </div>
+  </section>
 
-      <div class="grid grid-cols-[24px_1fr] gap-6">
-        <div class="flex flex-col items-center">
-          <div class="timeline-dot"></div>
-          <div class="w-px flex-1 bg-gray-200 mt-2"></div>
-        </div>
-        <div class="pb-2">
-          <div class="text-xs font-mono text-brand-500 uppercase tracking-wider mb-1">Begin 2026</div>
-          <h3 class="font-bold text-ink-900 mb-1">De wand</h3>
-          <p class="text-sm text-ink-500">Te veel leads, te weinig uren, te veel deals verloren aan tragere reactie. We probeerden 5 CRM's. Geen enkele paste.</p>
-        </div>
+  <!-- ─────── AANPAK ─────── -->
+  <section class="relative bg-ink-900 text-white py-20 lg:py-28 overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 top-0 right-0 opacity-20"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-14 sl-reveal">
+        <div class="text-xs font-semibold text-mint-400 uppercase tracking-wider mb-4">Onze aanpak</div>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight mb-6">Eerst zelf bewijzen, dan pas aanbieden.</h2>
+        <p class="text-lg text-white/70 leading-relaxed">Voor we Selectly commercieel aanboden, wilden we één vraag zeker beantwoorden: werkt dit ook echt in een bedrijf dat elke dag met klanten werkt? Daarom implementeerden we het eerst bij een Belgisch installatiebedrijf in de energiesector. Pas toen de resultaten meetbaar waren — conversie van 35% naar 62%, eerste reactie van 8 uur naar gemiddeld 47 minuten, meer dan 22 uur administratie per maand uitgespaard — maakten we het beschikbaar voor anderen.</p>
       </div>
-
-      <div class="grid grid-cols-[24px_1fr] gap-6">
-        <div class="flex flex-col items-center">
-          <div class="timeline-dot"></div>
-          <div class="w-px flex-1 bg-gray-200 mt-2"></div>
-        </div>
-        <div class="pb-2">
-          <div class="text-xs font-mono text-brand-500 uppercase tracking-wider mb-1">Maart 2026</div>
-          <h3 class="font-bold text-ink-900 mb-1">Eerste prototype voor NXTG</h3>
-          <p class="text-sm text-ink-500">AI-chatbot op website + automatische offertes + multi-step opvolging. Conversie sprong in 4 weken van 35% naar 62%.</p>
-        </div>
+      <div class="grid sm:grid-cols-2 gap-5 sl-stagger">
+          <div class="sl-lift bg-white/[0.04] border border-white/10 backdrop-blur p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">1</span>
+              <h3 class="text-lg font-bold text-white">Eerlijk over cijfers</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">We laten alleen echte namen en echte resultaten staan. Zo ziet u dat we groeien, niet hoe we klanten verzonnen voor een website.</p>
+          </div>
+          <div class="sl-lift bg-white/[0.04] border border-white/10 backdrop-blur p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">2</span>
+              <h3 class="text-lg font-bold text-white">Wij vervangen uw werkwijze niet</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">Uw team blijft doen waar het goed in is. Selectly neemt de opvolging over die anders blijft liggen.</p>
+          </div>
+          <div class="sl-lift bg-white/[0.04] border border-white/10 backdrop-blur p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">3</span>
+              <h3 class="text-lg font-bold text-white">Geen jarenlange projecten</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">Een korte sprint, een live release, daarna verfijnen. Binnen enkele weken draait het.</p>
+          </div>
+          <div class="sl-lift bg-white/[0.04] border border-white/10 backdrop-blur p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">4</span>
+              <h3 class="text-lg font-bold text-white">Geen lock-in</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">Maandelijks opzegbaar. Stopt u? Dan behoudt u al uw data, automatiseringen en configuraties.</p>
+          </div>
       </div>
+    </div>
+  </section>
 
-      <div class="grid grid-cols-[24px_1fr] gap-6">
-        <div class="flex flex-col items-center">
-          <div class="timeline-dot"></div>
-          <div class="w-px flex-1 bg-gray-200 mt-2"></div>
-        </div>
-        <div class="pb-2">
-          <div class="text-xs font-mono text-brand-500 uppercase tracking-wider mb-1">Juni 2026</div>
-          <h3 class="font-bold text-ink-900 mb-1">Selectly officieel als BV NXTG Solutions</h3>
-          <p class="text-sm text-ink-500">Twee installateur-collega's vroegen "kunnen jullie dit ook voor ons?". Selectly werd een tweede merk — apart van de installatie-business.</p>
-        </div>
+  <!-- ─────── NIET BELOVEN ─────── -->
+  <section class="bg-white py-20 lg:py-24">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 sl-reveal">
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 lg:p-12">
+        <div class="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-4">Eerlijk blijven</div>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">We beloven geen extra leads. We beloven betere opvolging.</h2>
+        <p class="text-lg text-ink-500 leading-relaxed">Selectly brengt geen nieuwe aanvragen binnen — dat doen uw reclame, uw naam en uw werk. Wat wij doen, is zorgen dat de aanvragen die u vandaag al krijgt veel vaker klant worden. Geen “verdubbel uw omzet”-praat: elke zaak is anders, en wat u overhoudt hangt af van uw sector, uw verkoopproces en uw manier van werken.</p>
       </div>
+    </div>
+  </section>
 
-      <div class="grid grid-cols-[24px_1fr] gap-6">
-        <div class="flex flex-col items-center">
-          <div class="timeline-dot" style="background:#34e4a8; box-shadow: 0 0 0 4px rgba(52,228,168,.2);"></div>
+  <!-- ─────── FOCUS ─────── -->
+  <section class="bg-gray-50 py-20 lg:py-24 border-y border-gray-100">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 sl-reveal">
+      <div class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Onze focus</div>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">We kozen bewust voor installateurs, dakwerkers en HVAC.</h2>
+      <p class="text-lg text-ink-500 leading-relaxed">Omdat we die wereld kennen. Vakmensen die met hun handen werken, verliezen de meeste omzet net op het moment dat ze het drukst zijn — op een dak, in een technische ruimte, met de handen vol. Precies daar maakt automatische opvolging het grootste verschil. Een algemene tool voor iedereen bestaat al genoeg. Wij bouwen voor wie niet de hele dag achter een scherm zit.</p>
+    </div>
+  </section>
+
+  <!-- ─────── BEDRIJF ─────── -->
+  <section class="relative bg-ink-900 text-white py-20 lg:py-28 overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center sl-reveal">
+      <div class="text-xs font-semibold text-mint-400 uppercase tracking-wider mb-4">Het bedrijf</div>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">Een Belgisch bedrijf, gebouwd voor Belgische installateurs.</h2>
+      <p class="text-lg text-white/70 leading-relaxed mb-8">Selectly is een merk van <strong class="text-white">BV NXTG Solutions</strong>, een Belgische holding. We werken met een vaste techniekstack — GHL CRM, Claude, WhatsApp en SMS — en houden alle klantgegevens binnen de EU, met een verwerkersovereenkomst standaard inbegrepen. Contact loopt rechtstreeks: een echte mens antwoordt binnen 24 uur.</p>
+      <div class="inline-flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs font-mono text-white/40 border border-white/10 rounded-full px-5 py-2.5">
+        <span>BV NXTG Solutions</span><span>·</span><span>BE 1037.580.195</span><span>·</span><span>Gemaakt in België</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── SLOT-CTA ─────── -->
+  <section class="relative bg-ink-900 text-white py-24 overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 top-0 left-1/4 -translate-x-1/2 opacity-30"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center sl-reveal">
+      <h2 class="text-3xl lg:text-5xl font-bold tracking-tight mb-6">Benieuwd of het ook bij u werkt?</h2>
+      <p class="text-lg text-white/70 leading-relaxed mb-10">Boek een gratis demo. We tonen een echte flow, rekenen met uw cijfers en geven u een concreet eerste plan mee. Geen contract, geen druk.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="/#contact" class="sl-glow px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base">
+          Boek uw gratis demo
+        </a>
+        <a href="https://wa.me/32483812907?text=Hallo%20Selectly%2C%20ik%20heb%20een%20vraag%20over%20mijn%20zaak." target="_blank" rel="noopener" class="px-8 py-4 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-xl transition text-base inline-flex items-center justify-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.488"/></svg>
+          Stel uw vraag via WhatsApp
+        </a>
+        <a href="/case-nxtg.html" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base">Bekijk eerst de volledige case →</a>
+      </div>
+      <p class="text-sm text-white/50">
+        Gratis demo · Maandelijks opzegbaar ·
+        <a href="mailto:info@selectly.be" class="text-white link-underline">info@selectly.be</a> ·
+        <a href="tel:+32483812907" class="text-white link-underline">+32 483 81 29 07</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer class="bg-ink-900 text-white/60 border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#footer-logo-grad)"/>
+              <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+              <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+              <defs><linearGradient id="footer-logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+            </svg>
+            <span class="text-lg font-bold text-white">Selectly</span>
+          </div>
+          <p class="text-sm leading-relaxed max-w-md">
+            Selectly bouwt AI-automatiseringen voor Belgische KMO's.
+            Stop met handmatig werk. Begin met groeien.
+          </p>
         </div>
+
         <div>
-          <div class="text-xs font-mono text-mint-500 uppercase tracking-wider mb-1">Nu</div>
-          <h3 class="font-bold text-ink-900 mb-1">Selectly platform live</h3>
-          <p class="text-sm text-ink-500">3 tiers + lead-buyer-tier. Live klant-portals, live ROI-calculator, live AI-demo. NXTG blijft ons eigen test-lab — wat daar werkt, krijg jij.</p>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Product</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/#wat-we-doen" class="hover:text-white transition">Wat we doen</a></li>
+            <li><a href="/#hoe" class="hover:text-white transition">Werkwijze</a></li>
+            <li><a href="/pakketten.html" class="hover:text-white transition">Pakketten</a></li>
+            <li><a href="/case-nxtg.html" class="hover:text-white transition">Case study</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Bedrijf</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/over.html" class="hover:text-white transition">Over Selectly</a></li>
+            <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy.html" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/voorwaarden.html" class="hover:text-white transition">Algemene voorwaarden</a></li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Principes -->
-  <section class="mt-20">
-    <h2 class="text-3xl font-bold tracking-tight mb-3">Hoe we werken</h2>
-    <p class="text-ink-500 mb-10">Drie principes die we niet schenden, ook niet als 't sneller zou kunnen.</p>
-
-    <div class="space-y-6">
-      <div class="bg-white border border-gray-200 rounded-2xl p-6">
-        <h3 class="font-bold text-xl mb-2">1 — We gebruiken het zelf eerst</h3>
-        <p class="text-ink-700 leading-relaxed">Elke feature die we aan jou verkopen, draait eerst in NXTG. Geen vaporware. Als het bij ons werkt, krijg jij het. Werkt het niet, fixen we het bij ons vóór het bij jou live gaat.</p>
-      </div>
-
-      <div class="bg-white border border-gray-200 rounded-2xl p-6">
-        <h3 class="font-bold text-xl mb-2">2 — Geen account-manager-laag</h3>
-        <p class="text-ink-700 leading-relaxed">Jij belt ons. Niet een SDR, niet een onboarding-specialist, niet een tier-2-support. WhatsApp: +32 492 61 70 85. Mail: hello@selectly.be. Geen ticketsysteem dat 3 dagen wacht.</p>
-      </div>
-
-      <div class="bg-white border border-gray-200 rounded-2xl p-6">
-        <h3 class="font-bold text-xl mb-2">3 — Maandelijks opzegbaar</h3>
-        <p class="text-ink-700 leading-relaxed">Geen jaar-contracten. Werkt Selectly niet voor jou, dan stop je. Je behoudt je GHL-data en CRM-export. Wij verliezen een klant, jij verliest niets.</p>
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between gap-4 text-xs">
+        <div>© 2026 Selectly · BV NXTG Solutions · BE1037.580.195</div>
+        <div>Gemaakt in België 🇧🇪</div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Niet -->
-  <section class="mt-20 bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-3xl p-8 lg:p-12">
-    <h2 class="text-2xl font-bold tracking-tight mb-3">Wat we <span class="gradient-text">niet</span> zijn</h2>
-    <p class="text-white/70 mb-7">Eerlijkheid bouwt vertrouwen.</p>
+  <!-- META LEAD TRACKER -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('form').forEach(function(form) {
+      if (form.dataset.fbPixelTracked) return;
+      form.dataset.fbPixelTracked = '1';
+      form.addEventListener('submit', function() {
+        if (window.fbq) {
+          var formName = form.getAttribute('name') || form.id || 'unknown';
+          fbq('track', 'Lead', { form_name: formName });
+        }
+      });
+    });
+  });
+</script>
+<!-- /META LEAD TRACKER -->
 
-    <ul class="space-y-3 text-white/80">
-      <li class="flex gap-3"><span class="text-white/40">×</span> Een agency met 20 medewerkers. Klein team plus tooling.</li>
-      <li class="flex gap-3"><span class="text-white/40">×</span> Een SaaS die je inlogt en zelf moet configureren. Wij zetten het op, jij gebruikt.</li>
-      <li class="flex gap-3"><span class="text-white/40">×</span> Goedkoop. Vanaf €950/mnd — voor wie minder dan 30 leads/mnd heeft = overkill.</li>
-      <li class="flex gap-3"><span class="text-white/40">×</span> Een lead-platform zoals Bobex of Solvari. Wij genereren geen leads, wij automatiseren wat jij doet met je eigen leads.</li>
-      <li class="flex gap-3"><span class="text-white/40">×</span> Een "AI-revolutie". AI is een instrument, niet de show. Het draait om jou meer deals laten sluiten.</li>
-    </ul>
-  </section>
+  <!-- Scroll-reveal + tellers -->
+  <script>
+  (function () {
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var hasIO = 'IntersectionObserver' in window;
 
-  <!-- Contact -->
-  <section class="mt-16 text-center">
-    <h2 class="text-3xl font-bold tracking-tight mb-3">Vragen? Bel of WhatsApp.</h2>
-    <p class="text-ink-500 mb-7 max-w-xl mx-auto">Geen formulier, geen pitch-call. Gewoon een gesprek over of dit bij jou past — of niet.</p>
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="https://wa.me/32492617085?text=Hallo%20Selectly%2C%20ik%20heb%20een%20vraag." target="_blank" rel="noopener" class="px-7 py-4 bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold rounded-xl inline-flex items-center justify-center gap-2">
-        WhatsApp +32 492 61 70 85
-      </a>
-      <a href="mailto:hello@selectly.be" class="px-7 py-4 bg-ink-900 text-white font-bold rounded-xl hover:bg-ink-700">hello@selectly.be</a>
-      <a href="/#contact" class="px-7 py-4 border border-gray-300 text-ink-900 font-semibold rounded-xl hover:bg-gray-50">Plan demo →</a>
-    </div>
-  </section>
+    (function () {
+      var els = document.querySelectorAll('.sl-reveal, .sl-stagger');
+      if (!els.length) return;
+      if (reduce || !hasIO) { els.forEach(function (e) { e.classList.add('is-visible'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (e) { io.observe(e); });
+      setTimeout(function () { els.forEach(function (e) { e.classList.add('is-visible'); }); }, 3500);
+    })();
 
-</main>
-
-<footer class="bg-ink-900 text-white/50 py-12 mt-16">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-8 text-sm">
-    <div>
-      <div class="flex items-center gap-2.5 mb-3">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="8" fill="url(#fg)"/>
-          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
-          <defs><linearGradient id="fg" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
-        </svg>
-        <span class="font-bold text-white">Selectly</span>
-      </div>
-      <p>BV NXTG Solutions · BTW BE1037.580.195 · Roeselare</p>
-    </div>
-    <div>
-      <div class="text-white font-semibold mb-2">Verken</div>
-      <ul class="space-y-1">
-        <li><a href="/" class="hover:text-white">Home</a></li>
-        <li><a href="/demo-ai.html" class="hover:text-white">Live demo</a></li>
-        <li><a href="/roi.html" class="hover:text-white">ROI-calc</a></li>
-        <li><a href="/vergelijken.html" class="hover:text-white">Vergelijken</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="text-white font-semibold mb-2">Vertrouwen</div>
-      <ul class="space-y-1">
-        <li><a href="/security.html" class="hover:text-white">Security &amp; GDPR</a></li>
-        <li><a href="/roadmap.html" class="hover:text-white">Roadmap</a></li>
-        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
-
+    (function () {
+      var els = document.querySelectorAll('.sl-count');
+      if (!els.length) return;
+      function fmt(v, dec) { return dec > 0 ? v.toFixed(dec).replace('.', ',') : Math.round(v).toLocaleString('nl-BE'); }
+      function run(el) {
+        var to = parseFloat(el.dataset.to), from = parseFloat(el.dataset.from || 0),
+            dec = parseInt(el.dataset.dec || 0), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        if (reduce) { el.textContent = pre + fmt(to, dec) + suf; return; }
+        var dur = 1500, st = performance.now(), ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+        (function step(now) {
+          var p = Math.min((now - st) / dur, 1);
+          el.textContent = pre + fmt(from + (to - from) * ease(p), dec) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        })(st);
+      }
+      if (reduce || !hasIO) { els.forEach(run); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !en.target.dataset.done) { en.target.dataset.done = '1'; run(en.target); }
+        });
+      }, { threshold: 0.5 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  })();
+  </script>
 </body>
 </html>

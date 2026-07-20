@@ -14,6 +14,8 @@
 
   <link rel="canonical" href="https://selectly.be/demo-ai.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
@@ -108,15 +110,15 @@
       <a href="/" class="flex items-center gap-2.5">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
           <rect width="32" height="32" rx="8" fill="url(#g)"/>
-          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
           <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
         </svg>
         <span class="text-xl font-bold">Selectly</span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
         <a href="/#wat-we-doen" class="hover:text-ink-900">Wat we doen</a>
-        <a href="/#prijzen" class="hover:text-ink-900">Prijzen</a>
+        <a href="/pakketten.html" class="hover:text-ink-900">Prijzen</a>
         <a href="/roi.html" class="hover:text-ink-900">ROI-calc</a>
         <a href="/demo-ai.html" class="text-ink-900 font-semibold">Live demo</a>
       </div>
@@ -131,7 +133,7 @@
   <div class="glow-orb w-[500px] h-[500px] bg-brand-500 -top-40 -right-40"></div>
   <div class="glow-orb w-[400px] h-[400px] bg-mint-400 bottom-0 -left-40"></div>
 
-  <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-10 pb-8 lg:pt-12 lg:pb-10 text-center">
+  <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-10 pb-14 lg:pt-12 lg:pb-16 text-center">
     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-4">
       <span class="w-2 h-2 rounded-full bg-mint-400 animate-pulse"></span>
       <span class="text-white/80">Live · geen demo-call · geen e-mailadres</span>
@@ -147,7 +149,7 @@
 </section>
 
 <!-- DEMO -->
-<main x-data="demoAI()" class="max-w-6xl mx-auto px-6 lg:px-8 -mt-6 mb-16">
+<main x-data="demoAI()" class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 -mt-6 mb-16">
   <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6">
 
     <!-- LEFT: scenario picker -->
@@ -243,7 +245,7 @@
         <!-- Footer -->
         <div class="bg-white border-t border-gray-100 p-4 flex items-center gap-3">
           <div class="flex-1 text-xs text-ink-500">
-            <span class="font-semibold text-ink-900">Demo-modus</span> — scripted op echte klant-gesprekken bij NXTG. Productie-AI gebruikt Claude Sonnet voor open vragen.
+            <span class="font-semibold text-ink-900">Demo-modus</span> — scripted op echte klantgesprekken bij een Belgisch installatiebedrijf. Productie-AI gebruikt Claude Sonnet voor open vragen.
           </div>
           <button x-show="!started" @click="play()" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl text-sm shadow-glow">
             ▶ Start demo
@@ -278,7 +280,7 @@
       Dit voor <span class="gradient-text">jouw</span> klanten?
     </h2>
     <p class="text-white/70 max-w-2xl mx-auto mb-7 text-lg">
-      We bouwen exact deze flow voor jouw sector, met jouw branding, jouw premie-info, jouw kwalificatie-vragen. Live in 4 weken.
+      We bouwen exact deze flow voor jouw sector, met jouw branding, jouw prijzen en de premies die in jouw sector gelden, jouw kwalificatie-vragen. Live in 4 weken.
     </p>
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
       <a href="/#contact" class="px-7 py-4 bg-white text-ink-900 font-bold rounded-xl hover:bg-brand-100 shadow-glow">Plan demo van 20 minuten</a>
@@ -294,8 +296,8 @@
       <div class="flex items-center gap-2.5 mb-3">
         <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
           <rect width="32" height="32" rx="8" fill="url(#fg2)"/>
-          <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
           <defs><linearGradient id="fg2" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
         </svg>
         <span class="font-bold text-white">Selectly</span>
@@ -308,14 +310,14 @@
         <li><a href="/" class="hover:text-white">Home</a></li>
         <li><a href="/roi.html" class="hover:text-white">ROI-calculator</a></li>
         <li><a href="/calculator.html" class="hover:text-white">Pakket-calculator</a></li>
-        <li><a href="/case-nxtg.html" class="hover:text-white">NXTG case</a></li>
+        <li><a href="/case-nxtg.html" class="hover:text-white">Case study</a></li>
       </ul>
     </div>
     <div>
       <div class="text-white font-semibold mb-2">Contact</div>
       <ul class="space-y-1">
         <li><a href="/#contact" class="hover:text-white">Plan demo</a></li>
-        <li><a href="https://wa.me/32492617085" target="_blank" rel="noopener" class="hover:text-white">+32 492 61 70 85</a></li>
+        <li><a href="https://wa.me/32483812907" target="_blank" rel="noopener" class="hover:text-white">+32 483 81 29 07</a></li>
       </ul>
     </div>
   </div>
@@ -337,12 +339,12 @@ function demoAI() {
         emoji: '☀️',
         label: 'Zonnepanelen-aanvraag',
         sublabel: 'Klant wil offerte op rijwoning',
-        botName: 'NXTG Energy · AI-assistent',
+        botName: 'Selectly · AI-assistent',
         leadSummary: 'Wim De Smedt · Knokke-Heist · 8300 · rijwoning 35m² zuid-dak · budget €10-15K · timing dit kwartaal · BTW-particulier',
         leadScore: 87,
         thread: [
           { from:'user', text:'Hallo, ik wil graag een offerte voor zonnepanelen op mijn dak.', delay: 0 },
-          { from:'bot', text:'Dag! Welkom bij NXTG Energy. Ik help je graag verder — kost maar 2 minuten.\n\nWaar staat de woning waar de panelen op moeten?', delay: 1200 },
+          { from:'bot', text:'Dag! Welkom bij Selectly. Ik help je graag verder — kost maar 2 minuten.\n\nWaar staat de woning waar de panelen op moeten?', delay: 1200 },
           { from:'user', text:'In Knokke-Heist, postcode 8300', delay: 2000 },
           { from:'bot', text:'Top — daar werken we vaak. Even kort: gaat het om een <strong>rijwoning, halfopen of vrijstaand</strong>?', delay: 1300 },
           { from:'user', text:'Rijwoning', delay: 1600 },
@@ -350,7 +352,7 @@ function demoAI() {
           { from:'user', text:'Ongeveer 35 m² ik denk, op het zuiden', delay: 2200 },
           { from:'bot', text:'Mooi, dat is een ideale combinatie. Met 35m² zuid komen we typisch rond <strong>14-18 panelen (5,5-7 kWp)</strong> uit.\n\nLaatste vraag: hoe snel zou je dit willen realiseren? Dit kwartaal, binnen halfjaar, of nog open?', delay: 1500 },
           { from:'user', text:'Liefst dit kwartaal als het kan', delay: 1800 },
-          { from:'bot', text:'Perfect. Ik stuur het NXTG-team direct je dossier door — hij contacteert je vandaag nog (vóór 18u) voor een datum voor plaatsbezoek.\n\n<strong>Wil je intussen al een indicatie van de prijs?</strong> Ik kan je een PDF mailen op basis van de gegevens die je net deelde.', delay: 1500 },
+          { from:'bot', text:'Perfect. Ik stuur het team direct je dossier door — ze contacteren je vandaag nog (vóór 18u) voor een datum voor plaatsbezoek.\n\n<strong>Wil je intussen al een indicatie van de prijs?</strong> Ik kan je een PDF mailen op basis van de gegevens die je net deelde.', delay: 1500 },
           { from:'user', text:'Ja graag — wim.desmedt@email.be', delay: 1900 },
           { from:'bot', text:'Verstuurd ✓ Binnen 2 minuten in je inbox.\n\nDank je Wim, het team belt je vandaag terug. Tot dan!', delay: 1200 }
         ]
@@ -360,12 +362,12 @@ function demoAI() {
         emoji: '🌡️',
         label: 'HVAC-storing',
         sublabel: 'Bestaande klant, urgent',
-        botName: 'Favorcool · 24/7 service-bot',
+        botName: 'HVAC-installateur · 24/7 service-bot',
         leadSummary: 'Frank Devos · Brugge · meldt geen warmte sinds 14u · ketel-merk Vaillant · contract Premium · ticket-prio HOOG',
         leadScore: 95,
         thread: [
           { from:'user', text:'Goeiemiddag, mijn verwarming doet het niet meer sinds 2u', delay: 0 },
-          { from:'bot', text:'Vervelend! Ik help direct. Eerst even: ben je bestaande klant bij Favorcool? Zo ja, je naam of postcode?', delay: 1300 },
+          { from:'bot', text:'Vervelend! Ik help direct. Eerst even: ben je bestaande klant bij ons? Zo ja, je naam of postcode?', delay: 1300 },
           { from:'user', text:'Ja, Frank Devos in Brugge', delay: 1700 },
           { from:'bot', text:'Frank — ik zie je dossier. Je hebt het <strong>Premium service-contract</strong>, dus je krijgt voorrang.\n\nWelk merk ketel staat er bij jou? (staat meestal op het label vooraan)', delay: 1400 },
           { from:'user', text:'Vaillant', delay: 1300 },

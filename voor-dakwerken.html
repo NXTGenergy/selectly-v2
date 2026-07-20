@@ -2,61 +2,130 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <link rel="canonical" href="https://selectly.be/voor-dakwerken.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI-automation voor dakwerkers | Selectly Brugge</title>
-  <meta name="description" content="Dakwerkers missen 80% van hun calls. Selectly's AI vangt elke aanvraag op, schrijft offertes vanaf de werf, en volgt op. Vanaf €950/mnd, live in 4 weken." />
+  <meta name="theme-color" content="#0a0e1a" />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://selectly.be/voor-dakwerken.html" />
-  <meta property="og:title" content="AI-automation voor dakwerkers | Selectly" />
-  <meta property="og:description" content="Stop met calls missen. AI antwoordt, kwalificeert, boekt afspraken. Vanaf dag 1." />
+  <title>Offertes niet meer laten liggen — voor dakwerkers | Selectly</title>
+  <meta name="description" content="Antwoord op elke aanvraag binnen de minuut terwijl u op het dak staat. Automatische opvolging tot er getekend wordt. Gratis demo." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Offertes niet meer laten liggen — voor dakwerkers | Selectly" />
+  <meta property="og:description" content="Antwoord op elke aanvraag binnen de minuut terwijl u op het dak staat. Automatische opvolging tot er getekend wordt. Gratis demo." />
   <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://selectly.be/voor-dakwerken.html" />
+  <meta property="og:locale" content="nl_BE" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "AI-automation voor dakwerkers en dakdekkers",
-    "provider": {
-      "@type": "ProfessionalService",
-      "name": "Selectly",
-      "address": { "@type": "PostalAddress", "addressLocality": "Brugge", "addressRegion": "West-Vlaanderen", "addressCountry": "BE" },
-      "telephone": "+32 492 61 70 85", "email": "info@selectly.be"
-    },
-    "areaServed": "BE",
-    "serviceType": "Sales automation, AI chatbot, AI voicebot, auto-offertes",
-    "audience": { "@type": "BusinessAudience", "audienceType": "Dakwerkers en dakdekkers" },
-    "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "950" }
-  }
-  </script>
+  <link rel="canonical" href="https://selectly.be/voor-dakwerken.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
   <script>
-    tailwind.config = { theme: { extend: {
-      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-      colors: {
-        ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238', 500: '#475569', 400: '#64748b' },
-        brand: { 50: '#eff4ff', 100: '#dbe5ff', 400: '#5b8cff', 500: '#3a6cf2', 600: '#2451d8' },
-        mint: { 100: '#d8f8e8', 400: '#5ed99e', 500: '#34D399', 700: '#0a8a5e' },
-        rose: { 400: '#fb7185', 500: '#f43f5e' },
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            ink: { 900:'#070a14', 800:'#0a0e1a', 700:'#13182b', 600:'#1c2238', 500:'#293150' },
+            brand: { 50:'#eff4ff',100:'#dbe5ff',200:'#bdd0ff',300:'#8eb0ff',400:'#5b8cff',500:'#3a6cf2',600:'#2451d8',700:'#1d40b0',800:'#1c388c',900:'#1d3372' },
+            mint: { 400:'#34e4a8', 500:'#10c98c' },
+          },
+          boxShadow: {
+            'glow': '0 0 40px -10px rgba(91, 140, 255, 0.5)',
+            'soft': '0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.03)',
+          },
+        },
       },
-    }}};
+    };
   </script>
+
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .gradient-text { background: linear-gradient(135deg, #5b8cff 0%, #34D399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
-    .grid-bg { background-image: linear-gradient(rgba(91, 140, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(91, 140, 255, 0.06) 1px, transparent 1px); background-size: 50px 50px; }
-    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #34D399; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); } 50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); } }
+    html { scroll-behavior: smooth; }
+    body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #5b8cff 0%, #a78bfa 50%, #34e4a8 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(91,140,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,140,255,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:.4; pointer-events:none; }
+    .link-underline { position:relative; display:inline-block; }
+    .link-underline::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:currentColor; transition:width .3s ease; }
+    .link-underline:hover::after { width:100%; }
+    .pulse-dot { width:8px; height:8px; background:#34e4a8; border-radius:50%; box-shadow:0 0 0 0 rgba(52,228,168,.6); animation:pulse-ring 2s infinite; }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(52,228,168,.6)} 70%{box-shadow:0 0 0 12px rgba(52,228,168,0)} 100%{box-shadow:0 0 0 0 rgba(52,228,168,0)} }
+    *:focus-visible { outline:2px solid #5b8cff; outline-offset:2px; border-radius:4px; }
+
+    /* Scroll-reveal */
+    .reveal-enabled .sl-reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+    .reveal-enabled .sl-reveal.is-visible { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger > * { opacity:0; transform:translateY(22px); transition:opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+    .reveal-enabled .sl-stagger.is-visible > * { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(1){transition-delay:.04s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(2){transition-delay:.10s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(3){transition-delay:.16s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(4){transition-delay:.22s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(5){transition-delay:.28s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(6){transition-delay:.34s}
+
+    .sl-lift { transition:transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s ease; }
+    .sl-lift:hover { transform:translateY(-4px); box-shadow:0 22px 48px -18px rgba(58,108,242,.35); }
+    .sl-glow { transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
+    .sl-glow:hover { transform:translateY(-2px); box-shadow:0 14px 34px -10px rgba(91,140,255,.55); }
+
+    /* Hero beeld-achtergrond */
+    .sl-hero-img { position:absolute; inset:0; pointer-events:none;
+      background-image:url('assets/hero-network.jpg');
+      background-size:cover; background-position:center right; background-repeat:no-repeat; }
+    .sl-hero-imgveil { position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 78% 66% at 50% 42%, rgba(7,10,20,.62) 0%, rgba(7,10,20,.5) 46%, rgba(7,10,20,.28) 78%, transparent 100%),
+        linear-gradient(180deg, rgba(7,10,20,.7) 0%, rgba(7,10,20,.42) 26%, rgba(7,10,20,.42) 62%, rgba(7,10,20,.82) 100%),
+        linear-gradient(90deg, rgba(7,10,20,.55) 0%, rgba(7,10,20,.2) 42%, transparent 72%); }
+
+    /* Aurora */
+    .sl-aurora { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .sl-blob { position:absolute; border-radius:50%; filter:blur(72px); opacity:.18; mix-blend-mode:screen; will-change:transform; }
+    .sl-blob-1 { width:46vw; height:46vw; max-width:640px; max-height:640px; background:radial-gradient(circle at 32% 32%, #3a6cf2, transparent 66%); top:-14%; left:-8%; animation:slDrift1 26s ease-in-out infinite; }
+    .sl-blob-2 { width:42vw; height:42vw; max-width:560px; max-height:560px; background:radial-gradient(circle at 50% 50%, #7c3aed, transparent 68%); top:-8%; right:-10%; animation:slDrift2 32s ease-in-out infinite; }
+    .sl-blob-3 { width:40vw; height:40vw; max-width:520px; max-height:520px; background:radial-gradient(circle at 50% 50%, #22d3ee, transparent 70%); bottom:-20%; left:20%; opacity:.14; animation:slDrift3 30s ease-in-out infinite; }
+    @keyframes slDrift1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(8vw,6vh) scale(1.12)} 66%{transform:translate(-4vw,9vh) scale(.96)} }
+    @keyframes slDrift2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-7vw,7vh) scale(1.08)} 66%{transform:translate(3vw,-4vh) scale(1.15)} }
+    @keyframes slDrift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(6vw,-8vh) scale(1.1)} }
+    .sl-hero-veil { position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(ellipse 92% 72% at 50% 38%, transparent 0%, rgba(7,10,20,.34) 68%, rgba(7,10,20,.72) 100%),
+        linear-gradient(180deg, rgba(7,10,20,.22) 0%, transparent 32%, rgba(7,10,20,.5) 100%); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .sl-blob { animation:none !important; }
+    }
   </style>
-  <!-- META PIXEL — GDPR-gated -->
+  <script>
+    try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('reveal-enabled'); } } catch(e) {}
+  </script>
+  <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
 <script>
   function loadMetaPixel() {
     if (window._metaPixelLoaded) return;
@@ -72,345 +141,394 @@
     fbq('track', 'PageView');
   }
   try {
-    if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel();
-    else window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
-  } catch (e) { }
+    if (localStorage.getItem('selectly_consent') === 'accepted') {
+      loadMetaPixel();
+    } else {
+      window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
+    }
+  } catch (e) {}
 </script>
+<!-- /META PIXEL -->
 <script src="/consent.js" defer></script>
 </head>
-<body class="bg-white text-ink-900 antialiased">
+
+<body class="bg-white text-ink-900 font-sans antialiased">
 
   <!-- ─────── NAV ─────── -->
-  <nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" x-data="{ open: false }">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="/" class="flex items-center gap-2.5">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="url(#g)"/>
-            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#2563eb"/></linearGradient></defs>
-            <path d="M9 22 L14 14 L19 22 M12 18 L17 18" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
           </svg>
-          <span class="font-bold text-lg">Selectly</span>
+          <span class="text-xl font-bold tracking-tight">Selectly</span>
         </a>
-        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a href="/voor-zonnepanelen.html" class="text-ink-500 hover:text-ink-900 transition">Zonnepanelen</a>
-          <a href="/voor-dakwerken.html" class="text-brand-500">Dakwerken</a>
-          <a href="/voor-hvac.html" class="text-ink-500 hover:text-ink-900 transition">HVAC</a>
-          <a href="/case-nxtg.html" class="text-ink-500 hover:text-ink-900 transition">Case</a>
-          <a href="/#prijzen" class="text-ink-500 hover:text-ink-900 transition">Prijzen</a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+          <a href="/#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
+          <a href="/#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
+          <a href="/case-nxtg.html" class="hover:text-ink-900 transition">Case study</a>
+          <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>
+            Live demo
+          </a>
+          <a href="/roi.html" class="hover:text-ink-900 transition">ROI-calc</a>
+          <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
         </div>
-        <a href="/#contact" class="px-5 py-2.5 bg-ink-900 text-white text-sm font-semibold rounded-lg hover:bg-ink-700 transition">Plan demo →</a>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition shadow-soft">
+            Boek uw gratis demo →
+          </a>
+        </div>
+
+        <button @click="open = !open" class="md:hidden p-2" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div x-show="open" x-transition class="md:hidden py-4 border-t border-gray-100 space-y-1">
+        <a href="/#wat-we-doen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
+        <a href="/#hoe" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Werkwijze</a>
+        <a href="/case-nxtg.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Case study</a>
+        <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live demo</a>
+        <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
+        <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakketten</a>
+        <a href="/over.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Over Selectly</a>
+        <a href="/#contact" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek uw gratis demo →</a>
       </div>
     </div>
   </nav>
 
   <!-- ─────── HERO ─────── -->
-  <section class="relative bg-ink-900 text-white overflow-hidden">
-    <div class="absolute inset-0 grid-bg opacity-50"></div>
-    <div class="glow-orb w-[600px] h-[600px]" style="top:-200px; right:-100px; background: radial-gradient(circle, rgba(244, 63, 94, 0.3), transparent 65%);"></div>
-    <div class="glow-orb w-[500px] h-[500px]" style="bottom:-150px; left:-100px; background: radial-gradient(circle, rgba(58, 108, 242, 0.3), transparent 65%);"></div>
+  <section id="hero" class="relative bg-ink-900 text-white overflow-hidden">
+    <div class="sl-hero-img" aria-hidden="true"></div>
+    <div class="sl-aurora" aria-hidden="true">
+      <div class="sl-blob sl-blob-1"></div>
+      <div class="sl-blob sl-blob-2"></div>
+      <div class="sl-blob sl-blob-3"></div>
+    </div>
+    <div class="sl-hero-imgveil" aria-hidden="true"></div>
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="sl-hero-veil" aria-hidden="true"></div>
 
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-24 lg:pt-28 lg:pb-32">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32">
       <div class="max-w-4xl mx-auto text-center">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-8">
           <span class="pulse-dot"></span>
-          <span class="text-white/80">🔧 Voor dakwerkers + dakdekkers · Belgisch</span>
+          <span class="text-white/80">Voor dakwerkers</span>
         </div>
 
-        <h1 class="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8">
-          Je staat op een dak.<br>
-          <span class="gradient-text">Je telefoon gaat. Drie keer.</span>
+        <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-8">
+          U staat op het dak. Ondertussen<br><span class="gradient-text">belt uw klant drie collega’s.</span>
         </h1>
 
-        <p class="text-xl lg:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-6">
-          80% van inkomende calls verlies je omdat je niet kan opnemen. Tegen de avond
-          zijn 8 van de 10 leads koud — ze hebben al een concurrent gesproken.
-        </p>
-        <p class="text-sm text-mint-400/90 font-medium max-w-2xl mx-auto mb-10">
-          Selectly's AI-voicebot beantwoordt élke call. Vlaams. Kwalificeert. Boekt afspraak. 24/7.
+        <p class="text-lg lg:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-10">
+          Een aanvraag die 's ochtends binnenkomt en pas 's avonds een antwoord krijgt, is vaak al weg. Selectly beantwoordt elke aanvraag binnen de minuut en volgt op tot er getekend wordt — terwijl u gewoon doorwerkt.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-          <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-lg">
-            Plan een demo van 20 minuten
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <a href="/#contact" class="sl-glow px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base">
+            Boek uw gratis demo
           </a>
-          <a href="https://wa.me/32492617085?text=Hallo%20Selectly%2C%20ik%20ben%20dakwerker%20en%20wil%20Selectly%20bekijken." target="_blank" rel="noopener" class="px-8 py-4 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-xl transition inline-flex items-center justify-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.488"/></svg>
-            WhatsApp
+          <a href="#resultaten" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base">
+            Bekijk de resultaten →
           </a>
         </div>
-        <p class="text-xs text-white/40">Geen creditcard nodig · 20 min · Belgisch sales-team</p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm text-white/70">
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>U hoeft niets te veranderen aan uw werk</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>Werkt met uw bestaande aanvragen</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-mint-400"></span>Maandelijks opzegbaar</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ─────── PIJN ─────── -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <div class="text-sm font-semibold text-rose-500 uppercase tracking-wider mb-3">De realiteit van dakwerk</div>
-        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight max-w-3xl mx-auto">
-          De klant kiest <span class="text-rose-500">wie eerst belt</span>. Niet wie de beste werker is.
-        </h2>
+  <section class="bg-gray-50 py-20 lg:py-28 border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-14 sl-reveal">
+        <div class="text-xs font-semibold text-red-500 uppercase tracking-wider mb-4">De pijn</div>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight mb-6">Uw beste verkoper bent u. En u staat de hele dag op een dak.</h2>
+        <p class="text-lg text-ink-500 leading-relaxed">Bij dakwerken zit het geld niet in méér aanvragen — dat weet u. Het zit in de aanvragen die u nú al krijgt en niet snel genoeg opvolgt. Want u kunt niet tegelijk pannen leggen en de telefoon opnemen.</p>
       </div>
-
-      <div class="grid sm:grid-cols-2 gap-5">
-        <div class="bg-white border-l-4 border-rose-500 rounded-lg p-6 shadow-sm">
-          <div class="text-3xl font-bold text-ink-900 mb-2">80%</div>
-          <p class="text-ink-500">Van inkomende calls neem je niet op. Je staat op een dak, in een dakgoot, of in de bestelwagen.</p>
-        </div>
-        <div class="bg-white border-l-4 border-rose-500 rounded-lg p-6 shadow-sm">
-          <div class="text-3xl font-bold text-ink-900 mb-2">Lekgat?</div>
-          <p class="text-ink-500">Urgente call op zondag avond. Wie 's avonds opneemt, krijgt de opdracht. Jij of de concurrent?</p>
-        </div>
-        <div class="bg-white border-l-4 border-rose-500 rounded-lg p-6 shadow-sm">
-          <div class="text-3xl font-bold text-ink-900 mb-2">3 dagen</div>
-          <p class="text-ink-500">Voor je terugbelt — klant heeft 3 offertes liggen, kiest niet de beste, kiest die hij vergat.</p>
-        </div>
-        <div class="bg-white border-l-4 border-rose-500 rounded-lg p-6 shadow-sm">
-          <div class="text-3xl font-bold text-ink-900 mb-2">Foto's</div>
-          <p class="text-ink-500">Klant stuurt foto's van schade via WhatsApp. Jij moet ze openen, beoordelen, prijs maken. Avondwerk.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────── STACK ─────── -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Hoe Selectly werkt</div>
-        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight max-w-3xl mx-auto">
-          AI op het dak. <span class="gradient-text">Jij in de bestelwagen.</span>
-        </h2>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <div class="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-mint-100 flex items-center justify-center mb-4">
-            <svg width="24" height="24" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11 11 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498A1 1 0 0 1 21 15.72V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5Z"/></svg>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12 sl-stagger">
+          <div class="sl-lift bg-white rounded-2xl border border-gray-200 p-6 text-ink-900">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex-none w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-sm">✕</span>
+              <p class="text-ink-500 leading-relaxed">De telefoon rinkelt terwijl u op een steile helling staat.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-lg mb-2">AI Voicebot (Enterprise)</h3>
-          <p class="text-ink-500 text-sm leading-relaxed">
-            Beantwoordt élke call. Vlaamse stem. Vraagt type werk (lekkage, nieuwe goot, dakbedekking, isolatie),
-            adres, urgentie. Boekt afspraak in jouw agenda. Bij urgentie: belt jou door.
-          </p>
-        </div>
-
-        <div class="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-4">
-            <svg width="24" height="24" fill="none" stroke="#3a6cf2" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <div class="sl-lift bg-white rounded-2xl border border-gray-200 p-6 text-ink-900">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex-none w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-sm">✕</span>
+              <p class="text-ink-500 leading-relaxed">Een offerte blijft twee dagen liggen tot u 's avonds tijd hebt.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-lg mb-2">WhatsApp foto-intake</h3>
-          <p class="text-ink-500 text-sm leading-relaxed">
-            Klant stuurt foto via WhatsApp. AI vraagt automatisch postcode + verdere details + meet
-            geschat oppervlak in. Stuurt jou samenvatting met richtprijs-bereik en suggested next step.
-          </p>
-        </div>
-
-        <div class="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-4">
-            <svg width="24" height="24" fill="none" stroke="#3a6cf2" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z"/></svg>
+          <div class="sl-lift bg-white rounded-2xl border border-gray-200 p-6 text-ink-900">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex-none w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-sm">✕</span>
+              <p class="text-ink-500 leading-relaxed">In het seizoen stapelen de aanvragen zich op.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-lg mb-2">Auto-offerte vanaf werf</h3>
-          <p class="text-ink-500 text-sm leading-relaxed">
-            Na plaatsbezoek: dicteer in je telefoon ("8m goten + 2 valpijpen + 6u arbeid"), AI maakt
-            de offerte in jouw branding inclusief BTW 6%/21% berekening. Klaar binnen 30 min.
-          </p>
-        </div>
-
-        <div class="bg-white border border-gray-100 rounded-2xl p-7 shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-4">
-            <svg width="24" height="24" fill="none" stroke="#3a6cf2" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-5l-5 5v-5Z"/></svg>
+          <div class="sl-lift bg-white rounded-2xl border border-gray-200 p-6 text-ink-900">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex-none w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-sm">✕</span>
+              <p class="text-ink-500 leading-relaxed">De klant wacht niet — die belt ondertussen drie andere dakwerkers.</p>
+            </div>
           </div>
-          <h3 class="font-bold text-lg mb-2">No-show preventie</h3>
-          <p class="text-ink-500 text-sm leading-relaxed">
-            Bij plaatsbezoek: AI stuurt 24u vooraf herinnering. 2u vooraf bevestiging.
-            Bij no-show: automatische herplanning, opvolg-flow naar nieuwe datum.
-          </p>
-        </div>
+          <div class="sl-lift bg-white rounded-2xl border border-gray-200 p-6 text-ink-900">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex-none w-6 h-6 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-sm">✕</span>
+              <p class="text-ink-500 leading-relaxed">Wie het eerst een prijs geeft, krijgt meestal het werk.</p>
+            </div>
+          </div>
       </div>
+      <p class="max-w-2xl mx-auto text-center text-xl font-semibold text-ink-900 sl-reveal">U verliest geen klanten omdat uw werk niet goed is. U verliest ze omdat de opvolging blijft liggen op de drukste dagen.</p>
     </div>
   </section>
 
-  <!-- ─────── CASE STUDY ─────── -->
-  <section class="py-20 bg-ink-900 text-white relative overflow-hidden">
-    <div class="absolute inset-0 grid-bg opacity-30"></div>
-    <div class="glow-orb w-[500px] h-[500px]" style="top:-100px; right:-100px; background: radial-gradient(circle, rgba(52, 211, 153, 0.25), transparent 65%);"></div>
-
-    <div class="relative max-w-5xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <div class="text-sm font-semibold text-mint-300 uppercase tracking-wider mb-3">Bewezen pattern</div>
-        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight max-w-3xl mx-auto">
-          Same playbook werkt voor dakwerken.<br>
-          <span class="gradient-text">Anders sector, zelfde mechaniek.</span>
-        </h2>
-        <p class="text-white/70 mt-4 max-w-2xl mx-auto">
-          NXTG Energy bewees het op zonnepanelen (+27pp conversie in 4 weken).
-          Dezelfde stack draait op installatie-bedrijven die service-werk + nieuwbouw combineren.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 gap-6 mb-10">
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <div class="text-5xl font-bold text-mint-300 mb-2 tabular-nums">47 min</div>
-          <p class="text-white/70 text-sm leading-relaxed">Gemiddelde tijd tot offerte verzonden — was 1-3 dagen pre-Selectly.</p>
-        </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <div class="text-5xl font-bold text-mint-300 mb-2 tabular-nums">90%</div>
-          <p class="text-white/70 text-sm leading-relaxed">Inkomende calls beantwoord — was 20% bij dakwerkers vóór voicebot.</p>
-        </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <div class="text-5xl font-bold text-mint-300 mb-2 tabular-nums">+27pp</div>
-          <p class="text-white/70 text-sm leading-relaxed">Conversie aanvraag → tekening. Soortgelijke uplift voor dakwerk verwacht door dezelfde mechanieken.</p>
-        </div>
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-          <div class="text-5xl font-bold text-mint-300 mb-2 tabular-nums">€0</div>
-          <p class="text-white/70 text-sm leading-relaxed">Extra HR. AI vervangt admin-uurtjes die anders 's avonds gebeuren.</p>
-        </div>
-      </div>
-
-      <div class="text-center">
-        <a href="/case-nxtg.html" class="inline-flex items-center gap-2 text-mint-300 hover:text-white font-semibold text-sm">
-          Lees de volledige NXTG case (zonnepanelen-versie) →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────── PRIJZEN — verkort, link naar /#prijzen ─────── -->
-  <section class="py-20 bg-white" id="prijzen">
-    <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-      <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Investering</div>
-      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">Vanaf <span class="gradient-text">€950/mnd.</span> Maandelijks opzegbaar.</h2>
-      <p class="text-ink-500 mb-8 leading-relaxed">
-        3 pakketten (Starter / Growth / Enterprise). Voor de meeste dakwerkers is Growth het juiste —
-        daar zit de AI-voicebot in vanaf Enterprise. Wil je vooral chatbot + offertes, dan past Starter.
-      </p>
-      <a href="/#prijzen" class="inline-block px-6 py-3 bg-ink-900 text-white font-semibold rounded-xl hover:bg-ink-700 transition">
-        Bekijk alle 3 pakketten →
-      </a>
-    </div>
-  </section>
-
-  <!-- ─────── FAQ ─────── -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">FAQ — dakwerk-specifiek</div>
-        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Wat dakwerkers ons vragen</h2>
-      </div>
-
-      <div class="space-y-3">
-        <details class="bg-white rounded-xl border border-gray-200 p-5 group">
-          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between">
-            <span>Werkt de voicebot voor urgente lekkages?</span>
-            <span class="text-brand-500 group-open:rotate-180 transition">▼</span>
-          </summary>
-          <p class="text-ink-500 text-sm mt-3 leading-relaxed">
-            Ja. Bij urgentie-keywords (lekkage, instorting, schade) escaleert de voicebot direct —
-            doorbelt naar jouw nummer of dat van een ploeg, plus stuurt jou een WhatsApp met de
-            samenvatting. Niet-urgente vragen (offerte, planning) handelt AI volledig af.
-          </p>
-        </details>
-
-        <details class="bg-white rounded-xl border border-gray-200 p-5 group">
-          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between">
-            <span>Hoe gaat AI om met foto's van schade?</span>
-            <span class="text-brand-500 group-open:rotate-180 transition">▼</span>
-          </summary>
-          <p class="text-ink-500 text-sm mt-3 leading-relaxed">
-            Klant stuurt foto's via WhatsApp/web. AI analyseert (welk type dak, geschatte schade,
-            mogelijke oorzaak), vraagt aanvullende info (adres, oppervlakte, leeftijd dak), stuurt jou
-            samenvatting met richtprijs. Jij beslist of het plaatsbezoek nodig is — vaak niet voor
-            kleine reparaties.
-          </p>
-        </details>
-
-        <details class="bg-white rounded-xl border border-gray-200 p-5 group">
-          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between">
-            <span>BTW 6% vs 21% berekening — doet AI dit correct?</span>
-            <span class="text-brand-500 group-open:rotate-180 transition">▼</span>
-          </summary>
-          <p class="text-ink-500 text-sm mt-3 leading-relaxed">
-            Ja. AI vraagt leeftijd van de woning (>10 jaar = 6% voor renovatie/onderhoud aan dak),
-            type werk (constructie vs onderhoud), en past correcte tarief toe in offerte. Disclaimer
-            in offerte (klant verklaart leeftijd op eer). Jouw controle blijft eindverantwoordelijk.
-          </p>
-        </details>
-
-        <details class="bg-white rounded-xl border border-gray-200 p-5 group">
-          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between">
-            <span>Combineren jullie met zonnepanelen-installatie?</span>
-            <span class="text-brand-500 group-open:rotate-180 transition">▼</span>
-          </summary>
-          <p class="text-ink-500 text-sm mt-3 leading-relaxed">
-            Veel dakwerkers bieden ook PV-installatie aan. AI detecteert dit tijdens lead-kwalificatie
-            ("u bent ook geïnteresseerd in zonnepanelen?") en cross-sellt automatisch. Premie-feed
-            werkt voor beide sectoren.
-          </p>
-        </details>
-
-        <details class="bg-white rounded-xl border border-gray-200 p-5 group">
-          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between">
-            <span>Wat met seizoensvariatie? Veel werk in herfst/winter, minder in zomer?</span>
-            <span class="text-brand-500 group-open:rotate-180 transition">▼</span>
-          </summary>
-          <p class="text-ink-500 text-sm mt-3 leading-relaxed">
-            AI's capaciteit-planner (in je portal) toont volle weken. Bij overcapaciteit: AI stuurt
-            koude leads een "we contacteren u in maart"-bericht ipv ze te verliezen. In stille
-            seizoenen: AI activeert opvolg-flow naar oude offertes ("nu nog tijd voor renovatie?").
-          </p>
-        </details>
-
-        <details class="bg-white rounded-xl border border-gray-200 p-5 group">
-          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between">
-            <span>Vervangt dit ons huidig CRM (Werkbase, Premium-Bouw, Excel...)?</span>
-            <span class="text-brand-500 group-open:rotate-180 transition">▼</span>
-          </summary>
-          <p class="text-ink-500 text-sm mt-3 leading-relaxed">
-            Nee. Selectly draait <strong>naast</strong> wat je hebt. We koppelen via API of CSV-export
-            zodat alles in jouw bestaande tool synct. Geen migratie nodig. Geen lock-in.
-          </p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────── FINAL CTA ─────── -->
-  <section class="py-20 bg-ink-900 text-white relative overflow-hidden">
+  <!-- ─────── OPLOSSING ─────── -->
+  <section class="relative bg-ink-900 text-white py-20 lg:py-28 overflow-hidden">
     <div class="absolute inset-0 grid-bg opacity-50"></div>
-    <div class="glow-orb w-[500px] h-[500px]" style="top:0; left:50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(58, 108, 242, 0.3), transparent 65%);"></div>
-
-    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center">
-      <h2 class="text-4xl lg:text-6xl font-bold tracking-tight mb-6">
-        20 minuten. <span class="gradient-text">Beslis daarna.</span>
-      </h2>
-      <p class="text-xl text-white/70 mb-10 leading-relaxed">
-        We laten NXTG live draaien, mappen het naar dakwerk, en jij ziet wat de stack
-        in jouw zaak doet. Geen verkooppraat. Geen creditcard.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-lg">
-          Plan een demo van 20 minuten
-        </a>
-        <a href="https://wa.me/32492617085?text=Hallo%20Selectly%2C%20ik%20ben%20dakwerker%20en%20wil%20Selectly%20bekijken." target="_blank" rel="noopener" class="px-8 py-4 border-2 border-white/25 text-white font-semibold rounded-xl hover:bg-white/5 transition inline-flex items-center justify-center gap-2">
-          💬 Of WhatsApp direct
-        </a>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 top-0 right-0 opacity-20"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-14 sl-reveal">
+        <div class="text-xs font-semibold text-mint-400 uppercase tracking-wider mb-4">De oplossing</div>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight mb-6">Elke aanvraag beantwoord binnen de minuut — ook midden in het seizoen.</h2>
+        <p class="text-lg text-white/70 leading-relaxed">Selectly vangt elke aanvraag automatisch op en houdt de klant warm terwijl u werkt. U komt 's avonds thuis bij een lijst prospecten die al een antwoord kregen, in plaats van een berg gemiste oproepen.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5 mb-12 sl-stagger">
+          <div class="sl-lift bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">1</span>
+              <h3 class="text-lg font-bold text-white">Antwoord terwijl u werkt</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">Nieuwe aanvraag via website, WhatsApp of formulier? De klant krijgt binnen de minuut een persoonlijk bericht, ook al staat u op een dak.</p>
+          </div>
+          <div class="sl-lift bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">2</span>
+              <h3 class="text-lg font-bold text-white">Offerte klaar zonder avondwerk</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">De klant geeft de basisgegevens door, Selectly zet ze om in een propere offerte met correcte BTW, klaar om digitaal te tekenen. Geen typwerk aan de keukentafel om 22u.</p>
+          </div>
+          <div class="sl-lift bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">3</span>
+              <h3 class="text-lg font-bold text-white">Automatische opvolging</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">Geen enkele offerte blijft nog liggen. Selectly herinnert de klant automatisch tot er een ja of nee is.</p>
+          </div>
+          <div class="sl-lift bg-white/[0.04] border border-white/10 rounded-2xl p-6 backdrop-blur">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex-none w-9 h-9 rounded-xl bg-mint-400/15 text-mint-400 flex items-center justify-center font-bold">4</span>
+              <h3 class="text-lg font-bold text-white">Rustig door het seizoen</h3>
+            </div>
+            <p class="text-white/70 leading-relaxed">Piekt het aantal aanvragen? Selectly volgt ze allemaal even snel op — of het er nu 5 of 50 per week zijn.</p>
+          </div>
+      </div>
+      <div class="max-w-3xl mx-auto bg-gradient-to-br from-brand-500/15 to-mint-400/10 border border-white/10 rounded-3xl p-6 sm:p-8 text-center sl-reveal">
+        <p class="text-lg text-white/90 leading-relaxed">Selectly zoekt geen nieuwe klanten voor u. Het zorgt dat de aanvragen die u nu al binnenkrijgt niet meer verloren gaan aan een tragere collega.</p>
       </div>
     </div>
   </section>
 
-  <footer class="bg-ink-900 text-white/50 py-8 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between gap-3 text-xs">
-      <div>© 2026 NXTG Solutions BV · Selectly · Brugge · BE 1037.580.195</div>
-      <div class="flex gap-4">
-        <a href="/" class="hover:text-white transition">selectly.be</a>
-        <a href="/privacy.html" class="hover:text-white transition">Privacy</a>
-        <a href="/voorwaarden.html" class="hover:text-white transition">Voorwaarden</a>
+  <!-- ─────── BEWIJS / RESULTATEN ─────── -->
+  <section id="resultaten" class="bg-gray-50 py-20 lg:py-28 border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="grid lg:grid-cols-[1.1fr_1fr] gap-6 items-stretch sl-stagger">
+
+        <div class="bg-white rounded-3xl border border-gray-200 p-8 lg:p-12 flex flex-col justify-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mint-400/10 text-mint-500 text-xs font-semibold mb-5 w-fit">
+            <span class="w-2 h-2 bg-mint-500 rounded-full"></span>
+            Eerst zelf bewezen
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4">Eerst getest in de praktijk. Pas daarna aangeboden.</h2>
+          <p class="text-ink-500 leading-relaxed mb-6">Voor we Selectly aanboden, draaiden we het eerst bij een Belgisch installatiebedrijf in de energiesector dat elke dag met offerteaanvragen jongleert — precies het soort drukte dat u herkent. Na vier weken zagen we een duidelijk verschil.</p>
+          <p class="text-sm text-ink-500/80 italic leading-relaxed mb-6">Andere sector, dezelfde logica: sneller reageren betekent meer getekende offertes. Uw resultaat hangt af van uw aanvragen en manier van werken. Deze cijfers komen uit één concrete implementatie.</p>
+          <a href="/case-nxtg.html" class="inline-flex items-center gap-2 text-brand-500 font-semibold text-sm hover:underline w-fit">
+            Volledige case bekijken →
+          </a>
+        </div>
+
+        <div class="bg-gradient-to-br from-ink-900 to-ink-700 text-white rounded-3xl p-8 lg:p-12 flex flex-col justify-center">
+          <div class="text-sm text-white/50 uppercase tracking-wider mb-8 font-semibold">Resultaten na 4 weken</div>
+          <div class="grid grid-cols-2 gap-8 mb-8">
+            <div>
+              <div class="text-4xl lg:text-5xl font-bold text-mint-400"><span class="sl-count" data-from="35" data-to="62" data-suffix="%">62%</span></div>
+              <div class="text-sm text-white/50 mt-2">Conversie <span class="block text-xs text-white/40">was 35%</span></div>
+            </div>
+            <div>
+              <div class="text-4xl lg:text-5xl font-bold text-mint-400"><span class="sl-count" data-from="0" data-to="47" data-suffix=" min">47 min</span></div>
+              <div class="text-sm text-white/50 mt-2">Eerste reactie <span class="block text-xs text-white/40">was 8 uur</span></div>
+            </div>
+            <div>
+              <div class="text-4xl lg:text-5xl font-bold text-mint-400">+<span class="sl-count" data-from="0" data-to="22" data-suffix="u">22u</span></div>
+              <div class="text-sm text-white/50 mt-2">Admin bespaard <span class="block text-xs text-white/40">per maand</span></div>
+            </div>
+            <div>
+              <div class="text-4xl lg:text-5xl font-bold text-mint-400">0</div>
+              <div class="text-sm text-white/50 mt-2">Extra personeel <span class="block text-xs text-white/40">én reclamebudget</span></div>
+            </div>
+          </div>
+          <p class="text-xs text-white/40 border-t border-white/10 pt-5 leading-relaxed">
+            Eén concrete implementatie bij een Belgisch installatiebedrijf in de energiesector. Elke zaak is anders — dit zijn geen gegarandeerde cijfers.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── WAAROM SNELHEID ─────── -->
+  <section class="bg-white py-20 lg:py-24">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center sl-reveal">
+      <div class="text-6xl lg:text-7xl font-bold gradient-text mb-6">~3×</div>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">De eerste die een prijs geeft, wint meestal het werk.</h2>
+      <p class="text-lg text-ink-500 leading-relaxed">Bedrijven die binnen vijf minuten reageren, sluiten ongeveer drie keer vaker dan bedrijven die uren later terugbellen. Bij dakwerken beslist de klant vaak op basis van wie het snelst en het duidelijkst antwoordt. Selectly zorgt dat u die eerste bent — zonder van het dak te komen.</p>
+    </div>
+  </section>
+
+  <!-- ─────── SLOT-CTA ─────── -->
+  <section class="relative bg-ink-900 text-white py-24 overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 top-0 left-1/4 -translate-x-1/2 opacity-30"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center sl-reveal">
+      <h2 class="text-3xl lg:text-5xl font-bold tracking-tight mb-6">Laat uw offertes niet meer liggen tot 's avonds.</h2>
+      <p class="text-lg text-white/70 leading-relaxed mb-10">In een gratis demo van 20 minuten tonen we een echte flow en rekenen we met uw cijfers uit hoeveel werk u nu misloopt door trage opvolging. Geen druk, wel een concreet eerste plan.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="/#contact" class="sl-glow px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base">
+          Boek uw gratis demo
+        </a>
+        <a href="https://wa.me/32483812907?text=Hallo%20Selectly%2C%20ik%20heb%20een%20vraag%20over%20mijn%20zaak." target="_blank" rel="noopener" class="px-8 py-4 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold rounded-xl transition text-base inline-flex items-center justify-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.885 3.488"/></svg>
+          Stel uw vraag via WhatsApp
+        </a>
+        <a href="/case-nxtg.html" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base">Bekijk eerst de volledige case →</a>
+      </div>
+      <p class="text-sm text-white/50">
+        Gratis demo · Maandelijks opzegbaar ·
+        <a href="mailto:info@selectly.be" class="text-white link-underline">info@selectly.be</a> ·
+        <a href="tel:+32483812907" class="text-white link-underline">+32 483 81 29 07</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer class="bg-ink-900 text-white/60 border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#footer-logo-grad)"/>
+              <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+              <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+              <defs><linearGradient id="footer-logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+            </svg>
+            <span class="text-lg font-bold text-white">Selectly</span>
+          </div>
+          <p class="text-sm leading-relaxed max-w-md">
+            Selectly bouwt AI-automatiseringen voor Belgische KMO's.
+            Stop met handmatig werk. Begin met groeien.
+          </p>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Product</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/#wat-we-doen" class="hover:text-white transition">Wat we doen</a></li>
+            <li><a href="/#hoe" class="hover:text-white transition">Werkwijze</a></li>
+            <li><a href="/pakketten.html" class="hover:text-white transition">Pakketten</a></li>
+            <li><a href="/case-nxtg.html" class="hover:text-white transition">Case study</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Bedrijf</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/over.html" class="hover:text-white transition">Over Selectly</a></li>
+            <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy.html" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/voorwaarden.html" class="hover:text-white transition">Algemene voorwaarden</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between gap-4 text-xs">
+        <div>© 2026 Selectly · BV NXTG Solutions · BE1037.580.195</div>
+        <div>Gemaakt in België 🇧🇪</div>
       </div>
     </div>
   </footer>
 
+  <!-- META LEAD TRACKER -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('form').forEach(function(form) {
+      if (form.dataset.fbPixelTracked) return;
+      form.dataset.fbPixelTracked = '1';
+      form.addEventListener('submit', function() {
+        if (window.fbq) {
+          var formName = form.getAttribute('name') || form.id || 'unknown';
+          fbq('track', 'Lead', { form_name: formName });
+        }
+      });
+    });
+  });
+</script>
+<!-- /META LEAD TRACKER -->
+
+  <!-- Scroll-reveal + tellers -->
+  <script>
+  (function () {
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var hasIO = 'IntersectionObserver' in window;
+
+    (function () {
+      var els = document.querySelectorAll('.sl-reveal, .sl-stagger');
+      if (!els.length) return;
+      if (reduce || !hasIO) { els.forEach(function (e) { e.classList.add('is-visible'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (e) { io.observe(e); });
+      setTimeout(function () { els.forEach(function (e) { e.classList.add('is-visible'); }); }, 3500);
+    })();
+
+    (function () {
+      var els = document.querySelectorAll('.sl-count');
+      if (!els.length) return;
+      function fmt(v, dec) { return dec > 0 ? v.toFixed(dec).replace('.', ',') : Math.round(v).toLocaleString('nl-BE'); }
+      function run(el) {
+        var to = parseFloat(el.dataset.to), from = parseFloat(el.dataset.from || 0),
+            dec = parseInt(el.dataset.dec || 0), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        if (reduce) { el.textContent = pre + fmt(to, dec) + suf; return; }
+        var dur = 1500, st = performance.now(), ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+        (function step(now) {
+          var p = Math.min((now - st) / dur, 1);
+          el.textContent = pre + fmt(from + (to - from) * ease(p), dec) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        })(st);
+      }
+      if (reduce || !hasIO) { els.forEach(run); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !en.target.dataset.done) { en.target.dataset.done = '1'; run(en.target); }
+        });
+      }, { threshold: 0.5 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  })();
+  </script>
 </body>
 </html>

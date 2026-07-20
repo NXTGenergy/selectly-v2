@@ -1,289 +1,452 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NXTG Energy — Case Study | Selectly</title>
-<meta name="description" content="Hoe NXTG Energy met Selectly van 8u naar 47min per offerte ging, 90% binnen 1u beantwoord, en 27pp meer conversie behaalde in 3 maanden.">
-<meta property="og:title" content="NXTG Energy Case Study — 8u → 47min per offerte">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0e1a" />
+
+  <title>Case study — Eerst zelf getest, daarna aangeboden | Selectly</title>
+  <meta name="description" content="Voor we Selectly commercieel lanceerden, testten we het eerst in de praktijk bij een Belgisch installatiebedrijf in de energiesector. Conversie 35% → 62%, eerste reactie 8u → 47 min, +22u administratie per maand uitgespaard." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Case study — Eerst zelf getest. Pas daarna aangeboden aan klanten." />
+  <meta property="og:description" content="Selectly werd eerst in de praktijk getest bij een Belgisch installatiebedrijf in de energiesector. Conversie 35% → 62%, reactietijd 8u → 47 min." />
   <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Selectly — Belgisch automation-platform voor installateurs" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://selectly.be/assets/og-image.png" />
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://selectly.be/case-nxtg.html">
-<link rel="canonical" href="https://selectly.be/case-nxtg.html">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
-    colors: {
-      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
-      accent: { 500:'#7c3aed', 400:'#a78bfa', 300:'#c4b5fd' },
-      blue:   { 500:'#2563eb', 400:'#60a5fa' },
-      nxtg:   { 800:'#25494a', 500:'#99f36c' }
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://selectly.be/case-nxtg.html" />
+  <meta property="og:locale" content="nl_BE" />
+
+  <link rel="canonical" href="https://selectly.be/case-nxtg.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#13182b', 600: '#1c2238', 500: '#293150' },
+            brand: { 50:'#eff4ff',100:'#dbe5ff',200:'#bdd0ff',300:'#8eb0ff',400:'#5b8cff',500:'#3a6cf2',600:'#2451d8',700:'#1d40b0',800:'#1c388c',900:'#1d3372' },
+            mint: { 300:'#6ef0c2', 400: '#34e4a8', 500: '#10c98c' },
+          },
+          boxShadow: {
+            'glow': '0 0 40px -10px rgba(91, 140, 255, 0.5)',
+            'soft': '0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.03)',
+            'card': '0 0 0 1px rgba(0,0,0,0.04), 0 8px 32px -8px rgba(0,0,0,0.08)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #5b8cff 0%, #a78bfa 50%, #34e4a8 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-  } } };
-</script>
-<style>body{font-family:'Inter',system-ui,sans-serif;}</style>
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(91, 140, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91, 140, 255, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; pointer-events: none; }
+    .link-underline { position: relative; display: inline-block; }
+    .link-underline::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:currentColor; transition:width .3s ease; }
+    .link-underline:hover::after { width:100%; }
+    .pulse-dot { width:8px; height:8px; background:#34e4a8; border-radius:50%; box-shadow:0 0 0 0 rgba(52,228,168,.6); animation:pulse-ring 2s infinite; }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(52,228,168,.6)} 70%{box-shadow:0 0 0 12px rgba(52,228,168,0)} 100%{box-shadow:0 0 0 0 rgba(52,228,168,0)} }
+    *:focus-visible { outline:2px solid #5b8cff; outline-offset:2px; border-radius:4px; }
+
+    /* Scroll-reveal — enkel actief wanneer beweging toegestaan */
+    .reveal-enabled .sl-reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+    .reveal-enabled .sl-reveal.is-visible { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger > * { opacity:0; transform:translateY(22px); transition:opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
+    .reveal-enabled .sl-stagger.is-visible > * { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(1){transition-delay:.04s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(2){transition-delay:.12s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(3){transition-delay:.20s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(4){transition-delay:.28s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(5){transition-delay:.36s}
+
+    .sl-lift { transition: transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s ease; }
+    .sl-lift:hover { transform: translateY(-4px); box-shadow: 0 22px 48px -18px rgba(58,108,242,.35); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .sl-lift:hover { transform: none; }
+    }
+  </style>
+  <script>
+    try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('reveal-enabled'); } } catch(e) {}
+  </script>
+
   <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
-<script>
-  function loadMetaPixel() {
-    if (window._metaPixelLoaded) return;
-    window._metaPixelLoaded = true;
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '852925924180054');
-    fbq('track', 'PageView');
-  }
-  try {
-    if (localStorage.getItem('selectly_consent') === 'accepted') {
-      loadMetaPixel();
-    } else {
-      window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return;
+      window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '852925924180054');
+      fbq('track', 'PageView');
     }
-  } catch (e) { /* localStorage geblokkeerd → geen tracking */ }
-</script>
-<!-- /META PIXEL -->
-<script src="/consent.js" defer></script>
-  </head>
-<body class="bg-white text-ink-900">
+    try {
+      if (localStorage.getItem('selectly_consent') === 'accepted') { loadMetaPixel(); }
+      else { window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true }); }
+    } catch (e) { /* localStorage geblokkeerd → geen tracking */ }
+  </script>
+  <!-- /META PIXEL -->
+  <script src="/consent.js" defer></script>
+</head>
 
-<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
-  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
-      <span class="text-xl font-bold tracking-tight">Selectly</span>
-    </a>
-    <div class="flex items-center gap-6 text-sm">
-      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
-      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
-      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
-      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+<body class="bg-white text-ink-900 font-sans antialiased">
+
+  <!-- ─────── NAV ─────── -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" x-data="{ open: false }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2.5">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+          </svg>
+          <span class="text-xl font-bold tracking-tight">Selectly</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+          <a href="/#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
+          <a href="/#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
+          <a href="/case-nxtg.html" class="text-ink-900 font-semibold">Case study</a>
+          <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>Live demo
+          </a>
+          <a href="/roi.html" class="hover:text-ink-900 transition">ROI-calc</a>
+          <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition shadow-soft">
+            Plan een gratis demo →
+          </a>
+        </div>
+
+        <button @click="open = !open" class="md:hidden p-2" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div x-show="open" x-transition class="md:hidden py-4 border-t border-gray-100 space-y-1">
+        <a href="/#wat-we-doen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
+        <a href="/#hoe" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Werkwijze</a>
+        <a href="/case-nxtg.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-900 font-semibold">Case study</a>
+        <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live demo</a>
+        <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
+        <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakketten</a>
+        <a href="/#contact" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Plan een gratis demo →</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- Hero -->
-<section class="bg-gradient-to-br from-ink-950 via-ink-900 to-ink-800 text-white py-20 sm:py-28">
-  <div class="max-w-5xl mx-auto px-5">
-    <div class="text-sm font-semibold text-accent-400 uppercase tracking-wider mb-3">Case Study · Solar installateur, Brugge</div>
-    <h1 class="text-4xl sm:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">NXTG Energy ging van<br>8u naar 47 min per offerte.</h1>
-    <p class="text-xl text-slate-300 max-w-2xl mb-10">90% van de leads beantwoord binnen 1 uur. 27pp hogere conversie van aanvraag naar offerte. In 4 weken setup.</p>
-    <div class="flex flex-wrap gap-4">
-      <a href="/#contact" class="bg-accent-500 hover:bg-accent-400 text-white font-semibold px-6 py-3 rounded-lg">Plan een demo</a>
-      <a href="#hoe" class="border border-white/20 hover:bg-white/5 px-6 py-3 rounded-lg">Lees hoe ↓</a>
-    </div>
-  </div>
-</section>
+  <!-- ─────── HERO ─────── -->
+  <section class="relative bg-ink-900 text-white overflow-hidden">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="glow-orb w-[520px] h-[520px] bg-brand-500 -top-32 -left-24"></div>
+    <div class="glow-orb w-[420px] h-[420px] bg-mint-500 bottom-0 -right-24 opacity-20"></div>
 
-<!-- Stats grid -->
-<section class="py-16 sm:py-20 bg-slate-50">
-  <div class="max-w-5xl mx-auto px-5">
-    <div class="grid sm:grid-cols-3 gap-6">
-      <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center">
-        <div class="text-5xl font-bold text-accent-500 mb-2">8u → 47m</div>
-        <div class="text-sm text-ink-700 uppercase tracking-wider">Tijd per offerte</div>
-        <p class="text-sm text-slate-600 mt-3">Manueel offerte opmaken kostte 8 uur per stuk. Nu klaar in 47 minuten.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center">
-        <div class="text-5xl font-bold text-accent-500 mb-2">90%</div>
-        <div class="text-sm text-ink-700 uppercase tracking-wider">Leads binnen 1u</div>
-        <p class="text-sm text-slate-600 mt-3">Voor Selectly was dat 30-40%. Concurrenten hadden gemiddeld 6-12 uur reactietijd.</p>
-      </div>
-      <div class="bg-white rounded-2xl p-8 border border-slate-200 text-center">
-        <div class="text-5xl font-bold text-accent-500 mb-2">+27pp</div>
-        <div class="text-sm text-ink-700 uppercase tracking-wider">Conversie</div>
-        <p class="text-sm text-slate-600 mt-3">Form-fill naar offerte: van 35% naar 62%. Geen ander kanaal, alleen snelheid.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Het bedrijf -->
-<section class="py-16 sm:py-20">
-  <div class="max-w-3xl mx-auto px-5">
-    <div class="text-sm font-semibold text-accent-500 uppercase tracking-wider mb-3">Het bedrijf</div>
-    <h2 class="text-3xl font-bold mb-6">Wie is NXTG Energy?</h2>
-    <p class="text-lg text-ink-700 leading-relaxed mb-4">
-      NXTG Energy is een Belgische installateur van zonnepanelen, thuisbatterijen en laadpalen.
-      Hoofdzetel in Assebroek, werkgebied West-Vlaanderen + uitbreidend naar Oost-Vlaanderen.
-      RESCERT-erkend, gemiddeld 80 leads per maand via website en partner kanalen.
-    </p>
-    <p class="text-lg text-ink-700 leading-relaxed">
-      Pakket: <strong>Growth (€1.950/mnd)</strong> + premie-automatisering add-on.
-      Setup-doorlooptijd: 4 weken van getekende offerte tot productie.
-    </p>
-  </div>
-</section>
-
-<!-- Het probleem -->
-<section id="hoe" class="py-16 sm:py-20 bg-slate-50">
-  <div class="max-w-3xl mx-auto px-5">
-    <div class="text-sm font-semibold text-accent-500 uppercase tracking-wider mb-3">Het probleem</div>
-    <h2 class="text-3xl font-bold mb-6">Klanten haakten af op snelheid, niet op prijs.</h2>
-    <div class="space-y-4 text-lg text-ink-700 leading-relaxed">
-      <p>NXTG verloor niet op pricing — hun pakketten waren competitief. Ze verloren omdat tegen de tijd dat zaakvoerder Steffie's team een offerte kon maken, de prospect al bij 2 concurrenten een aanbod had gevraagd.</p>
-      <p>De realiteit: elke offerte was 4-8 uur werk. Bouwjaar woning checken (voor 6% BTW), juiste premie-berekening, Recupel en Bebat correct toepassen, PDF in NXTG huisstijl genereren. Daarna nog opvolging plannen, telefoontjes, herinneringen.</p>
-      <p>Resultaat: leads die om 22u via het web formulier binnenkwamen werden de volgende dag tegen 11u beantwoord. De helft was tegen die tijd al "elders aan het kijken".</p>
-    </div>
-  </div>
-</section>
-
-<!-- Wat Selectly deed -->
-<section class="py-16 sm:py-20">
-  <div class="max-w-3xl mx-auto px-5">
-    <div class="text-sm font-semibold text-accent-500 uppercase tracking-wider mb-3">De oplossing</div>
-    <h2 class="text-3xl font-bold mb-6">Wat Selectly bouwde in 4 weken.</h2>
-
-    <div class="space-y-8">
-
-      <div class="border-l-4 border-accent-500 pl-6">
-        <h3 class="text-xl font-bold mb-2">Week 1 — Foundation</h3>
-        <ul class="text-ink-700 space-y-2">
-          <li>GoHighLevel sub-account opgezet, NL-talig</li>
-          <li>22 custom fields specifiek voor solar (bouwjaar, daktype, BTW status, etc.)</li>
-          <li>4 pipelines: intake, kwalificatie, offerte, installatie</li>
-          <li>Website webform direct gekoppeld aan CRM</li>
-        </ul>
+    <div class="relative max-w-5xl mx-auto px-6 lg:px-8 pt-20 pb-24 lg:pt-28 lg:pb-28">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-8">
+        <span class="pulse-dot"></span>
+        <span class="text-white/80">Case study · Eerst intern bewezen</span>
       </div>
 
-      <div class="border-l-4 border-accent-500 pl-6">
-        <h3 class="text-xl font-bold mb-2">Week 2 — AI lead-kwalificatie</h3>
-        <ul class="text-ink-700 space-y-2">
-          <li>Chatbot via WhatsApp Business die binnen 30 seconden 5 kwalificatievragen stelt</li>
-          <li>Antwoorden schrijven automatisch naar GHL custom fields</li>
-          <li>Decision engine: AUTO_QUOTE / NEED_INFO / SITE_VISIT / REJECT</li>
-        </ul>
-      </div>
+      <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-8 max-w-3xl">
+        Eerst zelf getest.<br>
+        <span class="gradient-text">Pas daarna aangeboden aan klanten.</span>
+      </h1>
 
-      <div class="border-l-4 border-accent-500 pl-6">
-        <h3 class="text-xl font-bold mb-2">Week 3 — Auto-offerte generator</h3>
-        <ul class="text-ink-700 space-y-2">
-          <li>PDF engine met NXTG branding (dark teal #25494a, lichtgroen #99f36c)</li>
-          <li>Belgische BTW logica: 0% medecontractant / 6% renovatie >10j / 21% standaard</li>
-          <li>Recupel (€2/paneel) + Bebat (€21.50/kWh) automatisch toegevoegd</li>
-          <li>6% BTW attest conditioneel bijgevoegd waar van toepassing</li>
-        </ul>
-      </div>
+      <p class="text-xl text-white/70 max-w-2xl leading-relaxed mb-10">
+        Voor we Selectly commercieel lanceerden, wilden we één vraag beantwoorden: werkt het ook écht in een onderneming die elke dag met klanten werkt? Daarom implementeerden we Selectly eerst in de praktijk, bij een Belgisch installatiebedrijf in de energiesector. Pas nadat de resultaten duidelijk meetbaar waren, maakten we het beschikbaar voor andere bedrijven.
+      </p>
 
-      <div class="border-l-4 border-accent-500 pl-6">
-        <h3 class="text-xl font-bold mb-2">Week 4 — Opvolging + dashboard</h3>
-        <ul class="text-ink-700 space-y-2">
-          <li>10 WhatsApp templates voor opvolging (no-show, herinnering, satisfaction check)</li>
-          <li>3-staps reactivatie sequence voor leads die >48u stil zijn</li>
-          <li>Live dashboard met KPIs voor Steffie: leads vandaag, response rate, pipeline waarde</li>
-          <li>Webhook service draait op Railway, 24/7 beschikbaar</li>
-        </ul>
-        <a href="/portal/nxtg.html" target="_blank" class="inline-flex items-center gap-2 mt-5 px-5 py-3 bg-ink-900 text-white font-semibold rounded-lg hover:bg-ink-700 transition text-sm">
-          → Bekijk hun dashboard live
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
+          Plan een gratis demo
+        </a>
+        <a href="#resultaten" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base text-center">
+          Bekijk de resultaten ↓
         </a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Resultaten -->
-<section class="py-16 sm:py-20 bg-ink-900 text-white">
-  <div class="max-w-3xl mx-auto px-5">
-    <div class="text-sm font-semibold text-accent-300 uppercase tracking-wider mb-3">Het resultaat</div>
-    <h2 class="text-3xl font-bold mb-8">Wat veranderde in 90 dagen.</h2>
-
-    <div class="space-y-6 text-lg text-slate-300 leading-relaxed">
-      <p>
-        <strong class="text-white">Reactietijd:</strong> van gemiddeld 6-12u naar 47 minuten.
-        Voor leads via WhatsApp: gemiddeld 3 minuten — de AI antwoordt direct.
-      </p>
-      <p>
-        <strong class="text-white">Conversie:</strong> 35% van form-fills resulteerde voorheen in een offerte.
-        Nu 62%. Eenzelfde marketing budget, andere conversion funnel.
-      </p>
-      <p>
-        <strong class="text-white">Tijdwinst Steffie's team:</strong> ~25 uur per week.
-        Tijd die nu naar site visits, klantgesprekken en nieuwe markten gaat.
-      </p>
-      <p>
-        <strong class="text-white">Klantbeleving:</strong> Trustpilot/Solvari reviews vermelden "snelle opvolging" en "duidelijke offerte" als waardering. NPS van 7.2 naar 8.6.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- Steffie's woord -->
-<section class="py-16 sm:py-20">
-  <div class="max-w-3xl mx-auto px-5">
-    <blockquote class="text-2xl sm:text-3xl font-medium text-ink-900 leading-snug border-l-4 border-accent-500 pl-6">
-      "Voor Selectly verloren we leads omdat we te traag waren met antwoorden. Nu komen klanten naar ons omdat we als enige binnen het uur antwoorden. Hetzelfde team, betere systemen — dat is de hele verandering."
-    </blockquote>
-    <p class="mt-6 text-ink-700">— Steffie De Clercq, Zaakvoerder NXTG Energy</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="py-16 sm:py-20 bg-gradient-to-br from-accent-500 to-blue-500 text-white">
-  <div class="max-w-3xl mx-auto px-5 text-center">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Wil je dit ook voor jouw KMO?</h2>
-    <p class="text-xl text-white/90 mb-8">Plan een 30 min gesprek. We kijken naar jouw flow en geven een eerlijk ja/nee.</p>
-    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-8 py-4 rounded-lg hover:bg-slate-100">Plan gesprek →</a>
-  </div>
-</section>
-
-<footer class="bg-ink-950 text-slate-400 py-12">
-  <div class="max-w-6xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
-        <span class="font-bold text-white">Selectly</span>
+  <!-- ─────── STATS GRID ─────── -->
+  <section class="py-16 sm:py-20 bg-gray-50 border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider text-center mb-3">Resultaten na 4 weken</div>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight text-center mb-12">Wat er in de praktijk veranderde.</h2>
+      <div class="grid sm:grid-cols-3 gap-6 sl-stagger">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 text-center sl-lift">
+          <div class="text-5xl font-bold text-brand-500 mb-2">35% → 62%</div>
+          <div class="text-sm text-ink-700 uppercase tracking-wider font-semibold">Conversie</div>
+          <p class="text-sm text-ink-500 mt-3 leading-relaxed">Meer geïnteresseerde klanten werden effectief klant — met hetzelfde volume aanvragen.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 text-center sl-lift">
+          <div class="text-5xl font-bold text-brand-500 mb-2">8u → 47 min</div>
+          <div class="text-sm text-ink-700 uppercase tracking-wider font-semibold">Eerste reactie</div>
+          <p class="text-sm text-ink-500 mt-3 leading-relaxed">De eerste reactie op een aanvraag duurde geen uren meer, maar gemiddeld 47 minuten.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 text-center sl-lift">
+          <div class="text-5xl font-bold text-brand-500 mb-2">+22 uur</div>
+          <div class="text-sm text-ink-700 uppercase tracking-wider font-semibold">Per maand uitgespaard</div>
+          <p class="text-sm text-ink-500 mt-3 leading-relaxed">Meer dan 22 uur administratie per maand kwam vrij voor echte klantgesprekken.</p>
+        </div>
       </div>
-      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+      <p class="text-center text-sm text-ink-500 mt-8">Zonder extra personeel. Zonder extra marketingbudget.</p>
     </div>
-    <div>
-      <div class="text-white font-semibold mb-2">Navigatie</div>
-      <ul class="space-y-1">
-        <li><a href="/" class="hover:text-white">Home</a></li>
-        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
-        <li><a href="/blog/" class="hover:text-white">Blog</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="text-white font-semibold mb-2">Legal</div>
-      <ul class="space-y-1">
-        <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
-        <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
-        <li>BTW BE1037.580.195</li>
-      </ul>
-    </div>
-  </div>
-</footer>
+  </section>
 
-  <!-- META LEAD TRACKER — geïnjecteerd door pixel_install.py -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('form').forEach(function(form) {
-      if (form.dataset.fbPixelTracked) return;
-      form.dataset.fbPixelTracked = '1';
-      form.addEventListener('submit', function() {
-        if (window.fbq) {
-          var formName = form.getAttribute('name') || form.id || 'unknown';
-          fbq('track', 'Lead', { form_name: formName });
-        }
+  <!-- ─────── OVER HET BEDRIJF ─────── -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Over het bedrijf</div>
+      <h2 class="text-3xl font-bold tracking-tight mb-6">Waarom we anoniem blijven.</h2>
+      <p class="text-lg text-ink-700 leading-relaxed mb-4">
+        Deze case werd uitgevoerd bij een Belgisch installatiebedrijf in de energiesector. Omwille van de focus op de resultaten houden we de technische implementatie bewust centraal, niet de personen achter het bedrijf.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-2 text-xs font-mono">
+        <span class="px-3 py-1.5 rounded-full bg-gray-100 text-ink-700">GHL CRM</span>
+        <span class="px-3 py-1.5 rounded-full bg-gray-100 text-ink-700">Claude AI</span>
+        <span class="px-3 py-1.5 rounded-full bg-gray-100 text-ink-700">WhatsApp</span>
+        <span class="px-3 py-1.5 rounded-full bg-gray-100 text-ink-700">SMS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── DE UITDAGING ─────── -->
+  <section class="py-16 sm:py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">De uitdaging</div>
+      <h2 class="text-3xl font-bold tracking-tight mb-6">Genoeg aanvragen. De opvolging was het probleem.</h2>
+      <div class="space-y-4 text-lg text-ink-700 leading-relaxed">
+        <p>Het bedrijf kreeg voldoende aanvragen binnen. Het knelpunt zat niet in de instroom, maar in de opvolging.</p>
+        <ul class="space-y-3">
+          <li class="flex gap-3"><span class="text-brand-500 mt-1">•</span>Eerste reacties op aanvragen duurden vaak uren.</li>
+          <li class="flex gap-3"><span class="text-brand-500 mt-1">•</span>Veel tijd ging naar administratie in plaats van naar klanten.</li>
+          <li class="flex gap-3"><span class="text-brand-500 mt-1">•</span>Offertes werden niet altijd meteen opgevolgd.</li>
+          <li class="flex gap-3"><span class="text-brand-500 mt-1">•</span>Communicatie liep via verschillende kanalen door elkaar.</li>
+        </ul>
+        <p>Het gevolg: een verkoopproces dat moeilijk schaalbaar was.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── DE OPLOSSING ─────── -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">De oplossing</div>
+      <h2 class="text-3xl font-bold tracking-tight mb-6">Selectly nam de opvolging over.</h2>
+      <p class="text-lg text-ink-700 leading-relaxed mb-8">
+        Selectly automatiseerde de commerciële opvolging zodat het team opnieuw kon focussen op de gesprekken die er echt toe doen.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-4 sl-stagger">
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sl-lift">
+          <h3 class="font-bold mb-2">Eerste opvolging</h3>
+          <p class="text-sm text-ink-500 leading-relaxed">Elke nieuwe aanvraag kreeg automatisch en meteen een eerste reactie.</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sl-lift">
+          <h3 class="font-bold mb-2">WhatsApp-communicatie</h3>
+          <p class="text-sm text-ink-500 leading-relaxed">Vragen en antwoorden liepen via één centraal kanaal in plaats van verspreid.</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sl-lift">
+          <h3 class="font-bold mb-2">Opvolgflows</h3>
+          <p class="text-sm text-ink-500 leading-relaxed">Geïnteresseerde klanten bleven automatisch opgevolgd tot er een beslissing viel.</p>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sl-lift">
+          <h3 class="font-bold mb-2">Administratie &amp; CRM</h3>
+          <p class="text-sm text-ink-500 leading-relaxed">Administratieve stappen en CRM-processen verliepen automatisch op de achtergrond.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── RESULTATEN (dark) ─────── -->
+  <section id="resultaten" class="py-16 sm:py-24 bg-ink-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40"></div>
+    <div class="glow-orb w-[460px] h-[460px] bg-brand-500 -top-24 -right-24"></div>
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="text-sm font-semibold text-brand-300 uppercase tracking-wider mb-3">Het resultaat</div>
+      <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-10">Wat de eerste vier weken opleverden.</h2>
+
+      <div class="space-y-4 sl-stagger">
+        <div class="flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-5">
+          <span class="text-mint-400 mt-0.5 text-lg">✓</span>
+          <span class="text-white/90 text-lg"><strong class="text-white">Conversie van 35% naar 62%.</strong></span>
+        </div>
+        <div class="flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-5">
+          <span class="text-mint-400 mt-0.5 text-lg">✓</span>
+          <span class="text-white/90 text-lg">Eerste reactie van <strong class="text-white">8 uur naar gemiddeld 47 minuten.</strong></span>
+        </div>
+        <div class="flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-5">
+          <span class="text-mint-400 mt-0.5 text-lg">✓</span>
+          <span class="text-white/90 text-lg">Meer dan <strong class="text-white">22 uur administratie per maand</strong> uitgespaard.</span>
+        </div>
+        <div class="flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-5">
+          <span class="text-mint-400 mt-0.5 text-lg">✓</span>
+          <span class="text-white/90 text-lg">Behaald <strong class="text-white">zonder extra personeel en zonder extra marketingbudget.</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── EERLIJKHEID / DISCLAIMER ─────── -->
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="bg-gray-50 border border-gray-200 rounded-3xl p-8 lg:p-10">
+        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Eerlijk gezegd</div>
+        <h2 class="text-2xl font-bold tracking-tight mb-4">Resultaten verschillen per onderneming.</h2>
+        <p class="text-lg text-ink-700 leading-relaxed">
+          Iedere onderneming is anders. De resultaten hangen af van sector, verkoopproces, team en manier van werken. Deze case toont wat binnen één concrete implementatie werd bereikt — geen belofte van een gegarandeerd resultaat, en zeker geen overdreven claims.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── CTA ─────── -->
+  <section class="py-20 sm:py-24 bg-ink-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 top-0 left-1/4 -translate-x-1/2"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">
+        Benieuwd wat dit voor <span class="gradient-text">uw bedrijf</span> kan betekenen?
+      </h2>
+      <p class="text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Tijdens een gratis demo bekijken we samen hoe Selectly in uw manier van werken past. Geen algemene presentatie, wel een concreet gesprek.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
+          Plan een gratis demo
+        </a>
+        <a href="/pakketten.html" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base text-center">
+          Bekijk de pakketten →
+        </a>
+      </div>
+      <div class="mt-10 text-white/50 text-sm">
+        Liever direct contact? <a href="mailto:info@selectly.be" class="text-white link-underline">info@selectly.be</a>
+        &nbsp;·&nbsp;
+        <a href="tel:+32483812907" class="text-white link-underline">+32 483 81 29 07</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer class="bg-ink-900 text-white/60 border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#footer-logo-grad)"/>
+              <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+              <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+              <defs><linearGradient id="footer-logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+            </svg>
+            <span class="text-lg font-bold text-white">Selectly</span>
+          </div>
+          <p class="text-sm leading-relaxed max-w-md">
+            Selectly bouwt AI-automatiseringen voor Belgische KMO's.
+            Stop met handmatig werk. Begin met groeien.
+          </p>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Product</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/#wat-we-doen" class="hover:text-white transition">Wat we doen</a></li>
+            <li><a href="/#hoe" class="hover:text-white transition">Werkwijze</a></li>
+            <li><a href="/pakketten.html" class="hover:text-white transition">Pakketten</a></li>
+            <li><a href="/case-nxtg.html" class="hover:text-white transition">Case study</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Bedrijf</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy.html" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/voorwaarden.html" class="hover:text-white transition">Algemene voorwaarden</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between gap-4 text-xs">
+        <div>© 2026 Selectly · BV NXTG Solutions · BE1037.580.195</div>
+        <div>Gemaakt in België 🇧🇪</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- META LEAD TRACKER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('form').forEach(function(form) {
+        if (form.dataset.fbPixelTracked) return;
+        form.dataset.fbPixelTracked = '1';
+        form.addEventListener('submit', function() {
+          if (window.fbq) {
+            var formName = form.getAttribute('name') || form.id || 'unknown';
+            fbq('track', 'Lead', { form_name: formName });
+          }
+        });
       });
     });
-  });
-</script>
-<!-- /META LEAD TRACKER -->
+  </script>
+  <!-- /META LEAD TRACKER -->
+
+  <!-- Scroll-reveal -->
+  <script>
+  (function () {
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var hasIO = 'IntersectionObserver' in window;
+    var els = document.querySelectorAll('.sl-reveal, .sl-stagger');
+    if (!els.length) return;
+    if (reduce || !hasIO) { els.forEach(function (e) { e.classList.add('is-visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+    setTimeout(function () { els.forEach(function (e) { e.classList.add('is-visible'); }); }, 3500);
+  })();
+  </script>
 </body>
 </html>

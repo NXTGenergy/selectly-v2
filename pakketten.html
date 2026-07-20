@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0e1a" />
+
+  <title>Pakketten — Kies het pakket dat bij uw aanvragen past | Selectly</title>
+  <meta name="description" content="Vier formules om elke aanvraag sneller op te volgen: Lite (€450), Starter (€950), Growth (€1.950) of Enterprise (€3.500). Geen verborgen setup-verrassingen, maandelijks opzegbaar." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Selectly-pakketten — een oplossing die meegroeit met uw bedrijf" />
+  <meta property="og:description" content="Van sneller reageren op aanvragen tot uw volledige commerciële opvolging automatiseren. Kies het pakket dat past bij uw huidige situatie." />
+  <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Selectly — Belgisch automation-platform voor installateurs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://selectly.be/pakketten.html" />
+  <meta property="og:locale" content="nl_BE" />
+
+  <link rel="canonical" href="https://selectly.be/pakketten.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#13182b', 600: '#1c2238', 500: '#293150' },
+            brand: { 50:'#eff4ff',100:'#dbe5ff',200:'#bdd0ff',300:'#8eb0ff',400:'#5b8cff',500:'#3a6cf2',600:'#2451d8',700:'#1d40b0',800:'#1c388c',900:'#1d3372' },
+            mint: { 100:'#d5f7ea', 300:'#6ef0c2', 400: '#34e4a8', 500: '#10c98c', 700:'#0a8f63' },
+          },
+          boxShadow: {
+            'glow': '0 0 40px -10px rgba(91, 140, 255, 0.5)',
+            'soft': '0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.03)',
+            'card': '0 0 0 1px rgba(0,0,0,0.04), 0 8px 32px -8px rgba(0,0,0,0.08)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #5b8cff 0%, #a78bfa 50%, #34e4a8 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(91, 140, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91, 140, 255, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+    }
+    .glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; pointer-events: none; }
+    .feature-card { transition: all 0.25s ease; }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(91,140,255,0.2), 0 20px 50px -10px rgba(91,140,255,0.15); }
+    .link-underline { position: relative; display: inline-block; }
+    .link-underline::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:currentColor; transition:width .3s ease; }
+    .link-underline:hover::after { width:100%; }
+    .pulse-dot { width:8px; height:8px; background:#34e4a8; border-radius:50%; box-shadow:0 0 0 0 rgba(52,228,168,.6); animation:pulse-ring 2s infinite; }
+    @keyframes pulse-ring { 0%{box-shadow:0 0 0 0 rgba(52,228,168,.6)} 70%{box-shadow:0 0 0 12px rgba(52,228,168,0)} 100%{box-shadow:0 0 0 0 rgba(52,228,168,0)} }
+    *:focus-visible { outline:2px solid #5b8cff; outline-offset:2px; border-radius:4px; }
+
+    .reveal-enabled .sl-reveal { opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); will-change:opacity,transform; }
+    .reveal-enabled .sl-reveal.is-visible { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger > * { opacity:0; transform:translateY(22px); transition:opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1); }
+    .reveal-enabled .sl-stagger.is-visible > * { opacity:1; transform:none; }
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(1){transition-delay:.04s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(2){transition-delay:.12s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(3){transition-delay:.20s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(4){transition-delay:.28s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(5){transition-delay:.36s}
+    .reveal-enabled .sl-stagger.is-visible > *:nth-child(6){transition-delay:.44s}
+
+    .sl-lift { transition: transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s ease; }
+    .sl-lift:hover { transform: translateY(-4px); box-shadow: 0 22px 48px -18px rgba(58,108,242,.35); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .sl-lift:hover, .feature-card:hover { transform: none; }
+    }
+  </style>
+  <script>
+    try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('reveal-enabled'); } } catch(e) {}
+  </script>
+
+  <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
+  <script>
+    function loadMetaPixel() {
+      if (window._metaPixelLoaded) return;
+      window._metaPixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '852925924180054');
+      fbq('track', 'PageView');
+    }
+    try {
+      if (localStorage.getItem('selectly_consent') === 'accepted') { loadMetaPixel(); }
+      else { window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true }); }
+    } catch (e) { /* localStorage geblokkeerd → geen tracking */ }
+  </script>
+  <!-- /META PIXEL -->
+  <script src="/consent.js" defer></script>
+</head>
+
+<body class="bg-white text-ink-900 font-sans antialiased">
+
+  <!-- ─────── NAV ─────── -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100" x-data="{ open: false }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2.5">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+          </svg>
+          <span class="text-xl font-bold tracking-tight">Selectly</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
+          <a href="/#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
+          <a href="/#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
+          <a href="/case-nxtg.html" class="hover:text-ink-900 transition">Case study</a>
+          <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>Live demo
+          </a>
+          <a href="/roi.html" class="hover:text-ink-900 transition">ROI-calc</a>
+          <a href="/pakketten.html" class="text-ink-900 font-semibold">Pakketten</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition shadow-soft">
+            Boek een gratis demo →
+          </a>
+        </div>
+
+        <button @click="open = !open" class="md:hidden p-2" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div x-show="open" x-transition class="md:hidden py-4 border-t border-gray-100 space-y-1">
+        <a href="/#wat-we-doen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
+        <a href="/#hoe" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Werkwijze</a>
+        <a href="/case-nxtg.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Case study</a>
+        <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live demo</a>
+        <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
+        <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-900 font-semibold">Pakketten</a>
+        <a href="/#contact" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─────── HERO ─────── -->
+  <section class="relative bg-ink-900 text-white overflow-hidden">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="glow-orb w-[520px] h-[520px] bg-brand-500 -top-32 -left-24"></div>
+    <div class="glow-orb w-[420px] h-[420px] bg-mint-500 bottom-0 -right-24 opacity-20"></div>
+
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-8 pt-20 pb-24 lg:pt-28 lg:pb-28 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-8">
+        <span class="pulse-dot"></span>
+        <span class="text-white/80">Prijzen die kloppen · Maandelijks opzegbaar</span>
+      </div>
+
+      <h1 class="text-4xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-8">
+        Kies het pakket dat bij <span class="gradient-text">uw aanvragen past.</span>
+      </h1>
+
+      <p class="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
+        Vier formules om elke binnenkomende aanvraag sneller en professioneler op te volgen — van uw eerste automatische opvolging tot een volledig geautomatiseerd verkoopproces. Geen verborgen setup-verrassingen. Maandelijks opzegbaar.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
+          Boek een gratis demo
+        </a>
+        <a href="#formule" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base text-center">
+          Niet zeker welk pakket? Zie “Welke formule past?” ↓
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60">
+        <span>✓ Gratis demo van 20 min</span>
+        <span class="hidden sm:inline text-white/20">·</span>
+        <span>✓ Data blijft binnen de EU (AVG)</span>
+        <span class="hidden sm:inline text-white/20">·</span>
+        <span>✓ 30 dagen niet-goed-geld-terug</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── EERST DIT ─────── -->
+  <section class="py-16 sm:py-20 bg-white border-b border-gray-100">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-4">Eerst dit</div>
+      <p class="text-2xl lg:text-3xl font-medium text-ink-900 leading-snug mb-6">
+        Selectly vervangt uw manier van werken niet. <span class="text-ink-500">Het versterkt ze.</span>
+      </p>
+      <p class="text-lg text-ink-500 leading-relaxed">
+        Uw telefoon, uw offertes, uw klanten — die blijven van u. Selectly zet er geen extra systeem naast dat u zelf moet bedienen. Het zorgt enkel dat élke aanvraag die vandaag binnenkomt onmiddellijk en professioneel wordt opgevolgd, ook wanneer u op een dak of in een technische ruimte staat. U verandert niets aan uw vak. U verliest alleen minder klanten na de aanvraag.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────── PAKKETTEN ─────── -->
+  <section id="pakketten" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Pakketten</div>
+        <h2 class="text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+          Kies het pakket dat bij uw aanvragen past.
+        </h2>
+        <p class="text-lg text-ink-500 leading-relaxed">
+          Setup-kost eenmalig, daarna betaalt u enkel de maandelijkse service. Geen jaarcontracten, geen verrassingen achteraf.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto sl-stagger items-stretch">
+        <!-- Lite -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-7 flex flex-col sl-lift">
+          <div class="mb-5">
+            <h3 class="text-xl font-bold mb-2">Lite</h3>
+            <p class="text-sm text-ink-500">Voor installateurs die vandaag nog aanvragen laten liggen.</p>
+          </div>
+          <div class="mb-5">
+            <span class="text-4xl font-bold">€450</span>
+            <span class="text-ink-500">/maand</span>
+            <div class="text-sm text-ink-500 mt-2">+ €750 setup — of <strong class="text-mint-700">€0 setup</strong> bij 3 maanden vooraf</div>
+          </div>
+          <div class="mb-5 rounded-xl bg-mint-100 border border-mint-300 px-4 py-3 text-sm font-semibold text-ink-900 leading-snug">
+            ⚡ Live binnen 72 uur — of uw eerste maand is gratis.
+          </div>
+          <ul class="space-y-3 text-sm flex-1 mb-6">
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Automatische opvolging van élke binnenkomende aanvraag</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Opvolging via WhatsApp</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Chat op uw website</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Eerste reactie binnen de minuut — dag en nacht</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Basisrapportering: zie in één oogopslag wat er binnenkomt</li>
+          </ul>
+          <p class="text-xs text-ink-500 mb-4">30 dagen niet-goed-geld-terug.</p>
+          <a href="/#contact" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
+            Boek een gratis demo
+          </a>
+        </div>
+
+        <!-- Starter -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-7 flex flex-col sl-lift">
+          <div class="mb-5">
+            <h3 class="text-xl font-bold mb-2">Starter</h3>
+            <p class="text-sm text-ink-500">Voor zaken die niet alleen sneller willen reageren, maar ook sneller willen offreren.</p>
+          </div>
+          <div class="mb-5">
+            <span class="text-4xl font-bold">€950</span>
+            <span class="text-ink-500">/maand</span>
+            <div class="text-sm text-ink-500 mt-2">+ €1.500 setup</div>
+          </div>
+          <ul class="space-y-3 text-sm flex-1 mb-6">
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Alles uit Lite</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Volledige offerteflow: aanvraag → prijs → PDF → digitaal tekenen</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Automatische e-mailflows</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>CRM-klaar: elke lead netjes op één plek</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Uitgebreidere rapportering</li>
+          </ul>
+          <a href="/#contact" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
+            Boek een gratis demo
+          </a>
+        </div>
+
+        <!-- Growth - HIGHLIGHTED -->
+        <div class="sl-lift bg-gradient-to-br from-ink-900 to-ink-700 text-white border-2 border-brand-400 rounded-2xl p-7 flex flex-col relative shadow-glow lg:z-10">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-brand-400 text-ink-900 text-xs font-bold rounded-full whitespace-nowrap">
+            ⭐ Meest gekozen
+          </div>
+          <div class="mb-5 mt-2">
+            <h3 class="text-xl font-bold mb-2">Growth</h3>
+            <p class="text-sm text-white/60">Voor zaken die hun volledige opvolging grotendeels willen automatiseren.</p>
+          </div>
+          <div class="mb-5">
+            <span class="text-4xl font-bold">€1.950</span>
+            <span class="text-white/60">/maand</span>
+            <div class="text-sm text-white/60 mt-2">+ €3.000 setup</div>
+          </div>
+          <ul class="space-y-3 text-sm flex-1 mb-6">
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Alles uit Starter</li>
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Geavanceerde automatiseringen</li>
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Meerdere opvolgscenario's naast elkaar</li>
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Integraties met uw CRM</li>
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>WhatsApp- en SMS-sequenties</li>
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Extra dashboards</li>
+            <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Prioritaire begeleiding</li>
+          </ul>
+          <a href="/#contact" class="block text-center px-5 py-3 bg-brand-400 text-ink-900 font-semibold rounded-xl hover:bg-brand-300 transition mt-auto">
+            Boek een gratis demo
+          </a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-7 flex flex-col sl-lift">
+          <div class="mb-5">
+            <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+            <p class="text-sm text-ink-500">Voor grotere zaken die het maximale uit elke aanvraag én elke oproep willen halen.</p>
+          </div>
+          <div class="mb-5">
+            <span class="text-4xl font-bold">€3.500</span>
+            <span class="text-ink-500">/maand</span>
+            <div class="text-sm text-ink-500 mt-2">op maat</div>
+          </div>
+          <ul class="space-y-3 text-sm flex-1 mb-6">
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Alles uit Growth</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>AI-voicebot die inkomende oproepen 24/7 beantwoordt</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Outbound-opvolging</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Complexe maatwerk-integraties (ERP / boekhouding)</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Vaste accountmanager</li>
+            <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Reactie op uw vragen binnen 4 werkuren</li>
+          </ul>
+          <a href="/#contact" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
+            Plan een gesprek op maat
+          </a>
+        </div>
+      </div>
+
+      <p class="text-center text-sm text-ink-500 mt-10">Alle prijzen excl. BTW. Alle abonnementen zijn maandelijks opzegbaar.</p>
+    </div>
+  </section>
+
+  <!-- ─────── WELKE FORMULE PAST? ─────── -->
+  <section id="formule" class="py-24 bg-gray-50 border-y border-gray-100 scroll-mt-20">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Nog twijfel?</div>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-4">Welke formule past bij u?</h2>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-card divide-y divide-gray-100 overflow-hidden sl-reveal">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-5 sm:p-6">
+          <div class="flex-1 text-ink-700">Sneller reageren en geen aanvraag meer laten liggen</div>
+          <div class="text-sm font-bold text-ink-900 sm:text-right sm:w-40">Lite of Starter</div>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-5 sm:p-6">
+          <div class="flex-1 text-ink-700">Uw offertes automatisch de deur uit sturen</div>
+          <div class="text-sm font-bold text-ink-900 sm:text-right sm:w-40">Starter</div>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-5 sm:p-6">
+          <div class="flex-1 text-ink-700">Uw opvolging grotendeels automatiseren</div>
+          <div class="text-sm font-bold text-brand-600 sm:text-right sm:w-40">Growth</div>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-5 sm:p-6">
+          <div class="flex-1 text-ink-700">Alles maximaal automatiseren, inclusief inkomende oproepen</div>
+          <div class="text-sm font-bold text-ink-900 sm:text-right sm:w-40">Enterprise</div>
+        </div>
+      </div>
+
+      <p class="text-center text-ink-500 leading-relaxed mt-8 mb-6">
+        Weet u het niet zeker? Boek een gratis demo — we bekijken samen uw aanvragen en zeggen eerlijk welk pakket bij u past. Ook als dat het kleinste is.
+      </p>
+      <div class="text-center">
+        <a href="/#contact" class="inline-block px-8 py-4 bg-ink-900 text-white font-semibold rounded-xl hover:bg-ink-700 transition shadow-soft">
+          Boek een gratis demo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── WAT KOST NIETS DOEN? ─────── -->
+  <section class="py-24 bg-ink-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40"></div>
+    <div class="glow-orb w-[460px] h-[460px] bg-brand-500 -top-24 -left-24"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center mb-10">
+        <div class="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-3">De echte kost</div>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Wat kost het om níéts te doen?</h2>
+      </div>
+
+      <div class="max-w-2xl mx-auto space-y-6 text-lg text-white/75 leading-relaxed sl-reveal">
+        <p>
+          Elke aanvraag die een halve dag blijft liggen, is een aanvraag waar iemand anders sneller op reageert. Dat kost u geen administratie — dat kost u de klant.
+        </p>
+        <p>
+          Reken het even mee. Eén warmtepomp, één zonnepaneleninstallatie of één dakwerk is al snel enkele duizenden euro's omzet. Eén extra getekend project per maand verdient uw volledige investering in Selectly ruimschoots terug. Alles wat daarna binnenkomt, is winst.
+        </p>
+        <p class="text-sm italic text-white/40">
+          Illustratief. Wat u overhoudt hangt af van uw aanvragen, uw prijzen en uw manier van werken.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── WAAROM GEEN EXTRA MEDEWERKER? ─────── -->
+  <section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">De vergelijking</div>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Waarom geen extra medewerker aannemen?</h2>
+      </div>
+      <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-3xl p-6 sm:p-10 shadow-card">
+        <div class="grid sm:grid-cols-2 gap-6 sm:gap-10">
+          <div>
+            <div class="text-xs font-semibold text-ink-500 uppercase tracking-wider mb-4">Een extra medewerker</div>
+            <ul class="text-sm text-ink-500 space-y-2.5">
+              <li class="flex gap-2"><span class="text-rose-400">✕</span>± €4.200 / maand (loon + lasten)</li>
+              <li class="flex gap-2"><span class="text-rose-400">✕</span>Werkt 8 uur per dag, niet 's nachts of in het weekend</li>
+              <li class="flex gap-2"><span class="text-rose-400">✕</span>Ziekte, verlof, opleiding</li>
+              <li class="flex gap-2"><span class="text-rose-400">✕</span>Reageert zo snel als het druk toelaat</li>
+              <li class="flex gap-2"><span class="text-rose-400">✕</span>U moet zoeken, aanwerven en inwerken</li>
+            </ul>
+          </div>
+          <div class="sm:border-l sm:border-gray-200 sm:pl-10">
+            <div class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Selectly</div>
+            <ul class="text-sm text-ink-700 space-y-2.5">
+              <li class="flex gap-2"><span class="text-mint-500">✓</span>Vanaf €450 / maand</li>
+              <li class="flex gap-2"><span class="text-mint-500">✓</span>Werkt 24/7, ook 's nachts en in het weekend</li>
+              <li class="flex gap-2"><span class="text-mint-500">✓</span>Nooit ziek, nooit met verlof</li>
+              <li class="flex gap-2"><span class="text-mint-500">✓</span>Reageert altijd binnen de minuut</li>
+              <li class="flex gap-2"><span class="text-mint-500">✓</span>Live binnen 72 uur (Lite)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+          <p class="text-sm text-ink-700 leading-relaxed max-w-2xl mx-auto">
+            Selectly vervangt uw team niet. Het neemt net het werk over dat u vandaag laat liggen omdat er simpelweg geen tijd voor is.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── GARANTIES ─────── -->
+  <section class="py-20 sm:py-24 bg-gradient-to-b from-white to-gray-50 border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="text-sm font-semibold text-brand-500 uppercase tracking-wider mb-3">Garanties</div>
+        <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Waar u op kunt rekenen</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 sl-stagger">
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">Maandelijks opzegbaar</strong> — geen lange contracten</span>
+        </div>
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">Lite live binnen 72 uur</strong> — of uw eerste maand is gratis</span>
+        </div>
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">30 dagen niet-goed-geld-terug</strong></span>
+        </div>
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">Reactie op uw vragen binnen 24 uur</strong> (Enterprise: binnen 4 werkuren)</span>
+        </div>
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">99,5% uptime</strong> op Growth en hoger</span>
+        </div>
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">Uw data blijft binnen de EU</strong> (AVG-conform)</span>
+        </div>
+        <div class="flex items-start gap-3 bg-white rounded-2xl border border-gray-100 shadow-card p-5 sm:col-span-2">
+          <span class="text-mint-500 mt-0.5 text-lg leading-none">✓</span>
+          <span class="text-ink-700"><strong class="text-ink-900">Volledige data-overdracht</strong> wanneer u stopt — uw gegevens blijven van u</span>
+        </div>
+      </div>
+
+      <p class="text-center text-sm text-ink-500 mt-10">
+        Meer over data, contracten en aansprakelijkheid? Lees onze <a href="/privacy.html" class="text-brand-500 hover:text-brand-600 link-underline">privacy</a> en <a href="/voorwaarden.html" class="text-brand-500 hover:text-brand-600 link-underline">voorwaarden</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────── AFSLUIT-CTA ─────── -->
+  <section class="py-20 sm:py-24 bg-ink-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+    <div class="glow-orb w-[500px] h-[500px] bg-brand-500 top-0 left-1/4 -translate-x-1/2"></div>
+    <div class="relative max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-5xl font-bold tracking-tight mb-6">
+        Zie in 20 minuten wat sneller opvolgen <span class="gradient-text">u zou opleveren.</span>
+      </h2>
+      <p class="text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Tijdens een gratis demo tonen we een echte flow — aanvraag, antwoord binnen de minuut, offerte, opvolging — en rekenen we met uw eigen cijfers uit wat u vandaag laat liggen. Geen verkooppraatje, wel een concreet plan.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
+          Boek een gratis demo
+        </a>
+        <a href="https://wa.me/32483812907" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base text-center">
+          Stel uw vraag via WhatsApp
+        </a>
+      </div>
+      <div class="mt-10 text-white/50 text-sm">
+        Gratis demo · Maandelijks opzegbaar · <a href="mailto:info@selectly.be" class="text-white link-underline">info@selectly.be</a>
+        &nbsp;·&nbsp;
+        <a href="tel:+32483812907" class="text-white link-underline">+32 483 81 29 07</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────── FOOTER ─────── -->
+  <footer class="bg-ink-900 text-white/60 border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#footer-logo-grad)"/>
+              <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+              <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+              <defs><linearGradient id="footer-logo-grad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+            </svg>
+            <span class="text-lg font-bold text-white">Selectly</span>
+          </div>
+          <p class="text-sm leading-relaxed max-w-md">
+            Selectly bouwt AI-automatiseringen voor Belgische KMO's.
+            Stop met handmatig werk. Begin met groeien.
+          </p>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Product</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/#wat-we-doen" class="hover:text-white transition">Wat we doen</a></li>
+            <li><a href="/#hoe" class="hover:text-white transition">Werkwijze</a></li>
+            <li><a href="/pakketten.html" class="hover:text-white transition">Pakketten</a></li>
+            <li><a href="/case-nxtg.html" class="hover:text-white transition">Case study</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Bedrijf</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy.html" class="hover:text-white transition">Privacy</a></li>
+            <li><a href="/voorwaarden.html" class="hover:text-white transition">Algemene voorwaarden</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between gap-4 text-xs">
+        <div>© 2026 Selectly · BV NXTG Solutions · BE1037.580.195</div>
+        <div>Gemaakt in België 🇧🇪</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- META LEAD TRACKER -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('form').forEach(function(form) {
+        if (form.dataset.fbPixelTracked) return;
+        form.dataset.fbPixelTracked = '1';
+        form.addEventListener('submit', function() {
+          if (window.fbq) {
+            var formName = form.getAttribute('name') || form.id || 'unknown';
+            fbq('track', 'Lead', { form_name: formName });
+          }
+        });
+      });
+    });
+  </script>
+  <!-- /META LEAD TRACKER -->
+
+  <!-- Scroll-reveal -->
+  <script>
+  (function () {
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    var hasIO = 'IntersectionObserver' in window;
+    var els = document.querySelectorAll('.sl-reveal, .sl-stagger');
+    if (!els.length) return;
+    if (reduce || !hasIO) { els.forEach(function (e) { e.classList.add('is-visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+    setTimeout(function () { els.forEach(function (e) { e.classList.add('is-visible'); }); }, 3500);
+  })();
+  </script>
+</body>
+</html>

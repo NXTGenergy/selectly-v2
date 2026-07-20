@@ -20,3 +20,19 @@ __pycache__/
 
 # Backups
 *.bak-*
+
+# Backups (nooit deployen)
+*.bak*
+
+# Interne werkdocumenten — niet publiek op selectly.be
+/BART-OVERZICHT-vanavond.md
+/COPY-DEFINITIEF-2026-07-20.md
+/GOOGLE-ADS-launchpakket.md
+/LAUNCH-content-pack.md
+/NIEUWE-COPY-2026-07-20.md
+/NIEUWE-COPY-pages.md
+/DEPLOY.md
+/build_blog.py
+/marketing/meta-ads-v1.md
+/vraag/BRAND-NAAM-FINALISTEN.md
+/vraag/README.md

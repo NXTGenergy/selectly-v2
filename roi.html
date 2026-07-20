@@ -15,6 +15,8 @@
 
   <link rel="canonical" href="https://selectly.be/roi.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
@@ -128,8 +130,8 @@
         <a href="/" class="flex items-center gap-2.5">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
-            <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
             <defs>
               <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32">
                 <stop offset="0%" stop-color="#5b8cff"/>
@@ -141,7 +143,7 @@
         </a>
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
           <a href="/#wat-we-doen" class="hover:text-ink-900">Wat we doen</a>
-          <a href="/#prijzen" class="hover:text-ink-900">Prijzen</a>
+          <a href="/pakketten.html" class="hover:text-ink-900">Prijzen</a>
           <a href="/calculator.html" class="hover:text-ink-900">Pakket-calculator</a>
           <a href="/roi.html" class="text-ink-900 font-semibold">ROI-calculator</a>
         </div>
@@ -178,7 +180,7 @@
   </section>
 
   <!-- CALCULATOR -->
-  <main x-data="roiCalc()" x-init="compute()" class="max-w-6xl mx-auto px-6 lg:px-8 -mt-12 mb-24">
+  <main x-data="roiCalc()" x-init="compute()" class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 -mt-6 mb-24">
     <div class="grid lg:grid-cols-[1.1fr_1fr] gap-8">
 
       <!-- LEFT: inputs -->
@@ -326,7 +328,7 @@
 
           <p class="text-xs text-white/40 mt-5 text-center leading-relaxed">
             Berekening = indicatie op basis van Selectly-klant-data.<br>
-            NXTG case: 35% → 62% conversie in 4 weken.
+            Onze case: 35% → 62% conversie in 4 weken.
           </p>
         </div>
 
@@ -334,7 +336,7 @@
         <details class="mt-5 bg-white border border-gray-100 rounded-2xl p-5 text-sm">
           <summary class="font-semibold text-ink-900 cursor-pointer">Hoe berekenen we dit?</summary>
           <ul class="mt-3 space-y-2 text-ink-500 text-xs">
-            <li>• <strong class="text-ink-900">Extra conversie</strong>: gemiddeld +35% relatieve uplift door respons binnen 1 min (Harvard Business Review + onze NXTG-data).</li>
+            <li>• <strong class="text-ink-900">Extra conversie</strong>: gemiddeld +35% relatieve uplift door respons binnen 1 min (Harvard Business Review + onze eigen data).</li>
             <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van offerte-werk automatiseerbaar (intake + offerte + opvolging).</li>
             <li>• <strong class="text-ink-900">Tier-aanbeveling</strong>: gebaseerd op lead-volume + sector — geen overkill, geen onderkill.</li>
             <li>• Geen win-loss garantie — dit is een schatting voor besluitvorming, geen offerte.</li>
@@ -347,7 +349,7 @@
     <section class="mt-20 grid md:grid-cols-3 gap-6">
       <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
         <div class="text-3xl font-bold text-ink-900 mb-1">+27 pp</div>
-        <div class="text-sm text-ink-500">conversie-stijging bij NXTG Energy in 4 weken (35% → 62%)</div>
+        <div class="text-sm text-ink-500">conversie-stijging bij een Belgisch installatiebedrijf in de energiesector in 4 weken (35% → 62%)</div>
       </div>
       <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
         <div class="text-3xl font-bold text-ink-900 mb-1">&lt;1 min</div>
@@ -367,8 +369,8 @@
         <div class="flex items-center gap-2.5 mb-3">
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
             <rect width="32" height="32" rx="8" fill="url(#fg)"/>
-            <path d="M11 11h10M11 16h10M11 21h6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="22" cy="21" r="2" fill="#34e4a8"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
             <defs><linearGradient id="fg" x1="0" y1="0" x2="32" y2="32">
               <stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/>
             </linearGradient></defs>
@@ -383,14 +385,14 @@
           <li><a href="/" class="hover:text-white">Home</a></li>
           <li><a href="/calculator.html" class="hover:text-white">Pakket-calculator</a></li>
           <li><a href="/roi.html" class="hover:text-white">ROI-calculator</a></li>
-          <li><a href="/case-nxtg.html" class="hover:text-white">NXTG case-study</a></li>
+          <li><a href="/case-nxtg.html" class="hover:text-white">Case study</a></li>
         </ul>
       </div>
       <div>
         <div class="text-white font-semibold mb-2">Contact</div>
         <ul class="space-y-1">
           <li><a href="/#contact" class="hover:text-white">Plan demo</a></li>
-          <li><a href="https://wa.me/32492617085" class="hover:text-white" target="_blank" rel="noopener">WhatsApp +32 492 61 70 85</a></li>
+          <li><a href="https://wa.me/32483812907" class="hover:text-white" target="_blank" rel="noopener">WhatsApp +32 483 81 29 07</a></li>
           <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
         </ul>
       </div>
@@ -489,7 +491,7 @@
         // CTA link met cijfers
         const summary = `ROI-berekening: ${this.leads} leads/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} netto/mnd. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
         this.ctaLink = '/#contact?roi=' + encodeURIComponent(summary);
-        this.whatsappLink = 'https://wa.me/32492617085?text=' + encodeURIComponent('Selectly, ik deed de ROI-calculator. ' + summary + ' Kan jij een demo plannen?');
+        this.whatsappLink = 'https://wa.me/32483812907?text=' + encodeURIComponent('Selectly, ik deed de ROI-calculator. ' + summary + ' Kan jij een demo plannen?');
 
         // Flash animation
         this.flash = true;

@@ -1467,6 +1467,16 @@
       <div class="bg-white text-ink-900 rounded-3xl p-8 lg:p-12 shadow-glow max-w-2xl mx-auto">
         <form name="contact" method="POST" action="/bedankt.html" data-netlify="true" netlify-honeypot="bot-field" class="space-y-5">
           <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="lead_source" />
+          <input type="hidden" name="utm_source" />
+          <input type="hidden" name="utm_medium" />
+          <input type="hidden" name="utm_campaign" />
+          <input type="hidden" name="utm_content" />
+          <input type="hidden" name="utm_term" />
+          <input type="hidden" name="landing_page" />
+          <input type="hidden" name="referrer" />
+          <input type="hidden" name="page_url" />
+          <input type="hidden" name="submitted_at" />
           <p class="hidden" style="display:none" aria-hidden="true"><label>Don't fill: <input name="bot-field" /></label></p>
 
           <div class="grid sm:grid-cols-2 gap-5">
@@ -1726,5 +1736,6 @@
     })();
   })();
   </script>
+<script src="/lead-meta.js" defer></script>
 </body>
 </html>

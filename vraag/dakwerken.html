@@ -266,6 +266,16 @@
 
           <form name="offertescout-dakwerken" method="POST" action="/vraag/bedankt.html" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
             <input type="hidden" name="form-name" value="offertescout-dakwerken" />
+          <input type="hidden" name="lead_source" />
+          <input type="hidden" name="utm_source" />
+          <input type="hidden" name="utm_medium" />
+          <input type="hidden" name="utm_campaign" />
+          <input type="hidden" name="utm_content" />
+          <input type="hidden" name="utm_term" />
+          <input type="hidden" name="landing_page" />
+          <input type="hidden" name="referrer" />
+          <input type="hidden" name="page_url" />
+          <input type="hidden" name="submitted_at" />
             <input type="hidden" name="sector" value="dakwerken" />
             <p class="hidden" style="display:none" aria-hidden="true"><label>Don't fill: <input name="bot-field" /></label></p>
             <input type="hidden" id="all-data" name="all-data" />
@@ -378,5 +388,6 @@
   <!-- OfferteScout Pixel (sector custom events) -->
   <script src="/vraag/pixel.js" defer></script>
   <script src="/consent.js" defer></script>
+<script src="/lead-meta.js" defer></script>
 </body>
 </html>

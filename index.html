@@ -1621,22 +1621,7 @@
     });
   </script>
 
-  <!-- META LEAD TRACKER — geïnjecteerd door pixel_install.py -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('form').forEach(function(form) {
-      if (form.dataset.fbPixelTracked) return;
-      form.dataset.fbPixelTracked = '1';
-      form.addEventListener('submit', function() {
-        if (window.fbq) {
-          var formName = form.getAttribute('name') || form.id || 'unknown';
-          fbq('track', 'Lead', { form_name: formName });
-        }
-      });
-    });
-  });
-</script>
-<!-- /META LEAD TRACKER -->
+  <!-- Lead-conversie vuurt nu op de bedankt-pagina's (betrouwbaarder dan on-submit; voorkomt dubbeltelling) -->
 
   <!-- ═══════ PREMIUM INTERACTIES — scroll-reveal, tellers, live-demo (Opdracht 2) ═══════ -->
   <script>

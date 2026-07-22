@@ -41,6 +41,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '852925924180054');
     fbq('track', 'PageView');
+    fbq('track', 'Lead', { content_name: 'demo-aanvraag', currency: 'EUR', value: 0 });
   }
   try {
     if (localStorage.getItem('selectly_consent') === 'accepted') {

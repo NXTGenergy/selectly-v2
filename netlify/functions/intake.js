@@ -40,7 +40,8 @@ async function callClaude(messages) {
   });
   const j = await r.json();
   if (!r.ok) { console.log('[intake] claude fout', r.status, JSON.stringify(j).slice(0, 200)); return null; }
-  return (j.content && j.content[0] && j.content[0].text) || '';
+  var block = (j.content || []).find(function (b) { return b.type === 'text'; });
+  return block ? block.text : '';
 }
 
 function splitData(text) {

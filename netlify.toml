@@ -1,3 +1,10 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+
+# Nette boekingslink voor outreach: selectly.be/demo → GHL-agenda
+[[redirects]]
+  from = "/demo"
+  to = "https://api.leadconnectorhq.com/widget/bookings/selectly-demo"
+  status = 302
+  force = true

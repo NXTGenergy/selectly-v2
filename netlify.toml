@@ -8,3 +8,9 @@
   to = "https://api.leadconnectorhq.com/widget/bookings/selectly-demo"
   status = 302
   force = true
+
+# Nette URL voor de omzetscan-landingspagina (Meta-ads + outreach)
+[[redirects]]
+  from = "/omzetscan"
+  to = "/omzetscan.html"
+  status = 200

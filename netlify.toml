@@ -34,6 +34,20 @@
 # geen redirects op bestandsextensie ondersteunt. Ze werden anders als duplicaat
 # van de .html-versie mee gedeployed en konden geindexeerd worden.
 
+# OfferteScout stond onder /vraag/ op dit domein. Twee redenen om het weg te halen:
+# Selectly belooft klanten dat het geen leads binnenbrengt, terwijl OfferteScout leads
+# verzamelt en aan installateurs levert — op hetzelfde domein zag een prospect iemand
+# die aan beide kanten van de tafel zit. En belangrijker: die pagina's beweerden dat de
+# Vlaamse thuisbatterijpremie "afloopt op 31/12/2026" met "nog tot €1.725 terug", terwijl
+# die premie op 31 maart 2024 definitief gesloten is. Kunstmatige urgentie op een
+# onbestaand voordeel is een misleidende handelspraktijk.
+# De herbouwde, geverifieerde versie staat klaar in ~/offertescout voor een eigen domein.
+[[redirects]]
+  from = "/vraag/*"
+  to = "/"
+  status = 301
+  force = true
+
 # ---------------------------------------------------------------------------
 # Portaalbeveiliging
 # ---------------------------------------------------------------------------

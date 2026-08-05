@@ -245,8 +245,8 @@
 <p><strong>Gemengd gebruik complicerende factor:</strong></p>
 <p>Is het privégedeelte overwegend, dan geldt 6% op het volledige werk, ook op het beroepsgedeelte. Is het dat niet, dan wordt de factuur opgesplitst — er vervalt niets. Niet voor dat deel. Het gehele pand.</p>
 <p><strong>Materialen:</strong></p>
-<p>Materialen die u levert én plaatst vallen onder 6%, ook sanitair, keukens en parket — dat staat uitdrukkelijk in KB nr. 20. In de praktijk hanteert FOD Financiën een tolerantie: de wet spreekt van materialen die een beduidend deel vertegenwoordigen, en vult dat limitatief in: cv-ketels in appartementsgebouwen en liftinstallaties. Er is geen algemene 50%-grens op de materiaalprijs.</p>
-<p>50% is een harde grens. Geen interpretatieruimte.</p>
+<p>Materialen die u levert én plaatst vallen onder 6%, ook sanitair, keukens en parket — dat staat uitdrukkelijk in KB nr. 20. De wet spreekt van materialen die een beduidend deel vertegenwoordigen, en vult dat limitatief in: cv-ketels in appartementsgebouwen en liftinstallaties. Er is geen algemene 50%-grens op de materiaalprijs.</p>
+<p>De uitzonderingen zijn dus beperkt en limitatief opgesomd — niet een percentage dat u per factuur moet inschatten.</p>
 <hr />
 <h2>Wat dit kost als je het handmatig doet</h2>
 <div class="table-wrap"><table>
@@ -294,7 +294,7 @@
 <p>Concreet voorbeeld van een automatiseringsflow:</p>
 <pre><code>Bouwjaar &lt; (huidig jaar - 10)?
   → JA: privéwoning?
-      → JA: materiaalkosten &lt; 50% van totaal?
+      → JA: valt het onder een van de limitatieve uitzonderingen?
           → JA: 6% op volledige factuur
           → NEE: split factuur of 21% op materialen
       → NEE: 21%
@@ -332,7 +332,7 @@
 <h3>Niet doen: wachten op een BTW-controle om te corrigeren</h3>
 <p>De Btw-administratie kijkt terug tot 3 jaar. Als je nu systematisch het verkeerde tarief hanteert, zit je mogelijk aan tientallen gecorrigeerde facturen en bijhorende boetes. Corrigeren na een controle is duurder dan automatiseren voor de controle.</p>
 <h3>Niet doen: de materiaalgrens negeren</h3>
-<p>de vaak genoemde 50%-materiaalgrens bestaat niet in de wet. Het is een grens die de FOD Financiën actief controleert in de bouwsector. Als je structureel facturen opstelt waarbij materialen meer dan de helft uitmaken maar je toch 6% aanrekent, ben je kwetsbaar.</p>
+<p>de vaak genoemde 50%-materiaalgrens bestaat niet in de wet. Wat wél telt zijn de limitatief opgesomde uitzonderingen. Als je structureel facturen opstelt waarbij materialen meer dan de helft uitmaken maar je toch 6% aanrekent, ben je kwetsbaar.</p>
 <h3>Niet doen: één tarief hanteren voor alle projecten "voor de veiligheid"</h3>
 <p>Sommige aannemers factureren altijd 21% om discussies te vermijden. Dat is duur. Je bent dan systematisch 15% duurder voor klanten die recht hebben op 6%. Je verliest opdrachten die je met het correcte tarief zou winnen.</p>
 <hr />
@@ -352,7 +352,7 @@
 <li>[ ] Bouwjaar wordt ingevuld en gevalideerd bij de offerte</li>
 <li>[ ] Bestemming van het gebouw wordt systematisch gevraagd</li>
 <li>[ ] Materiaalkosten worden berekend als percentage van het totaal</li>
-<li>[ ] Bij &gt;50% materialen: systeem geeft een waarschuwing of splitst automatisch</li>
+<li>[ ] Bij een cv-ketel in een appartementsgebouw of een liftinstallatie: systeem waarschuwt of splitst automatisch</li>
 <li>[ ] De verplichte verklaring staat automatisch op elke 6%-factuur</li>
 <li>[ ] Attest wordt digitaal ondertekend en opgeslagen per project</li>
 <li>[ ] Alle tariefkeuzes zijn traceerbaar per dossier</li>

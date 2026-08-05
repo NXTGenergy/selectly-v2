@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Selectly — Belgisch automation-platform voor installateurs" />
+  <meta property="og:image:alt" content="Selectly — Selectly — digitale medewerkers voor Belgische installateurs" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://selectly.be/assets/og-image.png" />
   <meta property="og:type" content="website" />
@@ -60,7 +60,7 @@
     body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
 
     .gradient-text {
-      background: linear-gradient(135deg, #5b8cff 0%, #a78bfa 50%, #34e4a8 100%);
+      background: linear-gradient(135deg, #5b8cff 0%, #34e4a8 50%, #34e4a8 100%);
       -webkit-background-clip: text; background-clip: text; color: transparent;
     }
     .grid-bg {
@@ -146,7 +146,7 @@
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-500">
           <a href="/#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
           <a href="/#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
-          <a href="/case-nxtg.html" class="hover:text-ink-900 transition">Case study</a>
+          <a href="/case-nxtg.html" class="hover:text-ink-900 transition">De case</a>
           <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>Live demo
           </a>
@@ -155,7 +155,7 @@
         </div>
 
         <div class="hidden md:flex items-center gap-3">
-          <a href="/#contact" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition shadow-soft">
+          <a href="/demo" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition shadow-soft">
             Boek een gratis demo →
           </a>
         </div>
@@ -168,11 +168,11 @@
       <div x-show="open" x-transition class="md:hidden py-4 border-t border-gray-100 space-y-1">
         <a href="/#wat-we-doen" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
         <a href="/#hoe" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Werkwijze</a>
-        <a href="/case-nxtg.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Case study</a>
+        <a href="/case-nxtg.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">De case</a>
         <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live demo</a>
         <a href="/roi.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">ROI-calculator</a>
         <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-900 font-semibold">Pakketten</a>
-        <a href="/#contact" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo →</a>
+        <a href="/demo" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo →</a>
       </div>
     </div>
   </nav>
@@ -194,11 +194,11 @@
       </h1>
 
       <p class="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
-        Vier formules om elke binnenkomende aanvraag sneller en professioneler op te volgen — van uw eerste automatische opvolging tot een volledig geautomatiseerd verkoopproces. Geen verborgen setup-verrassingen. Maandelijks opzegbaar.
+        Vier formules om elke binnenkomende aanvraag sneller en professioneler op te volgen — van één digitale medewerker die opvolgt, tot een volledig team dat offreert en de telefoon opneemt. Geen verborgen setup-verrassingen. Maandelijks opzegbaar.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
+        <a href="/demo" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
           Boek een gratis demo
         </a>
         <a href="#formule" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base text-center">
@@ -238,7 +238,8 @@
           Kies het pakket dat bij uw aanvragen past.
         </h2>
         <p class="text-lg text-ink-500 leading-relaxed">
-          Setup-kost eenmalig, daarna betaalt u enkel de maandelijkse service. Geen jaarcontracten, geen verrassingen achteraf.
+          Een administratieve medewerker of receptionist kost u €3.500 tot €4.500 per maand, werkt acht uur en gaat op verlof. Een digitale medewerker start op €450, werkt 24/7 en is nooit ziek. Dat is de vergelijking die telt — niet die met andere software.</p>
+          <p class="mt-4">Setup eenmalig, daarna enkel de maandelijkse service. Maandelijks opzegbaar — of een jaarcontract met twee maanden gratis. U kiest.
         </p>
       </div>
 
@@ -265,7 +266,7 @@
             <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Basisrapportering: zie in één oogopslag wat er binnenkomt</li>
           </ul>
           <p class="text-xs text-ink-500 mb-4">30 dagen niet-goed-geld-terug.</p>
-          <a href="/#contact" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
+          <a href="/demo" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
             Boek een gratis demo
           </a>
         </div>
@@ -288,7 +289,7 @@
             <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>CRM-klaar: elke lead netjes op één plek</li>
             <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Uitgebreidere rapportering</li>
           </ul>
-          <a href="/#contact" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
+          <a href="/demo" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
             Boek een gratis demo
           </a>
         </div>
@@ -296,7 +297,7 @@
         <!-- Growth - HIGHLIGHTED -->
         <div class="sl-lift bg-gradient-to-br from-ink-900 to-ink-700 text-white border-2 border-brand-400 rounded-2xl p-7 flex flex-col relative shadow-glow lg:z-10">
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-brand-400 text-ink-900 text-xs font-bold rounded-full whitespace-nowrap">
-            ⭐ Meest gekozen
+            Aanbevolen
           </div>
           <div class="mb-5 mt-2">
             <h3 class="text-xl font-bold mb-2">Growth</h3>
@@ -316,7 +317,7 @@
             <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Extra dashboards</li>
             <li class="flex gap-2"><span class="text-mint-400 mt-0.5">✓</span>Prioritaire begeleiding</li>
           </ul>
-          <a href="/#contact" class="block text-center px-5 py-3 bg-brand-400 text-ink-900 font-semibold rounded-xl hover:bg-brand-300 transition mt-auto">
+          <a href="/demo" class="block text-center px-5 py-3 bg-brand-400 text-ink-900 font-semibold rounded-xl hover:bg-brand-300 transition mt-auto">
             Boek een gratis demo
           </a>
         </div>
@@ -340,7 +341,7 @@
             <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Vaste accountmanager</li>
             <li class="flex gap-2"><span class="text-mint-500 mt-0.5">✓</span>Reactie op uw vragen binnen 4 werkuren</li>
           </ul>
-          <a href="/#contact" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
+          <a href="/demo" class="block text-center px-5 py-3 border-2 border-ink-900 text-ink-900 font-semibold rounded-xl hover:bg-ink-900 hover:text-white transition mt-auto">
             Plan een gesprek op maat
           </a>
         </div>
@@ -381,7 +382,7 @@
         Weet u het niet zeker? Boek een gratis demo — we bekijken samen uw aanvragen en zeggen eerlijk welk pakket bij u past. Ook als dat het kleinste is.
       </p>
       <div class="text-center">
-        <a href="/#contact" class="inline-block px-8 py-4 bg-ink-900 text-white font-semibold rounded-xl hover:bg-ink-700 transition shadow-soft">
+        <a href="/demo" class="inline-block px-8 py-4 bg-ink-900 text-white font-semibold rounded-xl hover:bg-ink-700 transition shadow-soft">
           Boek een gratis demo
         </a>
       </div>
@@ -508,7 +509,7 @@
         Tijdens een gratis demo tonen we een echte flow — aanvraag, antwoord binnen de minuut, offerte, opvolging — en rekenen we met uw eigen cijfers uit wat u vandaag laat liggen. Geen verkooppraatje, wel een concreet plan.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/#contact" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
+        <a href="/demo" class="px-8 py-4 bg-white text-ink-900 font-semibold rounded-xl hover:bg-brand-100 transition shadow-glow text-base text-center">
           Boek een gratis demo
         </a>
         <a href="https://wa.me/32483812907" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/5 transition text-base text-center">
@@ -538,7 +539,7 @@
             <span class="text-lg font-bold text-white">Selectly</span>
           </div>
           <p class="text-sm leading-relaxed max-w-md">
-            Selectly bouwt AI-automatiseringen voor Belgische KMO's.
+            Selectly levert digitale medewerkers aan Belgische installateurs, dakwerkers en HVAC-bedrijven.
             Stop met handmatig werk. Begin met groeien.
           </p>
         </div>
@@ -549,14 +550,17 @@
             <li><a href="/#wat-we-doen" class="hover:text-white transition">Wat we doen</a></li>
             <li><a href="/#hoe" class="hover:text-white transition">Werkwijze</a></li>
             <li><a href="/pakketten.html" class="hover:text-white transition">Pakketten</a></li>
-            <li><a href="/case-nxtg.html" class="hover:text-white transition">Case study</a></li>
+            <li><a href="/case-nxtg.html" class="hover:text-white transition">De case</a></li>
+            <li><a href="/voor-hvac.html" class="hover:text-white transition">Voor HVAC-installateurs</a></li>
+            <li><a href="/voor-dakwerken.html" class="hover:text-white transition">Voor dakwerkers</a></li>
+            <li><a href="/blog/" class="hover:text-white transition">Kennisbank</a></li>
           </ul>
         </div>
 
         <div>
           <div class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Bedrijf</div>
           <ul class="space-y-2 text-sm">
-            <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/demo" class="hover:text-white transition">Contact</a></li>
             <li><a href="/privacy.html" class="hover:text-white transition">Privacy</a></li>
             <li><a href="/voorwaarden.html" class="hover:text-white transition">Algemene voorwaarden</a></li>
           </ul>

@@ -13,6 +13,7 @@
     try { localStorage.setItem(KEY, value); } catch (e) {}
     var el = document.getElementById('selectly-consent-banner');
     if (el) el.remove();
+    document.body.classList.remove('sl-consent-open');
     if (value === 'accepted') {
       window.dispatchEvent(new Event('selectly-consent-given'));
     }
@@ -39,12 +40,13 @@
     banner.setAttribute('aria-label', 'Cookie toestemming');
     banner.innerHTML =
       '<div class="wrap">' +
-      '<p>We gebruiken cookies en Meta Pixel om je bezoek te meten en onze ads te optimaliseren. Lees onze <a href="/privacy.html">privacy policy</a>.</p>' +
+      '<p>We gebruiken cookies en de Meta-pixel om uw bezoek te meten en onze advertenties bij te sturen. Lees onze <a href="/privacy.html">privacy policy</a>.</p>' +
       '<div class="btns">' +
       '<button class="reject" type="button">Weigeren</button>' +
       '<button class="accept" type="button">Akkoord</button>' +
       '</div></div>';
     document.body.appendChild(banner);
+    document.body.classList.add('sl-consent-open');
 
     banner.querySelector('.accept').addEventListener('click', function () { setConsent('accepted'); });
     banner.querySelector('.reject').addEventListener('click', function () { setConsent('rejected'); });

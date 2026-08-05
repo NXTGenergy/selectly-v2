@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
   <link rel="canonical" href="https://selectly.be/blog/selectly-vs-consultancy.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Selectly vs grote consultancy: wat een KMO-eigenaar echt kiest — Selectly</title>
-<meta name="description" content="Een middelgrote consultancy stuurt een voorstel van 47 pagina's. Startbudget: 85.000 euro. Looptijd: 14 maanden. Ergens op pagina 31 staat wat je eigenlijk wilde: een…">
-<meta property="og:title" content="Selectly vs grote consultancy: wat een KMO-eigenaar echt kiest">
+<title>Selectly vs grote consultancy: wat kiest een KMO?</title>
+<meta name="description" content="Een groot bureau of een klein gespecialiseerd team: op doorlooptijd, prijs, aanspreekpunt en rapportering naast elkaar gelegd, zonder mooie praat.">
+<meta property="og:title" content="Selectly vs grote consultancy: wat kiest een KMO?">
+<meta property="og:description" content="Een groot bureau of een klein gespecialiseerd team: op doorlooptijd, prijs, aanspreekpunt en rapportering naast elkaar gelegd, zonder mooie praat.">
+<meta property="og:site_name" content="Selectly">
+<meta property="og:locale" content="nl_BE">
   <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -20,33 +23,59 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script>
-  tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
-    colors: {
-      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
-      accent: { 500:'#7c3aed', 400:'#a78bfa' }
-    }
-  } } };
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#13182b', 600: '#1c2238', 500: '#293150' },
+          brand: { 50:'#eff4ff',100:'#dbe5ff',200:'#bdd0ff',300:'#8eb0ff',400:'#5b8cff',500:'#3a6cf2',600:'#2451d8',700:'#1d40b0',800:'#1c388c',900:'#1d3372' },
+          mint: { 100:'#d5f7ea', 300:'#6ef0c2', 400: '#34e4a8', 500: '#10c98c', 700:'#0a8f63' },
+        },
+        boxShadow: {
+          'soft': '0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.03)',
+          'card': '0 0 0 1px rgba(0,0,0,0.04), 0 8px 32px -8px rgba(0,0,0,0.08)',
+        },
+      },
+    },
+  };
 </script>
 <style>
-  body { font-family: 'Inter', system-ui, sans-serif; }
-  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
-  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
-  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
-  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
-  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  [x-cloak] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  *:focus-visible { outline:2px solid #5b8cff; outline-offset:2px; border-radius:4px; }
+
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#070a14; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#0a0e1a; border-left:4px solid #3a6cf2; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#13182b; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#293150; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#293150; }
   article li { margin: 0.3rem 0; line-height: 1.7; }
-  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
-  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
-  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
-  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
-  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
-  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article a { color:#2451d8; text-decoration:underline; text-underline-offset:2px; }
+  article a:hover { color:#1d40b0; }
+
+  /* Brede tabellen scrollen binnen hun eigen kader; de pagina zelf schuift nooit zijwaarts. */
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; margin:1.2rem 0; }
+  article table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; min-width:8rem; }
+  article th { background:#f8fafc; font-weight:600; color:#070a14; }
+
+  article blockquote { border-left:4px solid #bdd0ff; padding-left:1rem; color:#293150; margin:1rem 0; font-style:italic; }
+  article code { background:#eff4ff; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#070a14; }
+  article pre { background:#070a14; color:#dbe5ff; padding:1rem; border-radius:8px; overflow-x:auto; }
   article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
-  article strong { color:#0f172a; }
+  article strong { color:#070a14; }
+
+  .post-meta { display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem; font-size:0.875rem; color:#293150; margin:0 0 1.75rem; }
+  .post-meta span[aria-hidden] { color:#8eb0ff; }
 </style>
-  <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
+<!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
 <script>
   function loadMetaPixel() {
     if (window._metaPixelLoaded) return;
@@ -71,28 +100,116 @@
 </script>
 <!-- /META PIXEL -->
 <script src="/consent.js" defer></script>
+<script defer src="/intake-widget.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Selectly vs grote consultancy: wat een KMO-eigenaar echt kiest",
+  "description": "Een groot bureau of een klein gespecialiseerd team: op doorlooptijd, prijs, aanspreekpunt en rapportering naast elkaar gelegd, zonder mooie praat.",
+  "image": [
+    "https://selectly.be/assets/og-image.png"
+  ],
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-08-04",
+  "inLanguage": "nl-BE",
+  "author": {
+    "@type": "Organization",
+    "name": "Selectly",
+    "url": "https://selectly.be/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Selectly",
+    "url": "https://selectly.be/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://selectly.be/apple-touch-icon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://selectly.be/blog/selectly-vs-consultancy.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://selectly.be/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://selectly.be/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Selectly vs grote consultancy: wat een KMO-eigenaar echt kiest",
+      "item": "https://selectly.be/blog/selectly-vs-consultancy.html"
+    }
+  ]
+}
+</script>
   </head>
 <body class="bg-white text-ink-900">
 
-<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
-  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
-      <span class="text-xl font-bold tracking-tight">Selectly</span>
-    </a>
-    <div class="flex items-center gap-6 text-sm">
-      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
-      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
-      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
-      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200" x-data="{ open: false }">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="url(#sl-logo-nav)"/>
+          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+          <defs><linearGradient id="sl-logo-nav" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="text-xl font-bold tracking-tight">Selectly</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-ink-500">
+        <a href="/" class="hover:text-ink-900 transition">Home</a>
+        <a href="/voor-hvac.html" class="hover:text-ink-900 transition">Voor HVAC</a>
+        <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
+        <a href="/blog/" class="hover:text-ink-900 transition">Blog</a>
+      </div>
+
+      <a href="/demo" class="hidden md:inline-block bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-ink-800 transition">Boek een gratis demo</a>
+
+      <button type="button" @click="open = !open" class="md:hidden -mr-2 p-2 text-ink-900" :aria-expanded="open ? 'true' : 'false'" aria-controls="sl-mobile-menu" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div id="sl-mobile-menu" x-show="open" x-cloak x-transition class="md:hidden pb-4 pt-2 border-t border-slate-200 space-y-1">
+      <a href="/" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Home</a>
+      <a href="/voor-hvac.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Voor HVAC-installateurs</a>
+      <a href="/voor-dakwerken.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Voor dakwerkers</a>
+      <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakketten</a>
+      <a href="/blog/" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Blog</a>
+      <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live AI-demo</a>
+      <a href="/demo" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo</a>
     </div>
   </div>
 </nav>
 
 <main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
-  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <nav aria-label="Kruimelpad" class="text-xs font-semibold uppercase tracking-wider text-brand-500 mb-3">
+    <a href="/" class="hover:text-brand-700">Home</a>
+    <span class="text-slate-300 mx-1" aria-hidden="true">/</span>
+    <a href="/blog/" class="hover:text-brand-700">Blog</a>
+  </nav>
   <article>
 <h1>Selectly vs grote consultancy: wat een KMO-eigenaar echt kiest</h1>
+<p class="post-meta"><time datetime="2026-06-15">15 juni 2026</time><span aria-hidden="true">·</span><span>8 min lezen</span><span aria-hidden="true">·</span><span>door het team van Selectly</span><span aria-hidden="true">·</span><span>bijgewerkt 4 augustus 2026</span></p>
 <p>Een middelgrote consultancy stuurt een voorstel van 47 pagina's. Startbudget: 85.000 euro. Looptijd: 14 maanden. Ergens op pagina 31 staat wat je eigenlijk wilde: een automatische opvolging van je inkomende leads.</p>
 <p>Dat is geen uitzonderlijk verhaal. Het is wat veel KMO-eigenaars meemaken als ze AI-automatisering willen bouwen zonder eerst de juiste partner te kiezen.</p>
 <hr />
@@ -108,7 +225,7 @@
 </ul>
 <hr />
 <h2>De vijf assen naast elkaar</h2>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Criterium</th>
@@ -143,7 +260,7 @@
 <td>Wekelijkse update in plain taal</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Die tabel vertelt al veel. Maar de echte verschillen zitten in de details.</p>
 <hr />
 <h2>Doorlooptijd: 14 maanden is geen plan, het is uitstel</h2>
@@ -216,16 +333,15 @@
 <p>In die gevallen betaal je voor structuur, dekking en formele autoriteit. Dat heeft waarde.</p>
 <p>Maar voor de meeste Vlaamse KMO's met 5 tot 100 medewerkers die een specifiek operationeel probleem willen oplossen? Dat is niet het geval.</p>
 <hr />
-<h2>Wat KMO-eigenaars ons het vaakst zeggen na de switch</h2>
-<p>Niet: "Wat een indrukwekkende methodologie."</p>
-<p>Wel:</p>
+<h2>Waar het verschil in de praktijk zit</h2>
+<p>Het verschil zit zelden in de methodologie. Het zit in vier dingen die je vooraf kunt controleren:</p>
 <ul>
-<li>"Ik had niet verwacht dat het zo snel live kon."</li>
-<li>"Eindelijk iemand die uitlegt wat er gebouwd wordt zonder slides."</li>
-<li>"Mijn team gebruikt het echt, in plaats van het te omzeilen."</li>
-<li>"De eerste meting was al positief."</li>
+<li>Hoe snel er iets werkends staat dat je zelf kunt openen — weken of maanden.</li>
+<li>Of degene die het gesprek voert ook degene is die bouwt.</li>
+<li>Of je team het systeem gebruikt of eromheen werkt.</li>
+<li>Of er na 30 dagen een getal op tafel ligt.</li>
 </ul>
-<p>Dat laatste is misschien het meest veelzeggend. Bij een groot bureau zie je het eerste meetbare resultaat na maanden. Bij Selectly weet je na drie tot vier weken of het werkt.</p>
+<p>Bij een groot bureau zie je het eerste meetbare resultaat doorgaans na maanden. In een klein traject weet je na drie tot vier weken of het werkt — en dat is precies de reden om klein te beginnen.</p>
 <hr />
 <h2>Drie vragen voor je beslist</h2>
 <p>Voor je een partner kiest voor automatisering, stel je deze drie vragen:</p>
@@ -240,34 +356,44 @@ Als er geen concreet getal op tafel komt: wees voorzichtig.</p>
 <p>Je kan 85.000 euro uitgeven en 14 maanden wachten op een systeem dat misschien werkt.</p>
 <p>Of je kan in vier weken een werkend systeem hebben dat je lead-opvolging, offerteproces of klantcommunicatie fundamenteel verandert — en dat gebaseerd is op wat je mét de builder hebt geleerd in de eerste gesprekken.</p>
 <p>Dat bedrijf heeft die keuze gemaakt. 80 leads per maand worden nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides. Dat zijn maandagochendrapporten.</p>
-<p>Als je wil weten wat dat voor jouw bedrijf betekent: plan een gratis strategiegesprek van 30 minuten via <a href="https://selectly.be/#contact">selectly.be/#contact</a>. Geen verplichtingen. Geen 47 pagina's voorstel achteraf. Wel een concreet beeld van wat er bij jou mogelijk is en in hoeveel tijd.</p>
+<p>Als je wil weten wat dat voor jouw bedrijf betekent: 30 minuten volstaan. Geen verplichtingen, geen voorstel van 47 pagina's achteraf. Wel een concreet beeld van wat mogelijk is en in hoeveel tijd — en wat het kost, staat gewoon op de <a href="/pakketten.html">pakkettenpagina</a>.</p>
+<p><strong><a href="/demo">Boek een gratis demo →</a></strong></p>
   </article>
 
   <div class="mt-16 pt-10 border-t border-slate-200">
-    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+    <a href="/blog/" class="text-sm text-ink-500 hover:text-ink-900">← Terug naar overzicht</a>
   </div>
 
   <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
-    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
-    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
-    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+    <h2 class="text-xl font-bold mb-2">Benieuwd wat dit voor uw zaak betekent?</h2>
+    <p class="text-slate-300 text-sm mb-5">In 30 minuten bekijken we samen uw aanvragen en uw opvolging. U kiest zelf een moment in de agenda. Geen verkooppitch, wel een eerlijk ja of nee.</p>
+    <a href="/demo" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Boek een gratis demo</a>
+    <p class="text-slate-400 text-xs mt-4">Liever eerst de prijzen zien? <a href="/pakketten.html" class="underline hover:text-white">Bekijk de vier pakketten</a>.</p>
   </div>
 </main>
 
-<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+<footer class="bg-ink-900 text-slate-400 mt-20 py-12">
   <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
     <div>
       <div class="flex items-center gap-3 mb-3">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="url(#sl-logo-footer)"/>
+          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+          <defs><linearGradient id="sl-logo-footer" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
         <span class="font-bold text-white">Selectly</span>
       </div>
-      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+      <p>Digitale medewerkers voor Belgische installatie- en renovatiebedrijven.</p>
+      <a href="/demo" class="inline-block mt-4 bg-white text-ink-900 font-semibold px-4 py-2 rounded-lg hover:bg-slate-100">Boek een gratis demo</a>
     </div>
     <div>
       <div class="text-white font-semibold mb-2">Navigatie</div>
       <ul class="space-y-1">
         <li><a href="/" class="hover:text-white">Home</a></li>
-        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/pakketten.html" class="hover:text-white">Pakketten</a></li>
+        <li><a href="/voor-hvac.html" class="hover:text-white">Voor HVAC-installateurs</a></li>
+        <li><a href="/voor-dakwerken.html" class="hover:text-white">Voor dakwerkers</a></li>
         <li><a href="/blog/" class="hover:text-white">Blog</a></li>
       </ul>
     </div>
@@ -276,6 +402,7 @@ Als er geen concreet getal op tafel komt: wees voorzichtig.</p>
       <ul class="space-y-1">
         <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
         <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li><a href="/security.html" class="hover:text-white">Security &amp; GDPR</a></li>
         <li>BTW BE1037.580.195</li>
       </ul>
     </div>

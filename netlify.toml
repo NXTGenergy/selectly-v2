@@ -2,6 +2,13 @@
   publish = "."
   functions = "netlify/functions"
 
+[build.environment]
+  NODE_VERSION = "22"
+
+# ---------------------------------------------------------------------------
+# Redirects
+# ---------------------------------------------------------------------------
+
 # Nette boekingslink voor outreach: selectly.be/demo → GHL-agenda
 [[redirects]]
   from = "/demo"
@@ -14,3 +21,123 @@
   from = "/omzetscan"
   to = "/omzetscan.html"
   status = 200
+
+# De broncode van de functies stond publiek leesbaar op selectly.be, waardoor
+# de volledige system prompt van de intake-assistent op straat lag.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Blog-bronbestanden staan in _bron/ (buiten de publicatiemap) omdat Netlify
+# geen redirects op bestandsextensie ondersteunt. Ze werden anders als duplicaat
+# van de .html-versie mee gedeployed en konden geindexeerd worden.
+
+# ---------------------------------------------------------------------------
+# Portaalbeveiliging
+# ---------------------------------------------------------------------------
+# Het volledige klantenportaal was publiek leesbaar: admin.html toonde de
+# klantenlijst met omzet per klant aan iedereen die de URL kende. De auth-guard
+# draait in de browser en beschermt dus niets — de HTML is al geleverd voor hij
+# iets doet. Deze regels controleren het Identity-token aan de rand, vóór er
+# iets verstuurd wordt.
+#
+# EENMALIG IN NETLIFY, VOOR DIT WERKT:
+#   1. Project → Identity → Enable (staat al aan, invite-only)
+#   2. Nodig jezelf uit als gebruiker
+#   3. Bij die gebruiker: Roles → voeg "admin" toe
+#   4. Voor elke klant later: rol "klant"
+#
+# Werkt aanmelden niet en sta je buiten? Zet deze twee blokken tijdelijk in
+# commentaar, deploy opnieuw, en je bent weer binnen.
+#
+# nxtg.html en installateur.html blijven bewust open: dat is de verkoopdemo.
+
+# Deze drie blijven open: de inlogpagina zelf en de verkoopdemo.
+[[redirects]]
+  from = "/portal/login.html"
+  to = "/portal/login.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/portal/nxtg.html"
+  to = "/portal/nxtg.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/portal/installateur.html"
+  to = "/portal/installateur.html"
+  status = 200
+  force = true
+
+# admin.html toont de klantenlijst met omzet per klant. Alleen admin.
+[[redirects]]
+  from = "/portal/admin.html"
+  to = "/portal/admin.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+# Al de rest, inclusief elk klantportaal dat de fabriek later genereert.
+[[redirects]]
+  from = "/portal/*"
+  to = "/portal/:splat"
+  status = 200
+  force = true
+  conditions = {Role = ["admin", "klant"]}
+
+# Geen geldige rol? Naar de inlogpagina in plaats van de inhoud.
+[[redirects]]
+  from = "/portal/*"
+  to = "/portal/login.html"
+  status = 302
+  force = true
+
+# ---------------------------------------------------------------------------
+# Security headers
+# ---------------------------------------------------------------------------
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+
+# Klantportalen mogen nooit geindexeerd worden. De noindex-meta blijft staan;
+# deze header vangt ook bestanden af die die meta niet hebben.
+[[headers]]
+  for = "/portal/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/onboarding/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# ---------------------------------------------------------------------------
+# Caching
+# ---------------------------------------------------------------------------
+# Bewust NIET op /*.js — consent.js, intake-widget.js, lead-meta.js en
+# auth-guard.js hebben geen versiehash in hun naam. Lang cachen betekent dat
+# een fix bij bestaande bezoekers niet aankomt.
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

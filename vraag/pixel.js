@@ -13,7 +13,7 @@
  * Lead-fees zoals in installateurs.json:
  *   zonnepanelen: 35 / thuisbatterij: 40 / warmtepomp: 60 / airco: 30 / dakwerken: 45
  *
- * Voor Steffie's optimization: maak in Meta Custom Conversions per
+ * Voor het team's optimization: maak in Meta Custom Conversions per
  * OfferteScout_Lead_{sector} event met value-tracking → optimaliseert
  * naar duurste leads.
  *

@@ -37,3 +37,11 @@ __pycache__/
 /vraag/BRAND-NAAM-FINALISTEN.md
 /vraag/README.md
 /_werk/
+
+# Bronbestanden en dependencies horen niet in de deploy
+node_modules/
+assets/**/*-2k.png
+assets/**/*-2K.png
+
+# Blog-bronbestanden: horen niet in de publicatiemap
+_bron/

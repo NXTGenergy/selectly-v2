@@ -29,6 +29,15 @@ exports.handler = async (event) => {
     const formName = (body.payload && body.payload.form_name) || d['form-name'] || 'website';
     const { first, last } = splitName(d.naam);
 
+    // De /vraag/-funnels zijn OfferteScout: particulieren die een offerte voor hun
+    // eigen woning vragen. Die horen NIET in de Selectly-nurture — dat zijn drie
+    // B2B-mails over digitale medewerkers naar een gezin, met spamklachten op
+    // send.selectly.be tot gevolg. Dat domein draagt de volledige outreach.
+    const isConsument = formName.indexOf('offertescout') === 0;
+    const tags = isConsument
+      ? ['offertescout-lead', 'form-' + formName]
+      : ['selectly-lead', 'form-' + formName];
+
     // 1) Contact upsert (dedupe op e-mail/telefoon)
     const contactBody = {
       locationId: LOCATION,
@@ -37,7 +46,7 @@ exports.handler = async (event) => {
       phone: d.telefoon || undefined,
       companyName: d.bedrijf || undefined,
       source: d.lead_source ? ('website: ' + d.lead_source) : 'selectly.be',
-      tags: ['selectly-lead', 'form-' + formName],
+      tags,
       customFields: [
         d.utm_campaign ? { key: 'contact.utm_campagne', field_value: d.utm_campaign } : null,
         d.lead_source ? { key: 'contact.lead_bron', field_value: d.lead_source } : null,
@@ -51,8 +60,9 @@ exports.handler = async (event) => {
       console.log('[ghl] contact upsert', r.status, contactId);
     } catch (e) { console.log('[ghl] contact fout', e && e.message); }
 
-    // 2) Opportunity in "Nieuwe lead"
-    if (contactId && PIPELINE && STAGE) {
+    // 2) Opportunity in "Nieuwe lead" — alleen voor B2B. Een OfferteScout-aanvraag
+    //    is geen Selectly-verkoopkans en zou de pijplijn en de tellingen vervuilen.
+    if (contactId && PIPELINE && STAGE && !isConsument) {
       try {
         const oppBody = {
           locationId: LOCATION, pipelineId: PIPELINE, pipelineStageId: STAGE,

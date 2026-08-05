@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
   <link rel="canonical" href="https://selectly.be/blog/auto-offertes-claude-api.html" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auto-offertes met de Claude API: wat is echt mogelijk? — Selectly</title>
-<meta name="description" content="Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en je verliest al snel één fulltime werkweek aan een…">
-<meta property="og:title" content="Auto-offertes met de Claude API: wat is echt mogelijk?">
+<title>Auto-offertes met de Claude API — Selectly</title>
+<meta name="description" content="Wat kan een taalmodel echt met uw offertes? Welke delen automatiseerbaar zijn, welke niet, en waar Belgische BTW- en premieregels roet in het eten gooien.">
+<meta property="og:title" content="Auto-offertes met de Claude API">
+<meta property="og:description" content="Wat kan een taalmodel echt met uw offertes? Welke delen automatiseerbaar zijn, welke niet, en waar Belgische BTW- en premieregels roet in het eten gooien.">
+<meta property="og:site_name" content="Selectly">
+<meta property="og:locale" content="nl_BE">
   <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -20,33 +23,59 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script>
-  tailwind.config = { theme: { extend: {
-    fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
-    colors: {
-      ink: { 950:'#0a0e1a', 900:'#0f172a', 800:'#1e293b', 700:'#334155' },
-      accent: { 500:'#7c3aed', 400:'#a78bfa' }
-    }
-  } } };
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+        colors: {
+          ink: { 900: '#070a14', 800: '#0a0e1a', 700: '#13182b', 600: '#1c2238', 500: '#293150' },
+          brand: { 50:'#eff4ff',100:'#dbe5ff',200:'#bdd0ff',300:'#8eb0ff',400:'#5b8cff',500:'#3a6cf2',600:'#2451d8',700:'#1d40b0',800:'#1c388c',900:'#1d3372' },
+          mint: { 100:'#d5f7ea', 300:'#6ef0c2', 400: '#34e4a8', 500: '#10c98c', 700:'#0a8f63' },
+        },
+        boxShadow: {
+          'soft': '0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.03)',
+          'card': '0 0 0 1px rgba(0,0,0,0.04), 0 8px 32px -8px rgba(0,0,0,0.08)',
+        },
+      },
+    },
+  };
 </script>
 <style>
-  body { font-family: 'Inter', system-ui, sans-serif; }
-  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#0f172a; }
-  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#1e293b; border-left:4px solid #7c3aed; padding-left:0.7rem; }
-  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#334155; }
-  article p { margin: 0.7rem 0; line-height: 1.7; color:#334155; }
-  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#334155; }
+  [x-cloak] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  *:focus-visible { outline:2px solid #5b8cff; outline-offset:2px; border-radius:4px; }
+
+  article h1 { font-size:2.4rem; font-weight:800; letter-spacing:-0.02em; margin: 0.5rem 0 1.2rem; line-height:1.15; color:#070a14; }
+  article h2 { font-size:1.5rem; font-weight:700; margin: 2.2rem 0 0.8rem; color:#0a0e1a; border-left:4px solid #3a6cf2; padding-left:0.7rem; }
+  article h3 { font-size:1.15rem; font-weight:700; margin: 1.6rem 0 0.5rem; color:#13182b; }
+  article p { margin: 0.7rem 0; line-height: 1.7; color:#293150; }
+  article ul, article ol { padding-left: 1.5rem; margin: 0.7rem 0; color:#293150; }
   article li { margin: 0.3rem 0; line-height: 1.7; }
-  article table { width:100%; border-collapse:collapse; margin: 1.2rem 0; font-size:0.95rem; }
-  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; }
-  article th { background:#f8fafc; font-weight:600; color:#0f172a; }
-  article blockquote { border-left:4px solid #cbd5e1; padding-left:1rem; color:#64748b; margin:1rem 0; font-style:italic; }
-  article code { background:#f1f5f9; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#0f172a; }
-  article pre { background:#0f172a; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; }
+  article a { color:#2451d8; text-decoration:underline; text-underline-offset:2px; }
+  article a:hover { color:#1d40b0; }
+
+  /* Brede tabellen scrollen binnen hun eigen kader; de pagina zelf schuift nooit zijwaarts. */
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; margin:1.2rem 0; }
+  article table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+  article th, article td { border:1px solid #e2e8f0; padding:0.55rem 0.8rem; text-align:left; vertical-align:top; min-width:8rem; }
+  article th { background:#f8fafc; font-weight:600; color:#070a14; }
+
+  article blockquote { border-left:4px solid #bdd0ff; padding-left:1rem; color:#293150; margin:1rem 0; font-style:italic; }
+  article code { background:#eff4ff; padding:0.1rem 0.35rem; border-radius:4px; font-size:0.92em; color:#070a14; }
+  article pre { background:#070a14; color:#dbe5ff; padding:1rem; border-radius:8px; overflow-x:auto; }
   article hr { border:none; border-top:1px solid #e2e8f0; margin:2rem 0; }
-  article strong { color:#0f172a; }
+  article strong { color:#070a14; }
+
+  .post-meta { display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem; font-size:0.875rem; color:#293150; margin:0 0 1.75rem; }
+  .post-meta span[aria-hidden] { color:#8eb0ff; }
 </style>
-  <!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
+<!-- META PIXEL — GDPR-gated, vuurt pas na consent (zie consent.js) -->
 <script>
   function loadMetaPixel() {
     if (window._metaPixelLoaded) return;
@@ -71,28 +100,116 @@
 </script>
 <!-- /META PIXEL -->
 <script src="/consent.js" defer></script>
+<script defer src="/intake-widget.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Auto-offertes met de Claude API: wat is echt mogelijk?",
+  "description": "Wat kan een taalmodel echt met uw offertes? Welke delen automatiseerbaar zijn, welke niet, en waar Belgische BTW- en premieregels roet in het eten gooien.",
+  "image": [
+    "https://selectly.be/assets/og-image.png"
+  ],
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-08-04",
+  "inLanguage": "nl-BE",
+  "author": {
+    "@type": "Organization",
+    "name": "Selectly",
+    "url": "https://selectly.be/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Selectly",
+    "url": "https://selectly.be/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://selectly.be/apple-touch-icon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://selectly.be/blog/auto-offertes-claude-api.html"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://selectly.be/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://selectly.be/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Auto-offertes met de Claude API: wat is echt mogelijk?",
+      "item": "https://selectly.be/blog/auto-offertes-claude-api.html"
+    }
+  ]
+}
+</script>
   </head>
 <body class="bg-white text-ink-900">
 
-<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
-  <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-500 to-blue-500 flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
-      <span class="text-xl font-bold tracking-tight">Selectly</span>
-    </a>
-    <div class="flex items-center gap-6 text-sm">
-      <a href="/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Home</a>
-      <a href="/calculator.html" class="hidden sm:inline text-ink-700 hover:text-ink-900">Calculator</a>
-      <a href="/blog/" class="hidden sm:inline text-ink-700 hover:text-ink-900">Blog</a>
-      <a href="/#contact" class="bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-ink-800">Plan gesprek</a>
+<nav class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200" x-data="{ open: false }">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="url(#sl-logo-nav)"/>
+          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+          <defs><linearGradient id="sl-logo-nav" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
+        <span class="text-xl font-bold tracking-tight">Selectly</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-ink-500">
+        <a href="/" class="hover:text-ink-900 transition">Home</a>
+        <a href="/voor-hvac.html" class="hover:text-ink-900 transition">Voor HVAC</a>
+        <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
+        <a href="/blog/" class="hover:text-ink-900 transition">Blog</a>
+      </div>
+
+      <a href="/demo" class="hidden md:inline-block bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-ink-800 transition">Boek een gratis demo</a>
+
+      <button type="button" @click="open = !open" class="md:hidden -mr-2 p-2 text-ink-900" :aria-expanded="open ? 'true' : 'false'" aria-controls="sl-mobile-menu" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div id="sl-mobile-menu" x-show="open" x-cloak x-transition class="md:hidden pb-4 pt-2 border-t border-slate-200 space-y-1">
+      <a href="/" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Home</a>
+      <a href="/voor-hvac.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Voor HVAC-installateurs</a>
+      <a href="/voor-dakwerken.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Voor dakwerkers</a>
+      <a href="/pakketten.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakketten</a>
+      <a href="/blog/" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Blog</a>
+      <a href="/demo-ai.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live AI-demo</a>
+      <a href="/demo" @click="open=false" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo</a>
     </div>
   </div>
 </nav>
 
 <main class="max-w-3xl mx-auto px-5 py-12 sm:py-16">
-  <div class="text-xs uppercase tracking-wider text-accent-500 font-semibold mb-3">Blog</div>
+  <nav aria-label="Kruimelpad" class="text-xs font-semibold uppercase tracking-wider text-brand-500 mb-3">
+    <a href="/" class="hover:text-brand-700">Home</a>
+    <span class="text-slate-300 mx-1" aria-hidden="true">/</span>
+    <a href="/blog/" class="hover:text-brand-700">Blog</a>
+  </nav>
   <article>
 <h1>Auto-offertes met de Claude API: wat is echt mogelijk?</h1>
+<p class="post-meta"><time datetime="2026-06-15">15 juni 2026</time><span aria-hidden="true">·</span><span>8 min lezen</span><span aria-hidden="true">·</span><span>door het team van Selectly</span><span aria-hidden="true">·</span><span>bijgewerkt 4 augustus 2026</span></p>
 <p>Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en je verliest al snel één fulltime werkweek aan een document dat de klant in 30 seconden doorscant.</p>
 <p>Dat kan anders. Een Belgisch installatiebedrijf in de energiesector maakte de sprong: van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.</p>
 <p>Dit artikel legt uit hoe dat werkt, wat het kost, en waar je voorzichtig mee moet zijn.</p>
@@ -167,7 +284,7 @@ Je prijst nooit af zonder expliciete instructie in de input.
 <p>Dat laatste getal is niet toevallig. Snelheid converteert. Een lead die binnen een uur contact krijgt, koopt drie keer vaker dan een lead die twee dagen wacht.</p>
 <hr />
 <h2>Vergelijking: manueel vs. geautomatiseerd</h2>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Factor</th>
@@ -207,7 +324,7 @@ Je prijst nooit af zonder expliciete instructie in de input.
 <td>Laag bij goede input</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>De medewerker verdwijnt niet. Die schuift op: van uitvoerder naar controleur en afwerker.</p>
 <hr />
 <h2>Wat kost het?</h2>
@@ -264,37 +381,46 @@ Je prijst nooit af zonder expliciete instructie in de input.
 <p>Met die vier stappen heb je genoeg om een concreet gesprek te voeren over wat het voor jou kan betekenen.</p>
 <hr />
 <h2>Klaar om het te bekijken?</h2>
-<p>Dit bedrijf is geen uitzondering. Het is een blauwdruk.</p>
+<p>Dit is geen uitzondering. Het is een blauwdruk — en hij werkt het zuiverst in sectoren met terugkerende posten, zoals bij <a href="/voor-hvac.html">HVAC-installateurs</a> en <a href="/voor-dakwerken.html">dakwerkers</a>.</p>
 <p>Als je weet hoeveel uren je verliest aan offertes die altijd op hetzelfde neerkomen, dan weet je ook dat er iets te winnen is.</p>
 <p>Boek een gratis strategiegesprek van 30 minuten. Geen verkooppraatje. Geen vrijblijvende presentatie. We kijken naar jouw offerteproces, jouw data, jouw tools. En we vertellen je eerlijk of automatisering zinvol is, en zo ja, hoe snel je het terugverdient.</p>
-<p><strong><a href="https://selectly.be/#contact">Boek je gratis gesprek via selectly.be/#contact</a></strong></p>
+<p><strong><a href="/demo">Boek een gratis demo →</a></strong></p>
   </article>
 
   <div class="mt-16 pt-10 border-t border-slate-200">
-    <a href="/blog/" class="text-sm text-ink-700 hover:text-ink-900">← Terug naar overzicht</a>
+    <a href="/blog/" class="text-sm text-ink-500 hover:text-ink-900">← Terug naar overzicht</a>
   </div>
 
   <div class="mt-12 bg-ink-900 text-white rounded-2xl p-8">
-    <h3 class="text-xl font-bold mb-2">Plan een 30 min strategie gesprek</h3>
-    <p class="text-slate-300 text-sm mb-5">Geen verkooppitch. We kijken naar je huidige flow en geven een eerlijk ja/nee advies.</p>
-    <a href="/#contact" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Plan gesprek</a>
+    <h2 class="text-xl font-bold mb-2">Benieuwd wat dit voor uw zaak betekent?</h2>
+    <p class="text-slate-300 text-sm mb-5">In 30 minuten bekijken we samen uw aanvragen en uw opvolging. U kiest zelf een moment in de agenda. Geen verkooppitch, wel een eerlijk ja of nee.</p>
+    <a href="/demo" class="inline-block bg-white text-ink-900 font-semibold px-5 py-3 rounded-lg hover:bg-slate-100">Boek een gratis demo</a>
+    <p class="text-slate-400 text-xs mt-4">Liever eerst de prijzen zien? <a href="/pakketten.html" class="underline hover:text-white">Bekijk de vier pakketten</a>.</p>
   </div>
 </main>
 
-<footer class="bg-ink-950 text-slate-400 mt-20 py-12">
+<footer class="bg-ink-900 text-slate-400 mt-20 py-12">
   <div class="max-w-5xl mx-auto px-5 grid sm:grid-cols-3 gap-8 text-sm">
     <div>
       <div class="flex items-center gap-3 mb-3">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#7c3aed,#2563eb);">S</div>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="url(#sl-logo-footer)"/>
+          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+          <defs><linearGradient id="sl-logo-footer" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+        </svg>
         <span class="font-bold text-white">Selectly</span>
       </div>
-      <p>AI automation voor Belgische KMO's. Live binnen 4 weken.</p>
+      <p>Digitale medewerkers voor Belgische installatie- en renovatiebedrijven.</p>
+      <a href="/demo" class="inline-block mt-4 bg-white text-ink-900 font-semibold px-4 py-2 rounded-lg hover:bg-slate-100">Boek een gratis demo</a>
     </div>
     <div>
       <div class="text-white font-semibold mb-2">Navigatie</div>
       <ul class="space-y-1">
         <li><a href="/" class="hover:text-white">Home</a></li>
-        <li><a href="/calculator.html" class="hover:text-white">Calculator</a></li>
+        <li><a href="/pakketten.html" class="hover:text-white">Pakketten</a></li>
+        <li><a href="/voor-hvac.html" class="hover:text-white">Voor HVAC-installateurs</a></li>
+        <li><a href="/voor-dakwerken.html" class="hover:text-white">Voor dakwerkers</a></li>
         <li><a href="/blog/" class="hover:text-white">Blog</a></li>
       </ul>
     </div>
@@ -303,6 +429,7 @@ Je prijst nooit af zonder expliciete instructie in de input.
       <ul class="space-y-1">
         <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
         <li><a href="/voorwaarden.html" class="hover:text-white">Voorwaarden</a></li>
+        <li><a href="/security.html" class="hover:text-white">Security &amp; GDPR</a></li>
         <li>BTW BE1037.580.195</li>
       </ul>
     </div>

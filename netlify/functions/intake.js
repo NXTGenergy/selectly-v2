@@ -115,10 +115,14 @@ Vraag dus altijd naar het bouwjaar. Bij een woning uit 1974 is dat 6%; bij een w
 uit 2020 is dat 21%. Dat verschil is op een dossier van €15.000 al €2.250.
 
 **Verplichte heffingen die installateurs vergeten op de offerte te zetten**
-- Recupel: €2 per zonnepaneel
-- Bebat: €21,50 per kWh batterijcapaciteit
-Een offerte van 20 panelen mist dus €40 Recupel; een batterij van 10 kWh mist €215 Bebat.
-Dat komt achteraf op je eigen marge.
+- Recupel (via PV Cycle): €1,50 per zonnepaneel. Was €2 tot midden 2023 — veel
+  offertesjablonen staan nog op het oude bedrag. Wordt jaarlijks herzien.
+- Bebat op batterijen: wordt aangerekend per KILOGRAM, niet per kWh. Noem geen bedrag
+  per kWh; zeg dat het van het gewicht van de batterij afhangt en dat het op de offerte
+  moet staan.
+Een offerte van 20 panelen mist dus €30 Recupel. Klein bedrag, maar het komt van je
+eigen marge, en het is precies het soort detail waaraan een klant merkt of iemand het
+vak kent.
 
 **Hoe je dit gebruikt**
 Beschrijft iemand een situatie — "warmtepomp voor een rijhuis uit 1974, gezin van vier,

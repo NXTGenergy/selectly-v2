@@ -109,9 +109,9 @@ Geen losse PDF's in een mailbox. Geen "we zijn het vergeten".
 
 ---
 
-## Praktijkgeval: NXTG Energy, Brugge
+## Praktijkgeval: een installatiebedrijf in de energiesector
 
-NXTG Energy installeert zonnepanelen, warmtepompen en laadpalen bij particulieren en bedrijven in de regio Brugge. Precies het type bedrijf waar het BTW-vraagstuk elke week speelt: residentieel vs. commercieel, nieuwe gebouwen vs. renovatie, installatie vs. materialen.
+Het bedrijf installeert zonnepanelen, warmtepompen en laadpalen bij particulieren en bedrijven in de regio. Precies het type bedrijf waar het BTW-vraagstuk elke week speelt: residentieel vs. commercieel, nieuwe gebouwen vs. renovatie, installatie vs. materialen.
 
 Voor de samenwerking met Selectly:
 

@@ -233,6 +233,40 @@ async function meldStoring(tekst) {
   } catch (e) { /* een mislukte waarschuwing mag nooit het gesprek breken */ }
 }
 
+// Melding bij een binnenkomende lead. Bedoeld om onderweg te kunnen zien wat er
+// binnenkomt zonder GHL te moeten openen. Bewust kort: leesbaar op een
+// vergrendelscherm, met enkel wat je nodig hebt om te beslissen of je belt.
+async function meldLead(d, fase) {
+  if (!TG_TOKEN || !TG_CHAT) return;
+  const r = [];
+  if (d.bedrijf) r.push(d.bedrijf);
+  if (d.voornaam) r.push(d.voornaam);
+  if (d.sector) r.push(d.sector);
+  if (d.medewerkers) r.push(d.medewerkers + ' medewerkers');
+  if (d.aanvragen_per_maand) r.push(d.aanvragen_per_maand + ' aanvragen/mnd');
+  if (d.crm) r.push('CRM: ' + d.crm);
+
+  const kop = fase === 'demo'
+    ? 'DEMO-KLAAR — deze wil boeken'
+    : (Number(d.fit_score) >= 70 ? 'Nieuwe lead (goede fit)' : 'Nieuwe lead');
+
+  const tekst = [
+    kop,
+    r.length ? r.join(' · ') : null,
+    d.email || null,
+    d.telefoon || null,
+    d.fit_score ? 'Score ' + d.fit_score + '/100' : null,
+    'Via de chatbot op selectly.be',
+  ].filter(Boolean).join('\n');
+
+  try {
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text: tekst, disable_web_page_preview: true }),
+    });
+  } catch (e) { /* geen melding is vervelend, een gebroken gesprek is erger */ }
+}
+
 async function callClaude(messages, poging) {
   const ctrl = new AbortController();
   const klok = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
@@ -398,6 +432,7 @@ exports.handler = async (event) => {
           'Opgenomen tijdens een storing van de AI-assistent. Wat de bezoeker typte:\n\n' + gezegd.slice(0, 4000),
         );
         if (!cid) await meldStoring(`Bezoeker tijdens storing, NIET in GHL:\n${gezegd.slice(0, 600)}`);
+        else await meldLead({ email: mail ? mail[0] : '', telefoon: gsm ? gsm[0] : '' }, 'storing');
         return { statusCode: 200, body: JSON.stringify({
           reply: 'Genoteerd. Iemand van het team neemt vandaag nog contact op. Wilt u liever meteen zelf een moment prikken? Dat kan hieronder.',
           modus: 'bericht', pushed: true, booking: BOOKING,
@@ -425,7 +460,11 @@ exports.handler = async (event) => {
       const compleet = data.klaar_voor_demo === true;
       if (!alGepusht || compleet) {
         const transcript = messages.map((m) => (m.role === 'user' ? 'Bezoeker: ' : 'Selectly: ') + m.content).join('\n\n');
-        await pushToGHL({ ...data, email }, compleet ? transcript : null);
+        const cid = await pushToGHL({ ...data, email }, compleet ? transcript : null);
+        // Enkel melden als de lead ook echt in GHL staat. Een melding voor een lead
+        // die daar niet geraakt is, is erger dan geen melding: dan denk je dat het
+        // opgevolgd wordt. Mislukt de push, dan gaat er al een storingsmelding uit.
+        if (cid) await meldLead({ ...data, email }, compleet ? 'demo' : 'nieuw');
         pushed = true;
       }
     }

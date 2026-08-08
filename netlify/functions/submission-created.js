@@ -16,9 +16,35 @@ const HEAD = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0 Safari/537.36',
 };
 
+const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
+const TG_CHAT = process.env.TELEGRAM_CHAT_ID || '';
+
 function splitName(naam) {
   const p = (naam || '').trim().split(/\s+/);
   return { first: p[0] || '', last: p.slice(1).join(' ') || '' };
+}
+
+// Melding onderweg. Twee soorten aanvragen lopen hier binnen en ze vragen een
+// heel ander antwoord, dus dat staat in de eerste regel: een OfferteScout-lead
+// is een particulier voor een installatie, een websiteformulier is een prospect
+// voor Selectly zelf.
+async function meldLead(d, formName, isConsument, gelukt) {
+  if (!TG_TOKEN || !TG_CHAT) return;
+  const regels = [
+    isConsument ? 'Nieuwe OfferteScout-aanvraag (particulier)' : 'Nieuwe aanvraag via de website',
+    [d.bedrijf, d.naam].filter(Boolean).join(' · ') || null,
+    d.email || null,
+    d.telefoon || null,
+    'Formulier: ' + formName,
+    d.lead_source ? 'Bron: ' + d.lead_source : null,
+    gelukt ? null : 'LET OP: niet in GHL geraakt — zelf opvolgen',
+  ].filter(Boolean);
+  try {
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text: regels.join('\n'), disable_web_page_preview: true }),
+    });
+  } catch (e) { console.log('[ghl] telegram', e && e.message); }
 }
 
 exports.handler = async (event) => {
@@ -73,6 +99,8 @@ exports.handler = async (event) => {
         console.log('[ghl] opportunity', ro.status);
       } catch (e) { console.log('[ghl] opportunity fout', e && e.message); }
     }
+
+    await meldLead(d, formName, isConsument, !!contactId);
   } catch (e) {
     console.log('[ghl] handler-fout', e && e.message);
   }

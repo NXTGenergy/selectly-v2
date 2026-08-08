@@ -22,7 +22,7 @@ De meeste "AI chatbot" artikels zijn pitchstukken van vendors. Dit is geschreven
 
 **Waarom het werkt:** mensen antwoorden GRAAG op WhatsApp. Email of bellen is een drempel. Chat voelt vrijblijvend.
 
-**Resultaat bij NXTG Energy (solar installateur, Brugge):** 90% van leads beantwoord binnen 1 uur i.p.v. 6-12u. Conversie van form fill naar offerte ging van 35% naar 62%.
+**Resultaat bij een Belgisch installatiebedrijf (solar):** 90% van leads beantwoord binnen 1 uur i.p.v. 6-12u. Conversie van form fill naar offerte ging van 35% naar 62%.
 
 ### 2. Veelgestelde vragen op je website (24/7 bereikbaarheid)
 

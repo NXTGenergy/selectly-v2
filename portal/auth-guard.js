@@ -23,7 +23,7 @@
 
   // Demo-bypass alleen op de demo-omgeving. Nooit op admin, leads, offertes,
   // campagnes, instellingen of een klantportaal.
-  const DEMO_TOEGELATEN = ["/portal/nxtg.html", "/portal/installateur.html"];
+  const DEMO_TOEGELATEN = ["/portal/demo.html", "/portal/installateur.html"];
   const opDemoPagina = DEMO_TOEGELATEN.indexOf(window.location.pathname) !== -1;
 
   const params = new URLSearchParams(window.location.search);

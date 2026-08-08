@@ -10,7 +10,7 @@ Mijn VerbouwPremie bundelt premies voor isolatie, verwarming, ramen en ventilati
 
 Snel betekent hier: binnen het uur. Niet binnen de week.
 
-Dat weet NXTG Energy in Brugge. Zij verwerken 80 leads per maand in de energiesector. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes is bij de klant binnen 1 uur na het eerste contact. Dat is geen toeval. Dat is een geautomatiseerd offerte-proces.
+Dat weten ze bij een Belgisch installatiebedrijf in de energiesector. Zij verwerken 80 leads per maand in de energiesector. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes is bij de klant binnen 1 uur na het eerste contact. Dat is geen toeval. Dat is een geautomatiseerd offerte-proces.
 
 ---
 
@@ -78,7 +78,7 @@ Als je weet welk type woning, welke werken en welke materialen, dan kun je een o
 4. Premie-aftrekken berekent op basis van het inkomen van de klant
 5. Een PDF genereert en verstuurt
 
-Dat gaat van 8 uur naar minder dan een uur. NXTG Energy deed het in 47 minuten.
+Dat gaat van 8 uur naar minder dan een uur. Eén installatiebedrijf deed het in 47 minuten.
 
 ### Stap 4: Automatische opvolging
 
@@ -149,9 +149,9 @@ De aannemers die nu hun proces opzetten, zijn klaar als de aanvragen komen. Wie 
 
 ---
 
-## Hoe NXTG Energy het aanpakte
+## Hoe één installatiebedrijf het aanpakte
 
-NXTG Energy in Brugge is actief in energieadvies en installatie. Ze merkten in 2024 dat hun team de groei niet meer kon bijbenen. Leads kwamen binnen, maar de opvolging haperde.
+Het gaat om een bedrijf dat actief is in energieadvies en installatie. Ze merkten in 2024 dat hun team de groei niet meer kon bijbenen. Leads kwamen binnen, maar de opvolging haperde.
 
 Het probleem was niet de vakkennis. Het was de tijd tussen aanvraag en offerte.
 

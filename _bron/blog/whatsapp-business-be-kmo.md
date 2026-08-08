@@ -54,9 +54,9 @@ Wat je kunt automatiseren:
 
 ---
 
-## Hoe NXTG Energy het aanpakt
+## Hoe één installatiebedrijf het aanpakt
 
-NXTG Energy is een installateur van zonnepanelen en warmtepompen in Brugge. Vroeger verliep het eerste klantcontact via een contactformulier op de website en een telefoonnummer. Reactietijd: gemiddeld 4 tot 8 uur. Leads die 's avonds binnenkwamen, wachtten tot de volgende ochtend.
+Het gaat om een installateur van zonnepanelen en warmtepompen. Vroeger verliep het eerste klantcontact via een contactformulier op de website en een telefoonnummer. Reactietijd: gemiddeld 4 tot 8 uur. Leads die 's avonds binnenkwamen, wachtten tot de volgende ochtend.
 
 Na de implementatie van een WhatsApp-automationflow ziet het er zo uit:
 
@@ -182,7 +182,7 @@ Niet "moet ik op WhatsApp zitten?" maar "hoe snel reageer ik vandaag op een nieu
 
 Als het antwoord op die tweede vraag meer is dan je comfortabel vindt, dan is WhatsApp Business met automatisering geen luxe. Dan is het een correctie.
 
-NXTG Energy wachtte niet op het perfecte moment. Ze bouwden een werkende flow in drie weken. De 80 leads per maand die er nu doorstromen, kwamen eerder niet of te laat bij de juiste persoon terecht.
+Dat bedrijf wachtte niet op het perfecte moment. Ze bouwden een werkende flow in drie weken. De 80 leads per maand die er nu doorstromen, kwamen eerder niet of te laat bij de juiste persoon terecht.
 
 ---
 

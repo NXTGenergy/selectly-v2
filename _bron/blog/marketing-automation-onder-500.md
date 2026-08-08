@@ -88,9 +88,9 @@ Je kan dus volledig operationeel zijn voor minder dan €60 per maand. De rest v
 
 ---
 
-## Zo draait het in de praktijk: NXTG Energy
+## Zo draait het in de praktijk
 
-NXTG Energy in Brugge installeert laadpalen voor bedrijven. Voor ze met automation werkten, deed een medewerker elke ochtend hetzelfde: leads uit het contactformulier halen, mailen, wachten, een offerte opstellen, opnieuw mailen.
+Een Belgisch installatiebedrijf installeert laadpalen voor bedrijven. Voor ze met automation werkten, deed een medewerker elke ochtend hetzelfde: leads uit het contactformulier halen, mailen, wachten, een offerte opstellen, opnieuw mailen.
 
 Dat kostte per offerte gemiddeld 8 uur. Van eerste contact tot document in de inbox van de klant.
 

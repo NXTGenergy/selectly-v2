@@ -25,7 +25,7 @@ In de US is GHL de standaard bij marketing agencies. In België wordt het langza
 Eerlijk blijven: GHL heeft scherpe kantjes.
 
 1. **Boekhouding integratie BE is matig.** Octopus, Yuki, WinBooks ontbreken native. **Oplossing:** webhook → custom Zapier of Selectly bouwt de bridge.
-2. **Btw rapportering werkt voor US sales tax, niet voor Belgische 0/6/21%.** **Oplossing:** offertes en facturen genereren we extern (zoals Selectly doet voor NXTG met een eigen PDF engine).
+2. **Btw rapportering werkt voor US sales tax, niet voor Belgische 0/6/21%.** **Oplossing:** offertes en facturen genereren we extern (zoals Selectly doet met een eigen PDF engine).
 3. **Documentatie is overweldigend.** 4000+ help artikels in het Engels. **Oplossing:** zoek een Belgische implementatiepartner die de eerste 4 weken naast je staat.
 4. **Snowflake pricing voor SaaS verkoop.** Native checkout flows zijn US-georiënteerd. **Oplossing:** voor Belgische one-shot facturatie gebruik je een aparte tool of API call.
 

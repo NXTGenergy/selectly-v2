@@ -2,7 +2,7 @@
 
 Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en je verliest al snel één fulltime werkweek aan een document dat de klant in 30 seconden doorscant.
 
-Dat kan anders. NXTG Energy in Brugge maakte de sprong: van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.
+Dat kan anders. Een Belgisch installatiebedrijf in de energiesector maakte de sprong: van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.
 
 Dit artikel legt uit hoe dat werkt, wat het kost, en waar je voorzichtig mee moet zijn.
 
@@ -87,9 +87,9 @@ Zinvolle koppelingen zijn:
 
 ---
 
-## Wat deed NXTG Energy concreet?
+## Wat deed het bedrijf concreet?
 
-NXTG Energy installeert laadpalen en zonnepanelen voor bedrijven in de regio Brugge. Ze hadden een goed salesteam, maar het offerteproces was een bottleneck.
+Het bedrijf installeert laadpalen en zonnepanelen voor bedrijven in de regio. Ze hadden een goed salesteam, maar het offerteproces was een bottleneck.
 
 Elke offerte vroeg:
 1. Een intake-gesprek verwerken
@@ -214,7 +214,7 @@ Met die vier stappen heb je genoeg om een concreet gesprek te voeren over wat he
 
 ## Klaar om het te bekijken?
 
-NXTG Energy is geen uitzondering. Het is een blauwdruk.
+Dat bedrijf is geen uitzondering. Het is een blauwdruk.
 
 Als je weet hoeveel uren je verliest aan offertes die altijd op hetzelfde neerkomen, dan weet je ook dat er iets te winnen is.
 

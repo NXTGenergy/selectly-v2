@@ -44,7 +44,7 @@ Voor een KMO in Gent met 12 medewerkers: dodelijk.
 
 Elke maand zonder werkend systeem is een maand dat je concurrent sneller werkt. Elke week wachten op goedkeuring is een week dat je verkoopteam handmatig aan het opvolgen is.
 
-**NXTG Energy in Brugge** had geen 14 maanden. Ze hadden een probleem: 80 leads per maand, geen tijd om ze allemaal binnen het uur op te volgen. De meeste leads verwachten een reactie binnen 60 minuten. Na dat uur daalt de kans op een deal met 60 procent.
+**Een Belgisch installatiebedrijf in de energiesector** had geen 14 maanden. Ze hadden een probleem: 80 leads per maand, geen tijd om ze allemaal binnen het uur op te volgen. De meeste leads verwachten een reactie binnen 60 minuten. Na dat uur daalt de kans op een deal met 60 procent.
 
 Vier weken na de eerste call stond het systeem live. 90 procent van de leads krijgt nu een opvolging binnen het uur. Automatisch. Zonder extra mensen.
 
@@ -58,7 +58,7 @@ Je betaalt ook voor het methodologisch framework dat ze acht jaar geleden hebben
 
 Selectly werkt anders. Kleine kern. Geen laag tussen jou en de persoon die bouwt.
 
-Het gevolg: een eerste werkend prototype voor NXTG Energy kostte geen 85.000 euro. Het kostte een fractie daarvan. En het werkt.
+Het gevolg: een eerste werkend prototype voor dat bedrijf kostte geen 85.000 euro. Het kostte een fractie daarvan. En het werkt.
 
 **Wat je bij een grote consultancy wél krijgt voor je geld:**
 
@@ -108,7 +108,7 @@ Selectly rapporteert in getallen die je al kent:
 - Hoeveel offertes zijn er verstuurd?
 - Hoe lang duurde het om een offerte te maken?
 
-Bij NXTG Energy: de tijd voor een offerte ging van 8 uur naar 47 minuten. Dat staat niet in een presentatie. Dat staat in de agenda van de verkoper die elke middag vroeger klaar is.
+Bij dat bedrijf: de tijd voor een offerte ging van 8 uur naar 47 minuten. Dat staat niet in een presentatie. Dat staat in de agenda van de verkoper die elke middag vroeger klaar is.
 
 ---
 
@@ -189,6 +189,6 @@ Je kan 85.000 euro uitgeven en 14 maanden wachten op een systeem dat misschien w
 
 Of je kan in vier weken een werkend systeem hebben dat je lead-opvolging, offerteproces of klantcommunicatie fundamenteel verandert — en dat gebaseerd is op wat je mét de builder hebt geleerd in de eerste gesprekken.
 
-NXTG Energy in Brugge heeft die keuze gemaakt. 80 leads per maand worden nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides. Dat zijn maandagochendrapporten.
+Dat installatiebedrijf heeft die keuze gemaakt. 80 leads per maand worden nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides. Dat zijn maandagochendrapporten.
 
 Als je wil weten wat dat voor jouw bedrijf betekent: plan een gratis strategiegesprek van 30 minuten via [selectly.be/#contact](https://selectly.be/#contact). Geen verplichtingen. Geen 47 pagina's voorstel achteraf. Wel een concreet beeld van wat er bij jou mogelijk is en in hoeveel tijd.

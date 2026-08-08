@@ -81,7 +81,7 @@
       <!-- Status indicator -->
       <div id="loggedInState" class="hidden mt-6 p-4 bg-mint-500/10 border border-mint-500/30 rounded-xl text-sm text-center">
         Ingelogd als <strong id="userEmail"></strong> ·
-        <a href="nxtg.html" class="underline text-mint-300 hover:text-white">naar portal →</a>
+        <a href="demo.html" class="underline text-mint-300 hover:text-white">naar portal →</a>
       </div>
 
     </div>
@@ -101,7 +101,7 @@
       });
       window.netlifyIdentity.on("login", user => {
         showLoggedIn(user);
-        setTimeout(() => { window.location.href = "nxtg.html"; }, 800);
+        setTimeout(() => { window.location.href = "demo.html"; }, 800);
       });
       window.netlifyIdentity.on("logout", () => {
         document.getElementById("loggedInState").classList.add("hidden");

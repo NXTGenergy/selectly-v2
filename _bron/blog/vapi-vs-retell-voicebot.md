@@ -83,7 +83,7 @@ Retell kiest een andere aanpak. Het platform legt de nadruk op eenvoud en snelhe
 
 ## Wat betekent dit in de praktijk?
 
-Neem NXTG Energy in Brugge. Dit bedrijf in energieoplossingen kreeg maandelijks meer dan 200 inkomende oproepen. Veel ervan waren kwalificatievragen: heeft de klant een geschikt dak, welk vermogen, wat is zijn huidig verbruik?
+Neem een Belgisch installatiebedrijf in de energiesector. Dit bedrijf kreeg maandelijks meer dan 200 inkomende oproepen. Veel ervan waren kwalificatievragen: heeft de klant een geschikt dak, welk vermogen, wat is zijn huidig verbruik?
 
 Vóór de automatisering kostte elke lead-kwalificatie gemiddeld 25 minuten menselijke tijd. De offerte zelf nam 8 uur in beslag.
 

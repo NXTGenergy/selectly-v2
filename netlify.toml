@@ -66,7 +66,15 @@
 # Werkt aanmelden niet en sta je buiten? Zet deze twee blokken tijdelijk in
 # commentaar, deploy opnieuw, en je bent weer binnen.
 #
-# nxtg.html en installateur.html blijven bewust open: dat is de verkoopdemo.
+# demo.html en installateur.html blijven bewust open: dat is de verkoopdemo.
+
+# Het oude demo-adres moet vóór de portal-beveiliging staan, anders vangt
+# /portal/* het weg en komt wie de oude link nog heeft op de inlogpagina uit.
+[[redirects]]
+  from = "/portal/nxtg.html"
+  to = "/portal/demo.html"
+  status = 301
+  force = true
 
 # Deze drie blijven open: de inlogpagina zelf en de verkoopdemo.
 [[redirects]]
@@ -173,9 +181,4 @@
   to = "/case-installateur.html"
   status = 301
   force = true
-
-[[redirects]]
-  from = "/portal/nxtg.html"
-  to = "/portal/demo.html"
-  status = 301
-  force = true
+# (het oude /portal/nxtg.html-adres staat hoger, vóór de portal-beveiliging)

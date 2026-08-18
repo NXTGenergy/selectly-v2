@@ -41,7 +41,17 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '852925924180054');
     fbq('track', 'PageView');
-    fbq('track', 'Lead', { content_name: 'demo-aanvraag', currency: 'EUR', value: 0 });
+    /* Onderscheid tussen een ingevuld contactformulier en een effectief
+     * geboekte demo. De GHL-agenda stuurt na het boeken door naar
+     * /bedankt.html?type=demo-geboekt — dat is de enige conversie waarop
+     * de Meta-campagne mag optimaliseren. Zonder parameter blijft het
+     * gedrag zoals voorheen. */
+    var _bron = 'demo-aanvraag';
+    try {
+      var _t = new URLSearchParams(window.location.search).get('type');
+      if (_t === 'demo-geboekt' || _t === 'demo') _bron = 'demo-geboekt';
+    } catch (e) {}
+    fbq('track', 'Lead', { content_name: _bron, currency: 'EUR', value: 0 });
   }
   try {
     if (localStorage.getItem('selectly_consent') === 'accepted') {

@@ -91,6 +91,16 @@
       if (localStorage.getItem('selectly_consent') === 'accepted') loadMetaPixel();
       else window.addEventListener('selectly-consent-given', loadMetaPixel, { once: true });
     } catch (e) {}
+
+    /* Wie doorklikt naar de agenda verlaat het domein (GHL staat op een
+     * ander adres), dus daarna ziet de pixel niets meer. Deze klik is het
+     * laatste meetpunt op eigen terrein: bruikbaar om te hertargeten wie
+     * wel de kalender opende maar niet boekte. Niet gebruiken om de
+     * campagne op te optimaliseren — een klik is geen boeking. */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href="/demo"]');
+      if (a && window.fbq) window.fbq('trackCustom', 'Demo_Start');
+    }, true);
   </script>
   <script src="/consent.js" defer></script>
 </head>

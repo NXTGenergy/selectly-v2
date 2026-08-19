@@ -1,0 +1,113 @@
+<!-- ═══════════════════════════════════════════════════════════════════
+     Selectly — e-mailsjabloon voor de eerste reactie op een aanvraag.
+     Plakken in GHL: workflow "Selectly - Lead opvolging" → e-mailactie →
+     Source / Code-weergave → dit volledig vervangen.
+
+     {{contact.ai_eerste_antwoord}} is de tekst die de AI schrijft in
+     netlify/functions/submission-created.js. Staat die leeg (AI eruit of
+     te traag), dan toont GHL niets op die plek — daarom staat de knop en
+     de afsluiter eronder los, zodat de mail altijd zinnig blijft.
+
+     Tabellen en inline stijlen zijn met opzet: Outlook rendert geen flexbox.
+     ═══════════════════════════════════════════════════════════════════ -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f1f4f9;margin:0;padding:0;">
+  <tr>
+    <td align="center" style="padding:32px 12px;">
+
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background-color:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #dde2ec;">
+
+        <!-- Merkbalk -->
+        <tr>
+          <td style="background-color:#070a14;padding:26px 36px;">
+            <img src="https://selectly.be/assets/selectly-logo-email-dark.png"
+                 alt="Selectly"
+                 width="180"
+                 style="display:block;width:180px;max-width:180px;height:auto;border:0;outline:none;text-decoration:none;">
+          </td>
+        </tr>
+
+        <!-- Accentlijn -->
+        <tr>
+          <td style="height:3px;background-color:#10c98c;font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+
+        <!-- Bericht -->
+        <tr>
+          <td style="padding:38px 36px 8px 36px;">
+            <p style="margin:0 0 22px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1;letter-spacing:1.4px;text-transform:uppercase;color:#6b7689;">
+              Uw aanvraag
+            </p>
+
+            <div style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2233;white-space:pre-line;">{{contact.ai_eerste_antwoord}}</div>
+          </td>
+        </tr>
+
+        <!-- Knop -->
+        <tr>
+          <td align="left" style="padding:26px 36px 34px 36px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background-color:#3a6cf2;border-radius:9px;">
+                  <a href="https://api.leadconnectorhq.com/widget/bookings/selectly-demo"
+                     style="display:inline-block;padding:14px 30px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:9px;">
+                    Kies een moment voor uw demo
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:12px 0 0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.5;color:#6b7689;">
+              20 minuten &middot; online &middot; meteen bevestigd
+            </p>
+          </td>
+        </tr>
+
+        <!-- Wie wij zijn -->
+        <tr>
+          <td style="padding:0 36px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e6eaf2;">
+              <tr>
+                <td style="padding:22px 0 0 0;">
+                  <p style="margin:0 0 6px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#1b2233;font-weight:600;">
+                    Liever eerst even bellen?
+                  </p>
+                  <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#4a5568;">
+                    <a href="tel:+32483812907" style="color:#3a6cf2;text-decoration:none;">+32 483 81 29 07</a>
+                    &nbsp;&middot;&nbsp;
+                    <a href="mailto:info@selectly.be" style="color:#3a6cf2;text-decoration:none;">info@selectly.be</a><br>
+                    Er neemt een mens op.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Voettekst -->
+        <tr>
+          <td style="padding:26px 36px 30px 36px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e6eaf2;">
+              <tr>
+                <td style="padding:20px 0 0 0;">
+                  <p style="margin:0 0 4px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#8a93a5;">
+                    <strong style="color:#4a5568;">Selectly</strong> &mdash; digitale medewerkers voor Belgische installateurs
+                  </p>
+                  <p style="margin:0 0 14px 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#8a93a5;">
+                    BV NXTG Solutions &middot; BTW BE1037.580.195 &middot; Brugge, Belgi&euml;
+                  </p>
+                  <p style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;line-height:1.6;color:#a2aab9;">
+                    U krijgt deze mail omdat u een aanvraag deed via selectly.be.
+                    <a href="{{right_to_be_forgotten}}" style="color:#a2aab9;text-decoration:underline;">Uitschrijven</a>
+                    &middot;
+                    <a href="https://selectly.be/privacy.html" style="color:#a2aab9;text-decoration:underline;">Privacy</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>

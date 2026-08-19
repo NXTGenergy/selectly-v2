@@ -118,6 +118,21 @@
   status = 302
   force = true
 
+# Het onboardingformulier is intern: het toont het volledige opstartproces en de
+# pakketprijzen. Stond publiek op 200, nu achter dezelfde rollen als het portaal.
+[[redirects]]
+  from = "/onboarding/*"
+  to = "/onboarding/:splat"
+  status = 200
+  force = true
+  conditions = {Role = ["admin", "klant"]}
+
+[[redirects]]
+  from = "/onboarding/*"
+  to = "/portal/login.html"
+  status = 302
+  force = true
+
 # ---------------------------------------------------------------------------
 # Security headers
 # ---------------------------------------------------------------------------

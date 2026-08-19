@@ -45,3 +45,6 @@ assets/**/*-2K.png
 
 # Blog-bronbestanden: horen niet in de publicatiemap
 _bron/
+
+# Interne onderzoeksnotities — mogen nooit mee gedeployed worden
+vraag/_onderzoek/

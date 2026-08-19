@@ -324,7 +324,7 @@ function splitData(text) {
 
 const EMAIL_RE = /[\w.+-]+@[\w-]+\.[a-z]{2,}/i;
 
-async function pushToGHL(d, transcript) {
+async function pushToGHL(d, transcript, maakOpportunity) {
   if (!GHL_TOKEN || !d.email || !EMAIL_RE.test(d.email)) return null;
   const HEAD = { Authorization: 'Bearer ' + GHL_TOKEN, Version: '2021-07-28', 'Content-Type': 'application/json', Accept: 'application/json', 'User-Agent': UA };
   try {
@@ -374,7 +374,10 @@ async function pushToGHL(d, transcript) {
       } catch (e) { console.log('[intake] notitie', e && e.message); }
     }
 
-    if (GHL_PIPELINE && GHL_STAGE) {
+    // Contacten dedupliceren via upsert, opportunities niet. Zonder deze vlag
+    // verschijnt één prospect twee keer in de pijplijn: één keer zodra zijn
+    // e-mailadres valt, en nog eens bij klaar_voor_demo.
+    if (maakOpportunity && GHL_PIPELINE && GHL_STAGE) {
       const naam = (d.bedrijf || d.voornaam || d.email) + ' (chatbot' + (d.fit_score ? ', score ' + d.fit_score : '') + ')';
       await fetch('https://services.leadconnectorhq.com/opportunities/', {
         method: 'POST', headers: HEAD,
@@ -404,7 +407,14 @@ exports.handler = async (event) => {
 
     // Alleen echte gespreksbeurten doorlaten, met een harde lengtebegrenzing.
     // De client bepaalde vroeger volledig wat er naar Claude ging.
-    const ruw = Array.isArray(body.messages) ? body.messages.slice(-MAX_BERICHTEN) : [];
+    const alles = Array.isArray(body.messages) ? body.messages : [];
+    // Het vangnet moet naar het HELE gesprek kijken, niet naar de laatste 16 beurten.
+    // Anders valt de beurt waarin de bezoeker zijn e-mailadres typte buiten beeld
+    // zodra het gesprek langer wordt, en vangt het vangnet niets meer op.
+    const allesGezegd = alles
+      .filter((m) => m && m.role === 'user' && typeof m.content === 'string')
+      .map((m) => m.content).join(' ').slice(0, 20000);
+    const ruw = alles.slice(-MAX_BERICHTEN);
     const messages = ruw
       .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
       .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_TEKENS) }));
@@ -424,23 +434,29 @@ exports.handler = async (event) => {
     // gegevens gaan alsnog naar GHL. Anders is elke bezoeker tijdens een storing
     // een lead die niemand ooit ziet.
     if (text === null) {
-      const mail = gezegd.match(EMAIL_RE);
-      const gsm = gezegd.match(/(?:\+32|0)\s?4\d{2}[\s./-]?\d{2}[\s./-]?\d{2}[\s./-]?\d{2}/);
+      const mail = allesGezegd.match(EMAIL_RE);
+      const gsm = allesGezegd.match(/(?:\+32|0)\s?4\d{2}[\s./-]?\d{2}[\s./-]?\d{2}[\s./-]?\d{2}/);
       if (mail || gsm) {
         const cid = await pushToGHL(
           { email: mail ? mail[0] : `storing-${Date.now()}@selectly.be`, telefoon: gsm ? gsm[0] : '', voornaam: '', bedrijf: '' },
-          'Opgenomen tijdens een storing van de AI-assistent. Wat de bezoeker typte:\n\n' + gezegd.slice(0, 4000),
+          'Opgenomen tijdens een storing van de AI-assistent. Wat de bezoeker typte:\n\n' + allesGezegd.slice(0, 4000),
+          true,
         );
-        if (!cid) await meldStoring(`Bezoeker tijdens storing, NIET in GHL:\n${gezegd.slice(0, 600)}`);
+        if (!cid) await meldStoring(`Bezoeker tijdens storing, NIET in GHL:\n${allesGezegd.slice(0, 600)}`);
         else await meldLead({ email: mail ? mail[0] : '', telefoon: gsm ? gsm[0] : '' }, 'storing');
         return { statusCode: 200, body: JSON.stringify({
           reply: 'Genoteerd. Iemand van het team neemt vandaag nog contact op. Wilt u liever meteen zelf een moment prikken? Dat kan hieronder.',
           modus: 'bericht', pushed: true, booking: BOOKING,
         }) };
       }
+      // Storing zonder contactgegevens: er valt niets te pushen, maar je wil wél
+      // weten dat er iemand tegen een kapotte assistent zat te praten.
+      if (allesGezegd.trim() && !body.gemeld) {
+        await meldStoring(`Bezoeker tijdens AI-storing, geen contactgegevens:\n${allesGezegd.slice(0, 800)}`);
+      }
       return { statusCode: 200, body: JSON.stringify({
         reply: 'Mijn collega-AI ligt er even uit — geen probleem, ik noteer het gewoon zelf. Wat is uw naam en e-mailadres of gsm-nummer? Dan neemt iemand van het team vandaag nog contact op.',
-        modus: 'bericht', booking: BOOKING,
+        modus: 'bericht', gemeld: true, booking: BOOKING,
       }) };
     }
 
@@ -448,7 +464,7 @@ exports.handler = async (event) => {
 
     // Vangnet: heeft de bezoeker zijn e-mailadres getypt, dan komt hij in het CRM,
     // ook als het model zijn DATA-blok verknoeit of afgekapt wordt.
-    const uitChat = gezegd.match(EMAIL_RE);
+    const uitChat = allesGezegd.match(EMAIL_RE);
     const email = (data.email && EMAIL_RE.test(data.email)) ? data.email : (uitChat ? uitChat[0] : null);
 
     // Server-side bepalen of er al gepusht is; de client kon dit vroeger sturen
@@ -460,16 +476,40 @@ exports.handler = async (event) => {
       const compleet = data.klaar_voor_demo === true;
       if (!alGepusht || compleet) {
         const transcript = messages.map((m) => (m.role === 'user' ? 'Bezoeker: ' : 'Selectly: ') + m.content).join('\n\n');
-        const cid = await pushToGHL({ ...data, email }, compleet ? transcript : null);
+        const cid = await pushToGHL({ ...data, email }, compleet ? transcript : null, !body.pushed);
         // Enkel melden als de lead ook echt in GHL staat. Een melding voor een lead
         // die daar niet geraakt is, is erger dan geen melding: dan denk je dat het
         // opgevolgd wordt. Mislukt de push, dan gaat er al een storingsmelding uit.
         if (cid) await meldLead({ ...data, email }, compleet ? 'demo' : 'nieuw');
-        pushed = true;
+        // Alleen als de lead er ook echt in staat. Anders probeert de volgende beurt
+        // het gewoon opnieuw — een 500 van GHL is meestal tijdelijk.
+        pushed = !!cid;
       }
     }
 
-    return { statusCode: 200, body: JSON.stringify({ reply, data, pushed, booking: BOOKING }) };
+    // Een warm gesprek zonder e-mailadres is geen niet-lead. Zonder dit blok verdwijnt
+    // iemand die de bot zelf op fit_score 90 zet spoorloos zodra hij "geen e-mail nu"
+    // zegt: geen CRM, geen melding, geen transcript. Eén melding per gesprek.
+    let gemeld = !!body.gemeld;
+    const score = Number(data.fit_score) || 0;
+    const beurten = messages.filter((m) => m.role === 'user').length;
+    if (!email && !gemeld && score >= 60 && beurten >= 3) {
+      const transcript = messages
+        .map((m) => (m.role === 'user' ? 'Bezoeker: ' : 'Selectly: ') + m.content)
+        .join('\n\n');
+      const kop = [
+        data.sector,
+        data.medewerkers && data.medewerkers + ' medewerkers',
+        data.aanvragen_per_maand && data.aanvragen_per_maand + ' aanvragen/mnd',
+        data.crm && 'CRM: ' + data.crm,
+      ].filter(Boolean).join(' · ');
+      await meldStoring(
+        `WARM GESPREK ZONDER E-MAIL — score ${score}\n${kop}\n\n${transcript.slice(0, 2500)}`
+      );
+      gemeld = true;
+    }
+
+    return { statusCode: 200, body: JSON.stringify({ reply, data, pushed, gemeld, booking: BOOKING }) };
   } catch (e) {
     console.log('[intake] handler-fout', e && e.message);
     await meldStoring(`Handler-fout: ${e && e.message}`);

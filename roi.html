@@ -210,7 +210,7 @@
             <label class="text-sm font-semibold text-ink-900">Leads per maand</label>
             <span class="font-mono font-bold text-lg text-brand-500" x-text="leads"></span>
           </div>
-          <input type="range" min="10" max="500" step="5" x-model.number="leads" @input="compute()" />
+          <input type="range" min="10" max="200" step="5" x-model.number="leads" @input="compute()" />
           <div class="flex justify-between text-xs text-ink-500 mt-1">
             <span>10</span><span>500</span>
           </div>
@@ -262,7 +262,7 @@
             <label class="text-sm font-semibold text-ink-900">Uurtarief eigen tijd</label>
             <span class="font-mono font-bold text-lg text-brand-500">€<span x-text="hourlyRate"></span>/u</span>
           </div>
-          <input type="range" min="30" max="120" step="5" x-model.number="hourlyRate" @input="compute()" />
+          <input type="range" min="20" max="80" step="5" x-model.number="hourlyRate" @input="compute()" />
           <div class="flex justify-between text-xs text-ink-500 mt-1">
             <span>€30</span><span>€120</span>
           </div>
@@ -278,7 +278,7 @@
 
           <!-- Hero number: netto winst -->
           <div class="mb-7 pb-7 border-b border-white/10">
-            <div class="text-xs text-white/60 uppercase tracking-wider mb-1">Netto extra winst per maand</div>
+            <div class="text-xs text-white/60 uppercase tracking-wider mb-1">Extra brutomarge per maand, na de Selectly-kost</div>
             <div class="flex items-baseline gap-2">
               <span class="text-5xl lg:text-6xl font-bold gradient-text" x-text="'€' + nettoExtra.toLocaleString('nl-BE')" :class="flash ? 'number-flash' : ''"></span>
             </div>
@@ -293,18 +293,19 @@
               <span class="text-sm text-white/70">Extra omzet (door snellere reactie)</span>
               <span class="font-bold text-white" x-text="'+€' + extraRevenue.toLocaleString('nl-BE')"></span>
             </div>
-            <div class="flex items-baseline justify-between">
-              <span class="text-sm text-white/70">Tijdsbesparing (geld-equivalent)</span>
-              <span class="font-bold text-white" x-text="'+€' + timeSaved.toLocaleString('nl-BE')"></span>
-            </div>
             <div class="flex items-baseline justify-between pb-3 border-b border-white/10">
-              <span class="text-sm text-white/70">Uren vrij per maand</span>
-              <span class="font-bold text-white" x-text="hoursSaved + ' u'"></span>
+              <span class="text-sm text-white/70">Daarvan brutomarge (22%)</span>
+              <span class="font-bold text-white" x-text="'+€' + extraProfit.toLocaleString('nl-BE')"></span>
             </div>
             <div class="flex items-baseline justify-between">
               <span class="text-sm text-white/70">Selectly-kost (aanbevolen tier)</span>
               <span class="font-mono font-semibold text-white/90" x-text="'−€' + recommendedTier.price + ' (' + recommendedTier.name + ')'"></span>
             </div>
+            <div class="flex items-baseline justify-between pt-3 border-t border-white/10">
+              <span class="text-sm text-white/70">Daarnaast: uren vrij per maand</span>
+              <span class="font-bold text-white" x-text="hoursSaved + ' u'"></span>
+            </div>
+            <p class="text-[11px] text-white/40 leading-relaxed">Die uren zijn tijd die vrijkomt, geen geld dat binnenkomt. Ze zitten bewust niet in het bedrag hierboven.</p>
           </div>
 
           <!-- Payback -->
@@ -336,8 +337,9 @@
         <details class="mt-5 bg-white border border-gray-100 rounded-2xl p-5 text-sm">
           <summary class="font-semibold text-ink-900 cursor-pointer">Hoe berekenen we dit?</summary>
           <ul class="mt-3 space-y-2 text-ink-500 text-xs">
-            <li>• <strong class="text-ink-900">Extra conversie</strong>: gemiddeld +35% relatieve uplift door respons binnen 1 min (Harvard Business Review + onze eigen data).</li>
-            <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van offerte-werk automatiseerbaar (intake + offerte + opvolging).</li>
+            <li>• <strong class="text-ink-900">Extra conversie</strong>: +35% relatief, afgetopt op 65%. Gebaseerd op onze eigen eerste implementatie (35% → 62% in 4 weken, één bedrijf). Dat is een kleine steekproef — reken er niet blind op.</li>
+            <li>• <strong class="text-ink-900">Marge</strong>: we rekenen met 22% brutomarge op installatiewerk, en trekken de Selectly-kost er af. Wat u ziet is extra brutomarge, geen omzet.</li>
+            <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van het offerte-werk is automatiseerbaar. Die uren staan apart en tellen niet mee in het bedrag — vrijgekomen tijd is geen cash.</li>
             <li>• <strong class="text-ink-900">Tier-aanbeveling</strong>: gebaseerd op lead-volume + sector — geen overkill, geen onderkill.</li>
             <li>• Geen win-loss garantie — dit is een schatting voor besluitvorming, geen offerte.</li>
           </ul>
@@ -408,7 +410,7 @@
       conv: 28,
       dealAvg: 8500,
       hoursPerQuote: 2.5,
-      hourlyRate: 65,
+      hourlyRate: 25,
       flash: false,
 
       // Sectors with realistic deal ranges
@@ -422,6 +424,7 @@
 
       // Outputs
       extraRevenue: 0,
+      extraProfit: 0,
       timeSaved: 0,
       hoursSaved: 0,
       nettoExtra: 0,
@@ -443,8 +446,8 @@
       },
 
       compute() {
-        // Uplift: relatieve verbetering van conversie met Selectly (35% relatief, capped at +25pp)
-        const upliftPct = Math.min(0.35, (60 - this.conv) / 100); // capped
+        // Uplift: relatieve verbetering van conversie met Selectly (35% relatief),
+        // afgetopt op een realistisch plafond van 65%.
         const newConv = this.conv + (this.conv * 0.35);
         const closedConv = Math.min(newConv, 65); // realistisch plafond
 
@@ -459,7 +462,9 @@
         this.timeSaved = Math.round(automatedHours * this.hourlyRate);
 
         // Tier aanbeveling op basis van lead-volume
-        if (this.leads < 30) {
+        if (this.leads < 20) {
+          this.recommendedTier = { name: 'Lite', price: 450 };
+        } else if (this.leads < 30) {
           this.recommendedTier = { name: 'Starter', price: 950 };
         } else if (this.leads < 150) {
           this.recommendedTier = { name: 'Growth', price: 1950 };
@@ -467,30 +472,34 @@
           this.recommendedTier = { name: 'Enterprise', price: 3500 };
         }
 
-        // Netto extra: extra omzet × marge (35% sector-gemiddelde) + tijdsbesparing − Selectly-kost
-        const grossMargin = 0.35;
-        const extraProfit = this.extraRevenue * grossMargin;
-        this.nettoExtra = Math.round(extraProfit + this.timeSaved - this.recommendedTier.price);
+        // Extra brutomarge: extra omzet × marge, min de Selectly-kost.
+        // 22% is realistischer voor installatiewerk dan de 35% die hier stond.
+        // Uitgespaarde uren tellen NIET mee als cash: dat is tijd die vrijkomt,
+        // geen geld dat binnenkomt. Ze staan apart als tijdswinst.
+        const grossMargin = 0.22;
+        const extraProfit = Math.round(this.extraRevenue * grossMargin);
+        this.extraProfit = extraProfit;
+        this.nettoExtra = Math.round(extraProfit - this.recommendedTier.price);
 
         // Multiplier
         this.multiplier = (this.nettoExtra / this.recommendedTier.price).toFixed(1).replace('.', ',');
 
-        // Payback
-        const totalMonthlyGain = extraProfit + this.timeSaved;
-        if (totalMonthlyGain > this.recommendedTier.price) {
-          const days = Math.ceil(30 * this.recommendedTier.price / totalMonthlyGain);
-          this.paybackText = days <= 7 ? days + ' dagen' : days + ' dagen';
-          this.paybackNote = totalMonthlyGain > this.recommendedTier.price * 4
-            ? 'Vanaf maand 1 al ruim positief.'
-            : 'Vanaf de eerste maand winstgevend.';
+        // Terugverdientijd in maanden. Minimum één maand — je verdient een
+        // maandabonnement niet terug in twee dagen.
+        if (extraProfit > this.recommendedTier.price) {
+          const maanden = Math.max(1, Math.ceil(this.recommendedTier.price / (extraProfit - this.recommendedTier.price)));
+          this.paybackText = maanden === 1 ? '1 maand' : maanden + ' maanden';
+          this.paybackNote = extraProfit > this.recommendedTier.price * 4
+            ? 'Ruim positief vanaf de eerste maand.'
+            : 'Positief vanaf de eerste maand.';
         } else {
-          this.paybackText = '> 1 maand';
-          this.paybackNote = 'Wat conservatieve invulling. Probeer realistischere cijfers.';
+          this.paybackText = 'niet rendabel';
+          this.paybackNote = 'Bij deze cijfers verdient Selectly zichzelf niet terug. Doe het (nog) niet — bel ons als uw volume stijgt.';
         }
 
         // CTA link met cijfers
-        const summary = `ROI-berekening: ${this.leads} leads/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} netto/mnd. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
-        this.ctaLink = '/#contact?roi=' + encodeURIComponent(summary);
+        const summary = `ROI-berekening: ${this.leads} leads/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} extra brutomarge/mnd na de Selectly-kost. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
+        this.ctaLink = '/?roi=' + encodeURIComponent(summary) + '#contact';
         this.whatsappLink = 'https://wa.me/32483812907?text=' + encodeURIComponent('Selectly, ik deed de ROI-calculator. ' + summary + ' Kan jij een demo plannen?');
 
         // Flash animation

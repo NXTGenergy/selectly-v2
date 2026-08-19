@@ -5,7 +5,7 @@
   var API = '/.netlify/functions/intake';
   var GREET = 'Dag! Ik ben de assistent van Selectly. In een paar korte vragen kijk ik of we uw opvolging sneller kunnen maken, en of een demo zin heeft.\n\nWaarmee bent u bezig: HVAC of airco, warmtepompen, dakwerken, renovatie, sanitair — of iets anders?';
   var apiMessages = [];   // wat naar de backend gaat (start met user)
-  var pushed = false, booking = '';
+  var pushed = false, gemeld = false, booking = '';
 
   var css = document.createElement('style');
   css.textContent = [
@@ -54,7 +54,24 @@
   function addMsg(role, text) {
     var d = document.createElement('div');
     d.className = 'sl-iw-msg ' + (role === 'user' ? 'sl-iw-u' : 'sl-iw-a');
-    d.textContent = text; body.appendChild(d); body.scrollTop = body.scrollHeight; return d;
+    if (role === 'user') {
+      d.textContent = text;
+    } else {
+      // Https-links klikbaar maken. Elk stuk gaat via textContent/createTextNode,
+      // dus wat het model teruggeeft kan nooit als HTML uitgevoerd worden.
+      var re = /https:\/\/[^\s<>"')]+/g, m, i = 0;
+      while ((m = re.exec(text)) !== null) {
+        d.appendChild(document.createTextNode(text.slice(i, m.index)));
+        var a = document.createElement('a');
+        a.href = m[0]; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.style.cssText = 'color:#3a6cf2;text-decoration:underline;word-break:break-all';
+        a.textContent = m[0].indexOf('leadconnectorhq') > -1 ? 'een moment prikken' : m[0];
+        d.appendChild(a);
+        i = m.index + m[0].length;
+      }
+      d.appendChild(document.createTextNode(text.slice(i)));
+    }
+    body.appendChild(d); body.scrollTop = body.scrollHeight; return d;
   }
   function addBooking() {
     if (!booking || body.querySelector('.sl-iw-book')) return;
@@ -92,7 +109,7 @@
     apiMessages.push({ role: 'user', content: val });
     typing(true); blokkeer(true);
     try {
-      var r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: apiMessages, pushed: pushed }) });
+      var r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: apiMessages, pushed: pushed, gemeld: gemeld }) });
       var j = await r.json();
       typing(false);
       var reply = (j && j.reply) || 'Ik noteer het even zelf. Wat is uw naam en e-mailadres?';
@@ -100,7 +117,11 @@
       apiMessages.push({ role: 'assistant', content: reply });
       if (j.booking) { booking = j.booking; }
       if (j.pushed) pushed = true;
+      if (j.gemeld) gemeld = true;
       if (j.data && j.data.klaar_voor_demo) addBooking();
+      // De bot noemt de boekingslink soms een beurt vóór klaar_voor_demo true wordt.
+      // Dan hoort de knop er al te staan, niet pas achteraf.
+      if (booking && reply && reply.indexOf('leadconnectorhq') > -1) addBooking();
       if (j.modus === 'bericht' && booking) addBooking();
     } catch (e) {
       typing(false);

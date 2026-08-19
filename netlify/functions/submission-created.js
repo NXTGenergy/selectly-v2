@@ -49,11 +49,18 @@ async function meldLead(d, formName, isConsument, gelukt) {
 
 exports.handler = async (event) => {
   try {
-    if (!TOKEN) { console.log('[ghl] GHL_TOKEN ontbreekt'); return { statusCode: 200, body: 'no-token' }; }
     const body = JSON.parse(event.body || '{}');
     const d = (body.payload && body.payload.data) || {};
     const formName = (body.payload && body.payload.form_name) || d['form-name'] || 'website';
     const { first, last } = splitName(d.naam);
+
+    // Zonder GHL-token kan de lead niet in het CRM landen. Toch eerst melden:
+    // een lead die nergens toekomt en waar niemand van weet, is een verloren lead.
+    if (!TOKEN) {
+      console.log('[ghl] GHL_TOKEN ontbreekt');
+      await meldLead(d, formName, formName.indexOf('offertescout') === 0, false);
+      return { statusCode: 200, body: 'no-token' };
+    }
 
     // De /vraag/-funnels zijn OfferteScout: particulieren die een offerte voor hun
     // eigen woning vragen. Die horen NIET in de Selectly-nurture — dat zijn drie

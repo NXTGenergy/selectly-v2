@@ -45,6 +45,8 @@
   </script>
 
   <style>
+    /* Voorkomt dat een x-show-blok kort zichtbaar is voor Alpine start */
+    [x-cloak] { display: none !important; }
     html { scroll-behavior: smooth; }
     body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
     .gradient-text {
@@ -327,6 +329,31 @@
             Of stuur via WhatsApp
           </a>
 
+          <!-- Berekening laten toesturen: nog niet klaar om te boeken, wel bereikbaar -->
+          <div class="mt-6 pt-6 border-t border-white/10" x-show="!bewaard">
+            <p class="text-sm text-white/70 mb-3">
+              Nog niet meteen een gesprek? Laat je berekening toesturen — dan heb je ze zwart-op-wit.
+            </p>
+            <form @submit.prevent="stuurBerekening()" class="flex flex-col sm:flex-row gap-2">
+              <input type="email" x-model="mail" required placeholder="jouw@bedrijf.be"
+                     class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/35 text-sm focus:outline-none focus:border-brand-400" />
+              <button type="submit" :disabled="bezig"
+                      class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 disabled:opacity-50 text-white font-semibold text-sm whitespace-nowrap transition">
+                <span x-text="bezig ? 'Bezig…' : 'Stuur mijn berekening'"></span>
+              </button>
+            </form>
+            <p class="text-xs text-white/35 mt-2" x-show="!mailFout">
+              Eén mail met je cijfers. Geen nieuwsbrief.
+            </p>
+            <p class="text-xs text-red-300 mt-2" x-show="mailFout" x-text="mailFout"></p>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-white/10" x-show="bewaard" x-cloak>
+            <p class="text-sm text-mint-300">
+              Genoteerd. Je berekening komt eraan — en we nemen contact op als je dat wil.
+            </p>
+          </div>
+
           <p class="text-xs text-white/40 mt-5 text-center leading-relaxed">
             Berekening = indicatie op basis van Selectly-klant-data.<br>
             Onze case: 35% → 62% conversie in 4 weken.
@@ -351,7 +378,7 @@
     <section class="mt-20 grid md:grid-cols-3 gap-6">
       <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
         <div class="text-3xl font-bold text-ink-900 mb-1">+27 pp</div>
-        <div class="text-sm text-ink-500">conversie-stijging bij een Belgisch installatiebedrijf in de energiesector in 4 weken (35% → 62%)</div>
+        <div class="text-sm text-ink-500">conversie-stijging in ons eigen installatiebedrijf in 4 weken (35% → 62%)</div>
       </div>
       <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
         <div class="text-3xl font-bold text-ink-900 mb-1">&lt;1 min</div>
@@ -435,6 +462,12 @@
       whatsappLink: '',
       recommendedTier: { name: 'Growth', price: 1950 },
 
+      // Berekening laten toesturen
+      mail: '',
+      bezig: false,
+      bewaard: false,
+      mailFout: '',
+
       get currentSector() { return this.sectors.find(s => s.id === this.sector); },
       get dealRange() { return this.currentSector.dealRange; },
       get dealStep() { return this.currentSector.dealStep; },
@@ -514,6 +547,50 @@
             conv: this.conv,
             netto: this.nettoExtra
           });
+        }
+      },
+
+      // De ingevulde cijfers zijn het waardevolste wat een bezoeker achterlaat.
+      // Die gingen vroeger verloren zodra hij het tabblad sloot.
+      async stuurBerekening() {
+        this.mailFout = '';
+        if (!/^[\w.+-]+@[\w-]+\.[a-z]{2,}$/i.test(this.mail)) {
+          this.mailFout = 'Vul een geldig e-mailadres in.';
+          return;
+        }
+        this.bezig = true;
+        try {
+          const sectorLabel = (this.sectors.find(s => s.id === this.sector) || {}).label || this.sector;
+          const r = await fetch('/.netlify/functions/berekening', {
+            method: 'POST', headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              email: this.mail,
+              bron: 'roi',
+              waarden: {
+                sector: sectorLabel,
+                leads: this.leads,
+                conversie: this.conv,
+                orderwaarde: this.dealAvg,
+                uren_per_offerte: this.hoursPerQuote,
+                uurtarief: this.hourlyRate,
+                netto_extra_per_maand: this.nettoExtra,
+                aanbevolen_pakket: this.recommendedTier.name,
+                terugverdientijd: this.paybackText,
+              },
+              samenvatting: `ROI-calculator (${sectorLabel}): ${this.leads} aanvragen/maand, ${this.conv}% conversie, gemiddelde orderwaarde €${this.dealAvg.toLocaleString('nl-BE')}. Netto extra ≈ €${Number(this.nettoExtra).toLocaleString('nl-BE')}/maand na de Selectly-kost. Aanbevolen: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd), terugverdiend in ${this.paybackText}.`,
+            }),
+          });
+          const j = await r.json().catch(() => ({}));
+          if (j && j.ok) {
+            this.bewaard = true;
+            if (window.fbq) window.fbq('trackCustom', 'ROICalculator_Lead', { netto: this.nettoExtra });
+          } else {
+            this.mailFout = (j && j.fout) || 'Er ging iets mis. Probeer opnieuw of mail info@selectly.be.';
+          }
+        } catch (e) {
+          this.mailFout = 'Geen verbinding. Probeer opnieuw of mail info@selectly.be.';
+        } finally {
+          this.bezig = false;
         }
       }
     };

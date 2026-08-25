@@ -195,6 +195,19 @@
     .sl-glow:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -10px rgba(91,140,255,.55); }
 
     /* Live-opvolging demo (chat + typing) */
+    /* Het gesprek is langer dan het venster. Vroeger stond het op justify-end met
+       overflow-hidden, waardoor de eerste ballonnen halverwege werden afgesneden
+       en half achter de kopbalk verdwenen. Nu scrolt het mee, met een zachte
+       vervaging bovenaan in plaats van een harde snee. */
+    .sl-thread { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.18) transparent; }
+    .sl-thread::-webkit-scrollbar { width: 6px; }
+    .sl-thread::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 3px; }
+    .sl-thread::-webkit-scrollbar-track { background: transparent; }
+    .sl-thread.is-scrolled {
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 28px);
+      mask-image: linear-gradient(to bottom, transparent 0, black 28px);
+    }
+
     .sl-flow .sl-flow-msg { transition: opacity .45s ease, transform .5s cubic-bezier(.16,1,.3,1); }
     .sl-flow.sl-anim .sl-flow-msg { opacity: 0; transform: translateY(14px); }
     .sl-flow.sl-anim .sl-flow-msg.show { opacity: 1; transform: none; }
@@ -932,7 +945,7 @@
               <div class="text-xs text-mint-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>online — antwoordt binnen 1 min</div>
             </div>
           </div>
-          <div id="sl-flow-thread" class="p-5 flex flex-col justify-end gap-3 h-[520px] overflow-hidden text-sm">
+          <div id="sl-flow-thread" class="sl-thread p-5 flex flex-col gap-3 h-[520px] overflow-y-auto text-sm">
             <div class="sl-flow-msg text-center"><span class="inline-block text-[11px] uppercase tracking-wider text-white/40 bg-white/5 px-3 py-1 rounded-full">Voorbeeld · 21:47</span></div>
 
             <div class="sl-flow-msg flex justify-start">
@@ -1658,19 +1671,34 @@
         w.innerHTML = '<div class="bg-brand-500/50 rounded-2xl rounded-tr-sm px-4 py-3"><div class="sl-typing text-white"><span></span><span></span><span></span></div></div>';
         return w;
       }
+      // Het gesprek is hoger dan het venster, dus rolt het mee met wat er
+      // verschijnt — zoals een echte chat. Zonder dit stond de helft erbuiten.
+      function naarOnder() {
+        thread.scrollTop = thread.scrollHeight;
+        thread.classList.toggle('is-scrolled', thread.scrollTop > 4);
+      }
+      thread.addEventListener('scroll', function () {
+        thread.classList.toggle('is-scrolled', thread.scrollTop > 4);
+      });
+
       function play() {
         clearAll();
         msgs.forEach(function (m) { m.classList.remove('show'); });
-        var t = 450;
+        thread.scrollTop = 0;
+        thread.classList.remove('is-scrolled');
+        // Vroeger stond het venster bij elke herstart bijna een halve seconde
+        // leeg. Wie net voorbijscrolde zag een leeg kader.
+        var t = 80;
         msgs.forEach(function (m) {
           if (m.getAttribute('data-ai') === '1') {
-            timers.push(setTimeout(function () { m.parentNode.insertBefore(typingEl(), m); }, t)); t += 1000;
+            timers.push(setTimeout(function () { m.parentNode.insertBefore(typingEl(), m); naarOnder(); }, t)); t += 1000;
             timers.push(setTimeout(function () {
               var ty = thread.querySelector('.sl-flow-typing'); if (ty) ty.remove();
               m.classList.add('show');
+              naarOnder();
             }, t)); t += 850;
           } else {
-            timers.push(setTimeout(function () { m.classList.add('show'); }, t)); t += 750;
+            timers.push(setTimeout(function () { m.classList.add('show'); naarOnder(); }, t)); t += 750;
           }
         });
         timers.push(setTimeout(play, t + 3400));

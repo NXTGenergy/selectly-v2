@@ -1672,10 +1672,21 @@
         return w;
       }
       // Het gesprek is hoger dan het venster, dus rolt het mee met wat er
-      // verschijnt — zoals een echte chat. Zonder dit stond de helft erbuiten.
+      // verschijnt — zoals een echte chat.
+      //
+      // Let op: nog niet getoonde ballonnen staan op opacity 0 maar nemen wél
+      // plaats in. Blind naar scrollHeight scrollen sprong daardoor meteen
+      // voorbij de eerste berichten, die dan achter de kopbalk zaten. Daarom
+      // wordt hier gemikt op de onderkant van wat er ECHT al staat: zolang dat
+      // in het venster past, blijft hij gewoon bovenaan.
       function naarOnder() {
-        thread.scrollTop = thread.scrollHeight;
-        thread.classList.toggle('is-scrolled', thread.scrollTop > 4);
+        var zichtbaar = msgs.filter(function (m) { return m.classList.contains('show'); });
+        var laatste = thread.querySelector('.sl-flow-typing') || zichtbaar[zichtbaar.length - 1];
+        if (!laatste) return;
+        var onderkant = laatste.offsetTop + laatste.offsetHeight;
+        var doel = Math.max(0, onderkant - thread.clientHeight + 20);
+        thread.scrollTop = doel;
+        thread.classList.toggle('is-scrolled', doel > 4);
       }
       thread.addEventListener('scroll', function () {
         thread.classList.toggle('is-scrolled', thread.scrollTop > 4);
@@ -1690,18 +1701,22 @@
         // leeg. Wie net voorbijscrolde zag een leeg kader.
         var t = 80;
         msgs.forEach(function (m) {
+          // Tempo bewust traag: dit is geen laadanimatie maar een gesprek dat
+          // iemand moet kunnen meelezen. Langere ballonnen krijgen extra tijd.
+          var woorden = (m.textContent || '').trim().split(/\s+/).length;
+          var leestijd = Math.min(4200, 1100 + woorden * 55);
           if (m.getAttribute('data-ai') === '1') {
-            timers.push(setTimeout(function () { m.parentNode.insertBefore(typingEl(), m); naarOnder(); }, t)); t += 1000;
+            timers.push(setTimeout(function () { m.parentNode.insertBefore(typingEl(), m); naarOnder(); }, t)); t += 1600;
             timers.push(setTimeout(function () {
               var ty = thread.querySelector('.sl-flow-typing'); if (ty) ty.remove();
               m.classList.add('show');
               naarOnder();
-            }, t)); t += 850;
+            }, t)); t += leestijd;
           } else {
-            timers.push(setTimeout(function () { m.classList.add('show'); naarOnder(); }, t)); t += 750;
+            timers.push(setTimeout(function () { m.classList.add('show'); naarOnder(); }, t)); t += leestijd;
           }
         });
-        timers.push(setTimeout(play, t + 3400));
+        timers.push(setTimeout(play, t + 6000));
       }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {

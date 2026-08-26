@@ -132,9 +132,13 @@ exports.handler = async (event) => {
       });
     } catch (e) { console.log('[berekening] notitie', e && e.message); }
 
+    // Uitkomst van de opportunity gaat mee naar Telegram. GHL weigert een tweede
+    // open opportunity per contact; dat is geen storing maar het betekent wel dat
+    // je met een terugkerend contact te maken hebt — en dat wil je weten.
+    let pijplijn = '';
     if (GHL_PIPELINE && GHL_STAGE) {
       try {
-        await fetch('https://services.leadconnectorhq.com/opportunities/', {
+        const ro = await fetch('https://services.leadconnectorhq.com/opportunities/', {
           method: 'POST', headers: HEAD,
           body: JSON.stringify({
             locationId: GHL_LOCATION, pipelineId: GHL_PIPELINE, pipelineStageId: GHL_STAGE,
@@ -142,7 +146,19 @@ exports.handler = async (event) => {
             status: 'open', contactId: cid,
           }),
         });
-      } catch (e) { console.log('[berekening] opportunity', e && e.message); }
+        if (ro.ok) {
+          pijplijn = 'In de pijplijn gezet.';
+        } else {
+          const jo = await ro.json().catch(() => ({}));
+          pijplijn = jo.code === 'OPPORTUNITY_NO_DUPLICATE'
+            ? 'Terugkerend contact — stond al in de pijplijn.'
+            : `Pijplijn NIET bijgewerkt (${ro.status}).`;
+          console.log('[berekening] opportunity', ro.status, JSON.stringify(jo).slice(0, 200));
+        }
+      } catch (e) {
+        pijplijn = 'Pijplijn niet bereikbaar.';
+        console.log('[berekening] opportunity', e && e.message);
+      }
     }
 
     const kort = [
@@ -151,6 +167,7 @@ exports.handler = async (event) => {
       email,
       telefoon || null,
       samenvatting || null,
+      pijplijn || null,
     ].filter(Boolean).join('\n');
     await melden(kort);
 

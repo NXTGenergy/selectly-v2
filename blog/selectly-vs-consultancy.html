@@ -175,7 +175,7 @@
         <span class="text-xl font-bold tracking-tight">Selectly</span>
       </a>
 
-      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-ink-500">
+      <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-ink-500">
         <a href="/" class="hover:text-ink-900 transition">Home</a>
         <a href="/voor-hvac.html" class="hover:text-ink-900 transition">Voor HVAC</a>
         <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
@@ -184,12 +184,12 @@
 
       <a href="/demo" class="hidden md:inline-block bg-ink-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-ink-800 transition">Boek een gratis demo</a>
 
-      <button type="button" @click="open = !open" class="md:hidden -mr-2 p-2 text-ink-900" :aria-expanded="open ? 'true' : 'false'" aria-controls="sl-mobile-menu" aria-label="Menu">
+      <button type="button" @click="open = !open" class="lg:hidden -mr-2 p-2 text-ink-900" :aria-expanded="open ? 'true' : 'false'" aria-controls="sl-mobile-menu" aria-label="Menu">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
       </button>
     </div>
 
-    <div id="sl-mobile-menu" x-show="open" x-cloak x-transition class="md:hidden pb-4 pt-2 border-t border-slate-200 space-y-1">
+    <div id="sl-mobile-menu" x-show="open" x-cloak x-transition class="lg:hidden pb-4 pt-2 border-t border-slate-200 space-y-1">
       <a href="/" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Home</a>
       <a href="/voor-hvac.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Voor HVAC-installateurs</a>
       <a href="/voor-dakwerken.html" @click="open=false" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Voor dakwerkers</a>

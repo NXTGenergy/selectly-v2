@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Zet /vraag/ als losse Netlify-site online (offertescout-preview).
+# Zet Stielkenner als losse Netlify-site online (project offertescout-preview).
 #
 # Waarom een apart script: op selectly.be redirect /vraag/* sinds 5 augustus met
 # een geforceerde 301 naar de homepage, en dat blijft zo — een B2C-leadverkoper
@@ -39,8 +39,16 @@ cat > "$BUILD/index.html" <<'HTML'
 HTML
 printf '/  /vraag/  302\n' > "$BUILD/_redirects"
 
+# Eigen configuratie. Zonder dit leest de CLI de netlify.toml van de repo-root,
+# en daarin staat de geforceerde 301 /vraag/* -> / die voor selectly.be bedoeld is.
+# Die regel sloopte de preview volledig: elke funnelpagina gaf een 301.
+cat > "$BUILD/netlify.toml" <<'TOML'
+[build]
+  publish = "."
+TOML
+
 echo "Deployen vanuit $BUILD"
-netlify deploy --prod --dir "$BUILD" --site "$SITE_ID"
+( cd "$BUILD" && netlify deploy --prod --dir . --site "$SITE_ID" )
 
 echo
 echo "Live: https://offertescout-preview.netlify.app"

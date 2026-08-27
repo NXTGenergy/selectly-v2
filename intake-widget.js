@@ -3,7 +3,7 @@
 (function () {
   if (window.__selectlyIntake) return; window.__selectlyIntake = true;
   var API = '/.netlify/functions/intake';
-  var GREET = 'Dag! Ik ben de assistent van Selectly. In een paar korte vragen kijk ik of we uw opvolging sneller kunnen maken, en of een demo zin heeft.\n\nWaarmee bent u bezig: HVAC of airco, warmtepompen, dakwerken, renovatie, sanitair — of iets anders?';
+  var GREET = 'Dag! Ik ben de AI-assistent van Selectly. In een paar korte vragen kijk ik of we uw opvolging sneller kunnen maken, en of een demo zin heeft.\n\nWaarmee bent u bezig: HVAC of airco, warmtepompen, dakwerken, renovatie, sanitair — of iets anders?';
   var apiMessages = [];   // wat naar de backend gaat (start met user)
   var pushed = false, gemeld = false, booking = '';
 
@@ -41,7 +41,7 @@
   var panel = document.createElement('div');
   panel.className = 'sl-iw-panel';
   panel.innerHTML =
-    '<div class="sl-iw-head"><div><div class="t">Selectly-assistent</div><div class="s"><span class="sl-iw-dot"></span>online — antwoordt meteen</div></div><button class="sl-iw-x" aria-label="Sluiten">×</button></div>' +
+    '<div class="sl-iw-head"><div><div class="t">Selectly-assistent</div><div class="s"><span class="sl-iw-dot"></span>AI-assistent — antwoordt meteen</div></div><button class="sl-iw-x" aria-label="Sluiten">×</button></div>' +
     '<div class="sl-iw-body" role="log" aria-live="polite"></div>' +
     '<div class="sl-iw-foot"><input type="text" placeholder="Typ uw antwoord…" autocomplete="off"><button class="sl-iw-send">→</button></div>';
   document.body.appendChild(panel);

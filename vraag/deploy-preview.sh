@@ -34,8 +34,8 @@ cp "$REPO"/consent.js "$REPO"/lead-meta.js "$BUILD/"
 cat > "$BUILD/index.html" <<'HTML'
 <!doctype html><meta charset="utf-8">
 <meta http-equiv="refresh" content="0; url=/vraag/">
-<title>OfferteScout</title>
-<a href="/vraag/">Naar OfferteScout</a>
+<title>Stielkenner</title>
+<a href="/vraag/">Naar Stielkenner</a>
 HTML
 printf '/  /vraag/  302\n' > "$BUILD/_redirects"
 

@@ -1,20 +1,20 @@
 /*
- * OfferteScout Pixel — sector-specifieke Meta tracking
+ * Stielkenner Pixel — sector-specifieke Meta tracking
  *
  * Apart van Selectly's B2B Pixel zodat data niet mengt.
  * Voor nu zelfde Pixel-ID (852925924180054) maar custom events per sector.
  *
  * Custom events per sector:
- *   - OfferteScout_View_{sector}    (PageView gequalificeerd)
- *   - OfferteScout_Start            (eerste step gestart)
- *   - OfferteScout_Step             (elke stap voltooid)
- *   - OfferteScout_Lead_{sector}    (form submitted, met value = lead-fee)
+ *   - Stielkenner_View_{sector}    (PageView gequalificeerd)
+ *   - Stielkenner_Start            (eerste step gestart)
+ *   - Stielkenner_Step             (elke stap voltooid)
+ *   - Stielkenner_Lead_{sector}    (form submitted, met value = lead-fee)
  *
  * Lead-fees zoals in installateurs.json:
  *   zonnepanelen: 35 / thuisbatterij: 40 / warmtepomp: 60 / airco: 30 / dakwerken: 45
  *
  * Voor het team's optimization: maak in Meta Custom Conversions per
- * OfferteScout_Lead_{sector} event met value-tracking → optimaliseert
+ * Stielkenner_Lead_{sector} event met value-tracking → optimaliseert
  * naar duurste leads.
  *
  * Migratie naar eigen Meta Pixel-ID (later, na eigen domein):
@@ -41,8 +41,8 @@
   }
 
   function loadPixel() {
-    if (window._offerteScoutPixelLoaded) return;
-    window._offerteScoutPixelLoaded = true;
+    if (window._stielkennerPixelLoaded) return;
+    window._stielkennerPixelLoaded = true;
 
     // Standard FB Pixel init
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -58,9 +58,9 @@
     var sector = getSector();
 
     // Custom event ipv generic PageView → onderscheid van Selectly traffic
-    fbq('trackCustom', 'OfferteScout_View', {
+    fbq('trackCustom', 'Stielkenner_View', {
       sector: sector,
-      content_category: 'offertescout'
+      content_category: 'stielkenner'
     });
 
     // Track form-start (eerste click op next button)
@@ -70,10 +70,10 @@
       nextBtn.addEventListener('click', function () {
         if (!startTracked) {
           startTracked = true;
-          fbq('trackCustom', 'OfferteScout_Start', { sector: sector });
+          fbq('trackCustom', 'Stielkenner_Start', { sector: sector });
         }
         // Track elke stap-progressie (debounced)
-        fbq('trackCustom', 'OfferteScout_Step', {
+        fbq('trackCustom', 'Stielkenner_Step', {
           sector: sector,
           step: parseInt(document.querySelector('.step-pane.active')?.dataset.step || '1', 10)
         });
@@ -87,10 +87,10 @@
         fbq('track', 'Lead', {
           value: fee,
           currency: 'EUR',
-          content_category: 'offertescout_' + sector,
+          content_category: 'stielkenner_' + sector,
           content_name: sector
         });
-        fbq('trackCustom', 'OfferteScout_Lead_' + sector, {
+        fbq('trackCustom', 'Stielkenner_Lead_' + sector, {
           value: fee,
           currency: 'EUR'
         });

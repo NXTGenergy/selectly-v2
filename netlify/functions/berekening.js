@@ -168,6 +168,8 @@ exports.handler = async (event) => {
       telefoon || null,
       samenvatting || null,
       pijplijn || null,
+      // Rechtstreekse link naar het contact: één tik en je ziet de hele berekening.
+      GHL_LOCATION ? `https://app.gohighlevel.com/v2/location/${GHL_LOCATION}/contacts/detail/${cid}` : null,
     ].filter(Boolean).join('\n');
     await melden(kort);
 

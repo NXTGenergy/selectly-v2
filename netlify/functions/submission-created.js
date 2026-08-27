@@ -99,7 +99,7 @@ function splitName(naam) {
 // heel ander antwoord, dus dat staat in de eerste regel: een OfferteScout-lead
 // is een particulier voor een installatie, een websiteformulier is een prospect
 // voor Selectly zelf.
-async function meldLead(d, formName, isConsument, gelukt) {
+async function meldLead(d, formName, isConsument, gelukt, contactId) {
   if (!TG_TOKEN || !TG_CHAT) return;
   const regels = [
     isConsument ? 'Nieuwe OfferteScout-aanvraag (particulier)' : 'Nieuwe aanvraag via de website',
@@ -109,6 +109,8 @@ async function meldLead(d, formName, isConsument, gelukt) {
     'Formulier: ' + formName,
     d.lead_source ? 'Bron: ' + d.lead_source : null,
     gelukt ? null : 'LET OP: niet in GHL geraakt — zelf opvolgen',
+    // Rechtstreekse link: vanaf je gsm meteen bellen of opvolgen, zonder zoeken.
+    contactId && LOCATION ? `https://app.gohighlevel.com/v2/location/${LOCATION}/contacts/detail/${contactId}` : null,
   ].filter(Boolean);
   try {
     await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
@@ -186,7 +188,7 @@ exports.handler = async (event) => {
       } catch (e) { console.log('[ghl] opportunity fout', e && e.message); }
     }
 
-    await meldLead(d, formName, isConsument, !!contactId);
+    await meldLead(d, formName, isConsument, !!contactId, contactId);
   } catch (e) {
     console.log('[ghl] handler-fout', e && e.message);
   }

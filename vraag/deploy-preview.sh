@@ -24,6 +24,12 @@ mkdir -p "$BUILD/vraag"
 # De funnels zelf. .bak-bestanden blijven bewust achter.
 cp "$REPO"/vraag/*.html "$BUILD/vraag/"
 cp "$REPO"/vraag/pixel.js "$BUILD/vraag/"
+cp "$REPO"/vraag/*.svg "$BUILD/vraag/"   # merkteken + logo-eenheid, o.a. voor de favicon
+cp "$REPO"/vraag/stielkenner-chat.js "$BUILD/vraag/"
+
+# De chat-assistent draait als Netlify-functie. Zonder deze map is de knop dood.
+mkdir -p "$BUILD/netlify/functions"
+cp "$REPO"/netlify/functions/vakman.js "$BUILD/netlify/functions/"
 
 # De pagina's verwijzen naar deze bestanden op de root van selectly.be,
 # dus die moeten mee anders zijn het dode links.
@@ -45,6 +51,7 @@ printf '/  /vraag/  302\n' > "$BUILD/_redirects"
 cat > "$BUILD/netlify.toml" <<'TOML'
 [build]
   publish = "."
+  functions = "netlify/functions"
 TOML
 
 echo "Deployen vanuit $BUILD"

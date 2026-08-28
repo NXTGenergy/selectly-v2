@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="260" height="56" role="img" aria-label="Stielkenner — wij kennen de stiel">
+  <title>Stielkenner — wij kennen de stiel</title>
+  <!-- Volledige logo-eenheid: merkteken + woordmerk + slogan.
+       Let op: het woordmerk staat hier als tekst, niet als contouren. Wie dit
+       bestand opent zonder de opgegeven letterfamilies ziet een systeemletter.
+       Voor drukwerk of een externe partij eerst de tekst naar paden omzetten. -->
+  <rect width="56" height="56" rx="13" fill="#1d2b2a"/>
+  <path d="M15.4 29.4 L24.5 38.5" stroke="#e0a33e" stroke-width="6.3" stroke-linecap="round" fill="none"/>
+  <path d="M24.5 38.5 L42 16.8" stroke="#f2efe6" stroke-width="6.3" stroke-linecap="round" fill="none"/>
+  <circle cx="24.5" cy="38.5" r="2.4" fill="#1d2b2a"/>
+
+  <text x="70" y="26" font-family="Iowan Old Style, Palatino, Georgia, serif"
+        font-size="25" font-weight="600" letter-spacing="-0.4" fill="#1d2b2a">Stielkenner</text>
+  <text x="71" y="43" font-family="-apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="11.5" letter-spacing="1.6" fill="#6b7671">WIJ KENNEN DE STIEL</text>
+</svg>

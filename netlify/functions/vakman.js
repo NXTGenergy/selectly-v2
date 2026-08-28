@@ -122,8 +122,16 @@ function schoon(berichten) {
   return uit.length ? uit : null;
 }
 
+// Deze repo voedt twee sites: selectly.be en de Stielkenner-preview. Zonder deze
+// grens staat de Stielkenner-assistent ook op selectly.be, waar hij niet hoort en
+// waar hij enkel API-tegoed kan verbranden.
+const TOEGESTAAN = /(^|\.)offertescout-preview\.netlify\.app$|(^|\.)stielkenner\.(be|nl)$|^localhost(:\d+)?$/i;
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method Not Allowed' };
+
+  const host = String(event.headers.host || '');
+  if (!TOEGESTAAN.test(host)) return { statusCode: 404, body: 'Not Found' };
   if (!ANTHROPIC_KEY) {
     return { statusCode: 200, body: JSON.stringify({
       reply: 'De assistent staat even uit. Kies gerust je categorie op de startpagina, dan gaat het net zo snel.' }) };

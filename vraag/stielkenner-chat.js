@@ -6,7 +6,7 @@
   window.__stielkennerChat = true;
 
   var API = '/.netlify/functions/vakman';
-  var GREET = 'Dag! Ik help je de juiste vakman vinden.\n\nWaarvoor zoek je iemand — zonnepanelen, een thuisbatterij, een warmtepomp, airco of dakwerken? Of vertel gewoon wat er moet gebeuren.';
+  var GREET = 'Dag! Ik ben de automatische assistent van Stielkenner \u2014 geen medewerker, maar ik help je wel de juiste vakman vinden.\n\nWaarvoor zoek je iemand — zonnepanelen, een thuisbatterij, een warmtepomp, airco of dakwerken? Of vertel gewoon wat er moet gebeuren.';
 
   var INK = '#1d2b2a', AMBER = '#e0a33e', CREME = '#f2efe6';
   var berichten = [];   // wat naar de backend gaat, begint bij de gebruiker
@@ -36,6 +36,7 @@
     '.sk-foot input:focus{border-color:' + INK + '}',
     '.sk-send{border:none;background:' + INK + ';color:' + CREME + ';border-radius:11px;padding:0 15px;font-size:16px;cursor:pointer}',
     '.sk-send:disabled{opacity:.4;cursor:default}',
+    '.sk-note{padding:0 12px 10px;background:#fff;color:#7d8785;font-size:11px;line-height:1.45;text-align:center}',
     '@media(max-width:480px){.sk-panel{right:0;bottom:0;width:100vw;height:100dvh;max-height:100dvh;border-radius:0}}'
   ].join('');
   document.head.appendChild(css);
@@ -58,11 +59,12 @@
         '<path d="M17.5 27.5 L30 12" stroke="' + INK + '" stroke-width="4.5" stroke-linecap="round" fill="none"/>' +
         '<circle cx="17.5" cy="27.5" r="1.7" fill="' + CREME + '"/>' +
       '</svg>' +
-      '<div><div class="t">Stielkenner</div><div class="s"><span class="sk-dot"></span>Antwoordt meteen</div></div>' +
+      '<div><div class="t">Stielkenner-assistent</div><div class="s"><span class="sk-dot"></span>Automatische assistent &mdash; geen medewerker</div></div>' +
       '<button class="sk-x" aria-label="Sluiten">&times;</button>' +
     '</div>' +
     '<div class="sk-body" role="log" aria-live="polite"></div>' +
-    '<div class="sk-foot"><input type="text" placeholder="Typ je vraag…" autocomplete="off" aria-label="Je bericht"><button class="sk-send" aria-label="Versturen">&rarr;</button></div>';
+    '<div class="sk-foot"><input type="text" placeholder="Typ je vraag…" autocomplete="off" aria-label="Je bericht"><button class="sk-send" aria-label="Versturen">&rarr;</button></div>' +
+    '<div class="sk-note">Automatische assistent. Je bericht wordt verwerkt door een AI-dienst. Deel hier geen persoonsgegevens \u2014 die vraagt het formulier.</div>';
   document.body.appendChild(panel);
 
   var body = panel.querySelector('.sk-body');

@@ -7,9 +7,11 @@
  * installateur.html). Voorheen opende die parameter elke pagina, inclusief admin.html
  * met de klantenlijst en de omzet per klant — voor iedereen die de URL kende.
  *
- * Let op: deze controle draait in de browser en is dus geen echte beveiliging. De HTML
- * is al geleverd voor dit script iets doet. Vóór er een echte klant op staat, moet dit
- * afgedwongen worden aan de rand, via role-based redirects in netlify.toml.
+ * Deze controle draait in de browser en is dus GEEN beveiliging op zich — ze zorgt enkel
+ * voor een nette doorverwijzing. De echte afscherming gebeurt aan de rand, via de
+ * role-based redirects in netlify.toml (geverifieerd 30-08-2026: /portal/admin.html en
+ * elk klantportaal geven 302 en leveren geen HTML aan wie niet ingelogd is).
+ * Wie hier iets wijzigt, wijzigt ook netlify.toml — anders valt de echte poort weg.
  *
  * Voorwaarden:
  *   - Netlify Identity widget moet geladen zijn op de page (zie include voor </body>)

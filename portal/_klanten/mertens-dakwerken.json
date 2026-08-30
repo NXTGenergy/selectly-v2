@@ -1,0 +1,16 @@
+{
+  "slug": "mertens-dakwerken",
+  "bedrijf": "Mertens Dakwerken",
+  "bedrijf_kort": "Mertens",
+  "voornaam": "Frank",
+  "sector": "dakwerken",
+  "accent": "#3a6cf2",
+  "opmerking": "Eerste portaal, gebouwd voor de generator bestond. accent_ramp is vastgelegd zodat de kleuren identiek blijven aan wat de klant kent.",
+  "accent_ramp": {
+    "accent50": "#eff4ff",
+    "accent100": "#dbe5ff",
+    "accent400": "#5b8cff",
+    "accent500": "#3a6cf2",
+    "accent600": "#2451d8"
+  }
+}

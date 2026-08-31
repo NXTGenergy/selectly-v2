@@ -20,7 +20,7 @@
         slate: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
         orange: { 50: '#eefaff', 100: '#d3f1fa', 200: '#b3e6f4', 400: '#38bfe0', 500: '#22b3d6', 600: '#0e8fb0', 700: '#0b7492' },
         green: { 100: '#dcfce7', 500: '#22c55e', 700: '#15803d' },
-        rose: { 500: '#f43f5e' },
+        rose: { 50: '#fff1f2', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48' },
       },
     }}};
   </script>
@@ -40,7 +40,7 @@
   <header class="bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <a href="/vraag/" class="flex items-center gap-2.5">
-        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 100 100" class="w-full h-full" role="img" aria-label="Stielkenner"><path d="M68 32 a16 16 0 1 0 -17 19 a16 16 0 1 1 -17 19" stroke="#2b3540" stroke-width="12.5" fill="none" stroke-linecap="round"/><path d="M51 51 a16 16 0 0 1 -17 19" stroke="#22b3d6" stroke-width="12.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 100 100" class="w-full h-full" role="img" aria-label="Stielkenner"><path d="M66 33 a15 15 0 1 0 -16 18 a15 15 0 1 1 -16 18" stroke="#2b3540" stroke-width="11.5" fill="none" stroke-linecap="round"/><path d="M24 79 L74 27" stroke="#fff" stroke-width="19" stroke-linecap="round"/><path d="M26 77 L68 33" stroke="#22b3d6" stroke-width="10.5" stroke-linecap="round"/><path d="M77 24 L57 28 L73 44 Z" fill="#22b3d6"/></svg></div>
         <div>
           <div class="font-extrabold text-base leading-none tracking-tight">STIELKENNER</div>
           <div class="text-xs text-ink-500 mt-0.5">Wij kennen de stiel</div>
@@ -352,11 +352,25 @@
       document.getElementById('nextBtn').style.display = n === totalSteps ? 'none' : 'flex';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Een systeemdialoog leest op een telefoon als een storing van het toestel, niet
+    // als een melding van de pagina. Daarom inline, in de stap zelf.
+    function toonFout(pane, tekst) {
+      var b = pane.querySelector('.stap-fout');
+      if (!b) {
+        b = document.createElement('p');
+        b.className = 'stap-fout text-sm text-rose-600 bg-rose-50 border border-rose-200 rounded-lg px-3 py-2 mt-4';
+        pane.appendChild(b);
+      }
+      b.textContent = tekst;
+      b.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
     function validateStep(n) {
       const pane = document.querySelector(`.step-pane[data-step="${n}"]`);
       // Stap 1 = at least 1 checkbox
       if (n === 1) {
-        if (!pane.querySelector('input[name="werk"]:checked')) { alert('Kies minstens één type werk'); return false; }
+        if (!pane.querySelector('input[name="werk"]:checked')) { toonFout(pane, 'Kies minstens een type werk om verder te gaan.'); return false; }
         return true;
       }
       const groups = new Set();
@@ -365,7 +379,7 @@
         else if (!el.value.trim()) { el.focus(); el.style.borderColor = '#f43f5e'; throw 'invalid'; }
       });
       for (const name of groups) {
-        if (!pane.querySelector(`[name="${name}"]:checked`)) { alert('Maak een keuze'); return false; }
+        if (!pane.querySelector(`[name="${name}"]:checked`)) { toonFout(pane, 'Maak een keuze om verder te gaan.'); return false; }
       }
       return true;
     }

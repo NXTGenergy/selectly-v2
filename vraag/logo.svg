@@ -1,14 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Stielkenner">
   <title>Stielkenner</title>
-  <!-- Merkteken: de S uit Barts eigen ontwerp (Artlist, 29.08.2026), nagetekend als
-       vector en zonder de stijgende pijl. Die pijl is het universele teken voor groei
-       en omzet — de taal van consultants — terwijl de bezoeker hier een lek dak heeft
-       en zekerheid zoekt. Bovendien liep hij op 16 pixels samen met de S tot één vlek.
-       De onderste bocht draagt nu de accentkleur in plaats van een pijl erdoorheen.
-       Tegelversie: nodig zodra het teken klein wordt, anders zweeft het weg. -->
+  <!-- Merkteken: de S met de stijgende pijl, uit Barts eigen ontwerp (Artlist, 29.08.2026),
+       nagetekend als vector. Twee dingen aangepast ten opzichte van het origineel:
+       de pijl loopt nu buiten de S door in plaats van er middenin te kruisen, en er
+       zit een uitsparing in de kleur van de ondergrond waar hij de S raakt. Zonder die
+       twee ingrepen liepen pijl en S op klein formaat samen tot een vlek. -->
   <rect width="100" height="100" rx="24" fill="#2b3540"/>
-  <path d="M68 32 a16 16 0 1 0 -17 19 a16 16 0 1 1 -17 19"
-        stroke="#f2f5f6" stroke-width="12.5" fill="none" stroke-linecap="round"/>
-  <path d="M51 51 a16 16 0 0 1 -17 19"
-        stroke="#22b3d6" stroke-width="12.5" fill="none" stroke-linecap="round"/>
+
+  <!-- de S -->
+  <path d="M66 33 a15 15 0 1 0 -16 18 a15 15 0 1 1 -16 18"
+        stroke="#f2f5f6" stroke-width="11.5" fill="none" stroke-linecap="round"/>
+
+  <!-- uitsparing: houdt de pijl leesbaar waar hij over de S gaat -->
+  <path d="M24 79 L74 27" stroke="#2b3540" stroke-width="20" stroke-linecap="round"/>
+
+  <!-- de pijl -->
+  <path d="M26 77 L68 33" stroke="#22b3d6" stroke-width="10.5" stroke-linecap="round"/>
+  <path d="M77 24 L57 28 L73 44 Z" fill="#22b3d6"/>
 </svg>

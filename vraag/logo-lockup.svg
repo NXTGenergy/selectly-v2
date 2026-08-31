@@ -4,10 +4,11 @@
        Het woordmerk staat hier als tekst, niet als contouren. Wie dit bestand opent
        zonder de opgegeven letterfamilies ziet een systeemletter. Vóór drukwerk of
        levering aan een externe partij eerst de tekst naar paden omzetten. -->
-  <path d="M52 22 a12.5 12.5 0 1 0 -13.3 14.8 a12.5 12.5 0 1 1 -13.3 14.8"
-        stroke="#2b3540" stroke-width="9.8" fill="none" stroke-linecap="round"/>
-  <path d="M38.7 36.8 a12.5 12.5 0 0 1 -13.3 14.8"
-        stroke="#22b3d6" stroke-width="9.8" fill="none" stroke-linecap="round"/>
+  <path d="M50 20 a11.7 11.7 0 1 0 -12.5 14 a11.7 11.7 0 1 1 -12.5 14"
+        stroke="#2b3540" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M17 56 L56 15" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+  <path d="M19 54 L51 20" stroke="#22b3d6" stroke-width="8.2" stroke-linecap="round"/>
+  <path d="M58 13 L42 16 L54 29 Z" fill="#22b3d6"/>
 
   <text x="76" y="36" font-family="-apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif"
         font-size="27" font-weight="800" letter-spacing="-0.5" fill="#2b3540">STIELKENNER</text>

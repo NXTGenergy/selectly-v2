@@ -1,0 +1,11 @@
+// Kopieer dit naar portal/_klanten/<slug>.json en pas aan.
+// Daarna: node tools/bouw-portalen.mjs
+{
+  "slug": "van-hoye-sanitair",        // wordt portal/van-hoye-sanitair.html
+  "bedrijf": "Van Hoye Sanitair",     // volledige naam, zoals de klant hem schrijft
+  "bedrijf_kort": "Van Hoye",         // optioneel; anders het eerste woord
+  "voornaam": "Kris",                 // wie er 's morgens op inlogt
+  "sector": "sanitair",
+  "accent": "#0f766e",                // een kleur; de generator maakt er 5 tinten van
+  "opmerking": "Pilot gestart 12/09."
+}

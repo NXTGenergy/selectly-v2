@@ -144,6 +144,11 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    # Content-Security-Policy — hosts geinventariseerd op 30-08-2026 uit alle .html.
+    # 'unsafe-inline' is nodig zolang de Tailwind play-CDN de stijlen at runtime injecteert
+    # en er 7 inline <script>-blokken op index.html staan. Bij een build-stap met echte
+    # Tailwind-output mag script-src 'unsafe-inline' eruit en gaat dit naar nonces.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://identity.netlify.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.facebook.com https://cdn.jsdelivr.net; connect-src 'self' https://identity.netlify.com https://api.leadconnectorhq.com https://www.facebook.com; frame-src https://api.leadconnectorhq.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests"
 
 # Klantportalen mogen nooit geindexeerd worden. De noindex-meta blijft staan;
 # deze header vangt ook bestanden af die die meta niet hebben.

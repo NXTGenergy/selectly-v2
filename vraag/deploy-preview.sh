@@ -15,53 +15,75 @@ set -euo pipefail
 
 SITE_ID="fbdad8bd-6184-4d9f-92ee-c6caa9600362"   # offertescout-preview
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BUILD="$(mktemp -d)/offertescout"
+WERK="$(mktemp -d)"
 
-trap 'rm -rf "$(dirname "$BUILD")"' EXIT
+# Publicatiemap en functiemap staan bewust NAAST elkaar, niet in elkaar. Stonden
+# ze in elkaar, dan serveert Netlify de broncode van de functies gewoon mee:
+# /netlify/functions/vakman.js gaf 200 met de volledige systeemprompt erin —
+# alle grenzen, het feitenblok, het doorstuurmechanisme, vrij te downloaden.
+SITE="$WERK/site"
+FUNCTIES="$WERK/functies"
 
-mkdir -p "$BUILD/vraag"
+trap 'rm -rf "$WERK"' EXIT
+
+mkdir -p "$SITE/vraag" "$FUNCTIES"
 
 # De funnels zelf. .bak-bestanden blijven bewust achter.
-cp "$REPO"/vraag/*.html "$BUILD/vraag/"
-rm -f "$BUILD/vraag/tracker.html"   # intern rekenblad met inkoopprijzen, niet publiek
-cp "$REPO"/vraag/pixel.js "$BUILD/vraag/"
-cp "$REPO"/vraag/*.svg "$BUILD/vraag/"   # merkteken + logo-eenheid, o.a. voor de favicon
-cp "$REPO"/vraag/stielkenner-chat.js "$BUILD/vraag/"
+cp "$REPO"/vraag/*.html "$SITE/vraag/"
+rm -f "$SITE/vraag/tracker.html"   # intern rekenblad met inkoopprijzen, niet publiek
+cp "$REPO"/vraag/pixel.js "$SITE/vraag/"
+cp "$REPO"/vraag/*.svg "$SITE/vraag/"   # merkteken + logo-eenheid, o.a. voor de favicon
+cp "$REPO"/vraag/stielkenner-chat.js "$SITE/vraag/"
 
-# De chat-assistent draait als Netlify-functie. Zonder deze map is de knop dood.
-mkdir -p "$BUILD/netlify/functions"
-cp "$REPO"/netlify/functions/vakman.js "$BUILD/netlify/functions/"
+# De chat-assistent. Zonder dit bestand is de knop dood.
+cp "$REPO"/netlify/functions/vakman.js "$FUNCTIES/"
 
 # De leadafhandeling. Netlify koppelt de naam submission-created.js automatisch
-# aan elke inzending, dus die naam moet het zijn -- vandaar de hernoeming.
+# aan elke inzending, dus die naam moet het zijn — vandaar de hernoeming.
 # Zonder dit bestand valt elke aanvraag in een bak die niemand opent.
-cp "$REPO"/netlify/functions/stielkenner-submission.js "$BUILD/netlify/functions/submission-created.js"
+cp "$REPO"/netlify/functions/stielkenner-submission.js "$FUNCTIES/submission-created.js"
 
 # De pagina's verwijzen naar deze bestanden op de root van selectly.be,
 # dus die moeten mee anders zijn het dode links.
-cp "$REPO"/privacy.html "$REPO"/voorwaarden.html "$BUILD/"
-cp "$REPO"/consent.js "$REPO"/lead-meta.js "$BUILD/"
+cp "$REPO"/privacy.html "$REPO"/voorwaarden.html "$SITE/"
+cp "$REPO"/consent.js "$REPO"/lead-meta.js "$SITE/"
 
 # De site leeft onder /vraag/, dus de root stuurt door.
-cat > "$BUILD/index.html" <<'HTML'
+cat > "$SITE/index.html" <<'HTML'
 <!doctype html><meta charset="utf-8">
 <meta http-equiv="refresh" content="0; url=/vraag/">
 <title>Stielkenner</title>
 <a href="/vraag/">Naar Stielkenner</a>
 HTML
-printf '/  /vraag/  302\n' > "$BUILD/_redirects"
+printf '/  /vraag/  302\n' > "$SITE/_redirects"
 
 # Eigen configuratie. Zonder dit leest de CLI de netlify.toml van de repo-root,
 # en daarin staat de geforceerde 301 /vraag/* -> / die voor selectly.be bedoeld is.
 # Die regel sloopte de preview volledig: elke funnelpagina gaf een 301.
-cat > "$BUILD/netlify.toml" <<'TOML'
+#
+# De beveiligingsheaders ontbraken volledig. Alleen HSTS kwam binnen, en die
+# krijgen we gratis omdat netlify.app op de Public Suffix List staat — bij verhuis
+# naar een eigen domein valt dat weg. Vandaar hier expliciet.
+cat > "$SITE/netlify.toml" <<'TOML'
 [build]
   publish = "."
-  functions = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://www.facebook.com; connect-src 'self' https://www.facebook.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 TOML
 
-echo "Deployen vanuit $BUILD"
-( cd "$BUILD" && netlify deploy --prod --dir . --site "$SITE_ID" )
+echo "Deployen: site=$SITE  functies=$FUNCTIES"
+# Vanuit de bouwmap draaien, anders leest de CLI de netlify.toml van de repo-root
+# en die bevat de geforceerde 301 /vraag/* -> / die voor selectly.be bedoeld is.
+# Dat legt elke funnelpagina plat. De functiemap krijgt een absoluut pad mee.
+( cd "$SITE" && netlify deploy --prod --dir . --functions "$FUNCTIES" --site "$SITE_ID" )
 
 echo
 echo "Live: https://offertescout-preview.netlify.app"

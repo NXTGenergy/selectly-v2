@@ -1,11 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" role="img" aria-label="Stielkenner">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Stielkenner">
   <title>Stielkenner</title>
-  <!-- Merkteken: een dichtgeklapte duimstok die tegelijk een vinkje vormt.
-       De duimstok is het herkenbaarste voorwerp van de Vlaamse vakman; het
-       vinkje zegt "goedgekeurd". Het puntje op de knik is de klinknagel van
-       het scharnier — dat detail maakt er een duimstok van en geen gewoon vinkje. -->
-  <rect width="40" height="40" rx="9" fill="#1d2b2a"/>
-  <path d="M11 21 L17.5 27.5" stroke="#e0a33e" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-  <path d="M17.5 27.5 L30 12" stroke="#f2efe6" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-  <circle cx="17.5" cy="27.5" r="1.7" fill="#1d2b2a"/>
+  <!-- Merkteken: de S uit Barts eigen ontwerp (Artlist, 29.08.2026), nagetekend als
+       vector en zonder de stijgende pijl. Die pijl is het universele teken voor groei
+       en omzet — de taal van consultants — terwijl de bezoeker hier een lek dak heeft
+       en zekerheid zoekt. Bovendien liep hij op 16 pixels samen met de S tot één vlek.
+       De onderste bocht draagt nu de accentkleur in plaats van een pijl erdoorheen.
+       Tegelversie: nodig zodra het teken klein wordt, anders zweeft het weg. -->
+  <rect width="100" height="100" rx="24" fill="#2b3540"/>
+  <path d="M68 32 a16 16 0 1 0 -17 19 a16 16 0 1 1 -17 19"
+        stroke="#f2f5f6" stroke-width="12.5" fill="none" stroke-linecap="round"/>
+  <path d="M51 51 a16 16 0 0 1 -17 19"
+        stroke="#22b3d6" stroke-width="12.5" fill="none" stroke-linecap="round"/>
 </svg>

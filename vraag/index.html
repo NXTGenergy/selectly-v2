@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/vraag/logo.svg" type="image/svg+xml" />
-  <meta name="theme-color" content="#1d2b2a" />
+  <meta name="theme-color" content="#2b3540" />
   <meta name="robots" content="noindex, follow" />
   <title>Stielkenner — wij kennen de stiel, jij krijgt de juiste vakman</title>
   <meta name="description" content="Wij kennen de stiel. Daarom krijg je één Belgische vakman die bij jouw werk past, niet vijf firma's die tegelijk bellen. Gratis, twee minuten, geen verplichting." />
@@ -17,10 +17,10 @@
     tailwind.config = { theme: { extend: {
       fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
       colors: {
-        ink: { 900: '#0f172a', 700: '#334155', 500: '#64748b', 400: '#94a3b8' },
-        sun: { 50: '#fffbeb', 100: '#fef3c7', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' },
-        green: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d' },
-        sky: { 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7' },
+        ink: { 900: '#263039', 700: '#46535e', 500: '#6d7a85', 400: '#97a3ac' },
+        sun: { 50: '#eefaff', 100: '#d3f1fa', 200: '#b3e6f4', 400: '#38bfe0', 500: '#22b3d6', 600: '#0e8fb0', 700: '#0b7492' },
+        green: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d' },   // betekeniskleur: goed, gratis, inbegrepen
+        rose: { 100: '#ffe4e6', 500: '#f43f5e' },   // betekeniskleur: wat elders misloopt
       },
     }}};
   </script>
@@ -35,9 +35,9 @@
   <header class="bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <a href="/vraag/" class="flex items-center gap-2.5">
-        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 40 40" class="w-full h-full" role="img" aria-label="Stielkenner"><rect width="40" height="40" rx="9" fill="#1d2b2a"/><path d="M11 21 L17.5 27.5" stroke="#e0a33e" stroke-width="4.5" stroke-linecap="round" fill="none"/><path d="M17.5 27.5 L30 12" stroke="#f2efe6" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="17.5" cy="27.5" r="1.7" fill="#1d2b2a"/></svg></div>
+        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 100 100" class="w-full h-full" role="img" aria-label="Stielkenner"><path d="M68 32 a16 16 0 1 0 -17 19 a16 16 0 1 1 -17 19" stroke="#2b3540" stroke-width="12.5" fill="none" stroke-linecap="round"/><path d="M51 51 a16 16 0 0 1 -17 19" stroke="#22b3d6" stroke-width="12.5" fill="none" stroke-linecap="round"/></svg></div>
         <div>
-          <div class="font-bold text-base leading-none">Stielkenner</div>
+          <div class="font-extrabold text-base leading-none tracking-tight">STIELKENNER</div>
           <div class="text-xs text-ink-500 mt-0.5">Wij kennen de stiel</div>
         </div>
       </a>
@@ -103,35 +103,35 @@
         </a>
 
         <a href="/vraag/thuisbatterij.html" class="sector-card bg-white border-2 border-slate-200 rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-2xl mb-4">🔋</div>
+          <div class="w-12 h-12 rounded-xl bg-sun-100 flex items-center justify-center text-2xl mb-4">🔋</div>
           <h3 class="font-bold text-lg mb-1">Thuisbatterij</h3>
           <p class="text-sm text-ink-500 mb-3">5, 10 of 15 kWh. Je eigen zonnestroom gebruiken in plaats van hem terug te leveren.</p>
-          <span class="inline-flex items-center gap-1 text-green-700 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
+          <span class="inline-flex items-center gap-1 text-sun-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
         </a>
 
         <a href="/vraag/warmtepomp.html" class="sector-card bg-white border-2 border-slate-200 rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-2xl mb-4">🔥</div>
+          <div class="w-12 h-12 rounded-xl bg-sun-100 flex items-center justify-center text-2xl mb-4">🔥</div>
           <h3 class="font-bold text-lg mb-1">Warmtepomp</h3>
           <p class="text-sm text-ink-500 mb-3">Lucht-water, lucht-lucht of hybride. Mijn VerbouwPremie wordt mee bekeken.</p>
-          <span class="inline-flex items-center gap-1 text-red-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
+          <span class="inline-flex items-center gap-1 text-sun-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
         </a>
 
         <a href="/vraag/airco.html" class="sector-card bg-white border-2 border-slate-200 rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-2xl mb-4">❄️</div>
+          <div class="w-12 h-12 rounded-xl bg-sun-100 flex items-center justify-center text-2xl mb-4">❄️</div>
           <h3 class="font-bold text-lg mb-1">Airco</h3>
           <p class="text-sm text-ink-500 mb-3">Mono-split of multi-split. Geplaatst door een erkend koeltechnicus.</p>
-          <span class="inline-flex items-center gap-1 text-sky-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
+          <span class="inline-flex items-center gap-1 text-sun-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
         </a>
 
         <a href="/vraag/dakwerken.html" class="sector-card bg-white border-2 border-slate-200 rounded-2xl p-6 group">
-          <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center text-2xl mb-4">🏠</div>
+          <div class="w-12 h-12 rounded-xl bg-sun-100 flex items-center justify-center text-2xl mb-4">🏠</div>
           <h3 class="font-bold text-lg mb-1">Dakwerken</h3>
           <p class="text-sm text-ink-500 mb-3">Lekkage, dakbedekking, goten, isolatie. BTW 6% voor woning &gt; 10 jaar.</p>
-          <span class="inline-flex items-center gap-1 text-orange-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
+          <span class="inline-flex items-center gap-1 text-sun-600 text-sm font-semibold group-hover:gap-2 transition-all">Start offerte →</span>
         </a>
 
         <a href="#" class="sector-card bg-white border-2 border-slate-200 rounded-2xl p-6 group opacity-60 cursor-not-allowed">
-          <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-2xl mb-4">🧱</div>
+          <div class="w-12 h-12 rounded-xl bg-sun-100 flex items-center justify-center text-2xl mb-4">🧱</div>
           <h3 class="font-bold text-lg mb-1">Isolatie (binnenkort)</h3>
           <p class="text-sm text-ink-500 mb-3">Zolder, gevel, spouwmuur. Premie mogelijk, afhankelijk van je categorie.</p>
           <span class="text-ink-500 text-sm font-semibold">Binnenkort →</span>
@@ -151,7 +151,7 @@
 
       <div class="grid sm:grid-cols-2 gap-6">
         <div class="flex gap-4">
-          <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0">
+          <div class="w-10 h-10 rounded-full bg-sun-100 flex items-center justify-center flex-shrink-0">
             <span class="text-rose-500 font-bold">✗</span>
           </div>
           <div>
@@ -161,7 +161,7 @@
           </div>
         </div>
         <div class="flex gap-4">
-          <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+          <div class="w-10 h-10 rounded-full bg-sun-100 flex items-center justify-center flex-shrink-0">
             <span class="text-green-600 font-bold">✓</span>
           </div>
           <div>

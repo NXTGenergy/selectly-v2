@@ -1,16 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="260" height="56" role="img" aria-label="Stielkenner — wij kennen de stiel">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 74" width="340" height="74" role="img" aria-label="Stielkenner — wij kennen de stiel">
   <title>Stielkenner — wij kennen de stiel</title>
   <!-- Volledige logo-eenheid: merkteken + woordmerk + slogan.
-       Let op: het woordmerk staat hier als tekst, niet als contouren. Wie dit
-       bestand opent zonder de opgegeven letterfamilies ziet een systeemletter.
-       Voor drukwerk of een externe partij eerst de tekst naar paden omzetten. -->
-  <rect width="56" height="56" rx="13" fill="#1d2b2a"/>
-  <path d="M15.4 29.4 L24.5 38.5" stroke="#e0a33e" stroke-width="6.3" stroke-linecap="round" fill="none"/>
-  <path d="M24.5 38.5 L42 16.8" stroke="#f2efe6" stroke-width="6.3" stroke-linecap="round" fill="none"/>
-  <circle cx="24.5" cy="38.5" r="2.4" fill="#1d2b2a"/>
+       Het woordmerk staat hier als tekst, niet als contouren. Wie dit bestand opent
+       zonder de opgegeven letterfamilies ziet een systeemletter. Vóór drukwerk of
+       levering aan een externe partij eerst de tekst naar paden omzetten. -->
+  <path d="M52 22 a12.5 12.5 0 1 0 -13.3 14.8 a12.5 12.5 0 1 1 -13.3 14.8"
+        stroke="#2b3540" stroke-width="9.8" fill="none" stroke-linecap="round"/>
+  <path d="M38.7 36.8 a12.5 12.5 0 0 1 -13.3 14.8"
+        stroke="#22b3d6" stroke-width="9.8" fill="none" stroke-linecap="round"/>
 
-  <text x="70" y="26" font-family="Iowan Old Style, Palatino, Georgia, serif"
-        font-size="25" font-weight="600" letter-spacing="-0.4" fill="#1d2b2a">Stielkenner</text>
-  <text x="71" y="43" font-family="-apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif"
-        font-size="11.5" letter-spacing="1.6" fill="#6b7671">WIJ KENNEN DE STIEL</text>
+  <text x="76" y="36" font-family="-apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="27" font-weight="800" letter-spacing="-0.5" fill="#2b3540">STIELKENNER</text>
+  <line x1="77" y1="45" x2="325" y2="45" stroke="#2b3540" stroke-width="1.2" opacity="0.35"/>
+  <text x="77" y="62" font-family="-apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="13" fill="#46535e">Wij kennen de stiel</text>
 </svg>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/vraag/logo.svg" type="image/svg+xml" />
-  <meta name="theme-color" content="#1d2b2a" />
+  <meta name="theme-color" content="#2b3540" />
   <meta name="robots" content="noindex, follow" />
   <title>Gratis zonnepanelen offerte op maat | Stielkenner</title>
   <meta name="description" content="Gratis offerte op maat voor zonnepanelen. Pas akkoord = pas dan belt de installateur. Geen 5 telefoons." />
@@ -20,10 +20,10 @@
     tailwind.config = { theme: { extend: {
       fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
       colors: {
-        ink: { 900: '#0f172a', 700: '#334155', 500: '#64748b', 400: '#94a3b8' },
-        sun: { 50: '#fffbeb', 100: '#fef3c7', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' },
+        ink: { 900: '#263039', 700: '#46535e', 500: '#6d7a85', 400: '#97a3ac' },
+        sun: { 50: '#eefaff', 100: '#d3f1fa', 200: '#b3e6f4', 400: '#38bfe0', 500: '#22b3d6', 600: '#0e8fb0', 700: '#0b7492' },
         green: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d' },
-        brand: { 500: '#0ea5e9', 600: '#0284c7' },
+        brand: { 50: '#eefaff', 100: '#d3f1fa', 200: '#b3e6f4', 400: '#38bfe0', 500: '#22b3d6', 600: '#0e8fb0', 700: '#0b7492' },
       },
     }}};
   </script>
@@ -34,8 +34,8 @@
     @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     .progress-bar { transition: width 0.4s ease; }
     .check-card { transition: all 0.15s ease; }
-    .check-card:has(input:checked) { border-color: #f59e0b; background: #fffbeb; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
-    input[type="radio"], input[type="checkbox"] { accent-color: #f59e0b; }
+    .check-card:has(input:checked) { border-color: #22b3d6; background: #eefaff; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15); }
+    input[type="radio"], input[type="checkbox"] { accent-color: #22b3d6; }
   </style>
 </head>
 <body class="bg-gradient-to-b from-sun-50 via-white to-white text-ink-900 antialiased min-h-screen">
@@ -44,9 +44,9 @@
   <header class="bg-white border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <a href="/vraag/" class="flex items-center gap-2.5">
-        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 40 40" class="w-full h-full" role="img" aria-label="Stielkenner"><rect width="40" height="40" rx="9" fill="#1d2b2a"/><path d="M11 21 L17.5 27.5" stroke="#e0a33e" stroke-width="4.5" stroke-linecap="round" fill="none"/><path d="M17.5 27.5 L30 12" stroke="#f2efe6" stroke-width="4.5" stroke-linecap="round" fill="none"/><circle cx="17.5" cy="27.5" r="1.7" fill="#1d2b2a"/></svg></div>
+        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 100 100" class="w-full h-full" role="img" aria-label="Stielkenner"><path d="M68 32 a16 16 0 1 0 -17 19 a16 16 0 1 1 -17 19" stroke="#2b3540" stroke-width="12.5" fill="none" stroke-linecap="round"/><path d="M51 51 a16 16 0 0 1 -17 19" stroke="#22b3d6" stroke-width="12.5" fill="none" stroke-linecap="round"/></svg></div>
         <div>
-          <div class="font-bold text-base leading-none">Stielkenner</div>
+          <div class="font-extrabold text-base leading-none tracking-tight">STIELKENNER</div>
           <div class="text-xs text-ink-500 mt-0.5">Wij kennen de stiel</div>
         </div>
       </a>

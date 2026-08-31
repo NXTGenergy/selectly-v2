@@ -8,7 +8,7 @@
   var API = '/.netlify/functions/vakman';
   var GREET = 'Dag! Ik ben de automatische assistent van Stielkenner \u2014 geen medewerker, maar ik help je wel de juiste vakman vinden.\n\nWaarvoor zoek je iemand — zonnepanelen, een thuisbatterij, een warmtepomp, airco of dakwerken? Of vertel gewoon wat er moet gebeuren.';
 
-  var INK = '#1d2b2a', AMBER = '#e0a33e', CREME = '#f2efe6';
+  var INK = '#2b3540', AMBER = '#22b3d6', CREME = '#f2f5f6';   // merkpalet: leisteen + cyaan
   var berichten = [];   // wat naar de backend gaat, begint bij de gebruiker
   var bezig = false;
 
@@ -53,11 +53,9 @@
   panel.className = 'sk-panel';
   panel.innerHTML =
     '<div class="sk-head">' +
-      '<svg viewBox="0 0 40 40" width="30" height="30" aria-hidden="true" style="flex:none">' +
-        '<rect width="40" height="40" rx="9" fill="' + CREME + '"/>' +
-        '<path d="M11 21 L17.5 27.5" stroke="' + AMBER + '" stroke-width="4.5" stroke-linecap="round" fill="none"/>' +
-        '<path d="M17.5 27.5 L30 12" stroke="' + INK + '" stroke-width="4.5" stroke-linecap="round" fill="none"/>' +
-        '<circle cx="17.5" cy="27.5" r="1.7" fill="' + CREME + '"/>' +
+      '<svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true" style="flex:none">' +
+        '<path d="M68 32 a16 16 0 1 0 -17 19 a16 16 0 1 1 -17 19" stroke="' + CREME + '" stroke-width="12.5" fill="none" stroke-linecap="round"/>' +
+        '<path d="M51 51 a16 16 0 0 1 -17 19" stroke="' + AMBER + '" stroke-width="12.5" fill="none" stroke-linecap="round"/>' +
       '</svg>' +
       '<div><div class="t">Stielkenner-assistent</div><div class="s"><span class="sk-dot"></span>Automatische assistent &mdash; geen medewerker</div></div>' +
       '<button class="sk-x" aria-label="Sluiten">&times;</button>' +

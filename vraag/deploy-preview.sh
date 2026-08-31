@@ -23,6 +23,7 @@ mkdir -p "$BUILD/vraag"
 
 # De funnels zelf. .bak-bestanden blijven bewust achter.
 cp "$REPO"/vraag/*.html "$BUILD/vraag/"
+rm -f "$BUILD/vraag/tracker.html"   # intern rekenblad met inkoopprijzen, niet publiek
 cp "$REPO"/vraag/pixel.js "$BUILD/vraag/"
 cp "$REPO"/vraag/*.svg "$BUILD/vraag/"   # merkteken + logo-eenheid, o.a. voor de favicon
 cp "$REPO"/vraag/stielkenner-chat.js "$BUILD/vraag/"
@@ -30,6 +31,11 @@ cp "$REPO"/vraag/stielkenner-chat.js "$BUILD/vraag/"
 # De chat-assistent draait als Netlify-functie. Zonder deze map is de knop dood.
 mkdir -p "$BUILD/netlify/functions"
 cp "$REPO"/netlify/functions/vakman.js "$BUILD/netlify/functions/"
+
+# De leadafhandeling. Netlify koppelt de naam submission-created.js automatisch
+# aan elke inzending, dus die naam moet het zijn -- vandaar de hernoeming.
+# Zonder dit bestand valt elke aanvraag in een bak die niemand opent.
+cp "$REPO"/netlify/functions/stielkenner-submission.js "$BUILD/netlify/functions/submission-created.js"
 
 # De pagina's verwijzen naar deze bestanden op de root van selectly.be,
 # dus die moeten mee anders zijn het dode links.

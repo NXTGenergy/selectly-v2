@@ -29,8 +29,11 @@ De wijziging landt bij **alle** klanten tegelijk. Bewerk nooit een gegenereerde
 | `bedrijf_kort` | nee | korte vorm in de tijdlijn; anders het eerste woord |
 | `voornaam` | ja | wie er 's morgens op inlogt |
 | `sector` | nee | documentatie, nog niet in het sjabloon gebruikt |
-| `accent` | ja | één hex; de generator maakt er vijf tinten van |
-| `accent_ramp` | nee | de vijf tinten exact vastleggen (voor portalen van vóór de generator) |
+| `initiaal` | nee | letter in het logoblokje; anders de eerste letter van `bedrijf` |
+| `plaats` | nee | vestiging in de hoofding, bv. `Damme` |
+| `sinds` | nee | jaartal in de hoofding; anders het huidige jaar |
+| `accent` | ja | één hex; de generator maakt er zes tinten van |
+| `accent_ramp` | nee | de tinten exact vastleggen (voor portalen van vóór de generator) |
 | `genereren` | nee | `false` = overslaan, blijft handwerk |
 
 ## Controleren zonder te schrijven

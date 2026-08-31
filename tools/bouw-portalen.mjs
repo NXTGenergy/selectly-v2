@@ -37,6 +37,7 @@ function ramp(hex) {
     accent400: meng(255, 0.30),
     accent500: "#" + m[1].toLowerCase(),
     accent600: meng(0, 0.22),
+    accent700: meng(0, 0.38),
   };
 }
 
@@ -72,6 +73,9 @@ for (const bestand of bestanden) {
     bedrijf: klant.bedrijf,
     bedrijf_kort: klant.bedrijf_kort || klant.bedrijf.split(" ")[0],
     voornaam: klant.voornaam,
+    initiaal: klant.initiaal || klant.bedrijf.trim()[0].toUpperCase(),
+    plaats: klant.plaats || "",
+    sinds: klant.sinds || new Date().getFullYear(),
     ...ramp(klant.accent),
     ...(klant.accent_ramp || {}),
   };

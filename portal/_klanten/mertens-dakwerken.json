@@ -11,6 +11,10 @@
     "accent100": "#dbe5ff",
     "accent400": "#5b8cff",
     "accent500": "#3a6cf2",
-    "accent600": "#2451d8"
-  }
+    "accent600": "#2451d8",
+    "accent700": "#25469d"
+  },
+  "initiaal": "M",
+  "plaats": "Damme",
+  "sinds": 2026
 }

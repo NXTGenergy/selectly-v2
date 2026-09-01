@@ -1,5 +1,6 @@
 // Selectly — Netlify Forms trigger. Draait automatisch bij ELKE formulier-inzending op selectly.be.
-// Maakt/updatet het contact in GHL (Selectly sub-account) + zet een opportunity in "Nieuwe lead".
+// Maakt/updatet het contact in GHL, zet een opportunity in "Nieuwe lead" en verstuurt
+// zelf de eerste reactie per mail.
 // Vereist env-vars: GHL_TOKEN, GHL_LOCATION, GHL_PIPELINE, GHL_STAGE (via netlify env:set).
 // Faalt nooit de inzending: geeft altijd 200 terug.
 
@@ -25,7 +26,7 @@ const BOOKING = 'https://api.leadconnectorhq.com/widget/bookings/selectly-demo';
 // De eerste reactie op een aanvraag. Selectly verkoopt dat je géén
 // "bedankt voor uw bericht, wij nemen contact op" hoort te sturen — dus mag
 // Selectly dat zelf al helemaal niet doen. Deze reactie gaat over wat de
-// aanvrager écht schreef, en wordt in GHL gezet zodat de workflow ze verstuurt.
+// aanvrager écht schreef, wordt in GHL bewaard én van hieruit meteen verstuurd.
 const ANTWOORD_PROMPT = `Je schrijft namens Selectly de eerste reactie op een aanvraag via de website.
 
 Selectly levert digitale medewerkers aan Belgische installateurs (HVAC, warmtepompen,
@@ -95,11 +96,60 @@ function splitName(naam) {
   return { first: p[0] || '', last: p.slice(1).join(' ') || '' };
 }
 
+// Het opgemaakte sjabloon staat op de site, zodat er maar één versie van het
+// ontwerp bestaat. Is het even niet op te halen, dan gaat het antwoord alsnog
+// buiten in een sobere opmaak — een lelijke mail is beter dan geen mail.
+const SJABLOON_URL = 'https://selectly.be/assets/email-template.html';
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+async function bouwMail(antwoord) {
+  const alinea = escapeHtml(antwoord)
+    .split(/\n{2,}/).map((p) => `<p style="margin:0 0 14px 0;">${p.replace(/\n/g, '<br>')}</p>`).join('');
+  try {
+    const ctrl = new AbortController();
+    const klok = setTimeout(() => ctrl.abort(), 4000);
+    const r = await fetch(SJABLOON_URL, { signal: ctrl.signal });
+    clearTimeout(klok);
+    if (r.ok) {
+      const html = await r.text();
+      if (html.includes('{{contact.ai_eerste_antwoord}}')) {
+        return html.replace('{{contact.ai_eerste_antwoord}}', alinea);
+      }
+    }
+  } catch (e) { console.log('[mail] sjabloon niet opgehaald', e && e.message); }
+  return `<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#1f2937;">${alinea}</div>`;
+}
+
+async function stuurEersteAntwoord(contactId, email, antwoord, voornaam) {
+  if (!TOKEN) return 'Mail niet verstuurd (geen token).';
+  try {
+    const html = await bouwMail(antwoord);
+    const onderwerp = voornaam
+      ? `${voornaam}, uw aanvraag bij Selectly`
+      : 'Uw aanvraag bij Selectly';
+    const r = await fetch(BASE + '/conversations/messages', {
+      method: 'POST',
+      headers: { ...HEAD, Version: '2021-04-15' },
+      body: JSON.stringify({ type: 'Email', contactId, emailTo: email, subject: onderwerp, html }),
+    });
+    if (r.ok) { console.log('[mail] verstuurd naar', email); return 'Eerste antwoord verstuurd.'; }
+    const j = await r.json().catch(() => ({}));
+    console.log('[mail] mislukt', r.status, JSON.stringify(j).slice(0, 200));
+    return `Mail NIET verstuurd (${r.status}) — zelf opvolgen.`;
+  } catch (e) {
+    console.log('[mail] fout', e && e.message);
+    return 'Mail NIET verstuurd — zelf opvolgen.';
+  }
+}
+
 // Melding onderweg. Twee soorten aanvragen lopen hier binnen en ze vragen een
 // heel ander antwoord, dus dat staat in de eerste regel: een OfferteScout-lead
 // is een particulier voor een installatie, een websiteformulier is een prospect
 // voor Selectly zelf.
-async function meldLead(d, formName, isConsument, gelukt, contactId) {
+async function meldLead(d, formName, isConsument, gelukt, contactId, mailStatus) {
   if (!TG_TOKEN || !TG_CHAT) return;
   const regels = [
     isConsument ? 'Nieuwe OfferteScout-aanvraag (particulier)' : 'Nieuwe aanvraag via de website',
@@ -109,6 +159,7 @@ async function meldLead(d, formName, isConsument, gelukt, contactId) {
     'Formulier: ' + formName,
     d.lead_source ? 'Bron: ' + d.lead_source : null,
     gelukt ? null : 'LET OP: niet in GHL geraakt — zelf opvolgen',
+    mailStatus || null,
     // Rechtstreekse link: vanaf je gsm meteen bellen of opvolgen, zonder zoeken.
     contactId && LOCATION ? `https://app.gohighlevel.com/v2/location/${LOCATION}/contacts/detail/${contactId}` : null,
   ].filter(Boolean);
@@ -188,7 +239,17 @@ exports.handler = async (event) => {
       } catch (e) { console.log('[ghl] opportunity fout', e && e.message); }
     }
 
-    await meldLead(d, formName, isConsument, !!contactId, contactId);
+    // 3) De eerste reactie zelf versturen. Vroeger schreef de AI dit antwoord weg
+    //    in een veld en moest een GHL-workflow het versturen. Die workflow stuurde
+    //    in de praktijk een algemene "bedankt, wij nemen contact op"-mail — precies
+    //    wat Selectly zijn klanten afraadt — en begon met "Dag ," omdat ze afvuurde
+    //    voor de voornaam was opgeslagen. Nu vertrekt het echte antwoord hiervandaan.
+    let mailStatus = '';
+    if (contactId && aiAntwoord && !isConsument && d.email) {
+      mailStatus = await stuurEersteAntwoord(contactId, d.email, aiAntwoord, first);
+    }
+
+    await meldLead(d, formName, isConsument, !!contactId, contactId, mailStatus);
   } catch (e) {
     console.log('[ghl] handler-fout', e && e.message);
   }

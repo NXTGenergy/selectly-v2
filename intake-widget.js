@@ -29,6 +29,17 @@
     '.sl-iw-foot input{flex:1;border:1px solid #e2e8f0;border-radius:12px;padding:11px 14px;font-size:14px;outline:none}',
     '.sl-iw-foot input:focus{border-color:#5b8cff}',
     '.sl-iw-send{border:none;background:#0f172a;color:#fff;border-radius:12px;padding:0 16px;font-size:15px;cursor:pointer}',
+    // Vangnet: valt de assistent uit, dan komt hier een gewoon formulier te staan.
+    '.sl-iw-fb{align-self:stretch;background:#fff;border:1px solid #e2e8f0;border-left:3px solid #f59e0b;border-radius:14px;padding:14px;font-size:14px;color:#0f172a}',
+    '.sl-iw-fb h4{margin:0 0 6px;font-size:14px;font-weight:700}',
+    '.sl-iw-fb p{margin:0 0 10px;font-size:13px;line-height:1.5;color:#475569}',
+    '.sl-iw-fb input,.sl-iw-fb textarea{width:100%;box-sizing:border-box;border:1px solid #e2e8f0;border-radius:10px;padding:9px 12px;font:inherit;font-size:14px;margin-bottom:8px;outline:none}',
+    '.sl-iw-fb input:focus,.sl-iw-fb textarea:focus{border-color:#5b8cff}',
+    '.sl-iw-fb textarea{min-height:70px;resize:vertical}',
+    '.sl-iw-fb button{width:100%;border:none;background:#3a6cf2;color:#fff;font:inherit;font-weight:700;font-size:15px;padding:11px;border-radius:10px;cursor:pointer}',
+    '.sl-iw-fb .alt{margin:10px 0 0;font-size:12px;color:#64748b}',
+    '.sl-iw-fb .alt a{color:#3a6cf2}',
+    '.sl-iw-hp{position:absolute;left:-9999px}',
     '@media(max-width:480px){.sl-iw-panel{right:0;bottom:0;width:100vw;height:100dvh;max-height:100dvh;border-radius:0}}'
   ].join('');
   document.head.appendChild(css);
@@ -94,6 +105,64 @@
   launcher.addEventListener('click', open);
   panel.querySelector('.sl-iw-x').addEventListener('click', close);
 
+  // ── Vangnet ───────────────────────────────────────────────────────────────
+  // Twee keer na elkaar geen antwoord van de functie = de assistent doet niet
+  // meer alsof hij werkt. Anders typt de bezoeker zijn naam en e-mail in een
+  // gesprek dat nergens toekomt (het leadlek van augustus, in een nieuwe vorm).
+  // Het formulier hieronder is een gewone Netlify-Forms-post: die hangt NIET
+  // aan /.netlify/functions/intake vast en werkt dus ook als alle functies
+  // plat liggen. Het gebruikt het formulier "contact", dat al in index.html
+  // geregistreerd staat — een naam die Netlify niet kent, wordt geweigerd.
+  var mislukt = 0, vangnetAan = false;
+
+  function transcriptTekst() {
+    return apiMessages
+      .map(function (m) { return (m.role === 'user' ? 'Bezoeker: ' : 'Selectly: ') + m.content; })
+      .join('\n\n').slice(0, 1500);
+  }
+
+  function toonVangnet() {
+    if (vangnetAan) return;
+    vangnetAan = true;
+    panel.querySelector('.sl-iw-foot').style.display = 'none';
+
+    addMsg('assistant', 'Mijn verbinding met het systeem ligt eruit — ik kan uw antwoorden nu niet verwerken. Laat hieronder uw gegevens achter, dan komt uw vraag wél binnen en belt of mailt iemand van het team u terug.');
+
+    var f = document.createElement('form');
+    f.className = 'sl-iw-fb';
+    f.setAttribute('name', 'contact');
+    f.setAttribute('method', 'POST');
+    f.setAttribute('action', '/bedankt.html');
+    f.setAttribute('data-netlify', 'true');
+    f.setAttribute('netlify-honeypot', 'bot-field');
+    f.innerHTML =
+      '<h4>Uw gegevens, zonder de assistent</h4>' +
+      '<p>Dit formulier gaat rechtstreeks naar het team — niet via de assistent.</p>' +
+      '<input type="hidden" name="form-name" value="contact">' +
+      '<input type="hidden" name="lead_source" value="chatwidget-vangnet">' +
+      '<input type="hidden" name="page_url">' +
+      '<input type="hidden" name="submitted_at">' +
+      '<p class="sl-iw-hp" aria-hidden="true"><label>Niet invullen: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>' +
+      '<input type="text" name="naam" placeholder="Uw naam *" required autocomplete="name">' +
+      '<input type="text" name="bedrijf" placeholder="Bedrijf" autocomplete="organization">' +
+      '<input type="email" name="email" placeholder="E-mailadres *" required autocomplete="email">' +
+      '<input type="tel" name="telefoon" placeholder="Telefoon (optioneel)" autocomplete="tel">' +
+      '<textarea name="bericht" placeholder="Waarover gaat het?"></textarea>' +
+      '<button type="submit">Versturen</button>' +
+      '<p class="alt">Liever mailen? <a href="mailto:info@selectly.be">info@selectly.be</a> — of gebruik het <a href="/#contact">contactformulier</a>.</p>';
+
+    // Waarden apart zetten: zo kan niets uit het gesprek als HTML belanden.
+    f.querySelector('[name="page_url"]').value = location.href;
+    f.querySelector('[name="submitted_at"]').value = new Date().toISOString();
+    var t = transcriptTekst();
+    if (t) f.querySelector('[name="bericht"]').value = 'Gesprek met de assistent (afgebroken door een storing):\n\n' + t;
+
+    body.appendChild(f);
+    body.scrollTop = body.scrollHeight;
+    var eerste = f.querySelector('[name="naam"]');
+    if (eerste) eerste.focus();
+  }
+
   var bezig = false;
   function blokkeer(aan) {
     bezig = aan;
@@ -103,16 +172,21 @@
   }
 
   async function send() {
-    if (bezig) return;
+    if (bezig || vangnetAan) return;
     var val = input.value.trim(); if (!val) return;
     input.value = ''; addMsg('user', val);
     apiMessages.push({ role: 'user', content: val });
     typing(true); blokkeer(true);
     try {
       var r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: apiMessages, pushed: pushed, gemeld: gemeld }) });
+      // Een 502 geeft ook een respons terug. Zonder deze controle leest de
+      // widget een foutpagina als "antwoord" en doet hij alsof alles werkt.
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       var j = await r.json();
+      if (!j || !j.reply) throw new Error('leeg antwoord');
       typing(false);
-      var reply = (j && j.reply) || 'Ik noteer het even zelf. Wat is uw naam en e-mailadres?';
+      mislukt = 0;
+      var reply = j.reply;
       addMsg('assistant', reply);
       apiMessages.push({ role: 'assistant', content: reply });
       if (j.booking) { booking = j.booking; }
@@ -125,8 +199,19 @@
       if (j.modus === 'bericht' && booking) addBooking();
     } catch (e) {
       typing(false);
-      addMsg('assistant', 'De verbinding viel even weg — geen probleem, ik noteer het gewoon zelf. Wat is uw naam en e-mailadres of gsm-nummer? Dan neemt iemand van het team vandaag nog contact op.');
-    } finally { typing(false); blokkeer(false); input.focus(); }
+      mislukt += 1;
+      console.error('[selectly-intake] aanroep mislukt (' + mislukt + '):', (e && e.message) || e);
+      if (mislukt >= 2) {
+        // Niet meer om naam en e-mail vragen: dat antwoord zou via net dezelfde
+        // kapotte aanroep moeten passeren en verdwijnt dan zonder een spoor.
+        toonVangnet();
+      } else {
+        addMsg('assistant', 'Er ging iets mis bij het versturen van uw bericht — het is niet bij mij geraakt. Stuur het gerust nog eens; lukt het dan nog niet, dan geef ik u een andere manier om ons te bereiken.');
+      }
+    } finally {
+      typing(false);
+      if (!vangnetAan) { blokkeer(false); input.focus(); }
+    }
   }
   sendBtn.addEventListener('click', send);
   input.addEventListener('keydown', function (e) { if (e.key === 'Enter') send(); });

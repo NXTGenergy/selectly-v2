@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#070a14" />
 
   <title>ROI-calculator — Selectly</title>
-  <meta name="description" content="Vul je huidige cijfers in en zie binnen 30 seconden hoeveel Selectly je netto oplevert per maand. Geen verkoop-praatje, gewoon cijfers." />
+  <meta name="description" content="Vul uw huidige cijfers in en zie binnen 30 seconden wat Selectly u netto oplevert per maand. Geen verkooppraatje, gewoon cijfers." />
 
   <meta property="og:title" content="Selectly ROI-calculator — wat krijg ik terug?" />
   <meta property="og:description" content="2 min invullen. Live berekening van extra omzet, tijdsbesparing en terugverdientijd. Voor installateurs, dakwerkers, HVAC." />
@@ -147,7 +147,7 @@
           <a href="/#wat-we-doen" class="hover:text-ink-900">Wat we doen</a>
           <a href="/pakketten.html" class="hover:text-ink-900">Prijzen</a>
           <a href="/calculator.html" class="hover:text-ink-900">Pakket-calculator</a>
-          <a href="/roi.html" class="text-ink-900 font-semibold">ROI-calculator</a>
+          <a href="/roi.html" class="text-ink-900 font-semibold">Wat levert het op</a>
         </div>
         <a href="/demo" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition">
           Boek een gratis demo →
@@ -174,8 +174,8 @@
         </h1>
 
         <p class="text-lg lg:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-          Vul je huidige cijfers in. Zie live wat je extra wint per maand,
-          hoeveel tijd vrijkomt en hoe snel het zichzelf terugverdient.
+          Vul uw huidige cijfers in. U ziet meteen wat u per maand extra wint,
+          hoeveel tijd er vrijkomt en hoe snel het zichzelf terugverdient.
         </p>
       </div>
     </div>
@@ -188,13 +188,13 @@
       <!-- LEFT: inputs -->
       <section class="bg-white rounded-3xl border border-gray-100 shadow-xl p-8 lg:p-10">
         <div class="mb-8">
-          <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2">Jouw huidige situatie</p>
-          <h2 class="text-2xl font-bold tracking-tight">Schuif de cijfers naar jouw realiteit</h2>
+          <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2">Uw huidige situatie</p>
+          <h2 class="text-2xl font-bold tracking-tight">Schuif de cijfers naar uw eigen situatie</h2>
         </div>
 
         <!-- Sector -->
         <div class="mb-7">
-          <label class="text-sm font-semibold text-ink-900 mb-3 block">Jouw sector</label>
+          <label class="text-sm font-semibold text-ink-900 mb-3 block">Uw sector</label>
           <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
             <template x-for="s in sectors" :key="s.id">
               <button @click="setSector(s.id)" type="button"
@@ -209,7 +209,7 @@
         <!-- Leads -->
         <div class="mb-7">
           <div class="flex items-baseline justify-between mb-2">
-            <label class="text-sm font-semibold text-ink-900">Leads per maand</label>
+            <label class="text-sm font-semibold text-ink-900">Aanvragen per maand</label>
             <span class="font-mono font-bold text-lg text-brand-500" x-text="leads"></span>
           </div>
           <input type="range" min="10" max="200" step="5" x-model.number="leads" @input="compute()" />
@@ -229,7 +229,7 @@
           <div class="flex justify-between text-xs text-ink-500 mt-1">
             <span>5%</span><span>60%</span>
           </div>
-          <p class="text-xs text-ink-500 mt-1">% leads dat uiteindelijk klant wordt. Sector-gemiddelde: 25-35%.</p>
+          <p class="text-xs text-ink-500 mt-1">% van de aanvragen dat uiteindelijk klant wordt. Sectorgemiddelde: 25-35%.</p>
         </div>
 
         <!-- Avg deal -->
@@ -268,7 +268,7 @@
           <div class="flex justify-between text-xs text-ink-500 mt-1">
             <span>€20</span><span>€80</span>
           </div>
-          <p class="text-xs text-ink-500 mt-1">Wat zou je eigen uur kosten als je het zou doorrekenen?</p>
+          <p class="text-xs text-ink-500 mt-1">Wat kost uw eigen uur als u het zou doorrekenen?</p>
         </div>
       </section>
 
@@ -276,7 +276,7 @@
       <aside class="lg:sticky lg:top-24 self-start">
         <div class="bg-gradient-to-br from-ink-900 to-ink-700 rounded-3xl p-8 lg:p-10 text-white shadow-glow-mint border border-white/5">
           <p class="text-xs font-semibold text-mint-400 uppercase tracking-wider mb-2">Met Selectly</p>
-          <h2 class="text-2xl font-bold tracking-tight mb-6">Wat je per maand wint</h2>
+          <h2 class="text-2xl font-bold tracking-tight mb-6">Wat u per maand wint</h2>
 
           <!-- Hero number: netto winst -->
           <div class="mb-7 pb-7 border-b border-white/10">
@@ -285,7 +285,7 @@
               <span class="text-5xl lg:text-6xl font-bold gradient-text" x-text="'€' + nettoExtra.toLocaleString('nl-BE')" :class="flash ? 'number-flash' : ''"></span>
             </div>
             <div class="text-sm text-mint-400/90 font-semibold mt-1" x-show="nettoExtra > 0">
-              Dat is <span x-text="multiplier"></span>× je Selectly-investering
+              Dat is <span x-text="multiplier"></span>× wat u aan Selectly betaalt
             </div>
             <div class="text-sm text-white/50 font-semibold mt-1" x-show="nettoExtra <= 0" x-cloak>
               Bij deze cijfers kost Selectly u meer dan het opbrengt.
@@ -325,20 +325,20 @@
           <!-- CTA -->
           <a :href="ctaLink"
              class="block text-center bg-white text-ink-900 font-bold py-4 rounded-xl hover:bg-brand-100 transition shadow-glow text-base">
-            Boek een gratis demo met deze cijfers →
+            Boek een gratis demo · 20 min →
           </a>
           <a :href="whatsappLink" target="_blank" rel="noopener"
              class="block text-center mt-3 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold py-3 rounded-xl transition text-sm">
-            Of stuur via WhatsApp
+            Of stuur uw berekening via WhatsApp
           </a>
 
           <!-- Berekening laten toesturen: nog niet klaar om te boeken, wel bereikbaar -->
           <div class="mt-6 pt-6 border-t border-white/10" x-show="!bewaard">
             <p class="text-sm text-white/70 mb-3">
-              Nog niet meteen een gesprek? Laat je berekening toesturen — dan heb je ze zwart-op-wit.
+              Nog niet meteen een gesprek? Laat uw berekening toesturen — dan hebt u ze zwart op wit.
             </p>
             <form @submit.prevent="stuurBerekening()" class="flex flex-col sm:flex-row gap-2">
-              <input type="email" x-model="mail" required placeholder="jouw@bedrijf.be"
+              <input type="email" x-model="mail" required placeholder="uw@bedrijf.be"
                      class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/35 text-sm focus:outline-none focus:border-brand-400" />
               <button type="submit" :disabled="bezig"
                       class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 disabled:opacity-50 text-white font-semibold text-sm whitespace-nowrap transition">
@@ -346,20 +346,20 @@
               </button>
             </form>
             <p class="text-xs text-white/35 mt-2" x-show="!mailFout">
-              Eén mail met je cijfers. Geen nieuwsbrief.
+Eén mail met uw cijfers. Geen nieuwsbrief.
             </p>
             <p class="text-xs text-red-300 mt-2" x-show="mailFout" x-text="mailFout"></p>
           </div>
 
           <div class="mt-6 pt-6 border-t border-white/10" x-show="bewaard" x-cloak>
             <p class="text-sm text-mint-300">
-              Genoteerd. Je berekening komt eraan — en we nemen contact op als je dat wil.
+              Genoteerd. Uw berekening komt eraan — en we nemen contact op als u dat wil.
             </p>
           </div>
 
           <p class="text-xs text-white/40 mt-5 text-center leading-relaxed">
-            Berekening = indicatie op basis van Selectly-klant-data.<br>
-            Onze case: 35% → 62% conversie in 4 weken.
+            Een indicatie, gebaseerd op onze eigen gemeten cijfers.<br>
+            In ons eigen installatiebedrijf: 35% → 62% conversie in 4 weken.
           </p>
         </div>
 
@@ -370,8 +370,8 @@
             <li>• <strong class="text-ink-900">Extra conversie</strong>: +35% relatief, afgetopt op 65%. Gebaseerd op onze eigen eerste implementatie (35% → 62% in 4 weken, één bedrijf). Dat is een kleine steekproef — reken er niet blind op.</li>
             <li>• <strong class="text-ink-900">Marge</strong>: we rekenen met 22% brutomarge op installatiewerk, en trekken de Selectly-kost er af. Wat u ziet is extra brutomarge, geen omzet.</li>
             <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van het offerte-werk is automatiseerbaar. Die uren staan apart en tellen niet mee in het bedrag — vrijgekomen tijd is geen cash.</li>
-            <li>• <strong class="text-ink-900">Tier-aanbeveling</strong>: gebaseerd op lead-volume + sector — geen overkill, geen onderkill.</li>
-            <li>• Geen win-loss garantie — dit is een schatting voor besluitvorming, geen offerte.</li>
+            <li>• <strong class="text-ink-900">Welk pakket we aanraden</strong>: op basis van het aantal aanvragen per maand en uw sector — niet te zwaar, niet te licht.</li>
+            <li>• Geen garantie op het resultaat — dit is een schatting om mee te beslissen, geen offerte.</li>
           </ul>
         </details>
       </aside>
@@ -385,11 +385,11 @@
       </div>
       <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
         <div class="text-3xl font-bold text-ink-900 mb-1">&lt;1 min</div>
-        <div class="text-sm text-ink-500">eerste respons op elke lead — 3× hogere closing-rate</div>
+        <div class="text-sm text-ink-500">eerste reactie op elke aanvraag — ongeveer 3× meer kans dat er getekend wordt</div>
       </div>
       <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-2xl p-6">
         <div class="text-3xl font-bold text-ink-900 mb-1">Maandelijks</div>
-        <div class="text-sm text-ink-500">opzegbaar. Je houdt je data + CRM. Geen lange contracten.</div>
+        <div class="text-sm text-ink-500">opzegbaar. U houdt uw gegevens en uw CRM. Geen lange contracten.</div>
       </div>
     </section>
   </main>
@@ -416,7 +416,7 @@
         <ul class="space-y-1">
           <li><a href="/" class="hover:text-white">Home</a></li>
           <li><a href="/calculator.html" class="hover:text-white">Pakket-calculator</a></li>
-          <li><a href="/roi.html" class="hover:text-white">ROI-calculator</a></li>
+          <li><a href="/roi.html" class="hover:text-white">Wat levert het op</a></li>
           <li><a href="/case-installateur.html" class="hover:text-white">Case study</a></li>
         </ul>
       </div>
@@ -534,9 +534,9 @@
         }
 
         // CTA link met cijfers
-        const summary = `ROI-berekening: ${this.leads} leads/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} extra brutomarge/mnd na de Selectly-kost. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
+        const summary = `Berekening: ${this.leads} aanvragen/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} extra brutomarge/mnd na de Selectly-kost. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
         this.ctaLink = '/?roi=' + encodeURIComponent(summary) + '#contact';
-        this.whatsappLink = 'https://wa.me/32483812907?text=' + encodeURIComponent('Selectly, ik deed de ROI-calculator. ' + summary + ' Kan jij een demo plannen?');
+        this.whatsappLink = 'https://wa.me/32483812907?text=' + encodeURIComponent('Hallo Selectly, ik heb de berekening gedaan op de site. ' + summary + ' Kunnen we een demo inplannen?');
 
         // Flash animation
         this.flash = true;
@@ -580,7 +580,7 @@
                 aanbevolen_pakket: this.recommendedTier.name,
                 terugverdientijd: this.paybackText,
               },
-              samenvatting: `ROI-calculator (${sectorLabel}): ${this.leads} aanvragen/maand, ${this.conv}% conversie, gemiddelde orderwaarde €${this.dealAvg.toLocaleString('nl-BE')}. Netto extra ≈ €${Number(this.nettoExtra).toLocaleString('nl-BE')}/maand na de Selectly-kost. Aanbevolen: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd), terugverdiend in ${this.paybackText}.`,
+              samenvatting: `Rekenmodule (${sectorLabel}): ${this.leads} aanvragen/maand, ${this.conv}% conversie, gemiddelde orderwaarde €${this.dealAvg.toLocaleString('nl-BE')}. Netto extra ≈ €${Number(this.nettoExtra).toLocaleString('nl-BE')}/maand na de Selectly-kost. Aanbevolen: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd), terugverdiend in ${this.paybackText}.`,
             }),
           });
           const j = await r.json().catch(() => ({}));

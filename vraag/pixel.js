@@ -1,50 +1,36 @@
 /*
- * Stielkenner Pixel — sector-specifieke Meta tracking
+ * Stielkenner Pixel — sector-specifieke Meta tracking.
  *
- * Apart van Selectly's B2B Pixel zodat data niet mengt.
- * Voor nu zelfde Pixel-ID (852925924180054) maar custom events per sector.
+ * STAAT UIT tot er een eigen Meta Pixel-ID is. Twee redenen:
  *
- * Custom events per sector:
- *   - Stielkenner_View_{sector}    (PageView gequalificeerd)
- *   - Stielkenner_Start            (eerste step gestart)
- *   - Stielkenner_Step             (elke stap voltooid)
- *   - Stielkenner_Lead_{sector}    (form submitted, met value = lead-fee)
+ * 1. Hij draaide op hetzelfde ID als selectly.be (852925924180054), terwijl het
+ *    commentaar hierboven al zei dat de data niet mocht mengen. Particulieren die
+ *    een dakwerker zoeken kwamen zo in de doelgroepen van een B2B-campagne die
+ *    zaakvoerders van installatiebedrijven wil bereiken. Dat vervuilt precies het
+ *    publiek waar Selectly's advertentiebudget op mikt.
+ * 2. De lead-tarieven stonden hier als platte tekst in een publiek bestand. Wat
+ *    een installateur per lead betaalt is onderhandelingsinformatie; die hoort
+ *    niet op de site. Ze zijn hier weg en staan enkel nog in de interne configuratie.
  *
- * Lead-fees zoals in installateurs.json:
- *   zonnepanelen: 35 / thuisbatterij: 40 / warmtepomp: 60 / airco: 30 / dakwerken: 45
+ * Aanzetten zodra er een eigen pixel is: zet PIXEL_ID hieronder. De waarde per
+ * lead komt dan uit een instelling, niet uit dit bestand.
  *
- * Voor het team's optimization: maak in Meta Custom Conversions per
- * Stielkenner_Lead_{sector} event met value-tracking → optimaliseert
- * naar duurste leads.
- *
- * Migratie naar eigen Meta Pixel-ID (later, na eigen domein):
- *   Vervang PIXEL_ID hieronder. State.html + ads campaign moet ook
- *   nieuw Pixel hebben.
+ * Custom events die hij stuurt zodra hij aanstaat:
+ *   Stielkenner_View · Stielkenner_Start · Stielkenner_Step · Stielkenner_Lead_{sector}
  */
 (function () {
-  var PIXEL_ID = '852925924180054';
+  // Leeg = uit. Vul hier het eigen Stielkenner-pixel-ID in, niet dat van Selectly.
+  var PIXEL_ID = '';
 
-  // Lead-fees (sync met installateurs.json)
-  var LEAD_FEES = {
-    zonnepanelen: 35,
-    thuisbatterij: 40,
-    warmtepomp: 60,
-    airco: 30,
-    dakwerken: 45
-  };
-
-  // Detect sector from URL
   function getSector() {
-    var path = window.location.pathname;
-    var match = path.match(/\/vraag\/([a-z]+)\.html/);
-    return match ? match[1] : 'unknown';
+    var m = window.location.pathname.match(/\/vraag\/([a-z]+)\.html/);
+    return m ? m[1] : 'unknown';
   }
 
   function loadPixel() {
-    if (window._stielkennerPixelLoaded) return;
+    if (!PIXEL_ID || window._stielkennerPixelLoaded) return;
     window._stielkennerPixelLoaded = true;
 
-    // Standard FB Pixel init
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
     if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -57,22 +43,18 @@
 
     var sector = getSector();
 
-    // Custom event ipv generic PageView → onderscheid van Selectly traffic
-    fbq('trackCustom', 'Stielkenner_View', {
-      sector: sector,
-      content_category: 'stielkenner'
-    });
+    // Custom event in plaats van een gewone PageView, zodat dit verkeer in Meta
+    // te onderscheiden blijft van dat van Selectly.
+    fbq('trackCustom', 'Stielkenner_View', { sector: sector, content_category: 'stielkenner' });
 
-    // Track form-start (eerste click op next button)
     var nextBtn = document.getElementById('nextBtn');
     if (nextBtn) {
-      var startTracked = false;
+      var gestart = false;
       nextBtn.addEventListener('click', function () {
-        if (!startTracked) {
-          startTracked = true;
+        if (!gestart) {
+          gestart = true;
           fbq('trackCustom', 'Stielkenner_Start', { sector: sector });
         }
-        // Track elke stap-progressie (debounced)
         fbq('trackCustom', 'Stielkenner_Step', {
           sector: sector,
           step: parseInt(document.querySelector('.step-pane.active')?.dataset.step || '1', 10)
@@ -80,30 +62,22 @@
       });
     }
 
-    // Track form-submit als Lead met value
+    // Geen bedrag meesturen: de waarde per lead is interne informatie en Meta
+    // heeft ze niet nodig om op conversies te optimaliseren.
     document.querySelectorAll('form[data-netlify="true"]').forEach(function (form) {
       form.addEventListener('submit', function () {
-        var fee = LEAD_FEES[sector] || 30;
-        fbq('track', 'Lead', {
-          value: fee,
-          currency: 'EUR',
-          content_category: 'stielkenner_' + sector,
-          content_name: sector
-        });
-        fbq('trackCustom', 'Stielkenner_Lead_' + sector, {
-          value: fee,
-          currency: 'EUR'
-        });
+        fbq('track', 'Lead', { content_category: 'stielkenner_' + sector, content_name: sector });
+        fbq('trackCustom', 'Stielkenner_Lead_' + sector, { sector: sector });
       });
     });
   }
 
-  // GDPR consent gating
+  // Pas laden na toestemming.
   try {
     if (localStorage.getItem('selectly_consent') === 'accepted') {
       loadPixel();
     } else {
       window.addEventListener('selectly-consent-given', loadPixel, { once: true });
     }
-  } catch (e) { /* localStorage geblokkeerd → geen tracking */ }
+  } catch (e) { /* localStorage geblokkeerd -> geen tracking */ }
 })();

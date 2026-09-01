@@ -104,6 +104,34 @@ for term in "Van Poucke" "bartvanpoucke" "beheer.suwie"; do
   fi
 done
 
+kop "9. Publieke verkoopdemo bevat geen echte klantgegevens"
+
+demo=$(curl -s -m 20 "$SITE/portal/demo.html" "$SITE/portal/installateur.html")
+for naam in Mertens Favorcool Duocar; do
+  echo "$demo" | grep -q "$naam" \
+    && fout "'$naam' staat op een publiek bereikbare portaalpagina" \
+    || ok "'$naam' staat niet op de publieke demo"
+done
+
+kop "10. Privacybeleid noemt de verwerkers die er echt zijn"
+
+priv=$(curl -s -m 20 "$SITE/privacy.html")
+for verwerker in Telegram Anthropic Netlify Meta; do
+  echo "$priv" | grep -qi "$verwerker" \
+    && ok "$verwerker staat in het privacybeleid" \
+    || fout "$verwerker ontbreekt in het privacybeleid (AVG art. 13)"
+done
+
+kop "11. Chatwidget heeft een vangnet"
+
+wid=$(curl -s -m 20 "$SITE/intake-widget.js")
+echo "$wid" | grep -q 'toonVangnet' \
+  && ok "vangnet aanwezig in de widget" \
+  || fout "vangnet ontbreekt — bij een storing verdwijnen leads stil"
+curl -s -m 20 "$SITE/" | grep -q 'name="form-name" value="contact"' \
+  && ok "formuliernaam 'contact' staat statisch in de homepage (vangnet werkt)" \
+  || fout "formuliernaam 'contact' ontbreekt — Netlify weigert de vangnet-inzendingen stil"
+
 printf "\n${B}Uitslag:${N} ${G}%s ok${N}, ${R}%s fout${N}\n" "$groen" "$rood"
 
 if [ "$rood" -gt 0 ]; then

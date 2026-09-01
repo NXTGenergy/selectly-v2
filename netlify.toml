@@ -61,7 +61,8 @@
 #   1. Project → Identity → Enable (staat al aan, invite-only)
 #   2. Nodig jezelf uit als gebruiker
 #   3. Bij die gebruiker: Roles → voeg "admin" toe
-#   4. Voor elke klant later: rol "klant"
+#   4. Voor elke klant: rol "klant-<slug>", bv. "klant-mertens-dakwerken".
+#      De juiste rolnaam staat bij zijn regel in het gegenereerde blok hieronder.
 #
 # Werkt aanmelden niet en sta je buiten? Zet deze twee blokken tijdelijk in
 # commentaar, deploy opnieuw, en je bent weer binnen.
@@ -103,13 +104,80 @@
   force = true
   conditions = {Role = ["admin"]}
 
-# Al de rest, inclusief elk klantportaal dat de fabriek later genereert.
+# ─── PORTAAL-REGELS PER KLANT ─── AUTOMATISCH GEGENEREERD ───────────────────
+# Wordt herschreven door `npm run portalen`. Niet met de hand bewerken: uw
+# wijziging verdwijnt bij de volgende run. Pas portal/_klanten/<slug>.json aan.
+#
+# Waarom per klant en niet één regel voor iedereen: met de rol "klant" op heel
+# /portal/* kon elke ingelogde klant het portaal van elke andere klant openen.
+# Met één klant was dat onzichtbaar, vanaf klant 2 is het een datalek. Elke klant
+# krijgt nu zijn eigen rol; in Netlify Identity zet u die op zijn gebruiker.
+# >>> BEGIN GEGENEREERDE PORTAAL-REGELS
+# favorcool — rol "klant-favorcool" op zijn gebruiker in Netlify Identity
 [[redirects]]
-  from = "/portal/*"
-  to = "/portal/:splat"
+  from = "/portal/favorcool.html"
+  to = "/portal/favorcool.html"
   status = 200
   force = true
-  conditions = {Role = ["admin", "klant"]}
+  conditions = {Role = ["admin", "klant-favorcool"]}
+
+# mertens-dakwerken — rol "klant-mertens-dakwerken" op zijn gebruiker in Netlify Identity
+[[redirects]]
+  from = "/portal/mertens-dakwerken.html"
+  to = "/portal/mertens-dakwerken.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin", "klant-mertens-dakwerken"]}
+# <<< EINDE GEGENEREERDE PORTAAL-REGELS
+
+# Uw eigen werkschermen. Deze tonen leads, offertes en campagnes over klanten
+# heen, dus alleen admin. Klantportalen linken hier niet naar; die zijn
+# zelfstandig. mertens.html is het oude portaal, blijft admin-only.
+[[redirects]]
+  from = "/portal/index.html"
+  to = "/portal/index.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+[[redirects]]
+  from = "/portal/leads.html"
+  to = "/portal/leads.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+[[redirects]]
+  from = "/portal/offertes.html"
+  to = "/portal/offertes.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+[[redirects]]
+  from = "/portal/campagnes.html"
+  to = "/portal/campagnes.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+[[redirects]]
+  from = "/portal/instellingen.html"
+  to = "/portal/instellingen.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+[[redirects]]
+  from = "/portal/mertens.html"
+  to = "/portal/mertens.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+# Onderdelen die elke ingelogde klant mag zien (de inlogpagina en de verkoopdemo
+# staan hierboven al open). Alles wat hier niet expliciet staat, valt door naar
+# de 302 hieronder.
 
 # Geen geldige rol? Naar de inlogpagina in plaats van de inhoud.
 [[redirects]]
@@ -125,7 +193,7 @@
   to = "/onboarding/:splat"
   status = 200
   force = true
-  conditions = {Role = ["admin", "klant"]}
+  conditions = {Role = ["admin"]}
 
 [[redirects]]
   from = "/onboarding/*"

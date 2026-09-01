@@ -53,10 +53,15 @@ const sjabloon = readFileSync(SJABLOON, "utf8").replace(/^<!--[\s\S]*?-->\n/, ""
 
 const bestanden = readdirSync(KLANTEN).filter(f => f.endsWith(".json")).sort();
 let gebouwd = 0, overgeslagen = 0, afwijkend = 0;
+const slugs = [];
 
 for (const bestand of bestanden) {
   const klant = JSON.parse(readFileSync(join(KLANTEN, bestand), "utf8"));
   const naam = bestand.replace(/\.json$/, "");
+
+  /* Toegang staat los van generatie: een portaal dat handwerk blijft, moet nog
+     altijd afgeschermd zijn en bereikbaar voor zijn eigen klant. */
+  if (klant.slug) slugs.push(klant.slug);
 
   if (klant.genereren === false) {
     console.log(`  · ${naam.padEnd(24)} overgeslagen (genereren: false)`);
@@ -93,6 +98,37 @@ for (const bestand of bestanden) {
   writeFileSync(uit, nieuw, "utf8");
   console.log(`  + ${naam.padEnd(24)} geschreven -> portal/${klant.slug}.html`);
   gebouwd++;
+}
+
+/* ── Toegangsregels ──────────────────────────────────────────────────────────
+   Elk portaal krijgt zijn eigen rol. Zonder dit kon elke ingelogde klant elk
+   portaal openen. De regels moeten in netlify.toml staan vóór de 302 naar de
+   inlogpagina, want Netlify neemt de eerste regel die past. */
+const TOML = join(wortel, "netlify.toml");
+const BEGIN = "# >>> BEGIN GEGENEREERDE PORTAAL-REGELS";
+const EINDE = "# <<< EINDE GEGENEREERDE PORTAAL-REGELS";
+
+const regels = slugs.map(slug => `
+# ${slug} — rol "klant-${slug}" op zijn gebruiker in Netlify Identity
+[[redirects]]
+  from = "/portal/${slug}.html"
+  to = "/portal/${slug}.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin", "klant-${slug}"]}`).join("\n");
+
+const toml = readFileSync(TOML, "utf8");
+const b = toml.indexOf(BEGIN), e = toml.indexOf(EINDE);
+if (b === -1 || e === -1) {
+  console.error("! merktekens ontbreken in netlify.toml — toegangsregels niet bijgewerkt");
+  process.exit(1);
+}
+const nieuwToml = toml.slice(0, b + BEGIN.length) + regels + "\n" + toml.slice(e);
+if (nieuwToml !== toml) {
+  if (alleenControle) { console.log("  ! netlify.toml     toegangsregels zouden wijzigen"); afwijkend++; }
+  else { writeFileSync(TOML, nieuwToml, "utf8"); console.log(`  + netlify.toml     ${slugs.length} toegangsregel(s) geschreven`); }
+} else {
+  console.log("  = netlify.toml     toegangsregels ongewijzigd");
 }
 
 console.log(`\n${gebouwd} portaal(en), ${overgeslagen} overgeslagen${afwijkend ? `, ${afwijkend} afwijkend` : ""}.`);

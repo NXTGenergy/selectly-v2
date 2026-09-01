@@ -16,11 +16,53 @@
   status = 302
   force = true
 
-# Nette URL voor de omzetscan-landingspagina (Meta-ads + outreach)
+# Er stonden twee rekentools op de site die elkaar tegenspraken. Met dezelfde
+# invoer (80 aanvragen, 28% conversie, €8.500 orderwaarde) toonde de omzetscan
+# €571.200 verlies per jaar en de ROI-calculator €12.711 winst per maand
+# (€152.532 per jaar) — factor 3,7 verschil, allebei bereikbaar vanuit dezelfde
+# navigatie. De omzetscan rekende het volledige omzetverlies zonder marge en
+# noemde dat "verlies"; een gemiste order kost je je marge, niet de hele order.
+# roi.html is voortaan de enige rekentool. De bestanden blijven staan, de URL's
+# gaan permanent naar de tool die wel klopt.
 [[redirects]]
   from = "/omzetscan"
-  to = "/omzetscan.html"
-  status = 200
+  to = "/roi.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/omzetscan.html"
+  to = "/roi.html"
+  status = 301
+  force = true
+
+# Status- en roadmappagina uit de lucht. status.html toonde 99,95% en 99,92%
+# uptime terwijl diezelfde pagina zei dat er nog geen automatische bewaking is —
+# die cijfers zijn nooit gemeten. roadmap.html beloofde een voicebot in Q3 2026
+# die er niet is, en een release-cadans zonder klanten om voor te releasen.
+[[redirects]]
+  from = "/status"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/status.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/roadmap"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/roadmap.html"
+  to = "/"
+  status = 301
+  force = true
 
 # De broncode van de functies stond publiek leesbaar op selectly.be, waardoor
 # de volledige system prompt van de intake-assistent op straat lag.

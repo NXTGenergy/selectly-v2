@@ -90,11 +90,11 @@
         </svg>
       </div>
 
-      <h1 class="text-4xl md:text-5xl font-bold text-ink-900 mb-4 tracking-tight">
+      <h1 id="dankKop" class="text-4xl md:text-5xl font-bold text-ink-900 mb-4 tracking-tight">
         Bedankt! Je aanvraag is binnen.
       </h1>
 
-      <p class="text-lg text-ink-500 mb-10 leading-relaxed">
+      <p id="dankTekst" class="text-lg text-ink-500 mb-10 leading-relaxed">
         We nemen <strong class="text-ink-900">binnen 24 uur</strong> contact op.
         Geen verkooppraat — we kijken samen of Selectly bij uw zaak past.
       </p>
@@ -103,9 +103,9 @@
       <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 mb-10 text-left">
         <h2 class="font-bold text-ink-900 mb-5 flex items-center gap-2">
           <svg width="20" height="20" fill="none" stroke="#5b8cff" stroke-width="2"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 2" stroke-linecap="round"/></svg>
-          Wat gebeurt er nu?
+          <span id="dankStappenKop">Wat gebeurt er nu?</span>
         </h2>
-        <ol class="space-y-4 text-ink-500">
+        <ol id="dankStappen" class="space-y-4 text-ink-500">
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">1</span>
             <div><strong class="text-ink-900">Vandaag of morgen:</strong> we bekijken uw aanvraag en uw bedrijf.</div>
@@ -151,5 +151,33 @@
     </div>
   </footer>
 
+
+  <script>
+    /* Wie via de GHL-agenda komt (?type=demo-geboekt) heeft zijn afspraak al staan.
+       "We nemen binnen 24 uur contact op" klopt dan niet en zaait twijfel op precies
+       het moment dat hij zeker wil zijn dat het gelukt is. */
+    (function () {
+      var t;
+      try { t = new URLSearchParams(location.search).get('type'); } catch (e) { return; }
+      if (t !== 'demo-geboekt' && t !== 'demo') return;
+
+      var kop = document.getElementById('dankKop');
+      var tekst = document.getElementById('dankTekst');
+      var stappen = document.getElementById('dankStappen');
+      var stappenKop = document.getElementById('dankStappenKop');
+
+      if (kop) kop.textContent = 'Uw afspraak staat vast.';
+      if (tekst) tekst.innerHTML = 'U krijgt de bevestiging met de agenda-uitnodiging in uw mailbox. ' +
+        '<strong class="text-ink-900">Zet ze meteen in uw agenda</strong> — dan bent u ze niet kwijt tussen de werven door.';
+      if (stappenKop) stappenKop.textContent = 'Hoe bereidt u zich voor?';
+      if (stappen) stappen.innerHTML =
+        '<li class="flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">1</span>' +
+        '<div><strong class="text-ink-900">Niets voorbereiden.</strong> Breng gewoon een idee mee van hoeveel aanvragen u per maand krijgt en wat een gemiddelde opdracht opbrengt.</div></li>' +
+        '<li class="flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">2</span>' +
+        '<div><strong class="text-ink-900">Twintig minuten.</strong> We kijken samen waar er vandaag aanvragen blijven liggen. Geen verkooppraat.</div></li>' +
+        '<li class="flex gap-3"><span class="flex-shrink-0 w-7 h-7 rounded-full bg-brand-500 text-white font-bold text-sm flex items-center justify-center">3</span>' +
+        '<div><strong class="text-ink-900">Past het niet?</strong> Dan zeggen we dat. U beslist daarna rustig, er volgt geen aandringen.</div></li>';
+    })();
+  </script>
 </body>
 </html>

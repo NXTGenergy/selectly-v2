@@ -7,6 +7,16 @@
   <title>Security &amp; GDPR — Selectly</title>
   <meta name="description" content="Hoe Selectly omgaat met klantdata: hosting in EU, encryptie at-rest en in-transit, GDPR-compliant, data-export op verzoek, geen LLM-training op klant-data." />
   <meta property="og:title" content="Security &amp; GDPR · Selectly" />
+  <meta property="og:description" content="Hoe Selectly met uw klantdata omgaat: EU-hosting, versleuteling, GDPR-verwerkersovereenkomst, data-export op verzoek en geen modeltraining op uw data." />
+  <meta property="og:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Selectly &mdash; security en GDPR voor bouw- en installatiebedrijven" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://selectly.be/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://selectly.be/security.html" />
+  <meta property="og:locale" content="nl_BE" />
   <link rel="canonical" href="https://selectly.be/security.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" type="image/png" href="/favicon-32.png" />
@@ -51,28 +61,73 @@
 </head>
 <body class="bg-white text-ink-900">
 
-<nav class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-gray-100">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-2.5">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="8" fill="url(#g)"/>
-          <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
-          <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
-          <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
-        </svg>
-        <span class="text-xl font-bold">Selectly</span>
-      </a>
-      <div class="hidden lg:flex items-center gap-5 xl:gap-8 whitespace-nowrap text-sm font-medium text-ink-500">
-        <a href="/demo-ai.html" class="hover:text-ink-900">Live demo</a>
-        <a href="/roi.html" class="hover:text-ink-900">Wat levert het op</a>
-        <a href="/vergelijken.html" class="hover:text-ink-900">Vergelijken</a>
-        <a href="/security.html" class="text-ink-900 font-semibold">Security</a>
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2.5">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#g)"/>
+            <g transform="translate(4,3) scale(0.2)"><path d="M92 30 H48 a18 18 0 0 0 0 36 h24 a18 18 0 0 1 0 36 H28" stroke="white" stroke-width="11" stroke-linecap="round"/>
+            <circle cx="92" cy="30" r="10" fill="#34e4a8"/><circle cx="28" cy="102" r="10" fill="#34e4a8"/></g>
+            <defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#3a6cf2"/></linearGradient></defs>
+          </svg>
+          <span class="text-xl font-bold">Selectly</span>
+        </a>
+
+        <div class="hidden lg:flex items-center gap-5 xl:gap-8 whitespace-nowrap text-sm font-medium text-ink-500">
+          <a href="/#wat-we-doen" class="hover:text-ink-900 transition">Wat we doen</a>
+          <a href="/#hoe" class="hover:text-ink-900 transition">Werkwijze</a>
+          <a href="/#case" class="hover:text-ink-900 transition">De case</a>
+          <a href="/demo-ai.html" class="hover:text-ink-900 transition flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-mint-400 animate-pulse"></span>
+            Live demo
+          </a>
+          <a href="/roi.html" class="hover:text-ink-900 transition">Wat levert het op</a>
+          <a href="/vergelijken.html" class="hover:text-ink-900 transition">Vergelijken</a>
+          <a href="/pakketten.html" class="hover:text-ink-900 transition">Pakketten</a>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <a href="/demo" class="px-3 py-2 lg:px-5 lg:py-2.5 text-xs lg:text-sm font-semibold bg-ink-900 text-white rounded-lg hover:bg-ink-700 transition whitespace-nowrap">
+            <span class="lg:hidden">Boek demo</span><span class="hidden lg:inline">Boek een gratis demo &rarr;</span>
+          </a>
+          <button type="button" id="navToggle" aria-controls="navMenu" aria-expanded="false" aria-label="Menu openen" class="lg:hidden p-2 -mr-2 text-ink-900">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+          </button>
+        </div>
       </div>
-      <a href="/demo" class="px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo →</a>
+
+      <!-- Mobiel menu -->
+      <div id="navMenu" class="hidden lg:hidden py-4 border-t border-gray-100 space-y-1">
+        <a href="/demo-ai.html" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Live AI-demo</a>
+        <a href="/roi.html" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat levert het op</a>
+        <a href="/vergelijken.html" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Vergelijken</a>
+        <a href="/#wat-we-doen" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Wat we doen</a>
+        <a href="/#case" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">De case</a>
+        <a href="/pakketten.html" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Pakketten</a>
+        <a href="/over.html" class="block px-3 py-2 text-sm font-medium text-ink-500 hover:text-ink-900">Over Selectly</a>
+        <a href="/security.html" class="block px-3 py-2 text-sm font-medium text-ink-900 font-semibold">Security &amp; GDPR</a>
+        <a href="/demo" class="block mt-3 mx-3 text-center px-5 py-2.5 text-sm font-semibold bg-ink-900 text-white rounded-lg">Boek een gratis demo &rarr;</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  <script>
+    (function () {
+      var btn = document.getElementById('navToggle');
+      var menu = document.getElementById('navMenu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function () {
+        var open = !menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 
 <section class="relative bg-ink-900 text-white overflow-hidden">
   <div class="absolute inset-0 grid-bg"></div>
@@ -226,8 +281,10 @@
     <h2 class="text-3xl font-bold tracking-tight mb-3">Sub-processors</h2>
     <p class="text-ink-500 mb-6">Wie wij gebruiken om de dienst te leveren. Bij een wijziging krijgt u 30 dagen vooraf bericht.</p>
 
-    <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-      <table class="w-full text-sm">
+    <p class="sm:hidden text-xs font-medium text-ink-500 mb-2" aria-hidden="true">&larr; veeg voor de volledige tabel &rarr;</p>
+
+    <div class="bg-white border border-gray-200 rounded-2xl overflow-x-auto">
+      <table class="w-full min-w-[560px] text-sm">
         <thead class="bg-gray-50 border-b border-gray-200">
           <tr>
             <th class="text-left px-5 py-3 font-semibold">Partij</th>

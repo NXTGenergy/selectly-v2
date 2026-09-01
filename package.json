@@ -1,7 +1,6 @@
 {
   "name": "selectly-site",
   "private": true,
-  "type": "module",
   "scripts": {
     "portalen": "node tools/bouw-portalen.mjs",
     "portalen:controleer": "node tools/bouw-portalen.mjs --controleer"

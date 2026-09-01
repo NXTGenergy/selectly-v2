@@ -256,6 +256,22 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# Bouwgereedschap en projectbestanden stonden op 200: /package.json en
+# /tools/bouw-portalen.mjs waren gewoon op te vragen. Dat is geen geheim, maar het
+# vertelt een aanvaller wel precies hoe de portalen gegenereerd worden en welke
+# klantslugs bestaan. Hoort niet op het publieke domein. (webdev, 01-09-2026)
+[[redirects]]
+  from = "/tools/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # _bron/ bevat de markdown-bronnen van de blog. Die stonden mee online en waren
 # gewoon op te vragen — inclusief passages die in de gepubliceerde artikels al
 # geanonimiseerd waren. Bronmateriaal hoort niet op het publieke domein.

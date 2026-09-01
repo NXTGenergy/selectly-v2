@@ -32,6 +32,7 @@ __pycache__/
 /NIEUWE-COPY-2026-07-20.md
 /NIEUWE-COPY-pages.md
 /DEPLOY.md
+/AUDIT-18AUG2026.md
 /build_blog.py
 /marketing/meta-ads-v1.md
 /vraag/BRAND-NAAM-FINALISTEN.md
@@ -48,3 +49,8 @@ _bron/
 
 # Interne onderzoeksnotities — mogen nooit mee gedeployed worden
 vraag/_onderzoek/
+
+# Claude-worktrees bevatten een VOLLEDIGE kopie van de site.
+# Eenmaal gecommit staat elke oude paginaversie publiek op
+# /.claude/worktrees/<naam>/index.html. Nooit meedeployen.
+.claude/

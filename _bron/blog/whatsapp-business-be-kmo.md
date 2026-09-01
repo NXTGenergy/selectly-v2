@@ -190,4 +190,4 @@ Dat bedrijf wachtte niet op het perfecte moment. Ze bouwden een werkende flow in
 
 Bij Selectly zetten we WhatsApp Business flows op voor Belgische KMO's — van de technische integratie tot de conversatieflows en CRM-koppelingen. Geen generiek advies, maar een setup die past bij hoe jouw bedrijf werkt.
 
-Boek een gratis strategiegesprek van 30 minuten via [selectly.be/#contact](https://selectly.be/#contact). We kijken samen naar je huidige klantcontact, waar de vertraging zit, en wat een realistische eerste stap is.
+Boek een gratis strategiegesprek van 20 minuten via [selectly.be/#contact](https://selectly.be/#contact). We kijken samen naar je huidige klantcontact, waar de vertraging zit, en wat een realistische eerste stap is.

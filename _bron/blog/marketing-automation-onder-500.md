@@ -212,6 +212,6 @@ Dat is het. Geen masterplan. Geen groot budget. Gewoon beginnen met iets kleins 
 
 Selectly bouwt marketing automation voor Belgische KMO's. We kijken samen naar je huidige proces, identificeren de grootste bottleneck en geven je een concrete aanpak.
 
-Geen verkoopgesprek. Geen pitch. Een werkende planning van 30 minuten.
+Geen verkoopgesprek. Geen pitch. Een werkende planning van 20 minuten.
 
 [Plan je gratis strategiegesprek via selectly.be/#contact](https://selectly.be/#contact)

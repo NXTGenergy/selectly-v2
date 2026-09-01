@@ -218,6 +218,6 @@ Dat bedrijf is geen uitzondering. Het is een blauwdruk.
 
 Als je weet hoeveel uren je verliest aan offertes die altijd op hetzelfde neerkomen, dan weet je ook dat er iets te winnen is.
 
-Boek een gratis strategiegesprek van 30 minuten. Geen verkooppraatje. Geen vrijblijvende presentatie. We kijken naar jouw offerteproces, jouw data, jouw tools. En we vertellen je eerlijk of automatisering zinvol is, en zo ja, hoe snel je het terugverdient.
+Boek een gratis strategiegesprek van 20 minuten. Geen verkooppraatje. Geen vrijblijvende presentatie. We kijken naar jouw offerteproces, jouw data, jouw tools. En we vertellen je eerlijk of automatisering zinvol is, en zo ja, hoe snel je het terugverdient.
 
 **[Boek je gratis gesprek via selectly.be/#contact](https://selectly.be/#contact)**

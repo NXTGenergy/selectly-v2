@@ -197,6 +197,6 @@ Geen contract van een jaar voor je weet of het werkt.
 
 Je weet nu het verschil tussen Vapi en Retell. Je weet welke vragen de keuze bepalen. Je weet wat de valkuilen zijn.
 
-De volgende stap is uitzoeken of een voicebot past bij jouw specifieke situatie. Dat duurt 30 minuten. Geen verplichtingen.
+De volgende stap is uitzoeken of een voicebot past bij jouw specifieke situatie. Dat duurt 20 minuten. Geen verplichtingen.
 
 Boek een gratis strategiegesprek via [selectly.be/#contact](https://selectly.be/#contact).

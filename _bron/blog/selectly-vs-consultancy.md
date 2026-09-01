@@ -191,4 +191,4 @@ Of je kan in vier weken een werkend systeem hebben dat je lead-opvolging, offert
 
 Dat installatiebedrijf heeft die keuze gemaakt. 80 leads per maand worden nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides. Dat zijn maandagochendrapporten.
 
-Als je wil weten wat dat voor jouw bedrijf betekent: plan een gratis strategiegesprek van 30 minuten via [selectly.be/#contact](https://selectly.be/#contact). Geen verplichtingen. Geen 47 pagina's voorstel achteraf. Wel een concreet beeld van wat er bij jou mogelijk is en in hoeveel tijd.
+Als je wil weten wat dat voor jouw bedrijf betekent: plan een gratis strategiegesprek van 20 minuten via [selectly.be/#contact](https://selectly.be/#contact). Geen verplichtingen. Geen 47 pagina's voorstel achteraf. Wel een concreet beeld van wat er bij jou mogelijk is en in hoeveel tijd.

@@ -193,6 +193,6 @@ De beslisboom bestaat al. De regels zijn duidelijk. Het enige wat ontbreekt, is 
 
 Bij Selectly bouwen we dat systeem op maat van jouw bedrijf — gekoppeld aan je bestaande tools, zonder dat je van nul moet beginnen.
 
-Plan een gratis strategiegesprek van 30 minuten via [selectly.be/#contact](https://selectly.be/#contact). We kijken samen naar je huidige offerteflow, je facturatieproces en waar de BTW-beslissing vandaag gemaakt wordt.
+Plan een gratis strategiegesprek van 20 minuten via [selectly.be/#contact](https://selectly.be/#contact). We kijken samen naar je huidige offerteflow, je facturatieproces en waar de BTW-beslissing vandaag gemaakt wordt.
 
 Daarna weet je precies wat er moet veranderen — en hoeveel dat kost.

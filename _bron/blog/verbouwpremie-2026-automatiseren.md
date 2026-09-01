@@ -221,4 +221,4 @@ De aanvragen voor Mijn VerbouwPremie komen eraan. De vraag is niet of jouw inbox
 
 Selectly bouwt offerte-automatisering op maat voor Vlaamse KMO's in de bouwsector. Geen standaard software die je zelf moet configureren. Geen jarenlang traject. Een werkend systeem, afgestemd op jouw prijsstructuur, jouw werkgebied en de premies van 2026.
 
-Plan een gratis strategiegesprek van 30 minuten via [selectly.be/#contact](https://selectly.be/#contact). We bekijken samen waar de grootste tijdswinst zit in jouw offerte-proces.
+Plan een gratis strategiegesprek van 20 minuten via [selectly.be/#contact](https://selectly.be/#contact). We bekijken samen waar de grootste tijdswinst zit in jouw offerte-proces.

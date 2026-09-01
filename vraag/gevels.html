@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/vraag/logo.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#2b3540" />
+  <meta name="robots" content="noindex, follow" />
+  <title>Gevel offerte — renovatie, isolatie of bekleding | Stielkenner</title>
+  <meta name="description" content="Vraag in 2 minuten een offerte voor gevelwerken. Isolatie, bekleding, vochtbehandeling of hervoegen. Eén Belgische vakman, geen vijf telefoons." />
+  <meta property="og:title" content="Gevel offerte — één vakman uit jouw streek" />
+  <meta property="og:description" content="Isolatie, bekleding of vocht. Sinds maart 2026 meestal zonder vergunning." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      colors: {
+        rose: { 50: '#fff1f2', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48' },
+        ink: { 900: '#263039', 700: '#46535e', 500: '#6d7a85', 400: '#97a3ac' },
+        sky: { 50: '#eefaff', 100: '#d3f1fa', 200: '#b3e6f4', 400: '#38bfe0', 500: '#22b3d6', 600: '#0e8fb0', 700: '#0b7492', 800: '#095e77' },
+        green: { 100: '#dcfce7', 500: '#22c55e' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .step-pane { display: none; }
+    .step-pane.active { display: block; animation: slideIn 0.25s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .check-card { transition: all 0.15s ease; }
+    .check-card:has(input:checked) { border-color: #22b3d6; background: #eefaff; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15); }
+    input[type="radio"], input[type="checkbox"] { accent-color: #22b3d6; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-sky-50 via-white to-white text-ink-900 antialiased min-h-screen">
+
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/vraag/" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 flex-shrink-0"><svg viewBox="0 0 100 100" class="w-full h-full" role="img" aria-label="Stielkenner"><path d="M66 33 a15 15 0 1 0 -16 18 a15 15 0 1 1 -16 18" stroke="#2b3540" stroke-width="11.5" fill="none" stroke-linecap="round"/><path d="M24 79 L74 27" stroke="#fff" stroke-width="19" stroke-linecap="round"/><path d="M26 77 L68 33" stroke="#22b3d6" stroke-width="10.5" stroke-linecap="round"/><path d="M77 24 L57 28 L73 44 Z" fill="#22b3d6"/></svg></div>
+        <div>
+          <div class="font-extrabold text-base leading-none tracking-tight">STIELKENNER</div>
+          <div class="text-xs text-ink-500 mt-0.5">Wij kennen de stiel</div>
+        </div>
+      </a>
+      <div class="hidden sm:flex items-center gap-2 text-xs text-ink-500">
+        <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Gratis</span>
+        <span>·</span><span>2 minuten</span><span>·</span><span>Erkend koeltechnicus</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-semibold mb-4">Renovatie, isolatie, bekleding of vocht</div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3 max-w-xl mx-auto">
+        Krijg <span class="text-sky-600">één gevelwerker</span> uit jouw streek.<br class="hidden sm:inline">
+        Niet vijf telefoons.
+      </h1>
+      <p class="text-ink-500 text-base sm:text-lg max-w-lg mx-auto">
+        Kapotte voegen, een gevel die je wil isoleren of gewoon een andere afwerking.
+        Vier vragen, en wij zoeken <strong class="text-ink-900">één Belgische vakman</strong> uit jouw streek.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 text-xs text-ink-500">
+      <span>✓ 100% gratis</span>
+      <span>✓ Daikin / Mitsubishi / Panasonic / LG</span>
+      <span>✓ Erkend koeltechnicus</span>
+      <span>✓ Onderhoudscontract optioneel</span>
+    </div>
+
+    <div id="quoteForm" class="bg-white rounded-2xl border border-slate-200 shadow-lg overflow-hidden">
+
+      <div class="bg-slate-50 px-6 py-3 border-b border-slate-200">
+        <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
+          <span id="stepLabel" class="text-ink-700">Stap 1 van 5 — Waar koel je?</span>
+          <span id="stepPercent" class="text-sky-600 tabular-nums">20%</span>
+        </div>
+        <div class="h-1 bg-slate-200 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-sky-400 to-sky-600 transition-all" style="width: 20%"></div>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8">
+
+        <!-- STAP 1 -->
+        <div class="step-pane active" data-step="1">
+          <h2 class="text-xl font-bold mb-2">Wat wil je aan je gevel laten doen?</h2>
+          <p class="text-ink-500 text-sm mb-6">Dit bepaalt welk vak we zoeken — die aannemers overlappen nauwelijks.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="werk" value="Isoleren" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Mijn gevel isoleren</div>
+                <div class="text-xs text-ink-500 mt-0.5">Om energie te besparen</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="werk" value="Vernieuwen" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Mijn gevel vernieuwen of afwerken</div>
+                <div class="text-xs text-ink-500 mt-0.5">Nieuwe bekleding, bepleistering of gevelsteen</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="werk" value="Isoleren en vernieuwen" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Allebei, in één keer</div>
+                <div class="text-xs text-ink-500 mt-0.5">Meestal de voordeligste combinatie</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="werk" value="Vocht" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Een vochtprobleem oplossen</div>
+                <div class="text-xs text-ink-500 mt-0.5">Vochtplekken of schimmel aan de buitenmuren</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="werk" value="Reinigen" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Reinigen, hervoegen of schilderen</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="werk" value="Advies" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Ik weet het nog niet</div>
+                <div class="text-xs text-ink-500 mt-0.5">Laat de vakman eerst kijken</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 2 -->
+        <div class="step-pane" data-step="2">
+          <h2 class="text-xl font-bold mb-2">Hoe zit je muur in elkaar?</h2>
+          <p class="text-ink-500 text-sm mb-6">Weet je het niet? Dat geeft niet — het bouwjaar hieronder zegt meestal genoeg.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="muur" value="Spouwmuur niet geisoleerd" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Spouwmuur, nog niet geïsoleerd</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="muur" value="Spouwmuur deels geisoleerd" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Spouwmuur, al deels geïsoleerd</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="muur" value="Volle muur" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Volle muur zonder spouw</div>
+                <div class="text-xs text-ink-500 mt-0.5">Vaak bij woningen van voor 1930</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="muur" value="Weet ik niet" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Dat weet ik niet</div>
+                
+              </div>
+            </label>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-100">
+            <p class="text-sm font-semibold mb-2">Uit welke periode is je woning?</p>
+            <p class="text-xs text-ink-500 mb-3">Bepaalt mee het btw-tarief en of er nog spouw zit.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <label class="check-card flex items-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwjaar" value="voor 1945" required class="sr-only" />Voor 1945</label>
+              <label class="check-card flex items-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwjaar" value="1945-1960" required class="sr-only" />1945&ndash;1960</label>
+              <label class="check-card flex items-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwjaar" value="1961-1980" required class="sr-only" />1961&ndash;1980</label>
+              <label class="check-card flex items-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwjaar" value="1981-2000" required class="sr-only" />1981&ndash;2000</label>
+              <label class="check-card flex items-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwjaar" value="na 2000" required class="sr-only" />Na 2000</label>
+              <label class="check-card flex items-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwjaar" value="weet ik niet" required class="sr-only" />Weet ik niet</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAP 3 -->
+        <div class="step-pane" data-step="3">
+          <h2 class="text-xl font-bold mb-2">Om welke gevels gaat het?</h2>
+          <p class="text-ink-500 text-sm mb-6">Het aantal gevels en bouwlagen bepaalt de stelling, en die is na het materiaal de grootste kost.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="gevels" value="Voorgevel" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Enkel de voorgevel</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="gevels" value="Achtergevel" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Enkel de achtergevel</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="gevels" value="Voor en achter" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Voor- en achtergevel</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="gevels" value="Alle gevels" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Alle gevels</div>
+                <div class="text-xs text-ink-500 mt-0.5">Vrijstaande woning</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="radio" name="gevels" value="Zijgevel" required class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Een zijgevel of wachtmuur</div>
+                
+              </div>
+            </label>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-100">
+            <p class="text-sm font-semibold mb-2">Hoeveel bouwlagen?</p>
+            <div class="grid grid-cols-3 gap-2">
+              <label class="check-card flex items-center justify-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwlagen" value="gelijkvloers" required class="sr-only" />Gelijkvloers</label>
+              <label class="check-card flex items-center justify-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwlagen" value="2" required class="sr-only" />2 lagen</label>
+              <label class="check-card flex items-center justify-center gap-2 p-3 border-2 border-slate-200 rounded-lg cursor-pointer text-sm"><input type="radio" name="bouwlagen" value="3 of meer" required class="sr-only" />3 of meer</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAP 4 -->
+        <div class="step-pane" data-step="4">
+          <h2 class="text-xl font-bold mb-2">Is er iets aan de hand met de gevel?</h2>
+          <p class="text-ink-500 text-sm mb-6">Meerdere antwoorden mogen. Dit verandert de aanpak wezenlijk.</p>
+          <div class="space-y-3">
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="checkbox" name="bijzonder" value="Vocht binnen" class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Vochtplekken of schimmel binnen</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="checkbox" name="bijzonder" value="Scheuren" class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Scheuren, losse stenen of slecht voegwerk</div>
+                
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="checkbox" name="bijzonder" value="Asbest" class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Asbesthoudende bekleding</div>
+                <div class="text-xs text-ink-500 mt-0.5">Kunstleien of golfplaten</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="checkbox" name="bijzonder" value="Erfgoed" class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Beschermd erfgoed of erfgoedinventaris</div>
+                <div class="text-xs text-ink-500 mt-0.5">Dan gelden er andere regels</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="checkbox" name="bijzonder" value="Renovatieverplichting" class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Ik moet renoveren wegens label E of F</div>
+                <div class="text-xs text-ink-500 mt-0.5">De renovatieverplichting na aankoop</div>
+              </div>
+            </label>
+            <label class="check-card flex items-start gap-3 p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50">
+              <input type="checkbox" name="bijzonder" value="Voorgevel aan de stoep" class="sr-only" />
+              <div>
+                <div class="font-semibold text-sm">Mijn voorgevel staat direct aan de stoep</div>
+                <div class="text-xs text-ink-500 mt-0.5">Belangrijk bij buitenisolatie</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STAP 5: Contact -->
+        <div class="step-pane" data-step="5">
+          <h2 class="text-xl font-bold mb-2">Bijna klaar — contact</h2>
+          <p class="text-ink-500 text-sm mb-6"><strong class="text-ink-900">Eén installateur belt jou.</strong> Geen vijf firma's.</p>
+
+          <form name="offertescout-gevels" method="POST" action="/vraag/bedankt.html" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
+            <input type="hidden" name="form-name" value="offertescout-gevels" />
+          <input type="hidden" name="lead_source" />
+          <input type="hidden" name="utm_source" />
+          <input type="hidden" name="utm_medium" />
+          <input type="hidden" name="utm_campaign" />
+          <input type="hidden" name="utm_content" />
+          <input type="hidden" name="utm_term" />
+          <input type="hidden" name="landing_page" />
+          <input type="hidden" name="referrer" />
+          <input type="hidden" name="page_url" />
+          <input type="hidden" name="submitted_at" />
+            <input type="hidden" name="sector" value="gevels" />
+            <p class="hidden" style="display:none" aria-hidden="true"><label>Don't fill: <input name="bot-field" /></label></p>
+            <input type="hidden" id="all-data" name="all-data" />
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Naam *</label>
+                <input type="text" name="naam" required placeholder="Jan Janssens" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold mb-1.5">Telefoon *</label>
+                <input type="tel" name="telefoon" required placeholder="+32 472 ..." class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">E-mail *</label>
+              <input type="email" name="email" required placeholder="jan@example.be" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-1.5">Postcode *</label>
+              <input type="text" name="postcode" required pattern="[0-9]{4}" maxlength="4" placeholder="8000" class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none transition" />
+            </div>
+                <div class="bg-sky-50 border border-sky-200 rounded-xl px-4 py-3 mb-6 flex items-start gap-3 text-sm">
+      <span class="text-lg">&#8505;&#65039;</span>
+      <div>
+        <strong class="text-ink-900">Je gevel isoleren mag meestal zonder vergunning.</strong>
+        <span class="text-ink-700">Sinds 1 maart 2026 zijn handelingen aan alle gevels vrijgesteld, ook de voorgevel, zolang het volume niet wijzigt. Uitzonderingen: een voorgevel op de rooilijn en beschermd erfgoed.</span>
+      </div>
+    </div>
+
+<div class="bg-sky-50 border border-sky-200 rounded-lg p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" name="consent_deel_installateur" value="ja" required class="mt-1" />
+                <span class="text-xs text-ink-700 leading-relaxed">
+                  Ja, jullie mogen mijn gegevens delen met <strong>één gematchte installateur</strong>
+                  die contact met mij mag opnemen.
+                </span>
+              </label>
+            </div>
+            <button type="submit" class="w-full px-6 py-4 bg-gradient-to-r from-sun-700 to-sun-800 hover:from-sun-800 hover:to-sun-800 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <span>Vraag mijn gevelofferte aan</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </button>
+            <p class="text-xs text-ink-500 text-center">Geen creditcard · Gratis · Geen verplichting</p>
+          </form>
+        </div>
+
+        <div id="navButtons" class="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-slate-100">
+          <button type="button" id="prevBtn" class="px-5 py-2.5 text-sm font-semibold text-ink-700 hover:bg-slate-100 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed">← Terug</button>
+          <button type="button" id="nextBtn" class="px-6 py-2.5 bg-ink-900 hover:bg-ink-700 text-white text-sm font-semibold rounded-lg transition flex items-center gap-2">
+            Volgende
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-ink-500 mt-8">
+    Stielkenner · onderdeel van NXTG Solutions BV ·
+    <a href="/privacy.html" class="hover:text-ink-900 underline">Privacy</a> ·
+    <a href="/voorwaarden.html" class="hover:text-ink-900 underline">Voorwaarden</a>
+  </footer>
+
+  <script>
+    const totalSteps = 5;
+    let currentStep = 1;
+    let formData = {};
+    function showStep(n) {
+      document.querySelectorAll('.step-pane').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.step-pane[data-step="${n}"]`)?.classList.add('active');
+      const labels = ['', 'Wat er moet gebeuren', 'Je muur', 'Welke gevels', 'Bijzonderheden', 'Contact'];
+      document.getElementById('stepLabel').textContent = `Stap ${n} van ${totalSteps} — ${labels[n]}`;
+      const pct = Math.round((n / totalSteps) * 100);
+      document.getElementById('stepPercent').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('prevBtn').disabled = n === 1;
+      document.getElementById('nextBtn').style.display = n === totalSteps ? 'none' : 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Een systeemdialoog leest op een telefoon als een storing van het toestel, niet
+    // als een melding van de pagina. Daarom inline, in de stap zelf.
+    function toonFout(pane, tekst) {
+      var b = pane.querySelector('.stap-fout');
+      if (!b) {
+        b = document.createElement('p');
+        b.className = 'stap-fout text-sm text-rose-600 bg-rose-50 border border-rose-200 rounded-lg px-3 py-2 mt-4';
+        pane.appendChild(b);
+      }
+      b.textContent = tekst;
+      b.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    function validateStep(n) {
+      const pane = document.querySelector(`.step-pane[data-step="${n}"]`);
+      const groups = new Set();
+      pane.querySelectorAll('[required]').forEach(el => {
+        if (el.type === 'radio') groups.add(el.name);
+        else if (!el.value.trim()) { el.focus(); el.style.borderColor = '#f43f5e'; throw 'invalid'; }
+      });
+      for (const name of groups) {
+        if (!pane.querySelector(`[name="${name}"]:checked`)) { toonFout(pane, 'Maak een keuze om verder te gaan.'); return false; }
+      }
+      return true;
+    }
+    function collect() {
+      const data = {};
+      document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.type === 'checkbox' && el.checked) data[el.name] = data[el.name] ? data[el.name] + ', ' + el.value : el.value;
+        else if (el.type === 'radio' && el.checked) data[el.name] = el.value;
+        else if (el.value && el.type !== 'radio' && el.type !== 'checkbox') data[el.name] = el.value;
+      });
+      return data;
+    }
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      try { if (!validateStep(currentStep)) return; } catch(e) { return; }
+      formData = { ...formData, ...collect() };
+      currentStep++; showStep(currentStep);
+      if (currentStep === totalSteps) document.getElementById('all-data').value = JSON.stringify(formData);
+    });
+    document.getElementById('prevBtn').addEventListener('click', () => { currentStep--; showStep(currentStep); });
+    showStep(1);
+  </script>
+  <!-- Stielkenner Pixel (sector custom events) -->
+  <script src="/vraag/pixel.js" defer></script>
+  <script src="/vraag/consent-stielkenner.js" defer></script>
+<script src="/lead-meta.js" defer></script>
+<script src="/vraag/stielkenner-chat.js" defer></script>
+</body>
+</html>

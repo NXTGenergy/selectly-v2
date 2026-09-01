@@ -33,7 +33,7 @@ cp "$REPO"/vraag/*.html "$SITE/vraag/"
 rm -f "$SITE/vraag/tracker.html"   # intern rekenblad met inkoopprijzen, niet publiek
 cp "$REPO"/vraag/pixel.js "$SITE/vraag/"
 cp "$REPO"/vraag/*.svg "$SITE/vraag/"   # merkteken + logo-eenheid, o.a. voor de favicon
-cp "$REPO"/vraag/stielkenner-chat.js "$SITE/vraag/"
+cp "$REPO"/vraag/stielkenner-chat.js "$REPO"/vraag/consent-stielkenner.js "$SITE/vraag/"
 
 # De chat-assistent. Zonder dit bestand is de knop dood.
 cp "$REPO"/netlify/functions/vakman.js "$FUNCTIES/"
@@ -46,7 +46,7 @@ cp "$REPO"/netlify/functions/stielkenner-submission.js "$FUNCTIES/submission-cre
 # De pagina's verwijzen naar deze bestanden op de root van selectly.be,
 # dus die moeten mee anders zijn het dode links.
 cp "$REPO"/privacy.html "$REPO"/voorwaarden.html "$SITE/"
-cp "$REPO"/consent.js "$REPO"/lead-meta.js "$SITE/"
+cp "$REPO"/lead-meta.js "$SITE/"
 
 # De site leeft onder /vraag/, dus de root stuurt door.
 cat > "$SITE/index.html" <<'HTML'

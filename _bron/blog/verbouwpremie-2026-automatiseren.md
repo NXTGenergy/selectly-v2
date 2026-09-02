@@ -1,16 +1,16 @@
-# Mijn VerbouwPremie 2026: Zo verwerk je meer aanvragen zonder extra personeel
+# Mijn VerbouwPremie wijzigt in maart 2026: wat het voor uw offertes betekent
 
-Vanaf 1 januari 2026 vervangt Mijn VerbouwPremie de vroegere renovatiepremies in Vlaanderen. Dat betekent één loket, meer aanvragers en een stortvloed aan offerteaanvragen voor aannemers, installateurs en energiespecialisten. Wie nu niet nadenkt over zijn offerte-proces, staat begin 2026 te verdrinken in administratie.
+Mijn VerbouwPremie bestaat sinds 1 juli 2022 en wordt vanaf 1 maart 2026 afgebouwd. Voor inkomenscategorie 1 en 2 blijven enkel de warmtepomp en de warmtepompboiler over; de bedragen dalen en niet-woongebouwen vallen er volledig uit. Wie nog van de huidige bedragen wil genieten, moet zijn dossier vóór die datum rond hebben. Dat zet een piek op de maanden ervoor: iedereen wil nu nog een offerte. Wie zijn offerteproces vandaag niet op orde heeft, verzuipt begin 2026 in administratie.
 
 ---
 
 ## Wat verandert er precies?
 
-Mijn VerbouwPremie bundelt premies voor isolatie, verwarming, ramen en ventilatie in één aanvraag. De drempel daalt. Meer mensen gaan verbouwen. En die mensen hebben een aannemer nodig die snel een offerte bezorgt.
+Mijn VerbouwPremie bundelt premies voor isolatie, verwarming en ramen in één aanvraag — ventilatie is geen premiecategorie voor particulieren. Vanaf 1 maart 2026 verdwijnt dakisolatie voor categorie 1 en 2, en de zonneboilerpremie is al afgeschaft sinds 30 juni 2025. Wie die premies nog wil, moet er nu bij zijn. En die mensen hebben een aannemer nodig die snel een offerte bezorgt.
 
 Snel betekent hier: binnen het uur. Niet binnen de week.
 
-Dat weten ze bij een Belgisch installatiebedrijf in de energiesector. Zij verwerken 80 leads per maand in de energiesector. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes is bij de klant binnen 1 uur na het eerste contact. Dat is geen toeval. Dat is een geautomatiseerd offerte-proces.
+Dat weten we uit ons eigen installatiebedrijf. Daar verwerken we 80 aanvragen per maand. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes ligt binnen het uur na het eerste contact bij de klant. Dat is geen toeval, dat is een geautomatiseerd offerteproces. We hebben het op onze eigen omzet getest voor we het aan iemand anders aanboden.
 
 ---
 
@@ -26,20 +26,19 @@ Veel Vlaamse KMO's werken vandaag nog met hetzelfde systeem als vijf jaar gelede
 
 Dat werkte toen er 20 aanvragen per maand binnenkwamen. Niet als dat er 60 worden.
 
-Vanaf 2026 verwacht Vlaanderen een significante stijging in renovatieaanvragen. Enkele sectoren die dit rechtstreeks voelen:
+In de maanden voor 1 maart 2026 wil iedereen zijn dossier nog rond krijgen. Enkele sectoren die dat rechtstreeks voelen:
 
 - Dakisolatie en spouwmuurisolatie
 - Warmtepompen en hybride systemen
 - Hoogrendementsbeglazing
-- Ventilatie met warmteterugwinning
 
-Elke aanvrager vergelijkt meerdere offertes. Wie het langzaamst antwoordt, verliest.
+Elke aanvrager vergelijkt meerdere offertes. Wie het traagst antwoordt, verliest.
 
 ---
 
 ## Hoe automatisering werkt in een offerte-proces
 
-Automatisering in offertes is geen magie. Het is een reeks logische stappen die je één keer goed opzet.
+Automatisering in offertes is geen magie. Het is een reeks logische stappen die u één keer goed opzet.
 
 ### Stap 1: Gestructureerde intake
 
@@ -60,7 +59,7 @@ Die gegevens komen niet in een mailbox terecht. Ze gaan rechtstreeks in een data
 
 Niet elke aanvraag is even relevant. Een geautomatiseerd systeem kan onmiddellijk filteren:
 
-- Ligt het project binnen jullie werkgebied?
+- Ligt het project binnen uw werkgebied?
 - Komt de klant in aanmerking voor Mijn VerbouwPremie?
 - Is het budget realistisch voor de gevraagde werken?
 
@@ -70,7 +69,7 @@ Aanvragen die niet passen, krijgen een automatisch antwoord met uitleg. Aanvrage
 
 Dit is waar de grootste tijdswinst zit.
 
-Als je weet welk type woning, welke werken en welke materialen, dan kun je een offerte bouwen op basis van vaste parameters. Geen blanco Word-document meer. Een systeem dat:
+Weet u welk type woning, welke werken en welke materialen, dan kunt u een offerte bouwen op vaste parameters. Geen leeg Word-document meer. Een systeem dat:
 
 1. De gevraagde werken vertaalt naar posten
 2. Eenheidsprijzen ophaalt uit een centrale prijslijst
@@ -78,7 +77,7 @@ Als je weet welk type woning, welke werken en welke materialen, dan kun je een o
 4. Premie-aftrekken berekent op basis van het inkomen van de klant
 5. Een PDF genereert en verstuurt
 
-Dat gaat van 8 uur naar minder dan een uur. Eén installatiebedrijf deed het in 47 minuten.
+Dat gaat van 8 uur naar minder dan een uur. Bij ons kwam het uit op 47 minuten.
 
 ### Stap 4: Automatische opvolging
 
@@ -102,9 +101,9 @@ Het premiestelsel van 2026 brengt extra rekenwerk mee. De premie varieert op bas
 - Het type maatregel
 - De kwaliteitsvereisten van de aannemer
 
-Voor een aannemer betekent dit dat een "standaard offerte" niet meer bestaat. Elke offerte is anders, afhankelijk van de klant.
+Voor een aannemer betekent dat: een "standaardofferte" bestaat niet meer. Elke offerte is anders, afhankelijk van de klant.
 
-Toch kun je dat automatiseren. Een systeem dat de klant zijn inkomenscategorie laat invoeren (of een schatting laat maken op basis van kadastrale inkomen), past automatisch de premieberekening toe.
+Toch kunt u dat automatiseren. Een systeem dat de klant zijn inkomenscategorie laat invullen (die staat op het aanslagbiljet van de personenbelasting, niet op het kadastraal inkomen), past de premieberekening vanzelf toe.
 
 Het resultaat: een offerte die al laat zien wat de klant netto betaalt. Dat verkoopt.
 
@@ -133,7 +132,7 @@ Begin niet met een volledig nieuwe ERP, een nieuwe website en een nieuw CRM tege
 
 **2. Een generiek formulier online zetten en hopen**
 
-Een contactformulier met enkel "naam, e-mail, bericht" helpt niet. Je hebt structured data nodig. Zonder de juiste inputgegevens kan geen enkel systeem een offerte genereren.
+Een contactformulier met enkel "naam, e-mail, bericht" helpt niet. U hebt geordende gegevens nodig. Zonder de juiste invoer kan geen enkel systeem een offerte opmaken.
 
 **3. De premieberekening schrappen uit de offerte**
 
@@ -149,27 +148,27 @@ De aannemers die nu hun proces opzetten, zijn klaar als de aanvragen komen. Wie 
 
 ---
 
-## Hoe één installatiebedrijf het aanpakte
+## Hoe we het zelf aanpakten
 
-Het gaat om een bedrijf dat actief is in energieadvies en installatie. Ze merkten in 2024 dat hun team de groei niet meer kon bijbenen. Leads kwamen binnen, maar de opvolging haperde.
+Ons eigen installatiebedrijf doet energieadvies en installatie. We merkten dat we de groei niet meer konden bijbenen. De aanvragen kwamen binnen, maar de opvolging haperde.
 
 Het probleem was niet de vakkennis. Het was de tijd tussen aanvraag en offerte.
 
-Ze werkten een gestructureerd systeem uit:
+We werkten een gestructureerd systeem uit:
 
-- Een intakeformulier dat alle technische en financiële parameters opvraagt
-- Automatische kwalificatie van de aanvraag
-- Een offertegenerator gekoppeld aan hun prijslijst en de geldende premies
-- Automatische opvolging na verzending
+- Een intakeformulier dat alle technische en financiële gegevens opvraagt
+- Automatisch nakijken of een aanvraag past
+- Een offertegenerator gekoppeld aan onze prijslijst en de geldende premies
+- Automatische opvolging nadat de offerte vertrokken is
 
 Het resultaat na drie maanden:
 
-- **80 leads per maand** verwerkt, tegenover 25 voordien
-- **90% van de offertes** bij de klant binnen 1 uur
+- **80 aanvragen per maand** verwerkt, tegenover 40 voordien
+- **90% van de offertes** binnen het uur bij de klant
 - Tijd per offerte: van **8 uur naar 47 minuten**
 - Geen extra aanwervingen
 
-De zaakvoerder heeft nu tijd om te doen wat hij goed kan: klanten overtuigen en werven begeleiden.
+Er kwam tijd vrij voor het werk dat wel iemand vraagt: klanten overtuigen en werven opvolgen.
 
 ---
 
@@ -177,11 +176,11 @@ De zaakvoerder heeft nu tijd om te doen wat hij goed kan: klanten overtuigen en 
 
 Een veelgestelde vraag. Het antwoord hangt af van hoe het systeem is opgebouwd, maar een richtlijn:
 
-Een maatwerk automatisering voor een aannemer of installateur kost doorgaans tussen de 3.000 en 8.000 euro voor de opzet. Daarna zijn er variabele kosten voor tools en onderhoud.
+Bij ons betaalt u een eenmalige opstartkost: €750 bij Lite, €1.500 bij Starter en €3.000 bij Growth. Als founding client betaalt u daar de helft van — €375, €750 of €1.500. Daarna komt er een maandbedrag bij vanaf €450. Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen.
 
-Ter vergelijking: één extra administratieve medewerker kost al snel 35.000 tot 45.000 euro per jaar. Die medewerker kan 25 tot 30 offertes per maand verwerken. Een geautomatiseerd systeem doet er 80 tot 100, zonder ziekteverlof, zonder fouten bij premieberekening.
+Ter vergelijking: een administratieve medewerker kost u €5.283 per maand, oftewel €63.394 per jaar aan volledige werkgeverskost. Die medewerker verwerkt 25 tot 30 offertes per maand, werkt acht uur en gaat op verlof. Een geautomatiseerd systeem doet er 80 tot 100, zonder ziektedagen en zonder rekenfouten in de premie.
 
-De terugverdientijd is bij de meeste KMO's minder dan 6 maanden.
+Bij de meeste KMO's is dat op minder dan zes maanden terugverdiend.
 
 ---
 
@@ -190,35 +189,37 @@ De terugverdientijd is bij de meeste KMO's minder dan 6 maanden.
 Mijn VerbouwPremie raakt niet alle sectoren even hard. Maar voor deze drie is actie nu al noodzakelijk:
 
 **Dakisolatie en gevelbekleding**
-Isolatiepremies zijn de populairste aanvraag. Installateurs in deze sector verwerken vaak al meer aanvragen dan ze aankunnen. In 2026 verdubbelt dat mogelijk.
+Isolatiepremies zijn de populairste aanvraag. Installateurs in deze sector verwerken nu al vaak meer aanvragen dan ze aankunnen, en de deadline van maart drijft dat verder op.
 
 **Warmtepompen en hybride verwarmingssystemen**
-Het overheidsbeleid stuurt huishoudens actief richting warmtepompen. Installateurs zijn nu al schaars. Wie zijn administratie niet optimaliseert, verliest opdrachten aan grotere spelers die sneller antwoorden.
+Het overheidsbeleid stuurt huishoudens richting warmtepompen, en dat is net wat na maart 2026 overblijft. Installateurs zijn nu al schaars. Wie zijn administratie niet op orde brengt, verliest opdrachten aan grotere spelers die sneller antwoorden.
 
 **Ramen en buitenschrijnwerk**
-Schrijnwerkers werken vaak met handgemaakte offertes per project. Gedeeltelijke automatisering — standaard posten klaarzetten, premieberekening automatiseren — spaart al uren per offerte.
+Schrijnwerkers maken hun offertes vaak nog per project met de hand. Al een stuk automatiseren — vaste posten klaarzetten, de premieberekening laten rekenen — bespaart uren per offerte.
 
 ---
 
-## Waar begin je?
+## Waar begint u?
 
-Een concreet stappenplan voor een aannemer of installateur die dit serieus neemt:
+Een concreet stappenplan voor een aannemer of installateur die dit ernstig neemt:
 
-1. **Meet je huidige doorlooptijd.** Hoeveel tijd zit er tussen een aanvraag en een verstuurde offerte? Noteer dat getal.
-2. **Identificeer het grootste knelpunt.** Is het de intake? De berekening? De opmaak? De opvolging?
-3. **Begin bij de intake.** Een goed intakeformulier lost 40% van het probleem op zonder complexe technologie.
-4. **Bouw een standaard prijsstructuur.** Offerte-automatisering werkt alleen als je eenheidsprijzen stabiel zijn en centraal bijgehouden worden.
-5. **Voeg premieberekening toe.** Dit is het meest complexe stuk, maar ook het meest onderscheidende.
-6. **Automatiseer de opvolging.** Dat is een kleine ingreep met een groot effect op conversie.
+1. **Meet uw huidige doorlooptijd.** Hoeveel tijd zit er tussen een aanvraag en een verstuurde offerte? Noteer dat getal.
+2. **Zoek het grootste knelpunt.** Is het de intake? De berekening? De opmaak? De opvolging?
+3. **Begin bij de intake.** Een goed intakeformulier lost een flink deel van het probleem op zonder ingewikkelde techniek.
+4. **Leg een vaste prijsstructuur vast.** Offertes automatiseren werkt alleen als uw eenheidsprijzen stabiel zijn en op één plaats bijgehouden worden.
+5. **Voeg de premieberekening toe.** Dat is het lastigste stuk, maar ook het stuk waarmee u zich onderscheidt.
+6. **Automatiseer de opvolging.** Een kleine ingreep met een groot effect op wat u binnenhaalt.
 
-Elk van die stappen kan je afzonderlijk zetten. Je hoeft niet alles tegelijk te doen.
+Elk van die stappen kunt u apart zetten. U hoeft niet alles tegelijk te doen.
 
 ---
 
 ## Klaar om te starten?
 
-De aanvragen voor Mijn VerbouwPremie komen eraan. De vraag is niet of jouw inbox overloopt in 2026. De vraag is of je systeem klaarstaat om die aanvragen te verwerken zonder dat je team verzuipt.
+De regels van Mijn VerbouwPremie wijzigen op 1 maart 2026. De vraag is niet of uw mailbox voller loopt in de maanden ervoor. De vraag is of uw systeem klaarstaat om die aanvragen te verwerken zonder dat uw mensen verzuipen.
 
-Selectly bouwt offerte-automatisering op maat voor Vlaamse KMO's in de bouwsector. Geen standaard software die je zelf moet configureren. Geen jarenlang traject. Een werkend systeem, afgestemd op jouw prijsstructuur, jouw werkgebied en de premies van 2026.
+Selectly bouwt dit op maat voor Vlaamse KMO's in de bouwsector. Geen standaardsoftware die u zelf moet instellen. Geen traject van jaren. Een werkend systeem, afgestemd op uw prijzen, uw werkgebied en de premies van 2026 — zie hoe dat er concreet uitziet voor [dakwerkers](/voor-dakwerken.html) en [HVAC-installateurs](/voor-hvac.html).
 
-Plan een gratis strategiegesprek van 20 minuten via [selectly.be/#contact](https://selectly.be/#contact). We bekijken samen waar de grootste tijdswinst zit in jouw offerte-proces.
+In 20 minuten bekijken we samen waar bij u de grootste tijdswinst zit. Zit het BTW-tarief bij u ook nog in iemands hoofd? Lees dan eerst [de beslisboom tussen 6% en 21%](/blog/btw-6-21-renovatie-automatisering.html).
+
+**[Boek een gratis demo →](/demo)**

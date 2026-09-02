@@ -1,6 +1,6 @@
-# Vapi vs Retell: welke voicebot past bij jouw bedrijf?
+# Vapi vs Retell: welke voicebot past bij uw bedrijf?
 
-Elke gemiste oproep kost geld. Uit onderzoek van HubSpot blijkt dat 78% van de klanten koopt bij het bedrijf dat als eerste reageert. Toch staat bij de meeste KMO's de telefoon onbeantwoord buiten de kantooruren. Twee platformen veranderen dat: Vapi en Retell. Maar welke kies je?
+Elke gemiste oproep kost geld. Wie als eerste terugbelt, heeft de grootste kans op de opdracht — dat merkt u zelf zodra u het meet. Toch staat bij de meeste KMO's de telefoon onbeantwoord buiten de kantooruren. Twee platformen veranderen dat: Vapi en Retell. Maar welke kiest u?
 
 Dit artikel legt het verschil uit. Zonder blabla, zonder technisch geneuzel.
 
@@ -8,9 +8,9 @@ Dit artikel legt het verschil uit. Zonder blabla, zonder technisch geneuzel.
 
 ## Wat zijn Vapi en Retell?
 
-Beide platformen laten je AI-agents bouwen die telefonisch praten met klanten. Ze nemen de telefoon op, stellen vragen, geven antwoorden en sturen data door naar je CRM of agenda.
+Met beide platformen bouwt u AI-agenten die telefonisch met klanten praten. Ze nemen op, stellen vragen, geven antwoord en sturen de gegevens door naar uw CRM of agenda.
 
-Ze doen dat in real-time. Niet met een chatbot. Niet met een keuzemenu. Met een stem die reageert op wat de beller zegt.
+Dat gebeurt live tijdens het gesprek. Geen chatbot. Geen keuzemenu. Een stem die reageert op wat de beller zegt.
 
 Het verschil zit in hoe ze dat doen, voor wie ze gebouwd zijn en wat ze kosten.
 
@@ -18,49 +18,49 @@ Het verschil zit in hoe ze dat doen, voor wie ze gebouwd zijn en wat ze kosten.
 
 ## Vapi: gebouwd voor ontwikkelaars
 
-Vapi is in de eerste plaats een developer-platform. De kracht ervan ligt in flexibiliteit.
+Vapi is in de eerste plaats een platform voor ontwikkelaars. De kracht ervan is de vrijheid.
 
-**Wat je krijgt:**
+**Wat u krijgt:**
 
-- Volledige controle over de call-flow via JSON-configuraties
-- Ondersteuning voor meerdere LLM-providers (OpenAI, Anthropic, Groq, eigen modellen)
-- Eigen speech-to-text en text-to-speech keuze per use case
-- Webhooks naar elk systeem dat een API heeft
-- Uitgebreide logs en debuggingtools
+- Volledige controle over het gespreksverloop via JSON-configuraties
+- Ondersteuning voor meerdere taalmodellen (OpenAI, Anthropic, Groq, eigen modellen)
+- Zelf kiezen welke spraakherkenning en welke stem u per toepassing gebruikt
+- Webhooks naar elk systeem met een API
+- Uitgebreide logs en goed gereedschap om fouten op te sporen
 
 **Wie dit kiest:**
 
-- Bedrijven met een interne ontwikkelaar
-- Bureaus die eigen producten bouwen op de infrastructuur
-- Use cases met complexe logica, meerdere talen of hoge call volumes
+- Bedrijven met een eigen ontwikkelaar
+- Bureaus die er hun eigen product op bouwen
+- Toepassingen met ingewikkelde logica, meerdere talen of heel veel oproepen
 
-**Nadeel:** Je bouwt alles zelf. Er is geen visuele interface die je door de setup leidt. Voor een zaakvoerder die zelf zijn voicebot wil opzetten, is de leercurve steil.
+**Nadeel:** u bouwt alles zelf. Er is geen scherm dat u door de opzet leidt. Voor een zaakvoerder die zijn voicebot zelf wil opzetten, is dat een steile leerweg.
 
-**Prijsmodel:** Vapi rekent per minuut. Gemiddeld 0,05 tot 0,15 dollar per minuut, afhankelijk van de modellen die je kiest. Daarboven betaal je voor het onderliggende LLM- en stemgebruik. Wie hoog volume draait, onderhandelt een custom contract.
+**Prijs:** Vapi rekent per minuut, gemiddeld 0,05 tot 0,15 dollar, afhankelijk van de modellen die u kiest. Daarbovenop betaalt u het gebruik van het taalmodel en de stem. Wie veel volume draait, onderhandelt een eigen contract.
 
 ---
 
 ## Retell: gebouwd voor snelheid
 
-Retell kiest een andere aanpak. Het platform legt de nadruk op eenvoud en snelheid van deployment.
+Retell pakt het anders aan. Dat platform legt de nadruk op eenvoud en op snel live kunnen gaan.
 
-**Wat je krijgt:**
+**Wat u krijgt:**
 
-- Visuele workflow-builder met drag-and-drop
-- Ingebouwde templates voor veelvoorkomende use cases (receptie, afspraken, FAQ)
-- Lagere technische drempel om te starten
-- Geïntegreerde analyses en call recordings
+- Een visuele bouwer waarin u met slepen en klikken werkt
+- Kant-en-klare sjablonen voor de gebruikelijke toepassingen (onthaal, afspraken, veelgestelde vragen)
+- Een lagere technische drempel om te starten
+- Ingebouwde cijfers en gespreksopnames
 - Ondersteuning voor meerdere stemmen en talen
 
 **Wie dit kiest:**
 
 - KMO's die snel willen starten zonder ontwikkelaar
-- Teams die zelf beheer willen doen na initiële setup
-- Use cases met een relatief vaste, voorspelbare call-flow
+- Ploegen die het na de opzet zelf willen beheren
+- Toepassingen waarbij het gesprek een vast, voorspelbaar verloop heeft
 
-**Nadeel:** Minder flexibel bij complexe integraties. Wie maatwerk nodig heeft buiten de templates, botst sneller op beperkingen. De LLM-keuze is ook beperkter dan bij Vapi.
+**Nadeel:** minder ruimte bij ingewikkelde koppelingen. Wie maatwerk nodig heeft buiten de sjablonen, botst sneller op grenzen. En u hebt minder keuze in taalmodellen dan bij Vapi.
 
-**Prijsmodel:** Retell werkt met een abonnement plus gebruik. Instap rond 99 dollar per maand, daarboven per-minuut kosten. Voor lage volumes goedkoper dan Vapi. Voor hoge volumes wordt het snel duurder.
+**Prijs:** Retell werkt met een abonnement plus verbruik. De instap ligt rond 99 dollar per maand, daarboven betaalt u per minuut. Bij weinig volume goedkoper dan Vapi. Bij veel volume wordt het snel duurder.
 
 ---
 
@@ -70,106 +70,106 @@ Retell kiest een andere aanpak. Het platform legt de nadruk op eenvoud en snelhe
 |---|---|---|
 | Technische drempel | Hoog | Laag |
 | Flexibiliteit | Zeer hoog | Gemiddeld |
-| Snelheid van opzetten | Traag (zonder dev) | Snel |
-| LLM-keuze | Breed | Beperkt |
+| Snelheid van opzetten | Traag (zonder ontwikkelaar) | Snel |
+| Keuze aan taalmodellen | Breed | Beperkt |
 | Prijs bij laag volume | Variabel | Voorspelbaar |
 | Prijs bij hoog volume | Voordelig | Duur |
 | Visuele editor | Nee | Ja |
 | CRM-integraties | Via API | Ingebouwd + API |
-| Debuggingtools | Uitstekend | Basis |
-| Geschikt voor KMO zonder dev | Nee | Ja |
+| Fouten opsporen | Uitstekend | Basis |
+| Geschikt voor KMO zonder ontwikkelaar | Nee | Ja |
 
 ---
 
 ## Wat betekent dit in de praktijk?
 
-Neem een Belgisch installatiebedrijf in de energiesector. Dit bedrijf kreeg maandelijks meer dan 200 inkomende oproepen. Veel ervan waren kwalificatievragen: heeft de klant een geschikt dak, welk vermogen, wat is zijn huidig verbruik?
+Neem ons eigen installatiebedrijf. Dat kreeg maandelijks meer dan 200 inkomende oproepen. Veel daarvan waren dezelfde vragen: heeft de klant een geschikt dak, welk vermogen, wat verbruikt hij nu?
 
-Vóór de automatisering kostte elke lead-kwalificatie gemiddeld 25 minuten menselijke tijd. De offerte zelf nam 8 uur in beslag.
+Voor we dit automatiseerden, kostte het uitvragen van één aanvraag gemiddeld 25 minuten van iemand. De offerte zelf nam 8 uur in beslag.
 
-Na de implementatie van een voicebot op Vapi-infrastructuur:
+Nadat we er een voicebot op Vapi voor gebouwd hadden:
 
-- **80 leads per maand** worden volledig automatisch gekwalificeerd
-- **90% van alle inkomende oproepen** krijgt een antwoord binnen 1 minuut, ook 's nachts en in het weekend
-- De offertetijd daalde van **8 uur naar 47 minuten**
+- **80 aanvragen per maand** worden volledig automatisch uitgevraagd
+- **90% van alle inkomende oproepen** krijgt binnen de minuut antwoord, ook 's nachts en in het weekend
+- De tijd per offerte daalde van **8 uur naar 47 minuten**
 
-Waarom Vapi en niet Retell in dit geval? De integratie met hun CRM en offertesoftware vroeg om maatwerk. De call-flow bevatte conditionele logica op basis van postcode, daktype en energieverbruik. Dat soort vertakking bouw je in Vapi met precisie. In Retell had je snel tegen de grenzen van de templates gebotst.
+Waarom Vapi en niet Retell? De koppeling met ons CRM en onze offertesoftware vroeg maatwerk. Het gesprek moest andere kanten opgaan naargelang postcode, daktype en energieverbruik. Zulke vertakkingen bouwt u in Vapi nauwkeurig. In Retell waren we snel tegen de grenzen van de sjablonen gebotst.
 
-Maar een tandartspraktijk in Gent die afspraken wil automatiseren? Een Retell-template voor afsprakenbeheer is daar in twee dagen operationeel. Geen ontwikkelaar nodig.
+Maar een tandartspraktijk in Gent die afspraken wil automatiseren? Daar staat een Retell-sjabloon voor afspraken in twee dagen te draaien. Zonder ontwikkelaar.
 
 ---
 
-## Hoe kies je?
+## Hoe kiest u?
 
-Drie vragen die de beslissing bepalen.
+Drie vragen bepalen de beslissing.
 
-**1. Heb je een technische partner?**
+**1. Hebt u een technische partner?**
 
-Ja: Vapi geeft je meer mogelijkheden voor minder geld op schaal.
-Nee: Retell laat je sneller starten en zelf beheren.
+Ja: Vapi geeft u meer mogelijkheden voor minder geld naarmate het volume stijgt.
+Nee: met Retell start u sneller en beheert u het zelf.
 
-**2. Hoe complex is je call-flow?**
+**2. Hoe ingewikkeld verloopt uw gesprek?**
 
-Eenvoudig (afspraken, FAQ, doorverbinden): Retell volstaat.
-Complex (meerdere stappen, conditionele logica, externe data opvragen): Vapi.
+Eenvoudig (afspraken, veelgestelde vragen, doorverbinden): Retell volstaat.
+Ingewikkeld (meerdere stappen, voorwaarden, gegevens elders ophalen): Vapi.
 
-**3. Hoeveel calls verwacht je per maand?**
+**3. Hoeveel oproepen verwacht u per maand?**
 
-Onder de 500 minuten: Retell is voorspelbaar geprijsd.
-Boven de 2000 minuten: Vapi wordt goedkoper, zeker met volume-contracten.
+Onder de 500 minuten: bij Retell weet u op voorhand wat u betaalt.
+Boven de 2.000 minuten: Vapi wordt goedkoper, zeker met een volumecontract.
 
 ---
 
 ## Wat NIET te doen
 
-Dit zijn de fouten die Selectly ziet bij bedrijven die zelf beginnen.
+Dit zijn de fouten die het vaakst gemaakt worden door bedrijven die er zelf aan beginnen.
 
 **Retell kiezen omdat het goedkoper lijkt**
 
-De instapprijs van Retell is lager. Maar wie een jaar later complexe integraties nodig heeft, moet migreren. Dat kost meer tijd en geld dan het juiste platform van bij het begin kiezen.
+De instapprijs van Retell ligt lager. Maar wie een jaar later ingewikkelde koppelingen nodig heeft, moet alles overzetten. Dat kost meer tijd en geld dan meteen het juiste platform kiezen.
 
-**Vapi kopen zonder technisch plan**
+**Vapi nemen zonder technisch plan**
 
-Vapi zonder een duidelijke architectuur is een dure sandbox. Het platform is krachtig, maar geeft je ook alle vrijheid om inefficiënte call-flows te bouwen die niemand begrijpt.
+Vapi zonder een duidelijke opbouw is een dure speeltuin. Het platform is krachtig, maar het laat u even goed toe om gesprekken te bouwen die niemand nog begrijpt.
 
-**Een voicebot inzetten als chatbot**
+**Een voicebot gebruiken als chatbot**
 
-Een voicebot is geen FAQ-pagina met een stem. Wie een lijst van 50 vragen en antwoorden in een voicebot propt, maakt een slechte beller-ervaring. Bellers haken af. De kwalificatiedata is waardeloos.
+Een voicebot is geen pagina met veelgestelde vragen die praat. Wie er 50 vragen en antwoorden in propt, maakt het bellers lastig. Die haken af, en wat u overhoudt aan gegevens is waardeloos.
 
 **De stem onderschatten**
 
-De keuze van stem, spreeksnelheid en stiltes bepaalt of een beller ophangt of blijft. Beide platformen bieden ElevenLabs-stemmen. Neem de tijd om dat te testen met echte klanten voor je live gaat.
+De keuze van stem, spreeksnelheid en stiltes bepaalt of een beller ophangt of blijft. Beide platformen bieden stemmen van ElevenLabs. Neem de tijd om dat met echte klanten te testen voor u live gaat.
 
-**Live gaan zonder fallback**
+**Live gaan zonder terugvalweg**
 
-Elke voicebot moet een escalatie-pad hebben. Als de agent de intentie niet begrijpt, moet er een mens bereikbaar zijn. Of toch minstens een duidelijke voicemail. Bellers die in een lus zitten, klagen. En terecht.
+Elke voicebot moet ergens naartoe kunnen escaleren. Begrijpt de agent de vraag niet, dan moet er een mens bereikbaar zijn. Of op zijn minst een duidelijke voicemail. Bellers die in een lus draaien, klagen. En terecht.
 
-**De GDPR-check overslaan**
+**De GDPR-controle overslaan**
 
-Beide platformen verwerken stemdata. In België geldt GDPR. Controleer waar de audio-opnames worden opgeslagen, wie toegang heeft en of je bellers informeert dat ze met een geautomatiseerd systeem praten.
+Beide platformen verwerken stemgegevens. In België geldt de GDPR. Controleer waar de opnames bewaard worden, wie er toegang toe heeft, en of u uw bellers verwittigt dat ze met een geautomatiseerd systeem praten.
 
 ---
 
 ## De echte keuze is niet het platform
 
-Vapi versus Retell is niet de moeilijkste beslissing. De moeilijkste beslissing is: welke calls ga je automatiseren, met welke logica, en hoe integreer je dat in je bestaande processen?
+Vapi tegenover Retell is niet de moeilijkste beslissing. De moeilijkste is: welke oproepen automatiseert u, met welke logica, en hoe past dat in wat u vandaag al doet?
 
-Een voicebot die slecht ontworpen is, beschadigt je relatie met klanten. Een voicebot die goed ontworpen is, werkt 24/7 en kwalificeert leads terwijl je slaapt.
+Een slecht opgezette voicebot beschadigt uw band met klanten. Een goed opgezette werkt dag en nacht en vraagt aanvragen uit terwijl u slaapt.
 
-Het platform is de motor. De strategie is de bestuurder.
+Het platform is de motor. De aanpak is de bestuurder.
 
 ---
 
-## Welke cijfers kun je verwachten?
+## Welke cijfers mag u verwachten?
 
-Concrete benchmarks uit projecten van Selectly:
+Richtcijfers voor wat een goed gebouwde voicebot verandert. Geen beloftes, wel de ordegrootte waarop u mag mikken:
 
 - **Eerste reactietijd:** van gemiddeld 4 uur naar onder de 2 minuten
-- **Kwalificatietijd per lead:** van 20-30 minuten naar 4-8 minuten
-- **Aandeel oproepen buiten kantooruren dat een antwoord krijgt:** van 0% naar 100%
-- **No-show bij afspraken:** daalt gemiddeld 35% door geautomatiseerde bevestiging en herinnering
+- **Tijd om één aanvraag uit te vragen:** van 20-30 minuten naar 4-8 minuten
+- **Aandeel oproepen buiten de kantooruren dat een antwoord krijgt:** van 0% naar 100%
+- **Afspraken die niet doorgaan:** minder, doordat bevestiging en herinnering automatisch vertrekken
 
-Deze cijfers zijn geen garanties. Ze hangen af van volume, sector en hoe goed de agent gebouwd is.
+Dit zijn geen garanties. Het hangt af van uw volume, uw sector en hoe goed de agent gebouwd is.
 
 ---
 
@@ -177,26 +177,28 @@ Deze cijfers zijn geen garanties. Ze hangen af van volume, sector en hoe goed de
 
 Selectly kiest het platform op basis van het project. Niet op basis van voorkeur.
 
-Voor eenvoudige use cases bij KMO's zonder technisch team: Retell, snel gedeployed, gemakkelijk te beheren.
+Voor eenvoudige toepassingen bij KMO's zonder technische mensen: Retell — snel live, makkelijk te beheren.
 
-Voor complexe integraties, hoge volumes of maatwerk: Vapi, gebouwd op een architectuur die meeschaalt.
+Voor ingewikkelde koppelingen, veel volume of maatwerk: Vapi, opgebouwd zodat het kan meegroeien.
 
 In beide gevallen:
 
-1. Sessie van 30 minuten om de use case en de call-flow te begrijpen
-2. Technische audit van de bestaande tools (CRM, agenda, offertesoftware)
-3. Prototype binnen 5 werkdagen
-4. Test met echte calls voor livegang
-5. Monitoring en optimalisatie na livegang
+1. Een gesprek van 20 minuten om de toepassing en het gespreksverloop te begrijpen
+2. Een technische doorlichting van wat u al hebt (CRM, agenda, offertesoftware)
+3. Een eerste werkende versie binnen 5 werkdagen
+4. Testen met echte oproepen voor u live gaat
+5. Opvolgen en bijsturen nadat het live staat
 
-Geen contract van een jaar voor je weet of het werkt.
+Geen contract van een jaar voor u weet of het werkt.
 
 ---
 
 ## Klaar om te starten?
 
-Je weet nu het verschil tussen Vapi en Retell. Je weet welke vragen de keuze bepalen. Je weet wat de valkuilen zijn.
+U kent nu het verschil tussen Vapi en Retell. U weet welke vragen de keuze bepalen. U weet waar de valkuilen zitten.
 
-De volgende stap is uitzoeken of een voicebot past bij jouw specifieke situatie. Dat duurt 20 minuten. Geen verplichtingen.
+De volgende stap is uitzoeken of een voicebot bij uw situatie past. Dat duurt 20 minuten. Geen verplichtingen.
 
-Boek een gratis strategiegesprek via [selectly.be/#contact](https://selectly.be/#contact).
+Een voicebot zit bij ons in de Enterprise-formule; de vier pakketten staan op de [pakkettenpagina](/pakketten.html). Werkt u in HVAC, dan sluit [deze pagina](/voor-hvac.html) dichter bij uw situatie aan.
+
+**[Boek een gratis demo →](/demo)**

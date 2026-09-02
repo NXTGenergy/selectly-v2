@@ -1,34 +1,34 @@
 # Selectly vs grote consultancy: wat een KMO-eigenaar echt kiest
 
-Een middelgrote consultancy stuurt een voorstel van 47 pagina's. Startbudget: 85.000 euro. Looptijd: 14 maanden. Ergens op pagina 31 staat wat je eigenlijk wilde: een automatische opvolging van je inkomende leads.
+Een middelgrote consultancy stuurt een voorstel van 47 pagina's. Startbudget: 85.000 euro. Looptijd: 14 maanden. Ergens op pagina 31 staat wat u eigenlijk wilde: dat uw binnenkomende aanvragen automatisch opgevolgd worden.
 
 Dat is geen uitzonderlijk verhaal. Het is wat veel KMO-eigenaars meemaken als ze AI-automatisering willen bouwen zonder eerst de juiste partner te kiezen.
 
 ---
 
-## Wat je eigenlijk vergelijkt
+## Wat u eigenlijk vergelijkt
 
-Groot consultancy vs. een gespecialiseerd bureau als Selectly is geen eerlijke vergelijking — tenzij je ze op dezelfde criteria aftoetst. Dat doen we hier.
+Een grote consultancy naast een gespecialiseerd bureau als Selectly leggen is geen eerlijke vergelijking — tenzij u ze op dezelfde punten aftoetst. Dat doen we hier.
 
-We kijken naar vijf assen:
+We kijken naar vijf punten:
 
-- Doorlooptijd van brief tot live systeem
-- Prijs voor een eerste werkend prototype
-- Wie er op je project zit
-- Flexibiliteit bij bijsturing
-- Resultaten die je kan meten
+- Hoe lang het duurt van eerste gesprek tot werkend systeem
+- Wat een eerste werkende versie kost
+- Wie er op uw project zit
+- Hoe makkelijk er bijgestuurd wordt
+- Resultaten die u kunt meten
 
 ---
 
-## De vijf assen naast elkaar
+## De vijf punten naast elkaar
 
 | Criterium | Grote consultancy | Selectly |
 |---|---|---|
-| Doorlooptijd eerste resultaat | 3 - 6 maanden | 2 - 4 weken |
-| Instapbudget | 40.000 - 150.000 euro | Vanaf 3.500 euro |
-| Wie werkt aan jouw project | Wisselende junioren | Vaste senior builder |
-| Bijsturen na oplevering | Formeel changeproces + meerkosten | Direct aanpassen |
-| Rapportering | Kwartaaldeck | Wekelijkse update in plain taal |
+| Tijd tot het eerste resultaat | 3 - 6 maanden | Lite binnen 72 uur, Starter en Growth binnen twee tot vier weken |
+| Wat u betaalt om te starten | 40.000 - 150.000 euro | Vanaf €450 per maand + €750 opstart (founding client: €375) |
+| Wie aan uw project werkt | Wisselende junioren | Altijd dezelfde bouwer |
+| Bijsturen na oplevering | Formele procedure + meerkosten | Direct aanpassen |
+| Rapportering | Presentatie per kwartaal | Wekelijkse update in gewone taal |
 
 Die tabel vertelt al veel. Maar de echte verschillen zitten in de details.
 
@@ -36,79 +36,79 @@ Die tabel vertelt al veel. Maar de echte verschillen zitten in de details.
 
 ## Doorlooptijd: 14 maanden is geen plan, het is uitstel
 
-Een groot bureau plant in fases. Discovery. Analyse. Proof of concept. Pilootfase. Rollout. Evaluatie. Elke fase heeft een stuurgroep, een status deck en een akkoord van drie departementen.
+Een groot bureau plant in fases. Verkenning. Analyse. Testopstelling. Proefperiode. Uitrol. Evaluatie. Elke fase heeft een stuurgroep, een statuspresentatie en een akkoord van drie afdelingen.
 
-Voor een multinational met complexe IT-governance: logisch.
+Voor een multinational met een complex IT-beleid: logisch.
 
 Voor een KMO in Gent met 12 medewerkers: dodelijk.
 
-Elke maand zonder werkend systeem is een maand dat je concurrent sneller werkt. Elke week wachten op goedkeuring is een week dat je verkoopteam handmatig aan het opvolgen is.
+Elke maand zonder werkend systeem is een maand waarin uw concurrent sneller werkt. Elke week wachten op een goedkeuring is een week waarin uw verkopers met de hand zitten op te volgen.
 
-**Een Belgisch installatiebedrijf in de energiesector** had geen 14 maanden. Ze hadden een probleem: 80 leads per maand, geen tijd om ze allemaal binnen het uur op te volgen. De meeste leads verwachten een reactie binnen 60 minuten. Na dat uur daalt de kans op een deal met 60 procent.
+**Ons eigen installatiebedrijf** had die 14 maanden niet. Het probleem was concreet: 80 aanvragen per maand en geen tijd om ze allemaal binnen het uur op te volgen. Wie op een offerte wacht, belt ondertussen gewoon de volgende.
 
-Vier weken na de eerste call stond het systeem live. 90 procent van de leads krijgt nu een opvolging binnen het uur. Automatisch. Zonder extra mensen.
-
----
-
-## Prijs: je betaalt voor overhead die je nooit ziet
-
-Een consultancy van 200 mensen heeft account managers, project managers, kwaliteitscoördinatoren, HR-business partners en een directielaag. Al die overhead zit in jouw factuur.
-
-Je betaalt ook voor het methodologisch framework dat ze acht jaar geleden hebben ontwikkeld. Voor de pitch die ze vorige week hebben gemaakt aan drie andere klanten. Voor de reiskosten van het team dat vanuit Brussel naar jou rijdt.
-
-Selectly werkt anders. Kleine kern. Geen laag tussen jou en de persoon die bouwt.
-
-Het gevolg: een eerste werkend prototype voor dat bedrijf kostte geen 85.000 euro. Het kostte een fractie daarvan. En het werkt.
-
-**Wat je bij een grote consultancy wél krijgt voor je geld:**
-
-- Een uitgebreide analyse van je huidige situatie (die je al kende)
-- Een roadmap voor de komende drie jaar (die verandert zodra je markt verandert)
-- Gedetailleerde documentatie (die niemand leest)
-- Een presentatie voor je raad van bestuur (als je die hebt)
-
-Als je dat nodig hebt: prima. Als je een werkend systeem nodig hebt: reken je kosten anders.
+Vier weken na het eerste gesprek stond het systeem live. 90 procent van de aanvragen krijgt nu binnen het uur een opvolging. Automatisch. Zonder extra mensen. We hebben het op onze eigen omzet getest voor we het aan iemand anders verkochten.
 
 ---
 
-## Wie er op je project zit
+## Prijs: u betaalt voor overhead die u nooit ziet
+
+Een consultancy van 200 mensen heeft accountmanagers, projectleiders, kwaliteitscoördinatoren, HR-partners en een directielaag. Al die overhead zit in uw factuur.
+
+U betaalt ook voor de methodiek die ze acht jaar geleden hebben uitgewerkt. Voor de presentatie die ze vorige week bij drie andere klanten gaven. Voor de verplaatsing van het team dat vanuit Brussel naar u rijdt.
+
+Selectly werkt anders. Kleine kern. Geen laag tussen u en de persoon die bouwt.
+
+Het gevolg: een eerste werkende versie in ons eigen bedrijf kostte geen 85.000 euro. Het kostte een fractie daarvan. En ze werkt.
+
+**Wat u bij een grote consultancy wél krijgt voor uw geld:**
+
+- Een uitgebreide analyse van uw huidige situatie (die u al kende)
+- Een plan voor de komende drie jaar (dat verandert zodra uw markt verandert)
+- Uitgebreide documentatie (die niemand leest)
+- Een presentatie voor uw raad van bestuur (als u die hebt)
+
+Hebt u dat nodig: prima. Hebt u een werkend systeem nodig: reken uw kosten anders.
+
+---
+
+## Wie er op uw project zit
 
 Dit is het minst besproken maar het meest bepalende verschil.
 
-Bij een groot bureau doe je de intake met een senior partner. Die is scherp, ervaren en overtuigend. Je tekent.
+Bij een groot bureau doet u het eerste gesprek met een senior partner. Die is scherp, ervaren en overtuigend. U tekent.
 
-Daarna verdwijnt die partner. Jouw project gaat naar een team van junioren die net zijn afgestudeerd en dit als hun tweede of derde opdracht doen. De senior duikt op bij het kwartaaldeck en bij escalaties.
+Daarna verdwijnt die partner. Uw project gaat naar een ploeg pas afgestudeerden voor wie dit de tweede of derde opdracht is. De senior duikt weer op bij de kwartaalpresentatie en als het misloopt.
 
-Dat is geen kwaad opzet. Het is hun businessmodel.
+Dat is geen kwade wil. Het is hun verdienmodel.
 
-Bij Selectly zit de persoon die het eerste gesprek voert ook aan de knoppen. Die kent jouw proces. Die weet waarom je de lead-definitie vorige week hebt aangepast. Die hoeft het niet opnieuw uitgelegd te krijgen na een wisseling van teamlid.
-
----
-
-## Flexibiliteit: de wereld verandert, jouw contract niet
-
-Je bouwt een lead-opvolgingssysteem. Drie maanden later besluit je een tweede product toe te voegen. Of je wil de scoring aanpassen omdat je hebt geleerd welke leads echt converteren.
-
-Bij een grote consultancy heet dat een "scope change". Dat betekent een formeel verzoek, een nieuwe offerte, een goedkeuringsproces en een wachttijd van twee tot zes weken.
-
-Bij Selectly is het een gesprek van tien minuten en een aanpassing de volgende dag.
-
-Dat klinkt triviaal. Het is het niet. In de praktijk betekent het dat je systeem evolueert met wat je leert. In plaats van vast te zitten aan een specificatie die je 14 maanden geleden hebt geschreven.
+Bij Selectly zit de persoon die het eerste gesprek voert ook aan de knoppen. Die kent uw werkwijze. Die weet waarom u vorige week hebt afgesproken wat wel en niet als een aanvraag telt. Die moet dat niet opnieuw uitgelegd krijgen na een wissel in het team.
 
 ---
 
-## Resultaten meten: cijfers vs. slides
+## Meebewegen: de wereld verandert, uw contract niet
 
-Een groot bureau rapporteert in presentaties. Mooie grafieken. Vergelijkingen met industriebenchmarks. Narratieven over wat er goed gaat.
+U bouwt een systeem dat aanvragen opvolgt. Drie maanden later wilt u er een tweede product bij. Of u wilt anders sorteren, omdat u ondertussen weet welke aanvragen echt tot een order leiden.
 
-Selectly rapporteert in getallen die je al kent:
+Bij een grote consultancy heet dat een wijziging van de opdracht. Dat betekent een formele aanvraag, een nieuwe offerte, een goedkeuringsronde en twee tot zes weken wachten.
 
-- Hoeveel leads zijn er binnengekomen?
+Bij Selectly is dat een gesprek van tien minuten en een aanpassing de dag erna.
+
+Dat klinkt klein. Dat is het niet. In de praktijk betekent het dat uw systeem meegroeit met wat u leert, in plaats van vast te zitten aan een bestek dat u 14 maanden geleden hebt geschreven.
+
+---
+
+## Resultaten meten: cijfers tegenover slides
+
+Een groot bureau rapporteert in presentaties. Mooie grafieken. Vergelijkingen met sectorgemiddelden. Verhalen over wat er goed gaat.
+
+Selectly rapporteert in getallen die u al kent:
+
+- Hoeveel aanvragen zijn er binnengekomen?
 - Hoeveel zijn er binnen het uur opgevolgd?
 - Hoeveel offertes zijn er verstuurd?
 - Hoe lang duurde het om een offerte te maken?
 
-Bij dat bedrijf: de tijd voor een offerte ging van 8 uur naar 47 minuten. Dat staat niet in een presentatie. Dat staat in de agenda van de verkoper die elke middag vroeger klaar is.
+In ons eigen bedrijf ging de tijd voor een offerte van 8 uur naar 47 minuten. Dat staat niet in een presentatie. Dat staat in de agenda van de verkoper die elke middag vroeger klaar is.
 
 ---
 
@@ -118,77 +118,77 @@ Dit is waar KMO-eigenaars de fout ingaan bij het kiezen van een partner.
 
 **Niet doen: kiezen op basis van bedrijfsgrootte**
 
-Groter is niet beter. Een bureau van 300 consultants heeft niet meer expertise in jouw sector dan een gespecialiseerd team van vier. Het heeft meer processen, meer overhead en minder aandacht voor jouw project.
+Groter is niet beter. Een bureau van 300 consultants kent uw sector niet beter dan een gespecialiseerd team van vier. Het heeft meer procedures, meer overhead en minder aandacht voor uw project.
 
 **Niet doen: een aanbesteding organiseren voor een eerste project**
 
-Je weet niet goed genoeg wat je wil om een waterdichte aanbesteding te schrijven. Dat is normaal. Maar als je een aanbesteding organiseert, dwingt je dat tot een rigide specificatie die je later vastpint. Begin met een small scope proof of concept. Leer. Pas aan.
+U weet nog niet precies genoeg wat u wilt om een waterdicht bestek te schrijven. Dat is normaal. Maar een aanbesteding dwingt u tot een strak bestek dat u later vastzet. Begin klein met iets dat werkt. Leer eruit. Pas aan.
 
-**Niet doen: het budget als enige filter gebruiken**
+**Niet doen: enkel op het budget kijken**
 
-Het goedkoopste voorstel is zelden het voordeligste. Maar het duurste voorstel van een groot bureau is ook niet automatisch de beste investering. Vergelijk op doorlooptijd, op wie er bouwt en op meetbare resultaten in de eerste 30 dagen.
+Het goedkoopste voorstel is zelden het voordeligste. Maar het duurste voorstel van een groot bureau is daarom nog niet de beste besteding. Vergelijk op doorlooptijd, op wie er bouwt en op meetbare resultaten in de eerste 30 dagen.
 
-**Niet doen: wachten tot alles "perfect" is voor je begint**
+**Niet doen: wachten tot alles "perfect" is voor u begint**
 
-Veel KMO-eigenaars willen eerst hun CRM opkuisen, hun processen documenteren en hun team trainen voor ze met automatisering starten. Dat uitstel kost je maanden. Een goed automatiseringstraject begint met wat er nu is en maakt het beter.
+Veel KMO-eigenaars willen eerst hun CRM opkuisen, hun werkwijze uitschrijven en hun mensen opleiden voor ze aan automatiseren beginnen. Dat uitstel kost u maanden. Een goed traject vertrekt van wat er vandaag staat en maakt dat beter.
 
-**Niet doen: kiezen voor een generalist als je een specifiek probleem hebt**
+**Niet doen: een generalist kiezen voor een specifiek probleem**
 
-Als je lead-opvolging wil automatiseren, heb je geen partner nodig die ook SAP-implementaties doet, HR-transformaties begeleidt en supply chain optimaliseert. Je hebt iemand nodig die dit specifieke probleem al tien keer heeft opgelost.
+Wilt u de opvolging van uw aanvragen automatiseren, dan hebt u geen partner nodig die ook SAP-implementaties doet, HR-veranderingen begeleidt en logistiek optimaliseert. U hebt iemand nodig die dit ene probleem al tien keer heeft opgelost.
 
 ---
 
-## Wanneer kies je wél voor een grote consultancy?
+## Wanneer kiest u wél voor een grote consultancy?
 
-Eerlijk zijn: er zijn situaties waar een groot bureau logischer is.
+Eerlijk zijn: er zijn situaties waarin een groot bureau logischer is.
 
-- Je hebt een IT-governance met strikte compliancevereisten
-- Je project raakt aan meerdere landen en entiteiten tegelijk
-- Je hebt een raad van bestuur of investeerders die een bepaalde naam op het rapport willen zien
-- Je procesverandering is zo groot dat je interne weerstand een extern bureau nodig heeft om door te breken
+- U hebt een IT-beleid met strenge nalevingseisen
+- Uw project loopt over meerdere landen en vennootschappen tegelijk
+- U hebt een raad van bestuur of investeerders die een bepaalde naam op het rapport willen zien
+- De verandering is zo groot dat u een extern bureau nodig hebt om de weerstand intern te doorbreken
 
-In die gevallen betaal je voor structuur, dekking en formele autoriteit. Dat heeft waarde.
+In die gevallen betaalt u voor structuur, dekking en formeel gezag. Dat heeft waarde.
 
 Maar voor de meeste Vlaamse KMO's met 5 tot 100 medewerkers die een specifiek operationeel probleem willen oplossen? Dat is niet het geval.
 
 ---
 
-## Wat KMO-eigenaars ons het vaakst zeggen na de switch
+## Waar het verschil in de praktijk zit
 
-Niet: "Wat een indrukwekkende methodologie."
+Het verschil zit zelden in de methode. Het zit in vier dingen die u vooraf kunt nagaan:
 
-Wel:
+- Hoe snel er iets werkends staat dat u zelf kunt openen — weken of maanden.
+- Of degene die het gesprek voert ook degene is die bouwt.
+- Of uw mensen het systeem gebruiken of eromheen werken.
+- Of er na 30 dagen een getal op tafel ligt.
 
-- "Ik had niet verwacht dat het zo snel live kon."
-- "Eindelijk iemand die uitlegt wat er gebouwd wordt zonder slides."
-- "Mijn team gebruikt het echt, in plaats van het te omzeilen."
-- "De eerste meting was al positief."
-
-Dat laatste is misschien het meest veelzeggend. Bij een groot bureau zie je het eerste meetbare resultaat na maanden. Bij Selectly weet je na drie tot vier weken of het werkt.
+Bij een groot bureau ziet u het eerste meetbare resultaat doorgaans pas na maanden. Bij ons staat Lite live binnen 72 uur en Starter of Growth binnen twee tot vier weken, afhankelijk van de koppelingen — en dat is precies de reden om klein te beginnen.
 
 ---
 
-## Drie vragen voor je beslist
+## Drie vragen voor u beslist
 
-Voor je een partner kiest voor automatisering, stel je deze drie vragen:
+Stel deze drie vragen voor u een partner kiest:
 
 **1. Wie zit er concreet aan mijn project?**
-Vraag naam en cv. Vraag hoeveel andere projecten die persoon parallel loopt. Als je geen rechtstreeks antwoord krijgt: dat vertelt je iets.
+Vraag naam en achtergrond. Vraag hoeveel andere projecten die persoon tegelijk doet. Krijgt u geen recht antwoord, dan zegt dat al iets.
 
 **2. Wanneer zie ik het eerste werkende resultaat?**
-Niet een analyse. Niet een plan. Een werkend systeem of een werkend onderdeel ervan. Als het antwoord "na de discovery-fase" is: vraag door.
+Geen analyse. Geen plan. Een werkend systeem, of een werkend stuk ervan. Is het antwoord "na de verkennende fase": vraag door.
 
-**3. Hoe meet je succes in de eerste 30 dagen?**
-Als er geen concreet getal op tafel komt: wees voorzichtig.
+**3. Hoe meet u het resultaat in de eerste 30 dagen?**
+Komt er geen concreet getal op tafel, wees dan voorzichtig.
 
 ---
 
 ## De keuze
 
-Je kan 85.000 euro uitgeven en 14 maanden wachten op een systeem dat misschien werkt.
+U kunt 85.000 euro uitgeven en 14 maanden wachten op een systeem dat misschien werkt.
 
-Of je kan in vier weken een werkend systeem hebben dat je lead-opvolging, offerteproces of klantcommunicatie fundamenteel verandert — en dat gebaseerd is op wat je mét de builder hebt geleerd in de eerste gesprekken.
+Of u kunt binnen enkele weken een werkend systeem hebben dat uw opvolging, uw offertes of uw klantcontact grondig verandert — gebouwd op wat u samen met de bouwer in de eerste gesprekken hebt geleerd.
 
-Dat installatiebedrijf heeft die keuze gemaakt. 80 leads per maand worden nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides. Dat zijn maandagochendrapporten.
+Wij hebben die keuze eerst zelf gemaakt. In ons eigen installatiebedrijf worden 80 aanvragen per maand nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides, dat zijn onze eigen maandagochtendcijfers.
 
-Als je wil weten wat dat voor jouw bedrijf betekent: plan een gratis strategiegesprek van 20 minuten via [selectly.be/#contact](https://selectly.be/#contact). Geen verplichtingen. Geen 47 pagina's voorstel achteraf. Wel een concreet beeld van wat er bij jou mogelijk is en in hoeveel tijd.
+Wilt u weten wat dat voor uw bedrijf betekent: 20 minuten volstaan. Geen verplichtingen, geen voorstel van 47 pagina's achteraf. Wel een concreet beeld van wat mogelijk is en in hoeveel tijd — en wat het kost, staat gewoon op de [pakkettenpagina](/pakketten.html).
+
+**[Boek een gratis demo →](/demo)**

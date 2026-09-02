@@ -401,6 +401,68 @@ function splitData(text) {
 
 const EMAIL_RE = /[\w.+-]+@[\w-]+\.[a-z]{2,}/i;
 
+// De bezoeker geeft zijn e-mailadres in de chat en krijgt daarna... niets in zijn
+// mailbox. Het formulierpad stuurde wel een eerste antwoord, dit pad niet — terwijl
+// de site "antwoord binnen de minuut" belooft. Eén mail, één keer per gesprek,
+// met wat hij verteld heeft en de boekingslink. Mislukt hij, dan gaat het gesprek
+// gewoon door: een lead zonder mail is nog altijd een lead.
+const MAIL_SJABLOON = 'https://selectly.be/assets/email-template.html';
+
+function ontsnap(t) {
+  return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+async function bouwBevestiging(tekst) {
+  const alinea = ontsnap(tekst).split(/\n{2,}/)
+    .map((a) => `<p style="margin:0 0 14px 0;">${a.replace(/\n/g, '<br>')}</p>`).join('');
+  try {
+    const ctrl = new AbortController();
+    const klok = setTimeout(() => ctrl.abort(), 4000);
+    const r = await fetch(MAIL_SJABLOON, { signal: ctrl.signal });
+    clearTimeout(klok);
+    if (r.ok) {
+      const html = await r.text();
+      if (html.includes('{{contact.ai_eerste_antwoord}}')) return html.replace('{{contact.ai_eerste_antwoord}}', alinea);
+    }
+  } catch (e) { console.log('[intake] sjabloon niet opgehaald', e && e.message); }
+  return `<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#1f2937;">${alinea}</div>`;
+}
+
+async function stuurBevestiging(cid, email, d) {
+  if (!GHL_TOKEN || !cid || !email) return;
+  const naam = d.voornaam ? d.voornaam : '';
+  const feiten = [
+    d.sector && `Sector: ${d.sector}`,
+    d.medewerkers && `Aantal medewerkers: ${d.medewerkers}`,
+    d.aanvragen_per_maand && `Aanvragen per maand: ${d.aanvragen_per_maand}`,
+    d.doel && `Waar het pijn doet: ${d.doel}`,
+  ].filter(Boolean).join('\n');
+
+  const tekst = [
+    naam ? `Dag ${naam},` : 'Dag,',
+    'Bedankt voor uw bericht via de assistent op onze website. Dit is wat we genoteerd hebben:',
+    feiten || 'U liet uw gegevens achter via de chat.',
+    'Klopt er iets niet, antwoord dan gerust op deze mail — dan passen we het aan.',
+    `Een demo van twintig minuten inplannen kan meteen zelf: ${BOOKING}`,
+    'Tot binnenkort,\nHet team van Selectly',
+  ].join('\n\n');
+
+  try {
+    const html = await bouwBevestiging(tekst);
+    const r = await fetch('https://services.leadconnectorhq.com/conversations/messages', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + GHL_TOKEN, Version: '2021-04-15', 'Content-Type': 'application/json', Accept: 'application/json', 'User-Agent': UA },
+      body: JSON.stringify({ type: 'Email', contactId: cid, emailTo: email, subject: naam ? `${naam}, uw gesprek met Selectly` : 'Uw gesprek met Selectly', html }),
+    });
+    if (r.ok) { console.log('[intake] bevestigingsmail verstuurd naar', email); return; }
+    const j = await r.json().catch(() => ({}));
+    console.log('[intake] bevestigingsmail mislukt', r.status, JSON.stringify(j).slice(0, 200));
+    await meldStoring(`Bevestigingsmail NIET verstuurd (${r.status}) naar ${email} — zelf opvolgen.`);
+  } catch (e) {
+    console.log('[intake] bevestigingsmail fout', e && e.message);
+  }
+}
+
 async function pushToGHL(d, transcript, maakOpportunity) {
   if (!GHL_TOKEN || !d.email || !EMAIL_RE.test(d.email)) return null;
   const HEAD = { Authorization: 'Bearer ' + GHL_TOKEN, Version: '2021-07-28', 'Content-Type': 'application/json', Accept: 'application/json', 'User-Agent': UA };
@@ -558,6 +620,9 @@ exports.handler = async (event) => {
         // die daar niet geraakt is, is erger dan geen melding: dan denk je dat het
         // opgevolgd wordt. Mislukt de push, dan gaat er al een storingsmelding uit.
         if (cid) await meldLead({ ...data, email }, compleet ? 'demo' : 'nieuw');
+        // Eén bevestiging per gesprek: bij de eerste push. Daarna niet meer, ook
+        // niet als de bezoeker verderop nog gegevens aanvult.
+        if (cid && !body.pushed) await stuurBevestiging(cid, email, { ...data, email });
         // Alleen als de lead er ook echt in staat. Anders probeert de volgende beurt
         // het gewoon opnieuw — een 500 van GHL is meestal tijdelijk.
         pushed = !!cid;

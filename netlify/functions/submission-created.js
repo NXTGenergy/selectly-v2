@@ -235,7 +235,16 @@ exports.handler = async (event) => {
           status: 'open', contactId,
         };
         const ro = await fetch(BASE + '/opportunities/', { method: 'POST', headers: HEAD, body: JSON.stringify(oppBody) });
-        console.log('[ghl] opportunity', ro.status);
+        // GHL weigert een tweede opportunity voor hetzelfde contact met een 400.
+        // Dat is geen storing maar het gewenste gedrag: een terugkerende lead
+        // hoort geen tweede kans in de pijplijn te krijgen. Zonder dit
+        // onderscheid leest elke herhaalde aanvraag als een fout in de logs.
+        if (ro.ok) { console.log('[ghl] opportunity', ro.status); }
+        else {
+          const jo = await ro.json().catch(() => ({}));
+          if (jo.code === 'OPPORTUNITY_NO_DUPLICATE') console.log('[ghl] opportunity bestaat al — geen tweede aangemaakt');
+          else console.log('[ghl] opportunity MISLUKT', ro.status, JSON.stringify(jo).slice(0, 200));
+        }
       } catch (e) { console.log('[ghl] opportunity fout', e && e.message); }
     }
 

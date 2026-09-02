@@ -88,9 +88,9 @@ U kunt dus volledig draaien voor minder dan €60 per maand. De rest van uw budg
 
 ---
 
-## Zo draait het in de praktijk: ons eigen installatiebedrijf
+## Zo draait het in de praktijk: de eerste uitrol van Selectly
 
-Ons eigen installatiebedrijf plaatst laadpalen bij bedrijven. Voor we dit automatiseerden, deed een medewerker elke ochtend hetzelfde: aanvragen uit het contactformulier halen, mailen, wachten, een offerte opstellen, opnieuw mailen.
+De Vlaamse installatiezaak waar Selectly als eerste draaide, plaatst laadpalen bij bedrijven. Voor we dit automatiseerden, deed een medewerker elke ochtend hetzelfde: aanvragen uit het contactformulier halen, mailen, wachten, een offerte opstellen, opnieuw mailen.
 
 Dat kostte gemiddeld 8 uur per offerte. Van eerste contact tot document in de mailbox van de klant.
 
@@ -102,7 +102,7 @@ Nadat we het opgezet hadden:
 
 Hoe? Niet met duur maatwerk. Met een combinatie van Tally (het aanvraagformulier), Make (de gegevens doorsturen naar het CRM en het offertesjabloon starten) en Brevo (de automatische opvolging versturen).
 
-De totale toolkost: onder €100 per maand. Dit zijn onze eigen cijfers, in onze eigen zaak gemeten, voor we het aan iemand anders aanboden.
+De totale toolkost: onder €100 per maand. Deze cijfers zijn vier weken gemeten in een gewone installatiezaak, met echte aanvragen en echte offertes — geen klantcase, en gemeten voor we het aan iemand anders aanboden.
 
 Het verschil zat niet in de tools. Het zat in de volgorde: wie stuurt wat, wanneer, aan wie. Dat is het werk. De tools zijn goedkoop. De structuur is de investering.
 

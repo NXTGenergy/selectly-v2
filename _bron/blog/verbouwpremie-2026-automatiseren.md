@@ -10,7 +10,7 @@ Mijn VerbouwPremie bundelt premies voor isolatie, verwarming en ramen in één a
 
 Snel betekent hier: binnen het uur. Niet binnen de week.
 
-Dat weten we uit ons eigen installatiebedrijf. Daar verwerken we 80 aanvragen per maand. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes ligt binnen het uur na het eerste contact bij de klant. Dat is geen toeval, dat is een geautomatiseerd offerteproces. We hebben het op onze eigen omzet getest voor we het aan iemand anders aanboden.
+Dat weten we uit de eerste uitrol van Selectly, in een Vlaamse installatiezaak. Daar worden 80 aanvragen per maand verwerkt. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes ligt binnen het uur na het eerste contact bij de klant. Dat is geen toeval, dat is een geautomatiseerd offerteproces. Geen klantcase: het systeem draaide daar een volle maand met echte aanvragen en echte offertes voor we het aan iemand anders aanboden.
 
 ---
 
@@ -148,9 +148,9 @@ De aannemers die nu hun proces opzetten, zijn klaar als de aanvragen komen. Wie 
 
 ---
 
-## Hoe we het zelf aanpakten
+## Hoe het bij de eerste uitrol aangepakt is
 
-Ons eigen installatiebedrijf doet energieadvies en installatie. We merkten dat we de groei niet meer konden bijbenen. De aanvragen kwamen binnen, maar de opvolging haperde.
+De installatiezaak waar Selectly als eerste draaide, doet energieadvies en installatie. De groei was er niet meer bij te benen: de aanvragen kwamen binnen, maar de opvolging haperde.
 
 Het probleem was niet de vakkennis. Het was de tijd tussen aanvraag en offerte.
 
@@ -158,7 +158,7 @@ We werkten een gestructureerd systeem uit:
 
 - Een intakeformulier dat alle technische en financiële gegevens opvraagt
 - Automatisch nakijken of een aanvraag past
-- Een offertegenerator gekoppeld aan onze prijslijst en de geldende premies
+- Een offertegenerator gekoppeld aan de prijslijst van de zaak en de geldende premies
 - Automatische opvolging nadat de offerte vertrokken is
 
 Het resultaat na drie maanden:

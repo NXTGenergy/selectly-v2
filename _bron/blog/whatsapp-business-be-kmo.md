@@ -54,20 +54,20 @@ Wat u kunt automatiseren:
 
 ---
 
-## Hoe we het in ons eigen installatiebedrijf aanpakken
+## Hoe het aangepakt is in de installatiezaak waar Selectly als eerste draaide
 
-Ons eigen installatiebedrijf plaatst zonnepanelen en warmtepompen. Vroeger kwam het eerste klantcontact binnen via een contactformulier op de website en een telefoonnummer. Reactietijd: gemiddeld 4 tot 8 uur. Wie 's avonds een bericht stuurde, wachtte tot de volgende ochtend.
+Die zaak plaatst zonnepanelen en warmtepompen. Vroeger kwam het eerste klantcontact binnen via een contactformulier op de website en een telefoonnummer. Reactietijd: gemiddeld 4 tot 8 uur. Wie 's avonds een bericht stuurde, wachtte tot de volgende ochtend.
 
 Nadat we de opvolging via WhatsApp geautomatiseerd hadden, ziet het er zo uit:
 
-Een mogelijke klant stuurt een bericht. Binnen 90 seconden krijgt hij automatisch een reeks vragen: type woning, dakoriëntatie, huidige energiefactuur, postcode, en of hij liever telefonisch of ter plaatse verder praat. De antwoorden gaan rechtstreeks naar ons CRM. 's Ochtends ziet een medewerker een ingevulde fiche, geen leeg gespreksvenster.
+Een mogelijke klant stuurt een bericht. Binnen 90 seconden krijgt hij automatisch een reeks vragen: type woning, dakoriëntatie, huidige energiefactuur, postcode, en of hij liever telefonisch of ter plaatse verder praat. De antwoorden gaan rechtstreeks naar het CRM. 's Ochtends ziet een medewerker een ingevulde fiche, geen leeg gespreksvenster.
 
 Resultaat:
 - 80 volledig uitgevraagde aanvragen per maand via WhatsApp
 - 90% van alle inkomende berichten krijgt binnen het uur een eerste reactie — ook buiten de kantooruren
 - De tijd per offerte zakte van 8 uur naar 47 minuten, doordat de gegevens al ingevuld zijn
 
-Dit zijn onze eigen cijfers, in onze eigen zaak gemeten, voor we het aan iemand anders aanboden. Het kanaal zelf is niet de sleutel. De structuur erachter wel.
+Deze cijfers zijn vier weken gemeten in een gewone installatiezaak, met echte aanvragen en echte offertes — geen klantcase, en gemeten voor we het aan iemand anders aanboden. Het kanaal zelf is niet de sleutel. De structuur erachter wel.
 
 ---
 

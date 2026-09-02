@@ -44,9 +44,9 @@ Voor een KMO in Gent met 12 medewerkers: dodelijk.
 
 Elke maand zonder werkend systeem is een maand waarin uw concurrent sneller werkt. Elke week wachten op een goedkeuring is een week waarin uw verkopers met de hand zitten op te volgen.
 
-**Ons eigen installatiebedrijf** had die 14 maanden niet. Het probleem was concreet: 80 aanvragen per maand en geen tijd om ze allemaal binnen het uur op te volgen. Wie op een offerte wacht, belt ondertussen gewoon de volgende.
+**De installatiezaak waar Selectly als eerste draaide**, had die 14 maanden niet. Het probleem was concreet: 80 aanvragen per maand en geen tijd om ze allemaal binnen het uur op te volgen. Wie op een offerte wacht, belt ondertussen gewoon de volgende.
 
-Vier weken na het eerste gesprek stond het systeem live. 90 procent van de aanvragen krijgt nu binnen het uur een opvolging. Automatisch. Zonder extra mensen. We hebben het op onze eigen omzet getest voor we het aan iemand anders verkochten.
+Vier weken na het eerste gesprek stond het systeem live. 90 procent van de aanvragen krijgt nu binnen het uur een opvolging. Automatisch. Zonder extra mensen. Geen klantcase: het draaide daar vier weken met echte aanvragen en echte offertes voor we het aan iemand anders verkochten.
 
 ---
 
@@ -58,7 +58,7 @@ U betaalt ook voor de methodiek die ze acht jaar geleden hebben uitgewerkt. Voor
 
 Selectly werkt anders. Kleine kern. Geen laag tussen u en de persoon die bouwt.
 
-Het gevolg: een eerste werkende versie in ons eigen bedrijf kostte geen 85.000 euro. Het kostte een fractie daarvan. En ze werkt.
+Het gevolg: een eerste werkende versie bij die eerste uitrol kostte geen 85.000 euro. Het kostte een fractie daarvan. En ze werkt.
 
 **Wat u bij een grote consultancy wél krijgt voor uw geld:**
 
@@ -108,7 +108,7 @@ Selectly rapporteert in getallen die u al kent:
 - Hoeveel offertes zijn er verstuurd?
 - Hoe lang duurde het om een offerte te maken?
 
-In ons eigen bedrijf ging de tijd voor een offerte van 8 uur naar 47 minuten. Dat staat niet in een presentatie. Dat staat in de agenda van de verkoper die elke middag vroeger klaar is.
+Bij die eerste uitrol ging de tijd voor een offerte van 8 uur naar 47 minuten. Dat staat niet in een presentatie. Dat staat in de agenda van de verkoper die elke middag vroeger klaar is.
 
 ---
 
@@ -187,7 +187,7 @@ U kunt 85.000 euro uitgeven en 14 maanden wachten op een systeem dat misschien w
 
 Of u kunt binnen enkele weken een werkend systeem hebben dat uw opvolging, uw offertes of uw klantcontact grondig verandert — gebouwd op wat u samen met de bouwer in de eerste gesprekken hebt geleerd.
 
-Wij hebben die keuze eerst zelf gemaakt. In ons eigen installatiebedrijf worden 80 aanvragen per maand nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides, dat zijn onze eigen maandagochtendcijfers.
+Die keuze is eerst in de praktijk gemaakt. In de installatiezaak waar Selectly als eerste draaide — geen klantcase — worden 80 aanvragen per maand nu binnen het uur opgevolgd. Offertes die vroeger 8 uur kostten, gaan er nu in 47 minuten uit. Dat zijn geen slides, dat zijn maandagochtendcijfers.
 
 Wilt u weten wat dat voor uw bedrijf betekent: 20 minuten volstaan. Geen verplichtingen, geen voorstel van 47 pagina's achteraf. Wel een concreet beeld van wat mogelijk is en in hoeveel tijd — en wat het kost, staat gewoon op de [pakkettenpagina](/pakketten.html).
 

@@ -22,7 +22,7 @@ De meeste "AI chatbot" artikels zijn pitchstukken van leveranciers. Dit is gesch
 
 **Waarom het werkt:** mensen antwoorden graag op WhatsApp. Mailen of bellen is een drempel. Chatten voelt vrijblijvend.
 
-**Wat we in ons eigen installatiebedrijf gemeten hebben:** 90% van de aanvragen beantwoord binnen het uur in plaats van na 6 tot 12 uur. Van ingevuld formulier tot verstuurde offerte gingen we van 35 op 100 naar 62 op 100. We hebben dit op onze eigen omzet getest voor we het aan iemand anders verkochten.
+**Wat gemeten is bij de eerste uitrol van Selectly, in een Vlaamse installatiezaak:** 90% van de aanvragen beantwoord binnen het uur in plaats van na 6 tot 12 uur. Van ingevuld formulier tot verstuurde offerte ging het van 35 op 100 naar 62 op 100, over vier weken. Geen klantcase: het draaide daar met echte aanvragen en echte offertes voor we het aan iemand anders verkochten.
 
 ### 2. Veelgestelde vragen op uw website (24/7 bereikbaar)
 
@@ -62,7 +62,7 @@ De meeste "AI chatbot" artikels zijn pitchstukken van leveranciers. Dit is gesch
 - Stuurt een persoonlijke heropening via WhatsApp: "Hé Jan, je vroeg in oktober naar zonnepanelen. De premies voor 2026 zijn nu bekend. Wil je een update?"
 - Zet het antwoord meteen terug in het CRM
 
-**Wat we in ons eigen bedrijf gemeten hebben:** 8 tot 15% van de aanvragen ouder dan zes maanden reageert opnieuw. Soms meer, als het toevallig samenvalt met een premiewijziging of een prijsstijging.
+**Wat bij diezelfde eerste uitrol gemeten is:** 8 tot 15% van de aanvragen ouder dan zes maanden reageert opnieuw. Soms meer, als het toevallig samenvalt met een premiewijziging of een prijsstijging.
 
 ---
 

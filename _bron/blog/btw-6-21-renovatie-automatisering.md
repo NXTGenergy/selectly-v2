@@ -10,7 +10,7 @@ De Belgische BTW-wetgeving rond renovatie is complex, maar de beslislogica is da
 
 Zet 10 mensen van hetzelfde aannemersbedrijf aan een tafel. Stel dezelfde casus. U krijgt 4 verschillende antwoorden over het juiste BTW-tarief.
 
-Dat is geen overdrijving. Het is wat we zelf zagen in ons eigen installatiebedrijf, en wat we horen van aannemers die ons erover aanspreken.
+Dat is geen overdrijving. Het is wat we zagen bij de eerste uitrol van Selectly, in een Vlaamse installatiezaak, en wat we horen van aannemers die ons erover aanspreken.
 
 De kern van het probleem:
 
@@ -109,9 +109,9 @@ Geen losse PDF's in een mailbox. Geen "we zijn het vergeten".
 
 ---
 
-## Praktijkgeval: ons eigen installatiebedrijf
+## Praktijkgeval: de eerste uitrol van Selectly
 
-We hebben dit eerst op onszelf uitgeprobeerd. Ons eigen installatiebedrijf plaatst zonnepanelen, warmtepompen en laadpalen bij particulieren en bedrijven in de regio. Precies het type bedrijf waar het BTW-vraagstuk elke week speelt: residentieel tegenover commercieel, nieuwbouw tegenover renovatie, installatie tegenover materialen.
+Dit draaide eerst vier weken in een gewone installatiezaak, met echte aanvragen en echte offertes — geen klantcase. Die zaak plaatst zonnepanelen, warmtepompen en laadpalen bij particulieren en bedrijven in de regio. Precies het type bedrijf waar het BTW-vraagstuk elke week speelt: residentieel tegenover commercieel, nieuwbouw tegenover renovatie, installatie tegenover materialen.
 
 Hoe het daar liep voor we het automatiseerden:
 
@@ -120,14 +120,14 @@ Hoe het daar liep voor we het automatiseerden:
 - De verplichte factuurvermelding werd er soms wel, soms niet op gezet
 - **80 aanvragen per maand** bleven liggen of wachtten te lang
 
-Nadat we het systeem er zelf in gebouwd hadden:
+Nadat het systeem er gebouwd was:
 
 - De tijd per offerte zakte naar **47 minuten**
 - **90% van de aanvragen** krijgt binnen het uur een reactie
 - Het BTW-tarief wordt bepaald door de beslisboom in het systeem, niet door de medewerker
 - De verplichte vermelding staat automatisch op elke 6%-factuur
 
-Het resultaat is niet alleen snelheid, het is vooral gelijkvormigheid. Elke factuur volgt dezelfde logica. Bij een controle kunt u elk dossier apart verdedigen. Dit zijn onze eigen cijfers, op onze eigen omzet gemeten, voor we het aan iemand anders aanboden.
+Het resultaat is niet alleen snelheid, het is vooral gelijkvormigheid. Elke factuur volgt dezelfde logica. Bij een controle kunt u elk dossier apart verdedigen. Deze cijfers zijn daar gemeten, voor we het aan iemand anders aanboden.
 
 ---
 

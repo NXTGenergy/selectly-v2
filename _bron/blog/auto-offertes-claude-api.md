@@ -2,7 +2,7 @@
 
 Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en u verliest al snel één voltijdse werkweek aan een document dat de klant in 30 seconden doorscant.
 
-Dat kan anders. Ons eigen installatiebedrijf maakte de sprong: van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.
+Dat kan anders. Bij de eerste uitrol van Selectly, in een Vlaamse installatiezaak, ging het van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.
 
 Dit artikel legt uit hoe dat werkt, wat het kost, en waar u voorzichtig mee moet zijn.
 
@@ -57,7 +57,7 @@ Hoe beter de input, hoe beter wat eruit komt. Dit is geen magie. Het is structuu
 
 Hier zit de kern van de kwaliteit. De system prompt vertelt Claude wie het is, welke toon het aanhoudt, welke informatie altijd in de offerte moet staan en wat nooit mag ontbreken.
 
-Voorbeeldfragment uit onze eigen opstelling (een prompt spreekt het model aan, vandaar de je-vorm):
+Voorbeeldfragment uit de opstelling daar (een prompt spreekt het model aan, vandaar de je-vorm):
 
 ```
 Je bent een offerte-assistent voor een installatiebedrijf in de energiesector.
@@ -87,9 +87,9 @@ Zinvolle koppelingen zijn:
 
 ---
 
-## Wat we in ons eigen bedrijf concreet deden
+## Wat er bij die eerste uitrol concreet gebeurde
 
-Ons installatiebedrijf plaatst laadpalen en zonnepanelen bij bedrijven in de regio. De verkoop liep goed, maar het offerteproces zat verstopt.
+De zaak plaatst laadpalen en zonnepanelen bij bedrijven in de regio. De verkoop liep goed, maar het offerteproces zat verstopt.
 
 Elke offerte vroeg:
 1. Een intakegesprek verwerken
@@ -108,9 +108,9 @@ Nadat we de Claude API eraan gekoppeld hadden:
 - De medewerker controleert en past aan waar nodig (20 à 30 minuten)
 - Offerte klaar: 47 minuten in totaal
 
-Het effect was ook commercieel merkbaar. We gingen van 40 naar 80 aanvragen per maand, gewoon omdat er eindelijk tijd was om meer gesprekken te voeren. En 90% van de nieuwe aanvragen kreeg binnen het uur een eerste reactie.
+Het effect was ook commercieel merkbaar. Het aantal aanvragen ging van 40 naar 80 per maand, gewoon omdat er eindelijk tijd was om meer gesprekken te voeren. En 90% van de nieuwe aanvragen kreeg binnen het uur een eerste reactie.
 
-Dat laatste cijfer is geen toeval. Wie snel antwoordt, blijft in beeld. Iemand die binnen het uur contact krijgt, heeft u nog aan de lijn voor hij drie concurrenten heeft gebeld. Dit zijn onze eigen cijfers, in ons eigen bedrijf gemeten, voor we dit aan iemand anders aanboden.
+Dat laatste cijfer is geen toeval. Wie snel antwoordt, blijft in beeld. Iemand die binnen het uur contact krijgt, heeft u nog aan de lijn voor hij drie concurrenten heeft gebeld. Deze cijfers zijn vier weken gemeten in die installatiezaak, met echte aanvragen en echte offertes — geen klantcase, en gemeten voor we dit aan iemand anders aanboden.
 
 ---
 

@@ -83,7 +83,7 @@ Retell pakt het anders aan. Dat platform legt de nadruk op eenvoud en op snel li
 
 ## Wat betekent dit in de praktijk?
 
-Neem ons eigen installatiebedrijf. Dat kreeg maandelijks meer dan 200 inkomende oproepen. Veel daarvan waren dezelfde vragen: heeft de klant een geschikt dak, welk vermogen, wat verbruikt hij nu?
+Neem de installatiezaak waar Selectly als eerste draaide — geen klantcase. Die kreeg maandelijks meer dan 200 inkomende oproepen. Veel daarvan waren dezelfde vragen: heeft de klant een geschikt dak, welk vermogen, wat verbruikt hij nu?
 
 Voor we dit automatiseerden, kostte het uitvragen van één aanvraag gemiddeld 25 minuten van iemand. De offerte zelf nam 8 uur in beslag.
 
@@ -93,7 +93,7 @@ Nadat we er een voicebot op Vapi voor gebouwd hadden:
 - **90% van alle inkomende oproepen** krijgt binnen de minuut antwoord, ook 's nachts en in het weekend
 - De tijd per offerte daalde van **8 uur naar 47 minuten**
 
-Waarom Vapi en niet Retell? De koppeling met ons CRM en onze offertesoftware vroeg maatwerk. Het gesprek moest andere kanten opgaan naargelang postcode, daktype en energieverbruik. Zulke vertakkingen bouwt u in Vapi nauwkeurig. In Retell waren we snel tegen de grenzen van de sjablonen gebotst.
+Waarom Vapi en niet Retell? De koppeling met het CRM en de offertesoftware ter plaatse vroeg maatwerk. Het gesprek moest andere kanten opgaan naargelang postcode, daktype en energieverbruik. Zulke vertakkingen bouwt u in Vapi nauwkeurig. In Retell waren we snel tegen de grenzen van de sjablonen gebotst.
 
 Maar een tandartspraktijk in Gent die afspraken wil automatiseren? Daar staat een Retell-sjabloon voor afspraken in twee dagen te draaien. Zonder ontwikkelaar.
 

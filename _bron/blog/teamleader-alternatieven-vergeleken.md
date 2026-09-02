@@ -9,7 +9,7 @@
 
 Teamleader is een prima tool en past goed bij veel Belgische KMO's. Maar in gesprekken met zaakvoerders komen steeds dezelfde drie pijnpunten terug: de prijs (€89 per gebruiker per maand loopt op), weinig mogelijkheden om te automatiseren, en een verouderd scherm.
 
-Hieronder een eerlijke vergelijking van zes alternatieven. Geschreven vanuit de praktijk: we hebben ze zelf gebruikt of getest in ons eigen installatiebedrijf voor we er iets over beweerden.
+Hieronder een eerlijke vergelijking van zes alternatieven. Geschreven vanuit de praktijk: we hebben ze zelf gebruikt of getest bij de eerste uitrol van Selectly, in een Vlaamse installatiezaak, voor we er iets over beweerden.
 
 ## De 6 alternatieven
 

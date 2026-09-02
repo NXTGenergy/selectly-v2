@@ -308,6 +308,14 @@
   status = 404
   force = true
 
+# build_blog.py hoort in git (anders staat de vergrendeling maar op een van de
+# twee Macs) maar niet op het web. (02-09-2026)
+[[redirects]]
+  from = "/build_blog.py"
+  to = "/404.html"
+  status = 404
+  force = true
+
 [[redirects]]
   from = "/package.json"
   to = "/404.html"

@@ -54,3 +54,8 @@ vraag/_onderzoek/
 # Eenmaal gecommit staat elke oude paginaversie publiek op
 # /.claude/worktrees/<naam>/index.html. Nooit meedeployen.
 .claude/
+
+# Ongebruikte beelden: staan nergens in de site maar werden wel gedeployed.
+# Blijven lokaal bewaard als ad-materiaal.
+assets/product-glow.jpg
+assets/content/ad-bg-orbs.jpg

@@ -52,7 +52,7 @@ REGELS
 - Geef alleen de tekst van het bericht terug. Geen onderwerpregel, geen uitleg.`;
 
 async function schrijfEersteAntwoord(d) {
-  if (!ANTHROPIC_KEY) return null;
+  if (!ANTHROPIC_KEY) { console.log('[ai] geen ANTHROPIC_API_KEY'); return null; }
   const situatie = [
     d.naam && `Naam: ${d.naam}`,
     d.bedrijf && `Bedrijf: ${d.bedrijf}`,
@@ -60,7 +60,7 @@ async function schrijfEersteAntwoord(d) {
     d.lead_source && `Kwam binnen via: ${d.lead_source}`,
     d.bericht && `Wat hij/zij schreef: ${d.bericht}`,
   ].filter(Boolean).join('\n');
-  if (!situatie) return null;
+  if (!situatie) { console.log('[ai] geen situatie om over te schrijven'); return null; }
 
   try {
     const ctrl = new AbortController();
@@ -84,6 +84,7 @@ async function schrijfEersteAntwoord(d) {
     if (!r.ok) { console.log('[ai] antwoord status', r.status); return null; }
     const j = await r.json();
     const tekst = (j.content || []).map((c) => c.text || '').join('').trim();
+    if (!tekst) console.log('[ai] model gaf een leeg antwoord terug');
     return tekst || null;
   } catch (e) {
     console.log('[ai] antwoord fout', e && e.message);
@@ -121,6 +122,25 @@ async function bouwMail(antwoord) {
     }
   } catch (e) { console.log('[mail] sjabloon niet opgehaald', e && e.message); }
   return `<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#1f2937;">${alinea}</div>`;
+}
+
+// Valt de AI weg, dan mag de aanvrager daar niets van merken. Hij heeft net op
+// verzenden geduwd en een groen vinkje gezien; dan hoort er een mail te volgen.
+// Deze tekst is bewust kort en zegt alleen wat we zeker weten.
+function standaardBevestiging(d, voornaam) {
+  const feiten = [
+    d.bedrijf && `Bedrijf: ${d.bedrijf}`,
+    d.interesse && `Interesse: ${d.interesse}`,
+    d.telefoon && `Telefoon: ${d.telefoon}`,
+  ].filter(Boolean).join('\n');
+  return [
+    voornaam ? `Dag ${voornaam},` : 'Dag,',
+    'Bedankt voor uw aanvraag bij Selectly. Ze is goed aangekomen en iemand van het team bekijkt ze persoonlijk.',
+    feiten ? 'Dit hebben we genoteerd:\n' + feiten : '',
+    'Klopt er iets niet, antwoord dan gerust op deze mail.',
+    'Liever meteen een moment prikken? Een demo van twintig minuten inplannen kan hier: https://selectly.be/demo',
+    'Tot binnenkort,\nHet team van Selectly',
+  ].filter(Boolean).join('\n\n');
 }
 
 async function stuurEersteAntwoord(contactId, email, antwoord, voornaam) {
@@ -253,9 +273,14 @@ exports.handler = async (event) => {
     //    in de praktijk een algemene "bedankt, wij nemen contact op"-mail — precies
     //    wat Selectly zijn klanten afraadt — en begon met "Dag ," omdat ze afvuurde
     //    voor de voornaam was opgeslagen. Nu vertrekt het echte antwoord hiervandaan.
+    // De bevestiging hing vroeger vast aan de AI: mislukte die, dan kreeg de
+    // aanvrager niets terwijl hij net een groen vinkje had gezien. De AI maakt
+    // de mail persoonlijker, maar ze beslist niet langer of hij vertrekt.
     let mailStatus = '';
-    if (contactId && aiAntwoord && !isConsument && d.email) {
-      mailStatus = await stuurEersteAntwoord(contactId, d.email, aiAntwoord, first);
+    if (contactId && !isConsument && d.email) {
+      const tekst = aiAntwoord || standaardBevestiging(d, first);
+      if (!aiAntwoord) console.log('[mail] AI gaf niets, standaardbevestiging gebruikt');
+      mailStatus = await stuurEersteAntwoord(contactId, d.email, tekst, first);
     }
 
     await meldLead(d, formName, isConsument, !!contactId, contactId, mailStatus);

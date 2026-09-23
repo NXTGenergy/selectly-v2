@@ -10,7 +10,7 @@ Mijn VerbouwPremie bundelt premies voor isolatie, verwarming en ramen in één a
 
 Snel betekent hier: binnen het uur. Niet binnen de week.
 
-Dat weten we uit de eerste uitrol van Selectly, in een Vlaamse installatiezaak. Daar worden 80 aanvragen per maand verwerkt. Vroeger kostte één offerte 8 uur. Nu 47 minuten. En 90% van die offertes ligt binnen het uur na het eerste contact bij de klant. Dat is geen toeval, dat is een geautomatiseerd offerteproces. Geen klantcase: het systeem draaide daar een volle maand met echte aanvragen en echte offertes voor we het aan iemand anders aanboden.
+Dat is geen toeval als het lukt: het is een geautomatiseerd offerteproces. Bedrijven die binnen 5 minuten reageren in plaats van na een half uur, maken 21 keer meer kans om een aanvraag te kwalificeren (Lead Response Management Study, MIT/InsideSales, ruim 15.000 aanvragen).
 
 ---
 
@@ -77,7 +77,7 @@ Weet u welk type woning, welke werken en welke materialen, dan kunt u een offert
 4. Premie-aftrekken berekent op basis van het inkomen van de klant
 5. Een PDF genereert en verstuurt
 
-Dat gaat van 8 uur naar minder dan een uur. Bij ons kwam het uit op 47 minuten.
+Dat scheelt makkelijk enkele uren werk per offerte.
 
 ### Stap 4: Automatische opvolging
 
@@ -140,7 +140,7 @@ Sommige aannemers laten de premieberekening weg "omdat het te ingewikkeld is". G
 
 **4. Automatisering zien als vervanging van menselijk contact**
 
-Het eerste gesprek met een klant blijft menselijk. Automatisering neemt administratie over, geen relaties. De zaakvoerder die vroeger 8 uur aan een offerte zat, heeft nu tijd voor een goed klantgesprek.
+Het eerste gesprek met een klant blijft menselijk. Automatisering neemt administratie over, geen relaties. De zaakvoerder die anders uren aan een offerte zit, krijgt zo tijd voor een goed klantgesprek.
 
 **5. Wachten tot 2026**
 
@@ -148,27 +148,18 @@ De aannemers die nu hun proces opzetten, zijn klaar als de aanvragen komen. Wie 
 
 ---
 
-## Hoe het bij de eerste uitrol aangepakt is
+## Hoe zo'n systeem er praktisch uitziet
 
-De installatiezaak waar Selectly als eerste draaide, doet energieadvies en installatie. De groei was er niet meer bij te benen: de aanvragen kwamen binnen, maar de opvolging haperde.
+Voor een energieadvies- en installatiebedrijf zit het probleem zelden in de vakkennis. Het zit in de tijd tussen aanvraag en offerte, zeker als de groei sneller gaat dan de opvolging kan bijbenen.
 
-Het probleem was niet de vakkennis. Het was de tijd tussen aanvraag en offerte.
-
-We werkten een gestructureerd systeem uit:
+Een gestructureerd systeem bestaat doorgaans uit:
 
 - Een intakeformulier dat alle technische en financiële gegevens opvraagt
 - Automatisch nakijken of een aanvraag past
 - Een offertegenerator gekoppeld aan de prijslijst van de zaak en de geldende premies
 - Automatische opvolging nadat de offerte vertrokken is
 
-Het resultaat na drie maanden:
-
-- **80 aanvragen per maand** verwerkt, tegenover 40 voordien
-- **90% van de offertes** binnen het uur bij de klant
-- Tijd per offerte: van **8 uur naar 47 minuten**
-- Geen extra aanwervingen
-
-Er kwam tijd vrij voor het werk dat wel iemand vraagt: klanten overtuigen en werven opvolgen.
+Zo'n opzet levert doorgaans twee dingen op: meer aanvragen die effectief verwerkt geraken zonder extra aanwervingen, en tijd die vrijkomt voor het werk dat wel een mens vraagt — klanten overtuigen en werven opvolgen.
 
 ---
 

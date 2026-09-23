@@ -88,23 +88,21 @@ U kunt dus volledig draaien voor minder dan €60 per maand. De rest van uw budg
 
 ---
 
-## Zo draait het in de praktijk: de eerste uitrol van Selectly
+## Zo ziet zo'n opzet er praktisch uit
 
-De Vlaamse installatiezaak waar Selectly als eerste draaide, plaatst laadpalen bij bedrijven. Voor we dit automatiseerden, deed een medewerker elke ochtend hetzelfde: aanvragen uit het contactformulier halen, mailen, wachten, een offerte opstellen, opnieuw mailen.
+Neem een installatiebedrijf dat laadpalen plaatst bij bedrijven. Zonder automatisering doet een medewerker elke ochtend hetzelfde: aanvragen uit het contactformulier halen, mailen, wachten, een offerte opstellen, opnieuw mailen. Dat kost al snel enkele uren per offerte, van eerste contact tot document in de mailbox van de klant.
 
-Dat kostte gemiddeld 8 uur per offerte. Van eerste contact tot document in de mailbox van de klant.
+Met een eenvoudige opzet verandert die volgorde:
 
-Nadat we het opgezet hadden:
-
-- **80 aanvragen per maand** worden automatisch verwerkt
-- **90% krijgt binnen het uur een reactie**, zonder dat iemand daarvoor moet opstaan
-- **Tijd per offerte: van 8 uur naar 47 minuten**
+- Aanvragen worden automatisch verwerkt zodra het formulier binnenkomt
+- De eerste reactie vertrekt zonder dat iemand daarvoor moet opstaan
+- Het offertesjabloon start automatisch met de juiste gegevens al ingevuld
 
 Hoe? Niet met duur maatwerk. Met een combinatie van Tally (het aanvraagformulier), Make (de gegevens doorsturen naar het CRM en het offertesjabloon starten) en Brevo (de automatische opvolging versturen).
 
-De totale toolkost: onder €100 per maand. Deze cijfers zijn vier weken gemeten in een gewone installatiezaak, met echte aanvragen en echte offertes — geen klantcase, en gemeten voor we het aan iemand anders aanboden.
+De totale toolkost: onder €100 per maand.
 
-Het verschil zat niet in de tools. Het zat in de volgorde: wie stuurt wat, wanneer, aan wie. Dat is het werk. De tools zijn goedkoop. De structuur is de investering.
+Het verschil zit niet in de tools. Het zit in de volgorde: wie stuurt wat, wanneer, aan wie. Dat is het werk. De tools zijn goedkoop. De structuur is de investering.
 
 ---
 

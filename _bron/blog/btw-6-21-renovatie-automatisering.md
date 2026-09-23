@@ -10,7 +10,7 @@ De Belgische BTW-wetgeving rond renovatie is complex, maar de beslislogica is da
 
 Zet 10 mensen van hetzelfde aannemersbedrijf aan een tafel. Stel dezelfde casus. U krijgt 4 verschillende antwoorden over het juiste BTW-tarief.
 
-Dat is geen overdrijving. Het is wat we zagen bij de eerste uitrol van Selectly, in een Vlaamse installatiezaak, en wat we horen van aannemers die ons erover aanspreken.
+Dat is geen overdrijving. Het is wat we horen van aannemers die ons erover aanspreken.
 
 De kern van het probleem:
 
@@ -109,25 +109,17 @@ Geen losse PDF's in een mailbox. Geen "we zijn het vergeten".
 
 ---
 
-## Praktijkgeval: de eerste uitrol van Selectly
+## Wat een consequente aanpak oplevert
 
-Dit draaide eerst vier weken in een gewone installatiezaak, met echte aanvragen en echte offertes — geen klantcase. Die zaak plaatst zonnepanelen, warmtepompen en laadpalen bij particulieren en bedrijven in de regio. Precies het type bedrijf waar het BTW-vraagstuk elke week speelt: residentieel tegenover commercieel, nieuwbouw tegenover renovatie, installatie tegenover materialen.
+Precies bij bedrijven die zonnepanelen, warmtepompen of laadpalen plaatsen bij particulieren én bedrijven speelt het BTW-vraagstuk elke week: residentieel tegenover commercieel, nieuwbouw tegenover renovatie, installatie tegenover materialen.
 
-Hoe het daar liep voor we het automatiseerden:
+Zet u dat vast in een beslisboom in plaats van een inschatting per medewerker, dan verandert er structureel iets:
 
-- Offertes werden handmatig opgemaakt: gemiddeld **8 uur per offerte**
-- Het BTW-tarief werd per medewerker ingeschat, niet systematisch bepaald
-- De verplichte factuurvermelding werd er soms wel, soms niet op gezet
-- **80 aanvragen per maand** bleven liggen of wachtten te lang
+- Het BTW-tarief wordt bepaald door de beslisboom in het systeem, niet door de losse inschatting van een medewerker
+- De verplichte factuurvermelding staat automatisch op elke 6%-factuur
+- Elke offerte volgt dezelfde logica, ongeacht wie ze opmaakt
 
-Nadat het systeem er gebouwd was:
-
-- De tijd per offerte zakte naar **47 minuten**
-- **90% van de aanvragen** krijgt binnen het uur een reactie
-- Het BTW-tarief wordt bepaald door de beslisboom in het systeem, niet door de medewerker
-- De verplichte vermelding staat automatisch op elke 6%-factuur
-
-Het resultaat is niet alleen snelheid, het is vooral gelijkvormigheid. Elke factuur volgt dezelfde logica. Bij een controle kunt u elk dossier apart verdedigen. Deze cijfers zijn daar gemeten, voor we het aan iemand anders aanboden.
+Het resultaat is niet alleen snelheid, het is vooral gelijkvormigheid. Bij een controle kunt u elk dossier apart verdedigen.
 
 ---
 

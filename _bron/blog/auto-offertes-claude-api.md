@@ -2,7 +2,7 @@
 
 Een offerte opstellen kost een gemiddelde KMO 4 tot 8 uur per stuk. Vermenigvuldig dat met 20 offertes per maand en u verliest al snel één voltijdse werkweek aan een document dat de klant in 30 seconden doorscant.
 
-Dat kan anders. Bij de eerste uitrol van Selectly, in een Vlaamse installatiezaak, ging het van 8 uur naar 47 minuten per offerte. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.
+Dat kan anders. Niet door een goedkopere medewerker aan te nemen. Niet door kwaliteit in te leveren. Door het proces te automatiseren met de Claude API.
 
 Dit artikel legt uit hoe dat werkt, wat het kost, en waar u voorzichtig mee moet zijn.
 
@@ -87,30 +87,23 @@ Zinvolle koppelingen zijn:
 
 ---
 
-## Wat er bij die eerste uitrol concreet gebeurde
+## Zo verloopt zo'n koppeling in de praktijk
 
-De zaak plaatst laadpalen en zonnepanelen bij bedrijven in de regio. De verkoop liep goed, maar het offerteproces zat verstopt.
-
-Elke offerte vroeg:
+Bij bedrijven met technische offertes — laadpalen, zonnepanelen, HVAC — ziet het traject er meestal zo uit. Voor de koppeling vraagt elke offerte:
 1. Een intakegesprek verwerken
 2. Technische berekeningen invoeren
 3. Een tekstdocument schrijven met uitleg
 4. De opmaak naar de huisstijl trekken
 5. Controleren, goedkeuren, versturen
 
-Dat was 8 uur werk. Per offerte.
-
-Nadat we de Claude API eraan gekoppeld hadden:
-- Het intakeformulier wordt ingevuld na het gesprek (15 minuten)
+Met de Claude API eraan gekoppeld verandert die volgorde:
+- Het intakeformulier wordt ingevuld na het gesprek
 - Het systeem haalt de productgegevens uit de catalogus
 - Claude schrijft de offertetekst
 - Het sjabloon vult zichzelf in
-- De medewerker controleert en past aan waar nodig (20 à 30 minuten)
-- Offerte klaar: 47 minuten in totaal
+- De medewerker controleert en past aan waar nodig
 
-Het effect was ook commercieel merkbaar. Het aantal aanvragen ging van 40 naar 80 per maand, gewoon omdat er eindelijk tijd was om meer gesprekken te voeren. En 90% van de nieuwe aanvragen kreeg binnen het uur een eerste reactie.
-
-Dat laatste cijfer is geen toeval. Wie snel antwoordt, blijft in beeld. Iemand die binnen het uur contact krijgt, heeft u nog aan de lijn voor hij drie concurrenten heeft gebeld. Deze cijfers zijn vier weken gemeten in die installatiezaak, met echte aanvragen en echte offertes — geen klantcase, en gemeten voor we dit aan iemand anders aanboden.
+Wie snel antwoordt, blijft in beeld: iemand die binnen het uur contact krijgt, heeft de klant nog aan de lijn voor die drie concurrenten heeft gebeld. Hoeveel tijd u zelf wint, hangt af van hoe ingewikkeld uw offertes zijn en hoeveel er al gestructureerd staat in uw CRM.
 
 ---
 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Chatgesprekken — Selectly</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+      colors: {
+        ink: { 950: '#03050a', 900: '#070a14', 800: '#0a0e1a', 700: '#1c2238' },
+        brand: { 400: '#5b8cff', 500: '#3a6cf2' },
+        mint: { 300: '#7ee5b5', 500: '#34D399' },
+        sun: { 400: '#fbbf24' },
+      },
+    }}};
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(to bottom, #03050a 0%, #070a14 100%); color: #fff; min-height: 100vh; }
+    .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .msg { white-space: pre-wrap; word-wrap: break-word; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <header class="bg-ink-900/80 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <a href="/portal/admin.html" class="text-white/50 hover:text-white text-sm shrink-0">← Command Center</a>
+        <div class="font-bold text-sm truncate">Chatgesprekken</div>
+      </div>
+      <label class="flex items-center gap-2 text-xs text-white/60 shrink-0 cursor-pointer">
+        <input type="checkbox" id="verbergTest" class="accent-blue-500"> Testgesprekken verbergen
+      </label>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+    <p class="text-sm text-white/50 mb-5">Elk gesprek met de assistent op selectly.be, per dag. Bewaard tot 90 dagen, daarna automatisch gewist.</p>
+
+    <div id="fout" class="hidden card rounded-xl p-4 mb-5 text-sm text-sun-400"></div>
+
+    <div class="grid gap-5 md:grid-cols-[220px_1fr]">
+      <aside>
+        <div class="text-xs uppercase tracking-wider text-white/40 mb-2">Dagen</div>
+        <div id="dagen" class="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0 text-sm">
+          <div class="text-white/40">Laden…</div>
+        </div>
+      </aside>
+
+      <section>
+        <div class="flex items-baseline justify-between mb-3">
+          <h1 id="titel" class="text-lg font-bold">—</h1>
+          <span id="teller" class="text-xs text-white/40"></span>
+        </div>
+        <div id="lijst" class="space-y-3"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="/portal/auth-guard.js"></script>
+  <script>
+  (function () {
+    var API = '/.netlify/functions/chat-gesprekken';
+    var el = function (id) { return document.getElementById(id); };
+    var huidig = null, gesprekken = [];
+    var verberg = false;
+    try { verberg = localStorage.getItem('chats_verberg_test') === '1'; } catch (e) {}
+    el('verbergTest').checked = verberg;
+
+    function toonFout(t) { el('fout').textContent = t; el('fout').classList.remove('hidden'); }
+
+    async function haal(query) {
+      var u = window.netlifyIdentity && netlifyIdentity.currentUser();
+      if (!u) throw new Error('Niet aangemeld.');
+      var jwt = await u.jwt();
+      var r = await fetch(API + (query || ''), { headers: { Authorization: 'Bearer ' + jwt } });
+      var j = await r.json().catch(function () { return {}; });
+      if (!r.ok) throw new Error(j.fout || ('Fout ' + r.status));
+      return j;
+    }
+
+    function uur(iso) {
+      return new Date(iso).toLocaleTimeString('nl-BE', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
+    }
+    function mooieDatum(d) {
+      return new Date(d + 'T12:00:00Z').toLocaleDateString('nl-BE', { weekday: 'short', day: 'numeric', month: 'long' });
+    }
+    function span(cls, tekst) { var s = document.createElement('span'); s.className = cls; s.textContent = tekst; return s; }
+
+    function tekenDagen(dagen) {
+      var box = el('dagen'); box.textContent = '';
+      if (!dagen.length) { box.appendChild(span('text-white/40', 'Nog geen gesprekken.')); return; }
+      dagen.forEach(function (d) {
+        var b = document.createElement('button');
+        b.className = 'shrink-0 text-left px-3 py-2 rounded-lg flex justify-between gap-3 ' +
+          (d.datum === huidig ? 'bg-white text-ink-900 font-semibold' : 'card text-white/70 hover:bg-white/10');
+        b.appendChild(span('', mooieDatum(d.datum)));
+        b.appendChild(span('mono text-xs opacity-60', String(d.aantal)));
+        b.onclick = function () { kies(d.datum, dagen); };
+        box.appendChild(b);
+      });
+    }
+
+    function tekenLijst() {
+      var box = el('lijst'); box.textContent = '';
+      var zicht = gesprekken.filter(function (g) { return !(verberg && g.test); });
+      el('teller').textContent = zicht.length + (zicht.length === 1 ? ' gesprek' : ' gesprekken');
+      if (!zicht.length) { box.appendChild(span('text-white/40 text-sm', 'Geen gesprekken op deze dag.')); return; }
+      zicht.forEach(function (g) {
+        var kaart = document.createElement('details');
+        kaart.className = 'card rounded-xl';
+        var kop = document.createElement('summary');
+        kop.className = 'cursor-pointer list-none p-4 flex flex-wrap items-center gap-x-3 gap-y-1';
+        kop.appendChild(span('mono text-sm text-white/60', uur(g.gestart)));
+        var eerste = (g.berichten || []).filter(function (m) { return m.rol === 'bezoeker'; })[0];
+        kop.appendChild(span('font-medium flex-1 min-w-[12rem] truncate', eerste ? eerste.tekst : '(leeg)'));
+        if (g.test) kop.appendChild(span('text-[11px] px-2 py-0.5 rounded-full bg-sun-400/15 text-sun-400', 'TEST'));
+        if (g.email) kop.appendChild(span('text-[11px] px-2 py-0.5 rounded-full bg-mint-500/15 text-mint-300', g.email));
+        if (g.fit_score) kop.appendChild(span('text-[11px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400', 'score ' + g.fit_score));
+        if (g.storing) kop.appendChild(span('text-[11px] px-2 py-0.5 rounded-full bg-sun-400/15 text-sun-400', 'AI-storing'));
+        kop.appendChild(span('text-xs text-white/40 w-full', (g.paginas && g.paginas.length ? g.paginas.join(', ') : g.pagina || '') + ' · ' + g.beurten + ' beurten' +
+          ([g.voornaam, g.bedrijf, g.telefoon, g.sector].filter(Boolean).length ? ' · ' + [g.voornaam, g.bedrijf, g.telefoon, g.sector].filter(Boolean).join(' · ') : '')));
+        kaart.appendChild(kop);
+
+        var inhoud = document.createElement('div');
+        inhoud.className = 'px-4 pb-4 flex flex-col gap-2';
+        (g.berichten || []).forEach(function (m) {
+          var bez = m.rol === 'bezoeker';
+          var b = document.createElement('div');
+          b.className = 'max-w-[85%] rounded-xl px-3 py-2 text-sm ' + (bez ? 'self-end bg-brand-500 text-white' : 'self-start bg-white/10 text-white/90');
+          var meta = span('block text-[11px] opacity-60 mb-1', (bez ? 'Bezoeker' : 'Assistent') + ' · ' + uur(m.tijd) + (m.pagina ? ' · ' + m.pagina : ''));
+          var t = document.createElement('div'); t.className = 'msg'; t.textContent = m.tekst;
+          b.appendChild(meta); b.appendChild(t);
+          inhoud.appendChild(b);
+        });
+        kaart.appendChild(inhoud);
+        box.appendChild(kaart);
+      });
+    }
+
+    async function kies(datum, dagen) {
+      huidig = datum;
+      try { history.replaceState(null, '', '?datum=' + datum); } catch (e) {}
+      el('titel').textContent = mooieDatum(datum);
+      if (dagen) tekenDagen(dagen);
+      el('lijst').textContent = 'Laden…';
+      try {
+        var j = await haal('?datum=' + datum);
+        gesprekken = j.gesprekken || [];
+        tekenLijst();
+      } catch (e) { toonFout(e.message); el('lijst').textContent = ''; }
+    }
+
+    el('verbergTest').onchange = function () {
+      verberg = this.checked;
+      try { localStorage.setItem('chats_verberg_test', verberg ? '1' : '0'); } catch (e) {}
+      tekenLijst();
+    };
+
+    async function start() {
+      try {
+        var j = await haal('');
+        var gevraagd = new URLSearchParams(location.search).get('datum');
+        var datum = /^\d{4}-\d{2}-\d{2}$/.test(gevraagd || '') ? gevraagd : ((j.dagen[0] && j.dagen[0].datum) || j.vandaag);
+        kies(datum, j.dagen);
+      } catch (e) { toonFout(e.message); el('dagen').textContent = ''; }
+    }
+
+    function wacht(n) {
+      if (!window.netlifyIdentity) { if (n > 0) setTimeout(function () { wacht(n - 1); }, 100); return; }
+      netlifyIdentity.on('init', function (u) { if (u) start(); });
+    }
+    wacht(50);
+  })();
+  </script>
+</body>
+</html>

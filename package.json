@@ -4,5 +4,8 @@
   "scripts": {
     "portalen": "node tools/bouw-portalen.mjs",
     "portalen:controleer": "node tools/bouw-portalen.mjs --controleer"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.1"
   }
 }

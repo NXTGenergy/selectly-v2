@@ -5,6 +5,11 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Chatgesprekken: elk kwartier afgelopen gesprekken mailen naar info@selectly.be
+# en alles ouder dan 90 dagen wissen. Zie netlify/lib/chatonderhoud.js.
+[functions."chat-onderhoud"]
+  schedule = "*/15 * * * *"
+
 # ---------------------------------------------------------------------------
 # Redirects
 # ---------------------------------------------------------------------------
@@ -222,6 +227,15 @@
 [[redirects]]
   from = "/portal/instellingen.html"
   to = "/portal/instellingen.html"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
+
+# Chatgesprekken van de assistent op selectly.be. Alleen admin; de function
+# chat-gesprekken controleert de rol daarnaast zelf.
+[[redirects]]
+  from = "/portal/chats.html"
+  to = "/portal/chats.html"
   status = 200
   force = true
   conditions = {Role = ["admin"]}

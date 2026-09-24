@@ -5,14 +5,23 @@
 //
 // Env: ANTHROPIC_API_KEY, GHL_TOKEN, GHL_LOCATION, GHL_PIPELINE, GHL_STAGE.
 // Optioneel: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID (waarschuwing bij storing).
+// Die twee staan enkel in de productiecontext; op een deploy preview vallen we terug
+// op TELEGRAM_SELECTLY_TOKEN + TELEGRAM_SELECTLY_CHAT_ID (zelfde chat).
+//
+// Elk gesprek wordt bij elke beurt bewaard in Netlify Blobs (netlify/lib/chatopslag.js),
+// ongeacht e-mail of score. Leesbaar in /portal/chats.html (enkel rol admin).
+
+const crypto = require('crypto');
+const chat = require('../lib/chatopslag');
 
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY || '';
 const GHL_TOKEN = process.env.GHL_TOKEN || '';
 const GHL_LOCATION = process.env.GHL_LOCATION || '';
 const GHL_PIPELINE = process.env.GHL_PIPELINE || '';
 const GHL_STAGE = process.env.GHL_STAGE || '';
-const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
-const TG_CHAT = process.env.TELEGRAM_CHAT_ID || '';
+const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_SELECTLY_TOKEN || '';
+const TG_CHAT = process.env.TELEGRAM_CHAT_ID || process.env.TELEGRAM_SELECTLY_CHAT_ID || '';
+const OVERZICHT = 'https://selectly.be/portal/chats.html';
 const BOOKING = 'https://api.leadconnectorhq.com/widget/bookings/selectly-demo';
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0 Safari/537.36';
 
@@ -314,14 +323,30 @@ function teVeel(ip) {
   return t.n > MAX_PER_UUR;
 }
 
-async function meldStoring(tekst) {
-  if (!TG_TOKEN || !TG_CHAT) return;
+// Eén Telegram-bericht, met een harde klok. De functie heeft 10 seconden in totaal;
+// een hangende Telegram-aanroep mag het antwoord aan de bezoeker nooit opeten.
+async function tg(tekst) {
+  if (!TG_TOKEN || !TG_CHAT) { console.log('[intake] telegram niet ingesteld'); return false; }
+  const ctrl = new AbortController();
+  const klok = setTimeout(() => ctrl.abort(), 3000);
   try {
-    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT, text: '[selectly.be intake] ' + tekst }),
+    const r = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST', headers: { 'content-type': 'application/json' }, signal: ctrl.signal,
+      body: JSON.stringify({ chat_id: TG_CHAT, text: String(tekst).slice(0, 4000), disable_web_page_preview: true }),
     });
-  } catch (e) { /* een mislukte waarschuwing mag nooit het gesprek breken */ }
+    if (!r.ok) console.log('[intake] telegram geweigerd', r.status, (await r.text()).slice(0, 200));
+    return r.ok;
+  } catch (e) {
+    console.log('[intake] telegram fout', e && e.name);
+    return false;
+  } finally {
+    clearTimeout(klok);
+  }
+}
+
+async function meldStoring(tekst) {
+  // Een mislukte waarschuwing mag nooit het gesprek breken; tg() gooit niet.
+  await tg('[selectly.be intake] ' + tekst);
 }
 
 // Melding bij een binnenkomende lead. Bedoeld om onderweg te kunnen zien wat er
@@ -350,12 +375,7 @@ async function meldLead(d, fase) {
     'Via de chatbot op selectly.be',
   ].filter(Boolean).join('\n');
 
-  try {
-    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT, text: tekst, disable_web_page_preview: true }),
-    });
-  } catch (e) { /* geen melding is vervelend, een gebroken gesprek is erger */ }
+  await tg(tekst);
 }
 
 async function callClaude(messages, poging) {
@@ -477,77 +497,204 @@ async function stuurBevestiging(cid, email, d) {
   }
 }
 
-async function pushToGHL(d, transcript, maakOpportunity) {
-  if (!GHL_TOKEN || !d.email || !EMAIL_RE.test(d.email)) return null;
-  const HEAD = { Authorization: 'Bearer ' + GHL_TOKEN, Version: '2021-07-28', 'Content-Type': 'application/json', Accept: 'application/json', 'User-Agent': UA };
+// GHL-aanroep met klok en responscontrole. GHL antwoordt soms 200/201 op een
+// payload die hij half negeert, en vaker 4xx op een veld dat hier anders heet
+// dan daar. Vroeger werd geen enkele respons gelezen: notities met een ongeldig
+// userId (de contact-id!) verdwenen zonder spoor.
+async function ghl(method, pad, payload, wat, ms) {
+  const ctrl = new AbortController();
+  const klok = setTimeout(() => ctrl.abort(), ms || 4000);
   try {
-    const body = {
-      locationId: GHL_LOCATION, firstName: d.voornaam || '', email: d.email,
-      phone: d.telefoon || undefined, companyName: d.bedrijf || undefined,
-      source: 'AI Intake Assistant (selectly.be)',
-      tags: ['selectly-lead', 'intake-chatbot'],
-    };
-    const r = await fetch('https://services.leadconnectorhq.com/contacts/upsert', { method: 'POST', headers: HEAD, body: JSON.stringify(body) });
-    const j = await r.json();
-    const cid = (j.contact && j.contact.id) || j.id;
-    if (!r.ok || !cid) {
-      // Vroeger werd dit stil ingeslikt. Een lead die hier sneuvelt is een lead
-      // die niemand ooit ziet, dus die gaat nu rechtstreeks naar Telegram.
-      console.log('[intake] GHL afgewezen', r.status, JSON.stringify(j).slice(0, 200));
-      await meldStoring(`GHL ${r.status} — lead NIET opgeslagen:\n${JSON.stringify(d).slice(0, 600)}`);
-      return null;
-    }
-    console.log('[intake] GHL contact', r.status, cid);
-
-    // Kwalificatievelden in een aparte call: de identiteit van de lead mag nooit
-    // sneuvelen op een custom field dat in GHL anders heet dan hier.
-    const velden = [
-      d.sector && { key: 'contact.sector', field_value: d.sector },
-      d.aanvragen_per_maand && { key: 'contact.aanvragen_per_maand', field_value: String(d.aanvragen_per_maand) },
-      d.medewerkers && { key: 'contact.medewerkers', field_value: String(d.medewerkers) },
-      d.orderwaarde && { key: 'contact.orderwaarde', field_value: String(d.orderwaarde) },
-      d.crm && { key: 'contact.crm', field_value: d.crm },
-      d.fit_score && { key: 'contact.fit_score', field_value: String(d.fit_score) },
-    ].filter(Boolean);
-    if (velden.length) {
-      try {
-        await fetch('https://services.leadconnectorhq.com/contacts/' + cid, {
-          method: 'PUT', headers: HEAD, body: JSON.stringify({ customFields: velden }),
-        });
-      } catch (e) { console.log('[intake] custom fields', e && e.message); }
-    }
-
-    // Het volledige gesprek als notitie. Dat is het waardevolste stuk data dat
-    // we hebben en het ging vroeger verloren.
-    if (transcript) {
-      try {
-        await fetch('https://services.leadconnectorhq.com/contacts/' + cid + '/notes', {
-          method: 'POST', headers: HEAD, body: JSON.stringify({ userId: cid, body: transcript.slice(0, 5000) }),
-        });
-      } catch (e) { console.log('[intake] notitie', e && e.message); }
-    }
-
-    // Contacten dedupliceren via upsert, opportunities niet. Zonder deze vlag
-    // verschijnt één prospect twee keer in de pijplijn: één keer zodra zijn
-    // e-mailadres valt, en nog eens bij klaar_voor_demo.
-    if (maakOpportunity && GHL_PIPELINE && GHL_STAGE) {
-      const naam = (d.bedrijf || d.voornaam || d.email) + ' (chatbot' + (d.fit_score ? ', score ' + d.fit_score : '') + ')';
-      await fetch('https://services.leadconnectorhq.com/opportunities/', {
-        method: 'POST', headers: HEAD,
-        body: JSON.stringify({ locationId: GHL_LOCATION, pipelineId: GHL_PIPELINE, pipelineStageId: GHL_STAGE, name: naam, status: 'open', contactId: cid }),
-      });
-    }
-    return cid;
+    const r = await fetch('https://services.leadconnectorhq.com' + pad, {
+      method, signal: ctrl.signal,
+      headers: { Authorization: 'Bearer ' + GHL_TOKEN, Version: '2021-07-28', 'Content-Type': 'application/json', Accept: 'application/json', 'User-Agent': UA },
+      body: payload ? JSON.stringify(payload) : undefined,
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) console.log('[intake] GHL ' + wat + ' geweigerd', r.status, JSON.stringify(j).slice(0, 300));
+    return { ok: r.ok, status: r.status, j };
   } catch (e) {
-    console.log('[intake] GHL fout', e && e.message);
-    await meldStoring(`GHL onbereikbaar — lead NIET opgeslagen:\n${JSON.stringify(d).slice(0, 600)}`);
+    console.log('[intake] GHL ' + wat + ' fout', e && (e.name + ' ' + e.message));
+    return { ok: false, status: 0, j: {} };
+  } finally {
+    clearTimeout(klok);
+  }
+}
+
+// Maakt of vindt het contact en geeft de contact-id terug. Kwalificatievelden en
+// opportunity lopen daarna parallel: de 10-secondengrens van de functie is krap.
+async function pushToGHL(d, maakOpportunity) {
+  if (!GHL_TOKEN || !d.email || !EMAIL_RE.test(d.email)) return null;
+  const body = {
+    locationId: GHL_LOCATION, firstName: d.voornaam || '', email: d.email,
+    phone: d.telefoon || undefined, companyName: d.bedrijf || undefined,
+    source: 'AI Intake Assistant (selectly.be)',
+    tags: ['selectly-lead', 'intake-chatbot'],
+  };
+  const r = await ghl('POST', '/contacts/upsert', body, 'upsert', 5000);
+  const cid = (r.j.contact && r.j.contact.id) || r.j.id;
+  if (!r.ok || !cid) {
+    // Een lead die hier sneuvelt is een lead die niemand ooit ziet: naar Telegram.
+    await meldStoring(`GHL ${r.status || 'onbereikbaar'} — lead NIET opgeslagen:\n${JSON.stringify(d).slice(0, 600)}`);
     return null;
   }
+  console.log('[intake] GHL contact', r.status, cid);
+
+  const taken = [];
+  // Kwalificatievelden apart: de identiteit van de lead mag nooit sneuvelen op
+  // een custom field dat in GHL anders heet dan hier.
+  const velden = [
+    d.sector && { key: 'contact.sector', field_value: d.sector },
+    d.aanvragen_per_maand && { key: 'contact.aanvragen_per_maand', field_value: String(d.aanvragen_per_maand) },
+    d.medewerkers && { key: 'contact.medewerkers', field_value: String(d.medewerkers) },
+    d.orderwaarde && { key: 'contact.orderwaarde', field_value: String(d.orderwaarde) },
+    d.crm && { key: 'contact.crm', field_value: d.crm },
+    d.fit_score && { key: 'contact.fit_score', field_value: String(d.fit_score) },
+  ].filter(Boolean);
+  if (velden.length) taken.push(ghl('PUT', '/contacts/' + cid, { customFields: velden }, 'velden'));
+
+  // Contacten dedupliceren via upsert, opportunities niet. Zonder deze vlag
+  // verschijnt één prospect twee keer in de pijplijn.
+  if (maakOpportunity && GHL_PIPELINE && GHL_STAGE) {
+    const naam = (d.bedrijf || d.voornaam || d.email) + ' (chatbot' + (d.fit_score ? ', score ' + d.fit_score : '') + ')';
+    taken.push(ghl('POST', '/opportunities/', { locationId: GHL_LOCATION, pipelineId: GHL_PIPELINE, pipelineStageId: GHL_STAGE, name: naam, status: 'open', contactId: cid }, 'opportunity')
+      .then((o) => { if (!o.ok) return meldStoring(`Opportunity NIET aangemaakt (${o.status}) voor ${d.email} — contact staat wel in GHL.`); }));
+  }
+  await Promise.all(taken);
+  return cid;
+}
+
+// Het volledige gesprek als één notitie per gesprek, bij elke beurt bijgewerkt.
+// Geeft de notitie-id terug (of null). Geen userId meegeven: dat veld is een
+// GHL-gebruiker, geen contact — de oude code stuurde de contact-id mee.
+async function notitie(cid, tekst, noteId) {
+  if (!GHL_TOKEN || !cid) return null;
+  const body = tekst.length > 5000
+    ? tekst.slice(0, 600) + '\n\n[... ingekort — volledig gesprek in ' + OVERZICHT + ' ...]\n\n' + tekst.slice(-4300)
+    : tekst;
+  if (noteId) {
+    const r = await ghl('PUT', '/contacts/' + cid + '/notes/' + noteId, { body }, 'notitie bijwerken');
+    if (r.ok) return noteId;
+    if (r.status && r.status !== 404) return noteId; // tijdelijk: volgende beurt opnieuw
+  }
+  const r = await ghl('POST', '/contacts/' + cid + '/notes', { body }, 'notitie');
+  const id = r.j && ((r.j.note && r.j.note.id) || r.j.id);
+  if (!r.ok || !id) {
+    await meldStoring(`Chatnotitie NIET in GHL (${r.status}) voor contact ${cid} — het gesprek staat wel in ${OVERZICHT}`);
+    return null;
+  }
+  return id;
+}
+
+// ---------------------------------------------------------------------------
+// Gesprek bewaren
+// ---------------------------------------------------------------------------
+
+function tijdBE(iso) {
+  return new Date(iso).toLocaleTimeString('nl-BE', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
+}
+
+function verslag(rec) {
+  const kop = `Chatgesprek op selectly.be${rec.test ? ' [TEST]' : ''} — ${rec.datum} ${tijdBE(rec.gestart)}, pagina ${rec.pagina || '?'}`;
+  return kop + '\n\n' + rec.berichten
+    .map((m) => (m.rol === 'bezoeker' ? 'Bezoeker' : 'Selectly') + ' (' + tijdBE(m.tijd) + '): ' + m.tekst)
+    .join('\n\n');
+}
+
+// Bouwt het nieuwe record: tijdstempels van eerdere beurten blijven, nieuwe krijgen nu.
+function bouwRecord(oud, ctx, antwoord, data, extra) {
+  const nu = new Date().toISOString();
+  const alle = (oud && Array.isArray(oud.berichten)) ? oud.berichten : [];
+  // De widget verliest zijn gesprek bij het wisselen van pagina, maar houdt het id
+  // (sessionStorage). Dan begint er een nieuw stuk ("segment") in hetzelfde gesprek:
+  // aanvullen, niet overschrijven.
+  let start = (oud && oud.segment_start) || 0;
+  const eerste = ctx.alles[0] ? ctx.alles[0].content.slice(0, 4000) : '';
+  if (alle.length > start && alle[start].tekst !== eerste) start = alle.length;
+  const vorige = alle.slice(start);
+  const nieuw = ctx.alles.slice(-100).map((m, i) => ({
+    rol: m.role === 'user' ? 'bezoeker' : 'assistent',
+    tekst: m.content.slice(0, 4000),
+    tijd: (vorige[i] && vorige[i].tekst === m.content.slice(0, 4000) && vorige[i].tijd) || nu,
+    ...(i === 0 && start > 0 ? { pagina: ctx.pagina } : {}),
+  }));
+  if (antwoord) nieuw.push({ rol: 'assistent', tekst: antwoord.slice(0, 4000), tijd: nu });
+  const berichten = alle.slice(0, start).concat(nieuw);
+  const paginas = (oud && oud.paginas) || [];
+  if (ctx.pagina && paginas.indexOf(ctx.pagina) === -1) paginas.push(ctx.pagina);
+  const d = data || {};
+  const houd = (k) => (d[k] || (oud && oud[k]) || '');
+  return {
+    id: ctx.id,
+    datum: ctx.sleutel.slice(0, 10),
+    test: !!((oud && oud.test) || ctx.test),
+    gestart: (oud && oud.gestart) || (berichten[0] && berichten[0].tijd) || nu,
+    bijgewerkt: nu,
+    pagina: (oud && oud.pagina) || ctx.pagina || '',
+    paginas,
+    voornaam: houd('voornaam'),
+    bedrijf: houd('bedrijf'),
+    email: (extra && extra.email) || houd('email'),
+    telefoon: houd('telefoon'),
+    sector: houd('sector'),
+    fit_score: Number(d.fit_score) || (oud && oud.fit_score) || 0,
+    klaar_voor_demo: !!(d.klaar_voor_demo || (oud && oud.klaar_voor_demo)),
+    storing: !!((extra && extra.storing) || (oud && oud.storing)),
+    ghl_contact_id: (extra && extra.cid) || (oud && oud.ghl_contact_id) || '',
+    ghl_note_id: (extra && extra.noteId) || (oud && oud.ghl_note_id) || '',
+    segment_start: start,
+    beurten: berichten.filter((m) => m.rol === 'bezoeker').length,
+    berichten,
+  };
+}
+
+// Een id per sessie komt van de widget. Een oude widget uit de browsercache stuurt
+// er geen: dan een vaste afgeleide van IP + eerste vraag, zodat de beurten van dat
+// gesprek toch samen blijven.
+function gespreksId(body, ip, alles) {
+  const id = String(body.gesprek_id || '');
+  if (chat.ID_RE.test(id)) return id.toLowerCase();
+  const eerste = (alles.find((m) => m && m.role === 'user') || {}).content || '';
+  return 'x-' + crypto.createHash('sha256').update(ip + '|' + eerste + '|' + chat.datumBE()).digest('hex').slice(0, 24);
 }
 
 // ---------------------------------------------------------------------------
 
 exports.handler = async (event) => {
+  let ctx = null;
+  let bestaand = Promise.resolve({ sleutel: null, record: null });
+  let startMelding = Promise.resolve();
+
+  // Bewaart het gesprek en voert de GHL-notitie uit. Gooit nooit: opslag mag het
+  // antwoord aan de bezoeker niet laten falen.
+  async function registreer(antwoord, data, extra) {
+    if (!ctx) return;
+    try {
+      const { sleutel, record: oud } = await bestaand;
+      if (sleutel) ctx.sleutel = sleutel;
+      if (!ctx.sleutel) ctx.sleutel = chat.datumBE() + '/' + ctx.id;
+      let rec = bouwRecord(oud, ctx, antwoord, data, extra);
+      const cid = rec.ghl_contact_id;
+      if (cid) {
+        const noteId = await chat.metKlok(notitie(cid, verslag(rec), rec.ghl_note_id), 4500, 'notitie').catch((e) => { console.log('[intake]', e.message); return null; });
+        if (noteId) rec.ghl_note_id = noteId;
+      }
+      if (ctx.blobs) {
+        await chat.metKlok(chat.bewaar(ctx.sleutel, rec), 3000, 'bewaren');
+        console.log('[intake] gesprek bewaard', ctx.sleutel, rec.beurten + ' beurten');
+      } else {
+        console.log('[intake] geen Blobs-omgeving — gesprek NIET bewaard', ctx.sleutel);
+      }
+    } catch (e) {
+      console.log('[intake] gesprek bewaren mislukt', e && e.message);
+    }
+  }
+
+  async function klaar(resultaat, data, extra) {
+    await Promise.all([registreer(resultaat.reply, data, extra), startMelding]);
+    return { statusCode: 200, body: JSON.stringify(resultaat) };
+  }
+
   try {
     if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'Method Not Allowed' };
 
@@ -559,58 +706,86 @@ exports.handler = async (event) => {
     const body = JSON.parse(event.body || '{}');
 
     // Alleen echte gespreksbeurten doorlaten, met een harde lengtebegrenzing.
-    // De client bepaalde vroeger volledig wat er naar Claude ging.
-    const alles = Array.isArray(body.messages) ? body.messages : [];
+    const alles = (Array.isArray(body.messages) ? body.messages : [])
+      .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim());
     // Het vangnet moet naar het HELE gesprek kijken, niet naar de laatste 16 beurten.
-    // Anders valt de beurt waarin de bezoeker zijn e-mailadres typte buiten beeld
-    // zodra het gesprek langer wordt, en vangt het vangnet niets meer op.
     const allesGezegd = alles
-      .filter((m) => m && m.role === 'user' && typeof m.content === 'string')
+      .filter((m) => m.role === 'user')
       .map((m) => m.content).join(' ').slice(0, 20000);
-    const ruw = alles.slice(-MAX_BERICHTEN);
-    const messages = ruw
-      .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
+    const messages = alles.slice(-MAX_BERICHTEN)
       .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_TEKENS) }));
+    // De API wil beginnen met een bezoekersbeurt.
+    while (messages.length && messages[0].role !== 'user') messages.shift();
     if (!messages.length) {
       return { statusCode: 200, body: JSON.stringify({ reply: 'Ik heb je bericht niet goed ontvangen — probeer het gerust opnieuw.', booking: BOOKING }) };
     }
 
-    if (!ANTHROPIC_KEY) {
-      return { statusCode: 200, body: JSON.stringify({ reply: 'De assistent ligt er even uit. Laat je naam en e-mail achter, dan neemt het team vandaag nog contact op.', modus: 'bericht', booking: BOOKING }) };
+    // ── Gesprek registreren: opzoeken loopt parallel met Claude ──────────────
+    const eersteVraag = (alles.find((m) => m.role === 'user') || {}).content || '';
+    ctx = {
+      id: gespreksId(body, ip, alles),
+      pagina: String(body.pagina || '').replace(/[^\w\-./]/g, '').slice(0, 120),
+      // Testgesprekken beginnen met TEST in hoofdletters; ze krijgen een label in
+      // het overzicht en in Telegram.
+      test: /^\s*\[?TEST\b/.test(eersteVraag),
+      alles,
+      sleutel: null,
+      blobs: false,
+    };
+    try { ctx.blobs = chat.verbind(event); } catch (e) { console.log('[intake] blobs verbinden', e && e.message); }
+    if (ctx.blobs) {
+      bestaand = chat.metKlok(chat.zoek(ctx.id), 2500, 'opzoeken')
+        .catch((e) => { console.log('[intake] gesprek opzoeken mislukt', e && e.message); return { sleutel: null, record: null }; });
     }
 
-    const gezegd = messages.filter((m) => m.role === 'user').map((m) => m.content).join(' ');
+    // Eerste bericht van een nieuw gesprek: één korte melding, niet bij elke beurt.
+    const eersteBeurt = alles.filter((m) => m.role === 'user').length === 1 && !alles.some((m) => m.role === 'assistant');
+    if (eersteBeurt) {
+      const tijd = new Date().toLocaleTimeString('nl-BE', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
+      // Enkel als het gesprek nog niet bestaat: bij een paginawissel begint de widget
+      // opnieuw, maar het is hetzelfde gesprek.
+      const tekst = [
+        (ctx.test ? '[TEST] ' : '') + '💬 Nieuwe chat op selectly.be',
+        'Pagina: ' + (ctx.pagina || '?') + ' · ' + tijd,
+        '',
+        '"' + eersteVraag.slice(0, 500) + '"',
+        '',
+        OVERZICHT + '?datum=' + chat.datumBE(),
+      ].join('\n');
+      startMelding = bestaand.then((b) => (b && b.record ? null : tg(tekst))).catch(() => null);
+    }
+
+    if (!ANTHROPIC_KEY) {
+      return klaar({ reply: 'De assistent ligt er even uit. Laat je naam en e-mail achter, dan neemt het team vandaag nog contact op.', modus: 'bericht', booking: BOOKING }, null, { storing: true });
+    }
+
     const text = await callClaude(messages, 0);
 
     // De AI mag falen, de klant mag het niet merken (MASTER.md §7). In plaats van
     // een foutmelding neemt de assistent zelf een bericht aan — zonder AI — en die
-    // gegevens gaan alsnog naar GHL. Anders is elke bezoeker tijdens een storing
-    // een lead die niemand ooit ziet.
+    // gegevens gaan alsnog naar GHL.
     if (text === null) {
       const mail = allesGezegd.match(EMAIL_RE);
       const gsm = allesGezegd.match(/(?:\+32|0)\s?4\d{2}[\s./-]?\d{2}[\s./-]?\d{2}[\s./-]?\d{2}/);
       if (mail || gsm) {
-        const cid = await pushToGHL(
-          { email: mail ? mail[0] : `storing-${Date.now()}@selectly.be`, telefoon: gsm ? gsm[0] : '', voornaam: '', bedrijf: '' },
-          'Opgenomen tijdens een storing van de AI-assistent. Wat de bezoeker typte:\n\n' + allesGezegd.slice(0, 4000),
-          true,
-        );
+        const lead = { email: mail ? mail[0] : `storing-${Date.now()}@selectly.be`, telefoon: gsm ? gsm[0] : '', voornaam: '', bedrijf: '' };
+        const cid = await pushToGHL(lead, true);
         if (!cid) await meldStoring(`Bezoeker tijdens storing, NIET in GHL:\n${allesGezegd.slice(0, 600)}`);
         else await meldLead({ email: mail ? mail[0] : '', telefoon: gsm ? gsm[0] : '' }, 'storing');
-        return { statusCode: 200, body: JSON.stringify({
+        return klaar({
           reply: 'Genoteerd. Iemand van het team neemt vandaag nog contact op. Wilt u liever meteen zelf een moment prikken? Dat kan hieronder.',
           modus: 'bericht', pushed: true, booking: BOOKING,
-        }) };
+        }, lead, { storing: true, cid, email: lead.email });
       }
-      // Storing zonder contactgegevens: er valt niets te pushen, maar je wil wél
-      // weten dat er iemand tegen een kapotte assistent zat te praten.
+      // Storing zonder contactgegevens: je wil wél weten dat er iemand tegen een
+      // kapotte assistent zat te praten.
       if (allesGezegd.trim() && !body.gemeld) {
         await meldStoring(`Bezoeker tijdens AI-storing, geen contactgegevens:\n${allesGezegd.slice(0, 800)}`);
       }
-      return { statusCode: 200, body: JSON.stringify({
+      return klaar({
         reply: 'Mijn collega-AI ligt er even uit — geen probleem, ik noteer het gewoon zelf. Wat is uw naam en e-mailadres of gsm-nummer? Dan neemt iemand van het team vandaag nog contact op.',
         modus: 'bericht', gemeld: true, booking: BOOKING,
-      }) };
+      }, null, { storing: true });
     }
 
     const { reply, data } = splitData(text);
@@ -620,32 +795,28 @@ exports.handler = async (event) => {
     const uitChat = allesGezegd.match(EMAIL_RE);
     const email = (data.email && EMAIL_RE.test(data.email)) ? data.email : (uitChat ? uitChat[0] : null);
 
-    // Server-side bepalen of er al gepusht is; de client kon dit vroeger sturen
-    // en dus afdwingen dat er telkens opnieuw een contact aangemaakt werd.
+    // Server-side bepalen of er al gepusht is.
     const alGepusht = messages.filter((m) => m.role === 'assistant').length > 1 && !!body.pushed;
 
     let pushed = !!body.pushed;
+    let cid = null;
     if (email) {
       const compleet = data.klaar_voor_demo === true;
       if (!alGepusht || compleet) {
-        const transcript = messages.map((m) => (m.role === 'user' ? 'Bezoeker: ' : 'Selectly: ') + m.content).join('\n\n');
-        const cid = await pushToGHL({ ...data, email }, compleet ? transcript : null, !body.pushed);
-        // Enkel melden als de lead ook echt in GHL staat. Een melding voor een lead
-        // die daar niet geraakt is, is erger dan geen melding: dan denk je dat het
-        // opgevolgd wordt. Mislukt de push, dan gaat er al een storingsmelding uit.
-        if (cid) await meldLead({ ...data, email }, compleet ? 'demo' : 'nieuw');
-        // Eén bevestiging per gesprek: bij de eerste push. Daarna niet meer, ook
-        // niet als de bezoeker verderop nog gegevens aanvult.
-        if (cid && !body.pushed) await stuurBevestiging(cid, email, { ...data, email });
-        // Alleen als de lead er ook echt in staat. Anders probeert de volgende beurt
-        // het gewoon opnieuw — een 500 van GHL is meestal tijdelijk.
+        cid = await pushToGHL({ ...data, email }, !body.pushed);
+        const na = [];
+        // Enkel melden als de lead ook echt in GHL staat. Mislukt de push, dan gaat
+        // er al een storingsmelding uit.
+        if (cid) na.push(meldLead({ ...data, email }, compleet ? 'demo' : 'nieuw'));
+        // Eén bevestiging per gesprek: bij de eerste push.
+        if (cid && !body.pushed) na.push(stuurBevestiging(cid, email, { ...data, email }));
+        await Promise.all(na);
+        // Mislukt, dan probeert de volgende beurt het opnieuw.
         pushed = !!cid;
       }
     }
 
-    // Een warm gesprek zonder e-mailadres is geen niet-lead. Zonder dit blok verdwijnt
-    // iemand die de bot zelf op fit_score 90 zet spoorloos zodra hij "geen e-mail nu"
-    // zegt: geen CRM, geen melding, geen transcript. Eén melding per gesprek.
+    // Een warm gesprek zonder e-mailadres is geen niet-lead. Eén melding per gesprek.
     let gemeld = !!body.gemeld;
     const score = Number(data.fit_score) || 0;
     const beurten = messages.filter((m) => m.role === 'user').length;
@@ -660,18 +831,18 @@ exports.handler = async (event) => {
         data.crm && 'CRM: ' + data.crm,
       ].filter(Boolean).join(' · ');
       await meldStoring(
-        `WARM GESPREK ZONDER E-MAIL — score ${score}\n${kop}\n\n${transcript.slice(0, 2500)}`
+        `WARM GESPREK ZONDER E-MAIL — score ${score}\n${kop}\n\n${transcript.slice(0, 2500)}\n\n${OVERZICHT}`
       );
       gemeld = true;
     }
 
-    return { statusCode: 200, body: JSON.stringify({ reply, data, pushed, gemeld, booking: BOOKING }) };
+    return klaar({ reply, data, pushed, gemeld, booking: BOOKING }, data, { cid, email });
   } catch (e) {
     console.log('[intake] handler-fout', e && e.message);
     await meldStoring(`Handler-fout: ${e && e.message}`);
-    return { statusCode: 200, body: JSON.stringify({
+    return klaar({
       reply: `Er ging iets mis aan onze kant. Laat je naam en e-mail achter, dan nemen we vandaag nog contact op — of bel gerust ${TELEFOON}.`,
       modus: 'bericht', booking: BOOKING,
-    }) };
+    }, null, { storing: true });
   }
 };

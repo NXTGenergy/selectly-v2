@@ -22,6 +22,23 @@
     try { sessionStorage.setItem('sl_chat_id', gesprekId); } catch (e) {}
   }
 
+  // Het gesprek zelf gaat mee naar de volgende pagina. Vroeger begon de widget op
+  // elke pagina opnieuw; nu loopt het gesprek door en bewaart de functie één
+  // volledig verslag. Elk bericht draagt zijn tijdstip en pagina mee.
+  var gesprekDatum = '', wasOpen = false;
+  try {
+    var st = JSON.parse(sessionStorage.getItem('sl_chat_staat') || 'null');
+    if (st && st.id === gesprekId && Array.isArray(st.m)) {
+      apiMessages = st.m.filter(function (m) { return m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string'; });
+      pushed = !!st.pushed; gemeld = !!st.gemeld; booking = st.booking || ''; gesprekDatum = st.datum || ''; wasOpen = !!st.open;
+    }
+  } catch (e) {}
+  function bewaarStaat(open) {
+    try {
+      sessionStorage.setItem('sl_chat_staat', JSON.stringify({ id: gesprekId, m: apiMessages.slice(-60), pushed: pushed, gemeld: gemeld, booking: booking, datum: gesprekDatum, open: !!open }));
+    } catch (e) {}
+  }
+
   var css = document.createElement('style');
   css.textContent = [
     '.sl-iw-btn{position:fixed;right:20px;bottom:20px;z-index:99998;display:flex;align-items:center;gap:10px;padding:12px 18px;border:none;border-radius:999px;background:linear-gradient(135deg,#5b8cff,#3a6cf2);color:#fff;font:600 15px/1 -apple-system,Segoe UI,Roboto,sans-serif;cursor:pointer;box-shadow:0 8px 28px -6px rgba(58,108,242,.55);transition:transform .15s}',
@@ -113,11 +130,18 @@
   function open() {
     opened = true;
     launcher.style.display = 'none'; panel.style.display = 'flex';
-    if (!body.children.length) addMsg('assistant', GREET);
+    if (!body.children.length) {
+      addMsg('assistant', GREET);
+      apiMessages.forEach(function (m) { addMsg(m.role, m.content); });
+      if (booking && apiMessages.some(function (m) { return m.role === 'assistant' && m.content.indexOf('leadconnectorhq') > -1; })) addBooking();
+    }
+    bewaarStaat(true);
     input.focus();
   }
-  function close() { opened = false; panel.style.display = 'none'; launcher.style.display = 'flex'; }
+  function close() { opened = false; panel.style.display = 'none'; launcher.style.display = 'flex'; bewaarStaat(false); }
   launcher.addEventListener('click', open);
+  // Op gsm niet vanzelf openen: daar vult het paneel het hele scherm.
+  if (wasOpen && apiMessages.length && window.innerWidth > 480) open();
   panel.querySelector('.sl-iw-x').addEventListener('click', close);
 
   // ── Vangnet ───────────────────────────────────────────────────────────────
@@ -190,10 +214,11 @@
     if (bezig || vangnetAan) return;
     var val = input.value.trim(); if (!val) return;
     input.value = ''; addMsg('user', val);
-    apiMessages.push({ role: 'user', content: val });
+    apiMessages.push({ role: 'user', content: val, tijd: new Date().toISOString(), pagina: location.pathname });
+    bewaarStaat(true);
     typing(true); blokkeer(true);
     try {
-      var r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: apiMessages, pushed: pushed, gemeld: gemeld, gesprek_id: gesprekId, pagina: location.pathname }) });
+      var r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: apiMessages, pushed: pushed, gemeld: gemeld, gesprek_id: gesprekId, gesprek_datum: gesprekDatum, pagina: location.pathname }) });
       // Een 502 geeft ook een respons terug. Zonder deze controle leest de
       // widget een foutpagina als "antwoord" en doet hij alsof alles werkt.
       if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -203,10 +228,12 @@
       mislukt = 0;
       var reply = j.reply;
       addMsg('assistant', reply);
-      apiMessages.push({ role: 'assistant', content: reply });
+      apiMessages.push({ role: 'assistant', content: reply, tijd: new Date().toISOString(), pagina: location.pathname });
       if (j.booking) { booking = j.booking; }
       if (j.pushed) pushed = true;
       if (j.gemeld) gemeld = true;
+      if (j.gesprek_datum) gesprekDatum = j.gesprek_datum;
+      bewaarStaat(true);
       if (j.data && j.data.klaar_voor_demo) addBooking();
       // De bot noemt de boekingslink soms een beurt vóór klaar_voor_demo true wordt.
       // Dan hoort de knop er al te staan, niet pas achteraf.

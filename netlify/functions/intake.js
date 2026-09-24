@@ -568,10 +568,17 @@ async function pushToGHL(d, maakOpportunity) {
 // Het volledige gesprek als één notitie per gesprek, bij elke beurt bijgewerkt.
 // Geeft de notitie-id terug (of null). Geen userId meegeven: dat veld is een
 // GHL-gebruiker, geen contact — de oude code stuurde de contact-id mee.
-async function notitie(cid, tekst, noteId) {
+async function notitie(cid, tekst, noteId, gesprekId) {
   if (!GHL_TOKEN || !cid) return null;
+  // Geen notitie-id bekend (of een verouderde lees uit Blobs): zoek de notitie van
+  // dit gesprek op de fiche, zodat er nooit twee notities voor één gesprek komen.
+  if (!noteId && gesprekId) {
+    const l = await ghl('GET', '/contacts/' + cid + '/notes', null, 'notities lezen');
+    const eigen = ((l.j && l.j.notes) || []).find((n) => String(n.body || '').indexOf('Gesprek-id: ' + gesprekId) !== -1);
+    if (eigen) noteId = eigen.id;
+  }
   const body = tekst.length > 5000
-    ? tekst.slice(0, 600) + '\n\n[... ingekort — volledig gesprek in ' + OVERZICHT + ' ...]\n\n' + tekst.slice(-4300)
+    ? tekst.slice(0, 700) + '\n\n[... ingekort — volledig gesprek in ' + OVERZICHT + ' ...]\n\n' + tekst.slice(-4300)
     : tekst;
   if (noteId) {
     const r = await ghl('PUT', '/contacts/' + cid + '/notes/' + noteId, { body }, 'notitie bijwerken');
@@ -596,33 +603,41 @@ function tijdBE(iso) {
 }
 
 function verslag(rec) {
-  const kop = `Chatgesprek op selectly.be${rec.test ? ' [TEST]' : ''} — ${rec.datum} ${tijdBE(rec.gestart)}, pagina ${rec.pagina || '?'}`;
+  const kop = `Chatgesprek op selectly.be${rec.test ? ' [TEST]' : ''} — ${rec.datum} ${tijdBE(rec.gestart)}, pagina ${rec.pagina || '?'}\nGesprek-id: ${rec.id}`;
   return kop + '\n\n' + rec.berichten
     .map((m) => (m.rol === 'bezoeker' ? 'Bezoeker' : 'Selectly') + ' (' + tijdBE(m.tijd) + '): ' + m.tekst)
     .join('\n\n');
 }
 
-// Bouwt het nieuwe record: tijdstempels van eerdere beurten blijven, nieuwe krijgen nu.
+// Bouwt het nieuwe record volledig uit wat de widget meestuurt. De widget draagt
+// het hele gesprek mee over pagina's heen, met per bericht tijdstip en pagina.
+// Het vorige record wordt enkel gelezen voor een paar vaste velden: Blobs is
+// "eventueel consistent" en een lees vlak na een schrijf kan tot een minuut oud zijn.
+function geldigeTijd(t, nu) {
+  if (typeof t !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(t)) return null;
+  const ms = Date.parse(t);
+  if (!ms || ms > nu + 300000 || ms < nu - 2 * 86400000) return null;
+  return new Date(ms).toISOString();
+}
+
 function bouwRecord(oud, ctx, antwoord, data, extra) {
-  const nu = new Date().toISOString();
-  const alle = (oud && Array.isArray(oud.berichten)) ? oud.berichten : [];
-  // De widget verliest zijn gesprek bij het wisselen van pagina, maar houdt het id
-  // (sessionStorage). Dan begint er een nieuw stuk ("segment") in hetzelfde gesprek:
-  // aanvullen, niet overschrijven.
-  let start = (oud && oud.segment_start) || 0;
-  const eerste = ctx.alles[0] ? ctx.alles[0].content.slice(0, 4000) : '';
-  if (alle.length > start && alle[start].tekst !== eerste) start = alle.length;
-  const vorige = alle.slice(start);
-  const nieuw = ctx.alles.slice(-100).map((m, i) => ({
-    rol: m.role === 'user' ? 'bezoeker' : 'assistent',
-    tekst: m.content.slice(0, 4000),
-    tijd: (vorige[i] && vorige[i].tekst === m.content.slice(0, 4000) && vorige[i].tijd) || nu,
-    ...(i === 0 && start > 0 ? { pagina: ctx.pagina } : {}),
-  }));
-  if (antwoord) nieuw.push({ rol: 'assistent', tekst: antwoord.slice(0, 4000), tijd: nu });
-  const berichten = alle.slice(0, start).concat(nieuw);
-  const paginas = (oud && oud.paginas) || [];
-  if (ctx.pagina && paginas.indexOf(ctx.pagina) === -1) paginas.push(ctx.pagina);
+  const nuMs = Date.now();
+  const nu = new Date(nuMs).toISOString();
+  const vorige = (oud && Array.isArray(oud.berichten)) ? oud.berichten : [];
+  const berichten = ctx.alles.slice(-100).map((m, i) => {
+    const tekst = m.content.slice(0, 4000);
+    const b = {
+      rol: m.role === 'user' ? 'bezoeker' : 'assistent',
+      tekst,
+      tijd: geldigeTijd(m.tijd, nuMs) || (vorige[i] && vorige[i].tekst === tekst && vorige[i].tijd) || nu,
+    };
+    const pg = String(m.pagina || '').replace(/[^\w\-./]/g, '').slice(0, 120);
+    if (pg) b.pagina = pg;
+    return b;
+  });
+  if (antwoord) berichten.push({ rol: 'assistent', tekst: antwoord.slice(0, 4000), tijd: nu, pagina: ctx.pagina || undefined });
+  const paginas = [];
+  berichten.concat([{ pagina: ctx.pagina }]).forEach((b) => { if (b.pagina && paginas.indexOf(b.pagina) === -1) paginas.push(b.pagina); });
   const d = data || {};
   const houd = (k) => (d[k] || (oud && oud[k]) || '');
   return {
@@ -631,7 +646,7 @@ function bouwRecord(oud, ctx, antwoord, data, extra) {
     test: !!((oud && oud.test) || ctx.test),
     gestart: (oud && oud.gestart) || (berichten[0] && berichten[0].tijd) || nu,
     bijgewerkt: nu,
-    pagina: (oud && oud.pagina) || ctx.pagina || '',
+    pagina: paginas[0] || '',
     paginas,
     voornaam: houd('voornaam'),
     bedrijf: houd('bedrijf'),
@@ -643,7 +658,6 @@ function bouwRecord(oud, ctx, antwoord, data, extra) {
     storing: !!((extra && extra.storing) || (oud && oud.storing)),
     ghl_contact_id: (extra && extra.cid) || (oud && oud.ghl_contact_id) || '',
     ghl_note_id: (extra && extra.noteId) || (oud && oud.ghl_note_id) || '',
-    segment_start: start,
     beurten: berichten.filter((m) => m.rol === 'bezoeker').length,
     berichten,
   };
@@ -674,10 +688,17 @@ exports.handler = async (event) => {
       const { sleutel, record: oud } = await bestaand;
       if (sleutel) ctx.sleutel = sleutel;
       if (!ctx.sleutel) ctx.sleutel = chat.datumBE() + '/' + ctx.id;
-      let rec = bouwRecord(oud, ctx, antwoord, data, extra);
-      const cid = rec.ghl_contact_id;
-      if (cid) {
-        const noteId = await chat.metKlok(notitie(cid, verslag(rec), rec.ghl_note_id), 4500, 'notitie').catch((e) => { console.log('[intake]', e.message); return null; });
+      const rec = bouwRecord(oud, ctx, antwoord, data, extra);
+      if (GHL_TOKEN && (rec.ghl_contact_id || (ctx.pushed && rec.email))) {
+        const noteId = await chat.metKlok((async () => {
+          // Contact-id na de eerste beurt niet meer bekend in de aanvraag: opzoeken op e-mail.
+          if (!rec.ghl_contact_id) {
+            const q = '/contacts/search/duplicate?locationId=' + encodeURIComponent(GHL_LOCATION) + '&email=' + encodeURIComponent(rec.email);
+            const r = await ghl('GET', q, null, 'contact zoeken');
+            rec.ghl_contact_id = (r.j && r.j.contact && r.j.contact.id) || '';
+          }
+          return rec.ghl_contact_id ? notitie(rec.ghl_contact_id, verslag(rec), rec.ghl_note_id, rec.id) : null;
+        })(), 5000, 'notitie').catch((e) => { console.log('[intake]', e.message); return null; });
         if (noteId) rec.ghl_note_id = noteId;
       }
       if (ctx.blobs) {
@@ -693,6 +714,7 @@ exports.handler = async (event) => {
 
   async function klaar(resultaat, data, extra) {
     await Promise.all([registreer(resultaat.reply, data, extra), startMelding]);
+    if (ctx && ctx.sleutel) resultaat.gesprek_datum = ctx.sleutel.slice(0, 10);
     return { statusCode: 200, body: JSON.stringify(resultaat) };
   }
 
@@ -730,12 +752,18 @@ exports.handler = async (event) => {
       // het overzicht en in Telegram.
       test: /^\s*\[?TEST\b/.test(eersteVraag),
       alles,
+      pushed: !!body.pushed,
       sleutel: null,
       blobs: false,
     };
     try { ctx.blobs = chat.verbind(event); } catch (e) { console.log('[intake] blobs verbinden', e && e.message); }
+    // De widget onthoudt de datum waaronder zijn gesprek staat (gesprek over middernacht).
+    const vandaag = chat.datumBE();
+    const gisteren = chat.datumBE(new Date(Date.now() - 86400000));
+    const gd = String(body.gesprek_datum || '');
+    ctx.sleutel = ((gd === vandaag || gd === gisteren) ? gd : vandaag) + '/' + ctx.id;
     if (ctx.blobs) {
-      bestaand = chat.metKlok(chat.zoek(ctx.id), 2500, 'opzoeken')
+      bestaand = chat.metKlok(chat.store().get(ctx.sleutel, { type: 'json' }).then((record) => ({ sleutel: ctx.sleutel, record })), 2500, 'opzoeken')
         .catch((e) => { console.log('[intake] gesprek opzoeken mislukt', e && e.message); return { sleutel: null, record: null }; });
     }
 
@@ -743,8 +771,6 @@ exports.handler = async (event) => {
     const eersteBeurt = alles.filter((m) => m.role === 'user').length === 1 && !alles.some((m) => m.role === 'assistant');
     if (eersteBeurt) {
       const tijd = new Date().toLocaleTimeString('nl-BE', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
-      // Enkel als het gesprek nog niet bestaat: bij een paginawissel begint de widget
-      // opnieuw, maar het is hetzelfde gesprek.
       const tekst = [
         (ctx.test ? '[TEST] ' : '') + '💬 Nieuwe chat op selectly.be',
         'Pagina: ' + (ctx.pagina || '?') + ' · ' + tijd,
@@ -753,7 +779,7 @@ exports.handler = async (event) => {
         '',
         OVERZICHT + '?datum=' + chat.datumBE(),
       ].join('\n');
-      startMelding = bestaand.then((b) => (b && b.record ? null : tg(tekst))).catch(() => null);
+      startMelding = tg(tekst);
     }
 
     if (!ANTHROPIC_KEY) {

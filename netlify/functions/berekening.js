@@ -71,9 +71,24 @@ exports.handler = async (event) => {
   const waarden = (body.waarden && typeof body.waarden === 'object') ? body.waarden : {};
   const samenvatting = schoon(body.samenvatting, 1500);
 
+  // Herkomst van de bezoeker (first-touch uit lead-meta.js). Dit formulier gaat niet
+  // via Netlify Forms, dus de utm's komen in de payload mee in plaats van als
+  // verborgen velden. Zonder dit kwam de best gekwalificeerde lead van de site
+  // zonder campagne in GHL binnen.
+  const HERKOMST_VELDEN = ['lead_source', 'utm_source', 'utm_medium', 'utm_campaign',
+    'utm_content', 'utm_term', 'landing_page', 'referrer', 'page_url'];
+  const herkomst = {};
+  if (body.herkomst && typeof body.herkomst === 'object') {
+    for (const k of HERKOMST_VELDEN) {
+      const v = schoon(body.herkomst[k], 300);
+      if (v) herkomst[k] = v;
+    }
+  }
+  const herkomstRegels = Object.entries(herkomst).map(([k, v]) => `${k}: ${v}`).join('\n');
+
   // Zonder GHL-token de lead niet laten verdampen: dan gaat hij naar Telegram.
   if (!GHL_TOKEN) {
-    await melden(`${bron} — GEEN GHL-TOKEN, lead enkel hier:\n${email}\n${samenvatting}`);
+    await melden(`${bron} — GEEN GHL-TOKEN, lead enkel hier:\n${email}\n${samenvatting}${herkomstRegels ? '\n\nHerkomst:\n' + herkomstRegels : ''}`);
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   }
 
@@ -100,7 +115,7 @@ exports.handler = async (event) => {
 
     if (!r.ok || !cid) {
       console.log('[berekening] GHL afgewezen', r.status, JSON.stringify(j).slice(0, 200));
-      await melden(`${bron} — GHL ${r.status}, lead NIET opgeslagen:\n${email}\n${samenvatting}`);
+      await melden(`${bron} — GHL ${r.status}, lead NIET opgeslagen:\n${email}\n${samenvatting}${herkomstRegels ? '\n\nHerkomst:\n' + herkomstRegels : ''}`);
       // Naar de bezoeker toe is dit gelukt: hij heeft zijn deel gedaan.
       return { statusCode: 200, body: JSON.stringify({ ok: true }) };
     }
@@ -121,6 +136,28 @@ exports.handler = async (event) => {
       } catch (e) { console.log('[berekening] velden', e && e.message); }
     }
 
+    // De herkomst in een aparte call, met eigen sleutels. Bestaat een van die
+    // custom fields nog niet in GHL, dan sneuvelt alleen deze call en niet de
+    // velden van de berekening hierboven. De herkomst staat daarnaast altijd in
+    // de notitie, dus hij gaat nooit verloren.
+    const herkomstVelden = [
+      herkomst.utm_source && { key: 'contact.utm_source', field_value: herkomst.utm_source },
+      herkomst.utm_medium && { key: 'contact.utm_medium', field_value: herkomst.utm_medium },
+      herkomst.utm_campaign && { key: 'contact.utm_campaign', field_value: herkomst.utm_campaign },
+      herkomst.utm_content && { key: 'contact.utm_content', field_value: herkomst.utm_content },
+      herkomst.utm_term && { key: 'contact.utm_term', field_value: herkomst.utm_term },
+      herkomst.landing_page && { key: 'contact.landing_page', field_value: herkomst.landing_page },
+      herkomst.referrer && { key: 'contact.referrer', field_value: herkomst.referrer },
+    ].filter(Boolean);
+    if (herkomstVelden.length) {
+      try {
+        const rh = await fetch('https://services.leadconnectorhq.com/contacts/' + cid, {
+          method: 'PUT', headers: HEAD, body: JSON.stringify({ customFields: herkomstVelden }),
+        });
+        if (!rh.ok) console.log('[berekening] herkomst-velden', rh.status, (await rh.text()).slice(0, 200));
+      } catch (e) { console.log('[berekening] herkomst-velden', e && e.message); }
+    }
+
     // De volledige berekening als notitie: dat is waarmee je het gesprek opent.
     try {
       const regels = Object.entries(waarden)
@@ -128,7 +165,10 @@ exports.handler = async (event) => {
         .map(([k, v]) => `${k}: ${v}`).join('\n');
       await fetch('https://services.leadconnectorhq.com/contacts/' + cid + '/notes', {
         method: 'POST', headers: HEAD,
-        body: JSON.stringify({ userId: cid, body: `${bron} op selectly.be\n\n${samenvatting}\n\n${regels}`.slice(0, 5000) }),
+        body: JSON.stringify({
+          userId: cid,
+          body: `${bron} op selectly.be\n\n${samenvatting}\n\n${regels}${herkomstRegels ? '\n\nHerkomst (first-touch):\n' + herkomstRegels : ''}`.slice(0, 5000),
+        }),
       });
     } catch (e) { console.log('[berekening] notitie', e && e.message); }
 
@@ -167,6 +207,10 @@ exports.handler = async (event) => {
       email,
       telefoon || null,
       samenvatting || null,
+      // Uit welke campagne hij komt: dat wil je zien vóór je terugbelt.
+      herkomst.utm_campaign || herkomst.utm_source
+        ? `Herkomst: ${[herkomst.utm_source, herkomst.utm_medium, herkomst.utm_campaign].filter(Boolean).join(' / ')}`
+        : (herkomst.lead_source ? `Herkomst: ${herkomst.lead_source}` : null),
       pijplijn || null,
       // Rechtstreekse link naar het contact: één tik en je ziet de hele berekening.
       GHL_LOCATION ? `https://app.gohighlevel.com/v2/location/${GHL_LOCATION}/contacts/detail/${cid}` : null,
@@ -176,7 +220,7 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (e) {
     console.log('[berekening] fout', e && e.message);
-    await melden(`${bron} — GHL onbereikbaar, lead NIET opgeslagen:\n${email}\n${samenvatting}`);
+    await melden(`${bron} — GHL onbereikbaar, lead NIET opgeslagen:\n${email}\n${samenvatting}${herkomstRegels ? '\n\nHerkomst:\n' + herkomstRegels : ''}`);
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   }
 };

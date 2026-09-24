@@ -539,13 +539,8 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
       compute() {
         // Uplift: 35% relatieve verbetering van de conversie, maar we tellen nooit meer
         // dan 6 procentpunt extra conversie mee.
-        //
-        // ⚠️ Vroeger stond hier Math.min(newConv, 65): een plafond op de uitkómst.
-        // Dat maakte de winst kleiner zodra iemand al goed presteerde — 45% conversie
-        // gaf €207.150, 50% gaf €197.250 en 60% nog maar €65.250. Een installateur die
-        // beter werkt, kreeg dus te horen dat hij minder wint. Nu ligt het plafond op de
-        // stíjging (procentpunten) in plaats van op het eindniveau: die stijging kan niet
-        // krimpen als de conversie toeneemt, dus de uitkomst stijgt of blijft gelijk.
+        // Het plafond staat op de stíjging in procentpunten, niet op het eindniveau van
+        // de conversie. Zo kan de uitkomst niet dalen wanneer iemand al goed presteert.
         const UPLIFT = 0.35;      // relatieve verbetering
         const MAX_GAIN_PP = 6;    // maximaal 6 procentpunt extra conversie
         const gainPp = Math.min(this.conv * UPLIFT, MAX_GAIN_PP);
@@ -573,7 +568,7 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
         }
 
         // Extra brutomarge: extra omzet × marge, min de Selectly-kost.
-        // 22% is realistischer voor installatiewerk dan de 35% die hier stond.
+        // 22% brutomarge is wat installatiewerk realistisch draait.
         // Uitgespaarde uren tellen NIET mee als cash: dat is tijd die vrijkomt,
         // geen geld dat binnenkomt. Ze staan apart als tijdswinst.
         const grossMargin = 0.22;
@@ -581,8 +576,7 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
         this.extraProfit = extraProfit;
         this.nettoExtra = Math.round(extraProfit - this.recommendedTier.price);
 
-        // Geen multiplicator meer ("18,5× wat u betaalt"). Eén eerlijk bedrag in euro
-        // leest als een berekening; een factor leest als verkooppraat.
+        // De uitkomst is één bedrag in euro, geen vermenigvuldigingsfactor.
 
         // Terugverdientijd in maanden. Minimum één maand — je verdient een
         // maandabonnement niet terug in twee dagen.
@@ -621,6 +615,24 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
 
       // De ingevulde cijfers zijn het waardevolste wat een bezoeker achterlaat.
       // Die gingen vroeger verloren zodra hij het tabblad sloot.
+      // Attributie van lead-meta.js. Dat script staat onderaan met defer en is dus
+      // geladen lang voor iemand dit formulier verstuurt; de terugval leest
+      // localStorage zelf, voor het geval het geblokkeerd of nog niet klaar is.
+      herkomst() {
+        try {
+          if (window.selectlyLeadMeta) return window.selectlyLeadMeta.velden();
+          const ft = JSON.parse(localStorage.getItem('selectly_first_touch') || 'null') || {};
+          return {
+            lead_source: ft.utm_source || '',
+            utm_source: ft.utm_source || '', utm_medium: ft.utm_medium || '',
+            utm_campaign: ft.utm_campaign || '', utm_content: ft.utm_content || '',
+            utm_term: ft.utm_term || '',
+            landing_page: ft.landing_page || '', referrer: ft.referrer || '',
+            page_url: location.pathname, submitted_at: new Date().toISOString()
+          };
+        } catch (e) { return {}; }
+      },
+
       async stuurBerekening() {
         this.mailFout = '';
         if (!/^[\w.+-]+@[\w-]+\.[a-z]{2,}$/i.test(this.mail)) {
@@ -635,6 +647,11 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
             body: JSON.stringify({
               email: this.mail,
               bron: 'roi',
+              // Dit formulier gaat niet via Netlify Forms maar rechtstreeks naar een
+              // functie, dus lead-meta.js vult hier geen verborgen velden. De herkomst
+              // halen we daarom zelf op en sturen we mee, anders komt de best
+              // gekwalificeerde lead van de site zonder campagne in GHL binnen.
+              herkomst: this.herkomst(),
               waarden: {
                 sector: sectorLabel,
                 leads: this.leads,

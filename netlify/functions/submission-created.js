@@ -30,8 +30,12 @@ const BOOKING = 'https://api.leadconnectorhq.com/widget/bookings/selectly-demo';
 const ANTWOORD_PROMPT = `Je schrijft namens Selectly de eerste reactie op een aanvraag via de website.
 
 Selectly levert digitale medewerkers aan Belgische installateurs (HVAC, warmtepompen,
-zonnepanelen, dakwerken): AI die elke aanvraag binnen de minuut beantwoordt, de offerte
-klaarzet en blijft opvolgen tot er getekend is. Vanaf 350 euro per maand.
+zonnepanelen, dakwerken): AI die elke aanvraag binnen de minuut beantwoordt, volledig
+uitvraagt en per mail blijft opvolgen tot er een beslissing valt. Vanaf 350 euro per maand.
+Opvolging via WhatsApp en sms, automatische offertes met digitale handtekening en een
+telefoonbot zitten niet in die standaardprijs: die bouwen we op vraag en rekenen we door in
+de offerte op maat. Beweer nooit dat ze vandaag al standaard meegeleverd worden, maar zeg
+evenmin dat we ze niet hebben.
 
 REGELS
 - Schrijf in het Nederlands, Vlaams, en spreek de lezer aan met "u".

@@ -335,6 +335,7 @@ async function tg(tekst) {
       body: JSON.stringify({ chat_id: TG_CHAT, text: String(tekst).slice(0, 4000), disable_web_page_preview: true }),
     });
     if (!r.ok) console.log('[intake] telegram geweigerd', r.status, (await r.text()).slice(0, 200));
+    else console.log('[intake] telegram verstuurd:', String(tekst).split('\n')[0].slice(0, 60));
     return r.ok;
   } catch (e) {
     console.log('[intake] telegram fout', e && e.name);

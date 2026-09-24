@@ -286,7 +286,7 @@
             <p class="text-sm text-white/70 mb-3">
               Nog niet meteen een gesprek? Laat uw berekening toesturen — dan hebt u ze zwart op wit.
             </p>
-            <form @submit.prevent="stuurBerekening()" class="flex flex-col sm:flex-row gap-2">
+            <form name="omzetscan-berekening" @submit.prevent="stuurBerekening()" class="flex flex-col sm:flex-row gap-2">
               <input type="email" x-model="mail" required placeholder="uw@bedrijf.be"
                      class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/35 text-sm focus:outline-none focus:border-brand-400" />
               <button type="submit" :disabled="bezig"
@@ -499,6 +499,7 @@
     };
   }
   </script>
+<script src="/lead-meta.js" defer></script>
 <script src="/intake-widget.js" defer></script>
 </body>
 </html>

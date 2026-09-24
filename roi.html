@@ -262,9 +262,9 @@
             <label class="text-sm font-semibold text-ink-900">Aanvragen per maand</label>
             <span class="font-mono font-bold text-lg text-brand-500" x-text="leads"></span>
           </div>
-          <input type="range" min="10" max="200" step="5" x-model.number="leads" @input="compute()" />
+          <input type="range" min="10" max="80" step="5" x-model.number="leads" @input="compute()" />
           <div class="flex justify-between text-xs text-ink-500 mt-1">
-            <span>10</span><span>200</span>
+            <span>10</span><span>80</span>
           </div>
           <p class="text-xs text-ink-500 mt-1">Aanvragen via web, telefoon, doorverwijzing — al wat binnenkomt.</p>
         </div>
@@ -275,11 +275,11 @@
             <label class="text-sm font-semibold text-ink-900">Huidige conversie</label>
             <span class="font-mono font-bold text-lg text-brand-500"><span x-text="conv"></span>%</span>
           </div>
-          <input type="range" min="5" max="60" step="1" x-model.number="conv" @input="compute()" />
+          <input type="range" min="5" max="50" step="1" x-model.number="conv" @input="compute()" />
           <div class="flex justify-between text-xs text-ink-500 mt-1">
-            <span>5%</span><span>60%</span>
+            <span>5%</span><span>50%</span>
           </div>
-          <p class="text-xs text-ink-500 mt-1">% van de aanvragen dat uiteindelijk klant wordt. Sectorgemiddelde: 25-35%.</p>
+          <p class="text-xs text-ink-500 mt-1">% van de aanvragen dat uiteindelijk klant wordt. Sectorgemiddelde: 25-35%. We tellen maximaal 6 procentpunt extra conversie mee — boven ongeveer 17% verandert het bedrag daarom niet meer mee.</p>
         </div>
 
         <!-- Avg deal -->
@@ -335,7 +335,8 @@
               <span class="text-5xl lg:text-6xl font-bold gradient-text" x-text="'€' + nettoExtra.toLocaleString('nl-BE')" :class="flash ? 'number-flash' : ''"></span>
             </div>
             <div class="text-sm text-mint-400/90 font-semibold mt-1" x-show="nettoExtra > 0">
-              Dat is <span x-text="multiplier"></span>× wat u aan Selectly betaalt
+              <span x-text="'€' + extraProfit.toLocaleString('nl-BE')"></span> extra brutomarge,
+              min <span x-text="'€' + recommendedTier.price"></span> Selectly-kost per maand
             </div>
             <div class="text-sm text-white/50 font-semibold mt-1" x-show="nettoExtra <= 0" x-cloak>
               Bij deze cijfers kost Selectly u meer dan het opbrengt.
@@ -387,7 +388,7 @@
             <p class="text-sm text-white/70 mb-3">
               Nog niet meteen een gesprek? Laat uw berekening toesturen — dan hebt u ze zwart op wit.
             </p>
-            <form @submit.prevent="stuurBerekening()" class="flex flex-col sm:flex-row gap-2">
+            <form name="roi-berekening" @submit.prevent="stuurBerekening()" class="flex flex-col sm:flex-row gap-2">
               <input type="email" x-model="mail" required placeholder="uw@bedrijf.be"
                      class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/35 text-sm focus:outline-none focus:border-brand-400" />
               <button type="submit" :disabled="bezig"
@@ -416,7 +417,8 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
         <details class="mt-5 bg-white border border-gray-100 rounded-2xl p-5 text-sm">
           <summary class="font-semibold text-ink-900 cursor-pointer">Hoe berekenen we dit?</summary>
           <ul class="mt-3 space-y-2 text-ink-500 text-xs">
-            <li>• <strong class="text-ink-900">Extra conversie</strong>: +35% relatief, afgetopt op 65%. Een voorzichtige aanname op basis van de 21× hogere kwalificatiekans bij snelle opvolging (MIT/InsideSales Lead Response Management Study) — geen gemeten resultaat bij een klant. Reken er niet blind op.</li>
+            <li>• <strong class="text-ink-900">Extra conversie</strong>: +35% relatief, met een plafond van 6 procentpunt extra conversie. Een voorzichtige aanname op basis van de 21× hogere kwalificatiekans bij snelle opvolging (MIT/InsideSales Lead Response Management Study) — geen gemeten resultaat bij een klant. Reken er niet blind op.</li>
+            <li>• <strong class="text-ink-900">Wat we hieraan veranderden (24-09-2026)</strong>: het plafond lag vroeger op het eindniveau van de conversie (65%). Daardoor daalde de berekende winst zodra u al goed presteerde — wie van 48% naar 60% conversie ging, zag het bedrag kelderen. Dat was een rekenfout, niet uw situatie. Het plafond staat nu op de stíjging, zodat een betere conversie nooit tot een lagere uitkomst leidt. De maxima van de schuifknoppen zijn tegelijk teruggebracht tot wat een KMO-installateur effectief draait, en de vermenigvuldigingsfactor (het aantal keer uw maandkost) is weg: u ziet één bedrag in euro.</li>
             <li>• <strong class="text-ink-900">Marge</strong>: we rekenen met 22% brutomarge op installatiewerk, en trekken de Selectly-kost er af. Wat u ziet is extra brutomarge, geen omzet.</li>
             <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van het offerte-werk is automatiseerbaar. Die uren staan apart en tellen niet mee in het bedrag — vrijgekomen tijd is geen cash.</li>
             <li>• <strong class="text-ink-900">Wat we aanrekenen</strong>: een richtprijs binnen de gepubliceerde vork van €350 tot €750 per maand, op basis van het aantal aanvragen dat moet opgevolgd worden. Daarbovenop komt eenmalig €750 installatie, die u pas betaalt als het live staat en werkt. De terugverdientijd hierboven is die installatie, gedeeld door wat er maandelijks overblijft.</li>
@@ -482,22 +484,25 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
   <script>
   function roiCalc() {
     return {
-      // Inputs
+      // Inputs — de standaardstand is bewust bescheiden: een KMO-installateur met
+      // 30 aanvragen per maand, niet het drukste bedrijf van de provincie. Wie meer
+      // doet, schuift zelf naar boven; de eerste indruk moet geloofwaardig zijn.
       sector: 'pv',
-      leads: 80,
+      leads: 30,
       conv: 28,
       dealAvg: 8500,
       hoursPerQuote: 2.5,
       hourlyRate: 25,
       flash: false,
 
-      // Sectors with realistic deal ranges
+      // Sectors with realistic deal ranges. Bovengrenzen afgestemd op de gemiddelde
+      // orderwaarde van een KMO-installateur — niet op het duurste project ooit.
       sectors: [
-        { id:'pv',     label:'Zonnepanelen',  dealRange:[3000, 18000], dealStep:250, default:8500 },
-        { id:'wp',     label:'Warmtepomp',    dealRange:[8000, 30000], dealStep:500, default:14000 },
-        { id:'batt',   label:'Batterij',      dealRange:[4000, 15000], dealStep:250, default:7500 },
-        { id:'airco',  label:'Airco/HVAC',    dealRange:[2500, 15000], dealStep:250, default:5500 },
-        { id:'dak',    label:'Dakwerken',     dealRange:[2000, 25000], dealStep:500, default:7000 },
+        { id:'pv',     label:'Zonnepanelen',  dealRange:[3000, 12000], dealStep:250, default:8500 },
+        { id:'wp',     label:'Warmtepomp',    dealRange:[8000, 18000], dealStep:500, default:14000 },
+        { id:'batt',   label:'Batterij',      dealRange:[4000, 10000], dealStep:250, default:7500 },
+        { id:'airco',  label:'Airco/HVAC',    dealRange:[2500,  9000], dealStep:250, default:5500 },
+        { id:'dak',    label:'Dakwerken',     dealRange:[2000, 14000], dealStep:500, default:7000 },
       ],
 
       // Outputs
@@ -506,7 +511,6 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
       timeSaved: 0,
       hoursSaved: 0,
       nettoExtra: 0,
-      multiplier: '0',
       paybackText: '',
       paybackNote: '',
       ctaLink: '#',
@@ -533,10 +537,19 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
       },
 
       compute() {
-        // Uplift: relatieve verbetering van conversie met Selectly (35% relatief),
-        // afgetopt op een realistisch plafond van 65%.
-        const newConv = this.conv + (this.conv * 0.35);
-        const closedConv = Math.min(newConv, 65); // realistisch plafond
+        // Uplift: 35% relatieve verbetering van de conversie, maar we tellen nooit meer
+        // dan 6 procentpunt extra conversie mee.
+        //
+        // ⚠️ Vroeger stond hier Math.min(newConv, 65): een plafond op de uitkómst.
+        // Dat maakte de winst kleiner zodra iemand al goed presteerde — 45% conversie
+        // gaf €207.150, 50% gaf €197.250 en 60% nog maar €65.250. Een installateur die
+        // beter werkt, kreeg dus te horen dat hij minder wint. Nu ligt het plafond op de
+        // stíjging (procentpunten) in plaats van op het eindniveau: die stijging kan niet
+        // krimpen als de conversie toeneemt, dus de uitkomst stijgt of blijft gelijk.
+        const UPLIFT = 0.35;      // relatieve verbetering
+        const MAX_GAIN_PP = 6;    // maximaal 6 procentpunt extra conversie
+        const gainPp = Math.min(this.conv * UPLIFT, MAX_GAIN_PP);
+        const closedConv = this.conv + gainPp;
 
         const currentRevenue = this.leads * (this.conv / 100) * this.dealAvg;
         const newRevenue = this.leads * (closedConv / 100) * this.dealAvg;
@@ -568,8 +581,8 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
         this.extraProfit = extraProfit;
         this.nettoExtra = Math.round(extraProfit - this.recommendedTier.price);
 
-        // Multiplier
-        this.multiplier = (this.nettoExtra / this.recommendedTier.price).toFixed(1).replace('.', ',');
+        // Geen multiplicator meer ("18,5× wat u betaalt"). Eén eerlijk bedrag in euro
+        // leest als een berekening; een factor leest als verkooppraat.
 
         // Terugverdientijd in maanden. Minimum één maand — je verdient een
         // maandabonnement niet terug in twee dagen.
@@ -669,6 +682,7 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
       });
     });
   </script>
+<script src="/lead-meta.js" defer></script>
 <script src="/intake-widget.js" defer></script>
 </body>
 </html>

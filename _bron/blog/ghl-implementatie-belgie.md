@@ -40,7 +40,7 @@ GHL pricing pagina toont $97 / $297 / $497 per maand. Wat ze NIET vermelden:
 
 Realistische totale kost voor een Belgische KMO in het eerste jaar: €4.000-8.000, alle extra's en opzettijd inbegrepen.
 
-**Met een Selectly-pakket:** €450 tot €3.500 per maand — GHL-licentie, alle add-ons, onderhoud en AI inbegrepen. Geen verborgen kosten. Als founding client betaalt u de helft van de opstartkost: €375 bij Lite, €750 bij Starter, €1.500 bij Growth. Wat er per formule in zit, staat op de [pakkettenpagina](/pakketten.html).
+**Met Selectly:** vanaf €350 per maand — GHL-licentie, alle add-ons, onderhoud en AI inbegrepen. Geen verborgen kosten. De installatie vanaf €750 betaalt u pas op de dag dat het live staat en werkt. Wat er in zit, staat op de [pakkettenpagina](/pakketten.html).
 
 ## De opzetvolgorde die werkt
 
@@ -90,7 +90,7 @@ Wat hier NIET op staat: een AI-chatbot om aanvragen te kwalificeren. Dat is een 
 - Bedrijven met minder dan 5 aanvragen per maand (te zwaar)
 - Een volledig fysieke zaak zonder aanvragen via het web
 
-Bij ons duurt het korter: Lite staat live binnen 72 uur. Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen.
+Bij ons duurt het korter: het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost.
 
 ---
 

@@ -353,8 +353,8 @@
               <span class="font-bold text-white" x-text="'+€' + extraProfit.toLocaleString('nl-BE')"></span>
             </div>
             <div class="flex items-baseline justify-between">
-              <span class="text-sm text-white/70">Selectly-kost (aanbevolen tier)</span>
-              <span class="font-mono font-semibold text-white/90" x-text="'−€' + recommendedTier.price + ' (' + recommendedTier.name + ')'"></span>
+              <span class="text-sm text-white/70">Selectly-kost (richtprijs, vork €350-750)</span>
+              <span class="font-mono font-semibold text-white/90" x-text="'−€' + recommendedTier.price + '/mnd'"></span>
             </div>
             <div class="flex items-baseline justify-between pt-3 border-t border-white/10">
               <span class="text-sm text-white/70">Daarnaast: uren vrij per maand</span>
@@ -419,7 +419,7 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
             <li>• <strong class="text-ink-900">Extra conversie</strong>: +35% relatief, afgetopt op 65%. Een voorzichtige aanname op basis van de 21× hogere kwalificatiekans bij snelle opvolging (MIT/InsideSales Lead Response Management Study) — geen gemeten resultaat bij een klant. Reken er niet blind op.</li>
             <li>• <strong class="text-ink-900">Marge</strong>: we rekenen met 22% brutomarge op installatiewerk, en trekken de Selectly-kost er af. Wat u ziet is extra brutomarge, geen omzet.</li>
             <li>• <strong class="text-ink-900">Tijdsbesparing</strong>: 70% van het offerte-werk is automatiseerbaar. Die uren staan apart en tellen niet mee in het bedrag — vrijgekomen tijd is geen cash.</li>
-            <li>• <strong class="text-ink-900">Welk pakket we aanraden</strong>: op basis van het aantal aanvragen per maand en uw sector — niet te zwaar, niet te licht.</li>
+            <li>• <strong class="text-ink-900">Wat we aanrekenen</strong>: een richtprijs binnen de gepubliceerde vork van €350 tot €750 per maand, op basis van het aantal aanvragen dat moet opgevolgd worden. Daarbovenop komt eenmalig €750 installatie, die u pas betaalt als het live staat en werkt. De terugverdientijd hierboven is die installatie, gedeeld door wat er maandelijks overblijft.</li>
             <li>• Geen garantie op het resultaat — dit is een schatting om mee te beslissen, geen offerte.</li>
           </ul>
         </details>
@@ -458,13 +458,12 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
           </svg>
           <span class="font-bold text-white">Selectly</span>
         </div>
-        <p>Digitale medewerkers voor Belgische installateurs. Lite live binnen 72 uur.</p>
+        <p>Digitale medewerkers voor Belgische installateurs. Live binnen tien werkdagen.</p>
       </div>
       <div>
         <div class="text-white font-semibold mb-2">Tools</div>
         <ul class="space-y-1">
           <li><a href="/" class="hover:text-white">Home</a></li>
-          <li><a href="/calculator.html" class="hover:text-white">Pakket-calculator</a></li>
           <li><a href="/roi.html" class="hover:text-white">Wat levert het op</a></li>
           <li><a href="/case-installateur.html" class="hover:text-white">Probeer de assistent</a></li>
         </ul>
@@ -512,7 +511,10 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
       paybackNote: '',
       ctaLink: '#',
       whatsappLink: '',
-      recommendedTier: { name: 'Growth', price: 1950 },
+      // Richtprijs binnen de gepubliceerde vork (€350-750). Geen tiers meer:
+      // Starter en Growth waren niet leverbaar en staan niet meer op de site.
+      installatie: 750,
+      recommendedTier: { name: 'richtprijs', price: 550 },
 
       // Berekening laten toesturen
       mail: '',
@@ -546,15 +548,15 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
         this.hoursSaved = Math.round(automatedHours);
         this.timeSaved = Math.round(automatedHours * this.hourlyRate);
 
-        // Tier aanbeveling op basis van lead-volume
-        if (this.leads < 20) {
-          this.recommendedTier = { name: 'Lite', price: 450 };
-        } else if (this.leads < 30) {
-          this.recommendedTier = { name: 'Starter', price: 950 };
-        } else if (this.leads < 150) {
-          this.recommendedTier = { name: 'Growth', price: 1950 };
+        // Richtprijs binnen de vork van €350 tot €750, op basis van het volume
+        // aanvragen dat door de opvolging moet. Wat het bij u exact wordt, staat
+        // in de offerte — daarom 'richtprijs' en geen pakketnaam.
+        if (this.leads < 30) {
+          this.recommendedTier = { name: 'richtprijs', price: 350 };
+        } else if (this.leads < 80) {
+          this.recommendedTier = { name: 'richtprijs', price: 550 };
         } else {
-          this.recommendedTier = { name: 'Enterprise', price: 3500 };
+          this.recommendedTier = { name: 'richtprijs', price: 750 };
         }
 
         // Extra brutomarge: extra omzet × marge, min de Selectly-kost.
@@ -572,18 +574,20 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
         // Terugverdientijd in maanden. Minimum één maand — je verdient een
         // maandabonnement niet terug in twee dagen.
         if (extraProfit > this.recommendedTier.price) {
-          const maanden = Math.max(1, Math.ceil(this.recommendedTier.price / (extraProfit - this.recommendedTier.price)));
+          // Terugverdientijd = hoe snel de eenmalige installatie (€750) terugverdiend is
+          // met wat er maandelijks overblijft na de Selectly-kost.
+          const maanden = Math.max(1, Math.ceil(this.installatie / (extraProfit - this.recommendedTier.price)));
           this.paybackText = maanden === 1 ? '1 maand' : maanden + ' maanden';
           this.paybackNote = extraProfit > this.recommendedTier.price * 4
-            ? 'Ruim positief vanaf de eerste maand.'
-            : 'Positief vanaf de eerste maand.';
+            ? 'De installatie van €750 is er ruim uit, en daarna blijft het positief.'
+            : 'Daarna blijft het elke maand positief.';
         } else {
           this.paybackText = 'niet rendabel';
           this.paybackNote = 'Bij deze cijfers verdient Selectly zichzelf niet terug. Doe het (nog) niet — bel ons als uw volume stijgt.';
         }
 
         // CTA link met cijfers
-        const summary = `Berekening: ${this.leads} aanvragen/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} extra brutomarge/mnd na de Selectly-kost. Aanbeveling: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd).`;
+        const summary = `Berekening: ${this.leads} aanvragen/mnd × ${this.conv}% conversie × €${this.dealAvg} = +€${this.nettoExtra} extra brutomarge/mnd na de Selectly-kost. Gerekend met een richtprijs van €${this.recommendedTier.price}/mnd (vork €350-750) + €${this.installatie} installatie.`;
         this.ctaLink = '/?roi=' + encodeURIComponent(summary) + '#contact';
         this.whatsappLink = 'https://wa.me/32483812907?text=' + encodeURIComponent('Hallo Selectly, ik heb de berekening gedaan op de site. ' + summary + ' Kunnen we een demo inplannen?');
 
@@ -626,10 +630,11 @@ Eén mail met uw cijfers. Geen nieuwsbrief.
                 uren_per_offerte: this.hoursPerQuote,
                 uurtarief: this.hourlyRate,
                 netto_extra_per_maand: this.nettoExtra,
-                aanbevolen_pakket: this.recommendedTier.name,
+                richtprijs_per_maand: this.recommendedTier.price,
+                installatie: this.installatie,
                 terugverdientijd: this.paybackText,
               },
-              samenvatting: `Rekenmodule (${sectorLabel}): ${this.leads} aanvragen/maand, ${this.conv}% conversie, gemiddelde orderwaarde €${this.dealAvg.toLocaleString('nl-BE')}. Netto extra ≈ €${Number(this.nettoExtra).toLocaleString('nl-BE')}/maand na de Selectly-kost. Aanbevolen: ${this.recommendedTier.name} (€${this.recommendedTier.price}/mnd), terugverdiend in ${this.paybackText}.`,
+              samenvatting: `Rekenmodule (${sectorLabel}): ${this.leads} aanvragen/maand, ${this.conv}% conversie, gemiddelde orderwaarde €${this.dealAvg.toLocaleString('nl-BE')}. Netto extra ≈ €${Number(this.nettoExtra).toLocaleString('nl-BE')}/maand na de Selectly-kost. Gerekend met €${this.recommendedTier.price}/maand (vork €350-750) + €${this.installatie} installatie, terugverdiend in ${this.paybackText}.`,
             }),
           });
           const j = await r.json().catch(() => ({}));

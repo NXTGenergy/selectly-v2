@@ -110,6 +110,6 @@ Wat géén goede reden is om over te stappen: "iemand raadde me iets aan op Link
 
 ---
 
-**Twijfelt u welke kant op?** In 20 minuten brengen we samen uw huidige tools en uw pijnpunten in kaart, en krijgt u een eerlijk advies — niet altijd "kies GHL". Wilt u eerst weten hoe zo'n implementatie in België verloopt, lees dan [de GoHighLevel-gids](/blog/ghl-implementatie-belgie.html). Wat het aan onze kant kost, staat op de [pakkettenpagina](/pakketten.html): vanaf €450 per maand met €750 opstart, waarvan founding clients de helft betalen. Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken.
+**Twijfelt u welke kant op?** In 20 minuten brengen we samen uw huidige tools en uw pijnpunten in kaart, en krijgt u een eerlijk advies — niet altijd "kies GHL". Wilt u eerst weten hoe zo'n implementatie in België verloopt, lees dan [de GoHighLevel-gids](/blog/ghl-implementatie-belgie.html). Wat het aan onze kant kost, staat op de [pakkettenpagina](/pakketten.html): vanaf €350 per maand, met een installatie vanaf €750 die u pas betaalt op de dag dat het werkt. Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost.
 
 **[Boek een gratis demo →](/demo)**

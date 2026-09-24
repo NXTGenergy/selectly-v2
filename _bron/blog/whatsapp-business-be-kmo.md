@@ -183,7 +183,7 @@ Wij wachtten zelf ook niet op het perfecte moment. We hadden het in drie weken w
 
 ## Klaar om dit te bouwen?
 
-Bij Selectly zetten we dit op voor Belgische KMO's — van de technische koppeling tot de gespreksopbouw en de aansluiting op uw CRM. Geen algemeen advies, maar een opzet die past bij hoe uw bedrijf werkt. WhatsApp-opvolging zit al in de instapformule van €450 per maand met €750 opstartkost, waarvan u als founding client de helft betaalt. Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen. De vier pakketten staan op de [pakkettenpagina](/pakketten.html).
+Bij Selectly zetten we dit op voor Belgische KMO's — van de technische koppeling tot de gespreksopbouw en de aansluiting op uw CRM. Geen algemeen advies, maar een opzet die past bij hoe uw bedrijf werkt. WhatsApp-opvolging bouwen we vandaag nog niet mee: wat er vandaag draait, begint op €350 per maand met een installatie vanaf €750 die u pas betaalt als het werkt. Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost. Wat er wel en niet bij zit, staat op de [pakkettenpagina](/pakketten.html).
 
 In 20 minuten kijken we samen naar uw huidige klantcontact, waar de vertraging zit en wat een realistische eerste stap is. Werkt u in HVAC of ventilatie? Dan sluit [deze pagina](/voor-hvac.html) nauwer aan bij uw situatie.
 

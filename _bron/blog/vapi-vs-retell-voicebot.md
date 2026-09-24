@@ -199,6 +199,6 @@ U kent nu het verschil tussen Vapi en Retell. U weet welke vragen de keuze bepal
 
 De volgende stap is uitzoeken of een voicebot bij uw situatie past. Dat duurt 20 minuten. Geen verplichtingen.
 
-Een voicebot zit bij ons in de Enterprise-formule; de vier pakketten staan op de [pakkettenpagina](/pakketten.html). Werkt u in HVAC, dan sluit [deze pagina](/voor-hvac.html) dichter bij uw situatie aan.
+Een telefoonbot bouwen we vandaag nog niet — wat er wél in zit en wat niet, staat op de [pakkettenpagina](/pakketten.html). Werkt u in HVAC, dan sluit [deze pagina](/voor-hvac.html) dichter bij uw situatie aan.
 
 **[Boek een gratis demo →](/demo)**

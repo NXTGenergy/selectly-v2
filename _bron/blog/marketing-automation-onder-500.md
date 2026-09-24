@@ -208,7 +208,7 @@ Dat is het. Geen masterplan. Geen groot budget. Gewoon beginnen met iets kleins 
 
 ## Wilt u weten wat voor uw bedrijf het meeste oplevert?
 
-Selectly bouwt dit voor Belgische KMO's. We kijken samen naar uw huidige werkwijze, zoeken het grootste knelpunt en geven u een concrete aanpak. De instap ligt op €450 per maand met €750 opstartkost — als founding client betaalt u daar de helft van, €375. Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen. De vier formules staan naast elkaar op de [pakkettenpagina](/pakketten.html).
+Selectly bouwt dit voor Belgische KMO's. We kijken samen naar uw huidige werkwijze, zoeken het grootste knelpunt en geven u een concrete aanpak. De instap ligt op €350 per maand, met een installatie vanaf €750 die u pas betaalt op de dag dat het live staat en werkt. Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost. Wat er wel en niet bij zit, staat op de [pakkettenpagina](/pakketten.html).
 
 Geen verkoopgesprek. Geen pitch. Twintig minuten die u een werkbaar plan opleveren.
 

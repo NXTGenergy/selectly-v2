@@ -24,8 +24,8 @@ We kijken naar vijf punten:
 
 | Criterium | Grote consultancy | Selectly |
 |---|---|---|
-| Tijd tot het eerste resultaat | 3 - 6 maanden | Lite binnen 72 uur, Starter en Growth binnen twee tot vier weken |
-| Wat u betaalt om te starten | 40.000 - 150.000 euro | Vanaf €450 per maand + €750 opstart (founding client: €375) |
+| Tijd tot het eerste resultaat | 3 - 6 maanden | Binnen tien werkdagen |
+| Wat u betaalt om te starten | 40.000 - 150.000 euro | Vanaf €350 per maand + installatie vanaf €750, pas te betalen bij oplevering |
 | Wie aan uw project werkt | Wisselende junioren | Altijd dezelfde bouwer |
 | Bijsturen na oplevering | Formele procedure + meerkosten | Direct aanpassen |
 | Rapportering | Presentatie per kwartaal | Wekelijkse update in gewone taal |
@@ -46,7 +46,7 @@ Elke maand zonder werkend systeem is een maand waarin uw concurrent sneller werk
 
 Een KMO met een concreet probleem — te veel aanvragen en te weinig tijd om ze allemaal binnen het uur op te volgen — heeft die 14 maanden niet. Wie op een offerte wacht, belt ondertussen gewoon de volgende.
 
-Bij Selectly staat Lite live binnen 72 uur, Starter en Growth binnen twee tot vier weken. Automatisch, zonder extra mensen aan te werven.
+Bij Selectly staat het live binnen tien werkdagen. Automatisch, zonder extra mensen aan te werven.
 
 ---
 
@@ -162,7 +162,7 @@ Het verschil zit zelden in de methode. Het zit in vier dingen die u vooraf kunt 
 - Of uw mensen het systeem gebruiken of eromheen werken.
 - Of er na 30 dagen een getal op tafel ligt.
 
-Bij een groot bureau ziet u het eerste meetbare resultaat doorgaans pas na maanden. Bij ons staat Lite live binnen 72 uur en Starter of Growth binnen twee tot vier weken, afhankelijk van de koppelingen — en dat is precies de reden om klein te beginnen.
+Bij een groot bureau ziet u het eerste meetbare resultaat doorgaans pas na maanden. Bij ons staat het live binnen tien werkdagen — en dat is precies de reden om klein te beginnen.
 
 ---
 

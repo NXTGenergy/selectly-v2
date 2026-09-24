@@ -24,6 +24,22 @@
 # noemde dat "verlies"; een gemiste order kost je je marge, niet de hele order.
 # roi.html is voortaan de enige rekentool. De bestanden blijven staan, de URL's
 # gaan permanent naar de tool die wel klopt.
+# De pakket-calculator koos tussen Lite, Starter, Growth en Enterprise. Sinds
+# 24/09/2026 is er nog één aanbod (vanaf €350/maand, installatie vanaf €750),
+# want Starter en Growth waren niet leverbaar. De kiezer heeft dus niets meer te
+# kiezen: de URL gaat permanent naar de prijspagina.
+[[redirects]]
+  from = "/calculator"
+  to = "/pakketten.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/calculator.html"
+  to = "/pakketten.html"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/omzetscan"
   to = "/roi.html"

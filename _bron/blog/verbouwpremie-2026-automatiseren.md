@@ -167,9 +167,9 @@ Zo'n opzet levert doorgaans twee dingen op: meer aanvragen die effectief verwerk
 
 Een veelgestelde vraag. Het antwoord hangt af van hoe het systeem is opgebouwd, maar een richtlijn:
 
-Bij ons betaalt u een eenmalige opstartkost: €750 bij Lite, €1.500 bij Starter en €3.000 bij Growth. Als founding client betaalt u daar de helft van — €375, €750 of €1.500. Daarna komt er een maandbedrag bij vanaf €450. Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen.
+Bij ons betaalt u een eenmalige installatiekost vanaf €750, en die pas op de dag dat het live staat en werkt. Daarna komt er een maandbedrag bij vanaf €350. Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost.
 
-Ter vergelijking: een administratieve medewerker kost u €5.283 per maand, oftewel €63.394 per jaar aan volledige werkgeverskost. Die medewerker verwerkt 25 tot 30 offertes per maand, werkt acht uur en gaat op verlof. Een geautomatiseerd systeem doet er 80 tot 100, zonder ziektedagen en zonder rekenfouten in de premie.
+Ter vergelijking: een halftijdse administratieve kracht kost u ongeveer €1.831 per maand, oftewel €21.974 per jaar aan volledige werkgeverskost. Die medewerker verwerkt 25 tot 30 offertes per maand, werkt halve dagen en gaat op verlof. Een geautomatiseerd systeem doet er 80 tot 100, zonder ziektedagen en zonder rekenfouten in de premie.
 
 Bij de meeste KMO's is dat op minder dan zes maanden terugverdiend.
 

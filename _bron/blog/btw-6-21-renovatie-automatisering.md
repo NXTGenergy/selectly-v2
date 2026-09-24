@@ -159,7 +159,7 @@ U hoeft geen nieuw softwarepakket te kopen. De beslislogica kan worden ingebouwd
 
 De keuze hangt af van waar het probleem in uw proces zit. Soms is het de offertefase. Soms de facturatie. Soms de factuurvermeldingen. Vaak alle drie, maar niet in dezelfde mate.
 
-In 20 minuten leggen we samen bloot waar het bij u misloopt. Daarna gaat het snel: Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen.
+In 20 minuten leggen we samen bloot waar het bij u misloopt. Daarna gaat het snel: Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost.
 
 ---
 
@@ -183,7 +183,7 @@ Kunt u vandaag geen antwoord geven op de vraag "waarom is dit project aan 6% gef
 
 De beslisboom bestaat al. De regels zijn duidelijk. Het enige wat ontbreekt, is een systeem dat ze consequent uitvoert.
 
-Bij Selectly bouwen we dat systeem op maat van uw bedrijf — gekoppeld aan de tools die u al hebt, zonder dat u van nul moet beginnen. De BTW-logica zit standaard mee ingebouwd bij [dakwerkers](/voor-dakwerken.html) en [HVAC-installateurs](/voor-hvac.html); wat dat kost, staat op de [pakkettenpagina](/pakketten.html). Als founding client betaalt u de helft van de opstartkost.
+Bij Selectly bouwen we dat systeem op maat van uw bedrijf — gekoppeld aan de tools die u al hebt, zonder dat u van nul moet beginnen. De BTW-logica zit standaard mee ingebouwd bij [dakwerkers](/voor-dakwerken.html) en [HVAC-installateurs](/voor-hvac.html); wat dat kost, staat op de [pakkettenpagina](/pakketten.html). De installatie betaalt u pas op de dag dat het live staat en werkt.
 
 In 20 minuten kijken we samen hoe uw offertes lopen, hoe u factureert en waar de BTW-beslissing vandaag genomen wordt.
 

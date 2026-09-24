@@ -134,7 +134,7 @@ De echte kost zit in de bouw. Een goede koppeling vraagt:
 - Testen en bijsturen (1 tot 2 dagen)
 - Documentatie en overdracht (1 dag)
 
-Reken op een eenmalige opstartkost. Daarna is wat er maandelijks bijkomt verwaarloosbaar. Bij ons betaalt u die opstartkost één keer — €750 bij Lite, €1.500 bij Starter, €3.000 bij Growth — en als founding client de helft daarvan. Lite staat live binnen 72 uur, Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen.
+Reken op een eenmalige installatiekost. Daarna is wat er maandelijks bijkomt verwaarloosbaar. Bij ons betaalt u die installatie één keer — vanaf €750 — en pas op de dag dat het live staat en werkt. Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost.
 
 De terugverdientijd? Maakt u 10 offertes per week en wint u er telkens 4 uur mee, dan hebt u die opstartkost na twee weken terugverdiend in vrijgekomen uren. Wat u met die uren doet, dat is de echte winst.
 

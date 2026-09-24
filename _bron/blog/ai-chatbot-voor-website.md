@@ -89,7 +89,7 @@ Hebt u een installatie waarbij 20% van de vragen diepe vakkennis vraagt, dan bea
 | Koppelingen | Make.com, n8n, of eigen Python | €20-100/mnd |
 | Opzettijd (zelf doen) | 40-80 uur voor een eerste werkend systeem | uw tijd |
 
-**Met een Selectly-pakket** (Growth, €1.950 per maand + €3.000 opstartkost): al het bovenstaande inbegrepen, plus de bouw, de opvolging en de maandelijkse bijsturing. Als founding client betaalt u de helft van de opstartkost — €1.500 bij Growth. De volledige prijzen — Lite €450, Starter €950, Growth €1.950 en Enterprise vanaf €3.500 — staan op de [pakkettenpagina](/pakketten.html).
+**Met Selectly**: al het bovenstaande inbegrepen, plus de bouw, de opvolging en de maandelijkse bijsturing. Vanaf €350 per maand, met een installatie vanaf €750 die u pas betaalt op de dag dat het live staat en werkt. Wat er wel en niet bij zit, staat volledig op de [pakkettenpagina](/pakketten.html).
 
 ---
 
@@ -103,7 +103,7 @@ Hebt u een installatie waarbij 20% van de vragen diepe vakkennis vraagt, dan bea
 
 Geen enkel AI-hulpmiddel is "opzetten en vergeten". Reken op 30 tot 90 minuten per maand opvolgen en bijsturen.
 
-Lite staat live binnen 72 uur. Starter en Growth binnen twee tot vier weken, afhankelijk van de koppelingen.
+Het staat live binnen tien werkdagen. Halen we die datum niet door onze schuld, dan vervalt de installatiekost.
 
 ---
 
